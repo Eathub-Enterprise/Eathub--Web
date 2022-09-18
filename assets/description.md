@@ -1,0 +1,1 @@
+## Simply a Folder to make every asset globally available
