@@ -1,0 +1,26 @@
+{
+  "name": "eathub-master-codebase",
+  "version": "1.0.0",
+  "description": "web platform for eathub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eathub-Enterprise/Eathub.git"
+  },
+  "keywords": [
+    "SaaS",
+    "Food",
+    "delivery",
+    "React",
+    "Web-App"
+  ],
+  "author": "Eathub Enterprise",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eathub-Enterprise/Eathub/issues"
+  },
+  "homepage": "https://github.com/Eathub-Enterprise/Eathub#readme"
+}
