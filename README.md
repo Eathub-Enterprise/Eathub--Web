@@ -1,5 +1,15 @@
 # Eathub - Web
 A SaaS Platform for Ordering Meals and Onboarding Food Vendors
+Legacy version used for React- version 18
+
+## Instruction 
+1. Navigate to web-app file : './web-app'
+2. npm i into the terminal to install dependencies
+3. npm start to run in dev mode
+
+Material UI Docs: https://mui.com/material-ui/getting-started/installation/
+
+React-RouterV6 Docs: https://reactrouter.com/en/v6.3.0/getting-started/installation
 
 ## Rules
 1. Verfiy you are on your branch before writing to this Codebase
