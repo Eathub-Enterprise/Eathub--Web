@@ -7,6 +7,13 @@ Legacy version used for React- version 18
 2. npm i into the terminal to install dependencies
 3. npm start to run in dev mode
 
+## Git-Collboration
+To switch branch : git checkout <branch-name>
+To Push Contents to GitHub branch, after changes has been commited : git push
+Merge Contents from another branch : git pull origin <branch-name>
+# Never work on a branch that isnt yours
+# Master branch should be protected at all cost.
+
 Material UI Docs: https://mui.com/material-ui/getting-started/installation/
 
 React-RouterV6 Docs: https://reactrouter.com/en/v6.3.0/getting-started/installation
