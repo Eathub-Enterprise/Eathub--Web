@@ -1,8 +1,22 @@
+:root {
+  --primary: #FF8323;
+  --primary-variant:#DB7002;
+  --secondary:#FF5223;
+  --secondary-variant:#B33919;
+  --auxilliary-variant:#B33919;
+  /* font sizes */
+  --header-1:64px;
+  --header-2:40px;
+  --header-3:24px;
+  --subtitle:14px;
+  --body:16px;
+  --small:14px;
+  --button-text:10px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Montserrat';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

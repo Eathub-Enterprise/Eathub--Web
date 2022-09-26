@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Eathub-Enterprise/Eathub/issues"
   },
-  "homepage": "https://github.com/Eathub-Enterprise/Eathub#readme"
+  "homepage": "https://github.com/Eathub-Enterprise/Eathub#readme",
+  "dependencies": {
+    "react-router-dom": "^6.4.1"
+  }
 }
