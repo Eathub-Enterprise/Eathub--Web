@@ -4,7 +4,7 @@
 }
 
 .navbar-inner {
-    max-height:1440px;
+    max-height:1560px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -16,7 +16,7 @@
 .navbar-icon{
     width:fit-content;
     margin: .5rem;
-    margin-right: 10rem;
+    margin-right: 12rem;
 }
 
 .navbar-icon-wrapper {
@@ -27,7 +27,7 @@
 }
 
 .navbar-link{
-    margin-left: 10rem;
+    margin-left: 12rem;
     height:fit-content;
 }
 .navbar-link-wrapper{
