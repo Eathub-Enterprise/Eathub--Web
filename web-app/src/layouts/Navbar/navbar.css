@@ -4,48 +4,49 @@
 }
 
 .navbar-inner {
-    max-height:1560px;
+    max-width:1560px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     position: static;
 }
 
 .navbar-icon{
-    width:fit-content;
+    width:560px;
     margin: .5rem;
-    margin-right: 12rem;
+    /* margin-right: 18rem; */
+    float: left;
 }
 
-.navbar-icon-wrapper {
-    display: flex;
-    flex-direction: row;
-    width: inherit;
-    align-items:baseline;
+.navbar-icon img:nth-child(1){
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
 .navbar-link{
-    margin-left: 12rem;
+    /* margin-left: 18rem; */
+    width: 560px;
     height:fit-content;
 }
 .navbar-link-wrapper{
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items:baseline;
 }
 .navbar-link button{
     margin-right: .5rem;
     border-radius: 60px;
     border:2px solid var(--primary);
-    padding: 10px 20px;
+    padding: 5px 10px;
     text-align: center;
     font-weight: 700;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 8px 4px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
