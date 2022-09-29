@@ -1,0 +1,52 @@
+.infoHero {
+    position: absolute;
+    width: 100%;
+    min-height: 460px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.infoHero-wrapper {
+    min-width: 100%;
+    min-height: 50%;
+    display: flex;
+    flex-direction: row;
+    position:absolute;
+    top: 25%;
+}
+
+.infoHero-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center ;
+}
+
+.infoHero-icon img {
+    width: 120px;
+    height: 120px;
+}
+
+.infoHero-box-text {
+    position: relative;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.infoHero-box-header{
+    font-size: var(--header-4);
+    font-weight: 600;
+}
+
+.infoHero-box-body{
+    font-size: var(--small);
+    font-weight: 500;
+    line-height: 50px;
+}
+
+/* .infoHero-box-body {
+    text-align: center;
+    width: 80%;
+} */
