@@ -5,7 +5,7 @@ import text from '../../Assets/images/athub.png';
 
 const Navbar = () => {
     return ( 
-        <AppBar maxWidth="sm" className="navbar-wrapper" position="static">
+        <AppBar maxWidth="sm" className="navbar-wrapper" position="sticky">
             <Toolbar>
             <main className="navbar-inner">
                 <div className="navbar-icon">
