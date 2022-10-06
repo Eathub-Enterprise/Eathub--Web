@@ -1,11 +1,12 @@
 import './Assets/styles/App.css';
-import Footer from './layouts/Footer/Footer';
+import Membership from './Components/Membership/Membership';
+
 
 // first layer of Routing is done here!
 function App() {
   return (
     <>
-    <Footer />
+    <Membership />
     </>
   );
 }
