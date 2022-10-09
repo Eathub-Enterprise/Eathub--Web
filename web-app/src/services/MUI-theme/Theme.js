@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
+export const theme = createTheme({
     components: {
       // Name of the component
       AppBar: {
@@ -15,7 +15,15 @@ const theme = createTheme({
         },
       },
     },
-});
-
-export default theme;
-  
+    pallette: {
+      primary:{
+        main: "#FF8323",
+        dark: "#DB7002"
+      },
+      secondary:{
+        main: "FF5223",
+        light: "#B33919",
+        dark: "#B33919"
+      }
+    }
+})

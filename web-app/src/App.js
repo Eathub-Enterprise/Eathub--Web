@@ -1,12 +1,12 @@
 import './Assets/styles/App.css';
-import Membership from './Components/Membership/Membership';
+import NavBar from './layouts/Navbar/Navbar';
 
 
 // first layer of Routing is done here!
 function App() {
   return (
     <>
-    <Membership />
+    <NavBar />
     </>
   );
 }

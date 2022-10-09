@@ -9,11 +9,11 @@ const Membership = () => {
                 <div className="membership-content">
                     <div className="membership-content-section">
                         <div className="membership-header">
-                            <h1>Join Eathub Membership and get discount up to 30%</h1>
+                            <h2>Join Eathub Membership and get discount up to 30%</h2>
                         </div>
-                        <div className="membership-text-body">
+                        {/* <div className="membership-text-body">
                             <p></p>
-                        </div>
+                        </div> */}
                         <div className="membership-input">
                             <input type="email" name="" id="" placeholder="Enter Your Email Here" />
                             <input type="submit" value="Submit" />

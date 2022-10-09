@@ -2,7 +2,7 @@
     position: absolute;
     width: 100%;
     min-height: 460px;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: white;
 }
 
@@ -50,3 +50,37 @@
     text-align: center;
     width: 80%;
 } */
+
+@media only screen and (max-width: 768px) {
+    .infoHero {
+        height: 100%;
+        margin: 0;
+        font-size: var(--mobile-font);
+    }
+
+    .infoHero-icon img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .infoHero-wrapper {
+        display: flex;
+        flex-direction: column;
+        top: 2%;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .infoHero-box {
+        margin-bottom: 1rem;
+        font-size: var(--mobile-font);
+    }
+
+    .infoHero-box-header{
+        font-size: var(--subtitle);
+    }
+
+    .infoHero-box-body{
+        font-weight: normal;
+    }
+}

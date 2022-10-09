@@ -9,13 +9,20 @@
 
 .membership-img {
     position: relative;
+    
+}
+
+.membership-img img{
+    width: 70%;
+    object-fit: contain;
+    margin-left: 15%;
 }
 
 .membership-content {
     position: absolute;
     width: 80%;
     height: 80%;
-    top: 20%;
+    top: 15%;
     left: 10%;
     right: 10%;
 }
@@ -29,16 +36,15 @@
 
 .membership-header {
     color: white;
-    font-size: var(--header-3);
-    width: 70%;
-    font-weight:bold;
+    font-size: var(--header-4);
+    width: 45%;
     line-height: 54px;
     text-align: center;
 }
 
 .membership-input {
     margin-top: 2rem;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction:row;
     /* align-items: center; */
@@ -71,4 +77,46 @@
 input[type="submit"]:hover{
     color: var(--primary);
     background-color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .membership-img img{
+        object-fit: contain;
+        margin-left: 15%;
+    }
+
+    .membership-content {
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        top: 15%;
+        left: 10%;
+        right: 10%;
+        font-size: var(--mobile-font);
+    }
+
+    .membership-input input[type="submit"] {
+        height: 14px;
+        padding-right: 0;
+        padding-left: 0;
+        width: 20%;
+        padding: 2px;
+        font-size: var(--mobile-font);
+    }
+
+    .membership-input input[type="email"]{
+        width: 60%;
+        height: 8px;
+        padding: 2px;
+        font-size: var(--mobile-font);
+    }
+
+    .membership-header {
+        font-size: var(--mobile-font);
+    }
+
+    .membership-input {
+        margin-top: 2%;
+    }
+
 }

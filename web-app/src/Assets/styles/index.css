@@ -9,10 +9,11 @@
   --header-2:40px;
   --header-3:24px;
   --header-4:20px;
-  --subtitle:14px
+  --subtitle:14px;
   --body:16px;
   --small:14px;
   --button-text:10px;
+  --mobile-font: 6px;
 }
 
 body {
