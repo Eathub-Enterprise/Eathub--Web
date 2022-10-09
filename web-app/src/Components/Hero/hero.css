@@ -1,13 +1,18 @@
  
 .hero-section {
     width: 100%;
-    min-height: 100vh;
-    background: url(../../Assets/images/emy-XoByiBymX20-unsplash\ 1.jpg);
+    height: 80%;
     overflow: hidden;
-    /* image-resolution:initial;
-    background-repeat: no-repeat;
-    object-fit:contain; */
     color: white;
+    /* position:fixed; */
+}
+
+.hero-background {
+    width: 100%;
+    height: 860px;
+    object-fit:cover;
+    position: absolute;
+    top:0;
 }
 
 .hero-container {
@@ -72,14 +77,46 @@ input::placeholder {
 
 @media only screen and (max-width: 768px) {
     .hero-section{
-        min-width: 100%;
+        width: 100%;
         height: 100%;
-        overflow-x:hidden;
-        object-fit:fill;
-        background-repeat: no-repeat;
+        object-fit:contain;
+        overflow: hidden;
+    }
+
+    .hero-background {
+        width: 100vw;
+        height: 100%;
     }
 
     .hero-container{
         margin:0;
+        padding: 0;
+    }
+
+    .hero-header {
+        font-size: var(--header-3);
+        line-height: 10px;
+        position:fixed;
+    }
+
+    .hero-subheader {
+        position:fixed;
+        font-size: var(--body);
+        display: block;
+        line-height: 10px;
+        top:33%;
+        margin-top: 1rem;
+        right: 10%;
+    }
+
+    .hero-input{
+        margin-top: 2rem;
+        top: 45%;
+        right:10%;
+    }
+
+    .hero-input input{
+        border: 1px solid var(--primary);
+        font-size: var(--small);
     }
 }

@@ -1,12 +1,14 @@
 import './Assets/styles/App.css';
-import NavBar from './layouts/Navbar/Navbar';
+import Hero from './Components/Hero/Hero';
+import Navbar from './layouts/Navbar/Navbar';
 
 
 // first layer of Routing is done here!
 function App() {
   return (
     <>
-    <NavBar />
+    <Navbar />
+    <Hero />
     </>
   );
 }
