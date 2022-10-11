@@ -61,18 +61,18 @@
 .hero-input input{
     width: 100%;
     box-sizing: border-box;
-    border: 2px solid var(--primary);
+    border: 2px solid white;
     border-radius: 4px;
     font-size: 16px;
-    color:white;
-    background-color: var(--primary);
+    color: black;
+    background-color: white;
     background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
 }
 
 input::placeholder {
-    color: white;
+    color: #707070;
 }
 
 @media only screen and (max-width: 768px) {

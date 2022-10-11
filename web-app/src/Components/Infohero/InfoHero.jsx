@@ -15,7 +15,7 @@ const InfoHero = () => {
                     </div>
                     <div className="infoHero-box-text">
                         <div className="infoHero-box-header">
-                            <h1>Easy Orders</h1>
+                            <h1>Easy Order</h1>
                         </div>
                         <div className="infoHero-box-body">
                             <p>We build an amazing experience with every user to personalize every meal to their taste.</p>
