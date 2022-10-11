@@ -1,5 +1,8 @@
 // import React from 'react';
 import "./footer.css";
+import google from '../../Assets/images/Google.png';
+import apple from '../../Assets/images/Apple.png';
+
 
 const Footer = () => {
   return (
@@ -11,7 +14,10 @@ const Footer = () => {
             <span style={{ color: "#ffff" }}>Eat</span>
             <span style={{ color: "#FF8323" }}>Hub</span>
           </h1>
-          
+          <div className="link-btn">
+          <img src={google} alt={google} />
+          <img src={apple} alt={apple} />
+          </div>
         </div>
           <div className="footer-col">
             <h4>Support</h4>

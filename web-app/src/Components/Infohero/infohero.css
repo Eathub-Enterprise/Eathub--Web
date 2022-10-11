@@ -3,7 +3,7 @@
     width: 100%;
     min-height: 460px;
     overflow-x: hidden;
-    background-color: white;
+    background: transparent;
 }
 
 .infoHero-wrapper {

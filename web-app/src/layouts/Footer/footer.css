@@ -2,17 +2,19 @@
   position: fixed;
   background-color: black;
   padding: 20px 0px;
+  width: 100%;
 
 }
 
 .container {
-  max-width: 1700px;
   margin: auto;
 }
 
 .row {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 ul {
@@ -22,10 +24,19 @@ ul {
 .footer-logo {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  margin-right: 35%;
+  width: 40%;
+  margin-left: 2rem;
   justify-content: space-around;
-  
+}
+
+.link-btn{
+  margin-top: 2rem;
+}
+
+.footer-logo img{
+  width: 40%;
+  object-fit: contain;
+  cursor: pointer;
 }
 
 .footer-socials p {

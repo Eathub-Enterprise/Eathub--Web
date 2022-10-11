@@ -1,12 +1,12 @@
 import './Assets/styles/App.css';
-import InfoHero from './Components/Infohero/InfoHero';
+import Footer from './layouts/Footer/Footer';
 
 
 // first layer of Routing is done here!
 function App() {
   return (
     <>
-    <InfoHero />
+    <Footer />
     </>
   );
 }
