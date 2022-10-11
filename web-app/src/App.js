@@ -1,12 +1,12 @@
 import './Assets/styles/App.css';
-import Footer from './layouts/Footer/Footer';
+import Homepage from './Pages/Homepage';
 
 
 // first layer of Routing is done here!
 function App() {
   return (
     <>
-    <Footer />
+    <Homepage />
     </>
   );
 }

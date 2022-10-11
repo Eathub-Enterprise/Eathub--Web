@@ -13,7 +13,7 @@ const ShopHero = () => {
                 </div>
                 <div className="shopHero-aside">
                     <div className="shopHero-header">
-                        <h1>Buy our food from different store</h1>
+                        <h1>Purchase Meals from Various Vendors</h1>
                     </div>
                     <div className="shopHero-body">
                         <p>

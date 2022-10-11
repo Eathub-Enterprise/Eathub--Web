@@ -21,7 +21,7 @@ const Bar = styled(Box)(({ theme }) => ({
 
 const Navbar = () => {
     return (
-        <AppBar maxWidth="xl" color="transparent" position="sticky">
+        <AppBar maxWidth="xl" color="inherit" position="sticky">
             <StyledToolbar>
                 <div className="navbar-link-wrapper">
                     <img src={e} alt={e} className="large-e" />

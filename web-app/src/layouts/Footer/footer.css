@@ -1,5 +1,5 @@
 .footer {
-  position: fixed;
+  position: inherit;
   background-color: black;
   padding: 20px 0px;
   width: 100%;
@@ -81,22 +81,18 @@ ul {
   color : white;
 }
 
+@media only screen and (max-width: 768px) {
+  .footer{
+    overflow-x: hidden;
+    max-width: 100%;
+  }
 
-
-
-
-
-/* responsiveness
-
-@media (max-width: 767px) {
-  .footer {
-    width: 50%;
-    margin-bottom: 30px;
+  .row, .footer-bottom-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-bottom-text  {
+    align-items: center;
+    justify-content: space-between;
   }
 }
-
-@media (max-width: 574px) {
-  .footer {
-    width: 100%;
-  }
-} */

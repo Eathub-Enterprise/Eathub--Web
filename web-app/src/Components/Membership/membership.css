@@ -1,6 +1,6 @@
 .membership-container{
     width: 100%;
-    min-height :460px;
+    height :450px;
     display: flex;
     justify-content:center;
     align-items:center;
@@ -9,7 +9,6 @@
 
 .membership-img {
     position: relative;
-    
 }
 
 .membership-img img{

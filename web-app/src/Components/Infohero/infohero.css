@@ -1,9 +1,9 @@
 .infoHero {
-    position: absolute;
+    position: relative;
     width: 100%;
-    min-height: 460px;
+    height: 460px;
     overflow-x: hidden;
-    background: transparent;
+    background: white;
 }
 
 .infoHero-wrapper {
@@ -53,7 +53,7 @@
 
 @media only screen and (max-width: 768px) {
     .infoHero {
-        height: 100%;
+        height: 80vh;
         margin: 0;
         font-size: var(--mobile-font);
     }

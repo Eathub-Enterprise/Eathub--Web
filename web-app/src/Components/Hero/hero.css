@@ -4,21 +4,21 @@
     height: 80%;
     overflow: hidden;
     color: white;
-    /* position:fixed; */
+    /* position: static; */
 }
 
 .hero-background {
     width: 100%;
     height: 860px;
     object-fit:cover;
-    position: absolute;
+    position: static;
     top:0;
 }
 
 .hero-container {
     width: 100%;
     height: 100%;
-    padding: 5rem;
+    /* padding: 5rem; */
 }
 
 .hero-header{
@@ -78,14 +78,16 @@ input::placeholder {
 @media only screen and (max-width: 768px) {
     .hero-section{
         width: 100%;
-        height: 100%;
+        height: 100vh;
         object-fit:contain;
         overflow: hidden;
+        position: relative;
     }
 
     .hero-background {
-        width: 100vw;
+        width: 100%;
         height: 100%;
+        position:relative;
     }
 
     .hero-container{
@@ -96,27 +98,27 @@ input::placeholder {
     .hero-header {
         font-size: var(--header-3);
         line-height: 10px;
-        position:fixed;
+        top:30%;
     }
 
     .hero-subheader {
-        position:fixed;
-        font-size: var(--body);
+        font-size: var(--subtitle);
         display: block;
         line-height: 10px;
-        top:33%;
-        margin-top: 1rem;
+        top:45%;
         right: 10%;
     }
 
     .hero-input{
         margin-top: 2rem;
-        top: 45%;
+        top: 55%;
         right:10%;
     }
 
     .hero-input input{
         border: 1px solid var(--primary);
         font-size: var(--small);
+        padding: 3px 5px 3px 5px;
+        width: 95%;
     }
 }
