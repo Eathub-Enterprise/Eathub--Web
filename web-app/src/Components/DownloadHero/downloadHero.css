@@ -48,19 +48,17 @@
     cursor: pointer;
 }
 
-.downloadHero-btn img:nth-child(2){
-    margin-left: 2rem;
-}
-
 .downloadHero-img{
+    flex:1;
     display: flex;
     justify-content: right;
+    margin-right: 6rem;
 }
 
 .downloadHero-img img{
     object-fit: contain;
-    width: 60%;
-    margin-bottom: 4rem;
+    width: 90%;
+    margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -80,7 +78,7 @@
 
     .downloadHero-body{
         padding-top: 0;
-        padding-left: 0;
+        padding-left: 4rem;
         text-align: center;
     }
     

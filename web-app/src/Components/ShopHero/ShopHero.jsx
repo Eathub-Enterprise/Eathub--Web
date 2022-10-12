@@ -25,7 +25,6 @@ const ShopHero = () => {
                             <span className="text">
                             Place Order
                             </span>
-                             <LaunchRoundedIcon />
                         </button>
                     </div>
                 </div>
