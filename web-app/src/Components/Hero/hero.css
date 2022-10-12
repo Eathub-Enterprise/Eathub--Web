@@ -75,6 +75,39 @@ input::placeholder {
     color: #707070;
 }
 
+@media only screen and (min-width: 1200px) {
+    .hero-subheader{
+        font-size: var(--header-3);
+        font-weight: 800;
+        top: 55%;
+        bottom: 48%;
+        left: 10%;
+        right:35%
+    }
+    .hero-input{
+        top: 75%;
+    }
+}
+
+
+@media only screen and (min-width: 1500px) {
+    .hero-subheader{
+        font-size: var(--header-3);
+        font-weight: 800;
+        top: 45%;
+        bottom: 48%;
+        left: 10%;
+        right:35%
+    }
+
+    .hero-input{
+        top: 65%;
+        bottom: 35%;
+        left: 10%;
+        right:45%;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .hero-section{
         width: 100%;
