@@ -79,13 +79,13 @@ input::placeholder {
     .hero-subheader{
         font-size: var(--header-3);
         font-weight: 800;
-        top: 48%;
+        top: 52%;
         bottom: 48%;
         left: 10%;
         right:35%
     }
     .hero-input{
-        top: 65%;
+        top: 70%;
     }
 }
 
