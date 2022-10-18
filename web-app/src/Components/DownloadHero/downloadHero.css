@@ -52,13 +52,22 @@
     flex:1;
     display: flex;
     justify-content: right;
-    margin-right: 6rem;
+    margin-right: 5rem;
 }
 
 .downloadHero-img img{
     object-fit: contain;
     width: 90%;
     margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 1400px) {
+    .downloadHero-img{
+        margin-right: 0rem;
+    }
+    .downloadHero-img img{
+        width: 65%;
+    }
 }
 
 @media only screen and (max-width: 768px) {
