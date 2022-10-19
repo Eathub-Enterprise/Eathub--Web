@@ -1,15 +1,25 @@
 import './Assets/styles/App.css';
 import PersonalForm from './Components/PersonalForm/PersonalForm';
 import Homepage from './Pages/Homepage';
+import React from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 
 // first layer of Routing is done here!
-function App() {
-  return (
-    <>
-    <PersonalForm />
-    </>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Homepage />} />
+        </Routes>
+      </BrowserRouter>
+    )
+  };
 }
 
 export default App;

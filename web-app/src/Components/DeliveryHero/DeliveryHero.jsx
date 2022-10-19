@@ -25,7 +25,6 @@ const DeliveryHero = () => {
           <div className="deliveryHero-btn">
             <button>
               <span className="text">Place Order</span>
-              <LaunchRoundedIcon />
             </button>
           </div>
         </div>
