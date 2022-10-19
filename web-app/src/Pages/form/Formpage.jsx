@@ -1,6 +1,7 @@
 import './formpage.css';
 import PersonalForm from '../../Components/PersonalForm/PersonalForm';
 import background from '../../Assets/images/formbackground.png';
+import BusinessForm from '../../Components/BusinessForm/BusinessForm';
 
 export default function Formpage() {
     return (
@@ -11,7 +12,8 @@ export default function Formpage() {
                 </aside>
                 <aside className="Formpage-comp">
                     {/* Conditional Rendering */}
-                    <PersonalForm />
+                    {/* <PersonalForm /> */}
+                    <BusinessForm />
                 </aside>
             </div>
         </div>

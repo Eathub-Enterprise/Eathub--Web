@@ -131,7 +131,7 @@ const PersonalForm = () => {
                     name="email"
                     type="text"
                     placeholder="Email"
-                    value={values.lastName}
+                    value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={errors.email && touched.email && "error"}
@@ -146,7 +146,7 @@ const PersonalForm = () => {
                     name="password"
                     type="password"
                     placeholder="Choose a password"
-                    value={values.lastName}
+                    value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={errors.password && touched.password && "error"}
@@ -161,7 +161,7 @@ const PersonalForm = () => {
                     name="password"
                     type="password"
                     placeholder="Confirm password"
-                    value={values.lastName}
+                    value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={errors.password && touched.password && "error"}
