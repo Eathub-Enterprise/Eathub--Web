@@ -1,5 +1,4 @@
 import { Formik } from "formik";
-import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
 import "./personalForm.css";
 
@@ -17,7 +16,7 @@ const PersonalForm = () => {
         cfpassword: "",
         phoneNumber: "",
       }}
-      validateOnChange={(values, { setSubmitting }) => {
+      onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           console.log("Sign Up Success", values);
           setSubmitting(false);
@@ -57,7 +56,7 @@ const PersonalForm = () => {
                 </p>
               </header>
               <div className="personal-form-input">
-                <form onSubmit={handleChange}>
+                <form onSubmit={handleSubmit}>
                   <div className="input-header">
                     <div className="input-top">
                       <input
