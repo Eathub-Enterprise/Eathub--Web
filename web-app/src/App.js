@@ -1,5 +1,4 @@
 import './Assets/styles/App.css';
-import PersonalForm from './Components/PersonalForm/PersonalForm';
 import Homepage from './Pages/Homepage';
 import React from 'react';
 import {
@@ -7,6 +6,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Formpage from './Pages/form/Formpage';
 
 
 // first layer of Routing is done here!
@@ -16,6 +16,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
+          <Route path="signup" element={<Formpage />} />
         </Routes>
       </BrowserRouter>
     )
