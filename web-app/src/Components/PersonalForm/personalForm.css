@@ -1,0 +1,131 @@
+.personal-form{
+    width: auto;
+    height: 100vh; 
+    background-color:rgba(236, 236, 236, 1);
+}
+
+.personal-form-main {
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:center;
+    padding: 5%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* align-items: center; */
+}
+
+.personal-form header{
+    text-align: center;
+}
+
+.personal-form .header-text{
+    font-weight: 100;
+}
+
+.personal-form-input{
+   display: flex;
+   flex-direction: column;
+   justify-content:baseline;
+   align-items: center;
+   margin-top: 2rem;
+}
+
+form input{
+    margin-top: .5rem;
+    padding: .5%;
+    width: 100%;
+    height: 4vh;
+    border-radius: 10px;
+    border: 2px solid rgba(236, 236, 236, 1);
+    
+}
+
+form input::placeholder{
+    padding-left: 1rem;
+}
+
+.personal-form-btn{
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    border: 2px solid var(--primary);
+    font-weight: 600;
+    text-align: left;
+    border-radius: 10px;
+    padding: .5%;
+    width: 100%;
+    height: 6vh;
+    padding-left: 1rem;
+}
+
+.personal-form-btn:hover{
+    background-color:white ;
+    color: var(--primary);
+    border: 2px solid white;
+}
+
+form .input-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.input-top{
+    display: flex;
+    width:auto;
+    flex-direction: column;
+}
+
+.input-top input{
+    width: 90%;
+    padding: 2%;
+}
+
+.input-feedback{
+    color: red;
+    font-size: 12px;
+    margin-left: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .personal-form{
+        height: 100vh;
+        overflow-x:hidden;
+    }
+
+    .personal-form-main{
+        width:auto;
+        align-items:center;
+        justify-content: center;
+    }
+    .personal-form-input{
+        align-items:flex-start;
+        min-width: 80%;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items:flex-start;
+    }
+
+    form input{
+        width: 100%; ;
+    }
+
+    form .input-header {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .input-top input{
+        width: 100%;
+        padding: 1%;
+    }
+}

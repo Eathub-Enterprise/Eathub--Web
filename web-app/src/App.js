@@ -1,4 +1,5 @@
 import './Assets/styles/App.css';
+import PersonalForm from './Components/PersonalForm/PersonalForm';
 import Homepage from './Pages/Homepage';
 
 
@@ -6,7 +7,7 @@ import Homepage from './Pages/Homepage';
 function App() {
   return (
     <>
-    <Homepage />
+    <PersonalForm />
     </>
   );
 }
