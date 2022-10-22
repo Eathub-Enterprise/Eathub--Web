@@ -63,7 +63,7 @@
     padding: 12px 20px 12px 40px;
 }
 
-input::placeholder {
+.hero-input input::placeholder {
     color: white;
 }
 
