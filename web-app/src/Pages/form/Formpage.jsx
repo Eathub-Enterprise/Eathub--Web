@@ -1,7 +1,6 @@
 import './formpage.css';
-import PersonalForm from '../../Components/PersonalForm/PersonalForm';
 import background from '../../Assets/images/formbackground.png';
-import BusinessForm from '../../Components/BusinessForm/BusinessForm';
+import { Link, Outlet} from 'react-router-dom';
 
 export default function Formpage() {
     return (
@@ -11,9 +10,7 @@ export default function Formpage() {
                     <img src={background} alt={background} />
                 </aside>
                 <aside className="Formpage-comp">
-                    {/* Conditional Rendering */}
-                    {/* <PersonalForm /> */}
-                    <BusinessForm />
+                    <Outlet />
                 </aside>
             </div>
         </div>

@@ -28,3 +28,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.active{
+  color: var(--secondary);
+  background-color: white;
+}
