@@ -9,6 +9,7 @@ import {
 import Formpage from './Pages/form/Formpage';
 import BusinessForm from './Components/BusinessForm/BusinessForm';
 import PersonalForm from './Components/PersonalForm/PersonalForm';
+import { Dashboard } from './Pages/dashboard/Dashboard';
 
 
 // first layer of Routing is done here!
@@ -23,6 +24,7 @@ class App extends React.Component {
             <Route index element={<PersonalForm />} />
             <Route path="business" element={<BusinessForm />} />
           </Route>
+          <Route path="dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     )
