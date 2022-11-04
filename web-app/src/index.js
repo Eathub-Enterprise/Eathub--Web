@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './Assets/styles/index.css';
 import App from './App';
 import { ThemeProvider } from '@mui/material';
-import { theme } from './services/MUI-theme/Theme';
+import { theme } from './helper/MUI-theme/Theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
