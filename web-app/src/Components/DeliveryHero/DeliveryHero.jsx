@@ -1,6 +1,6 @@
 import "./deliveryHero.css";
 import bike from "../../Assets/images/deliveryBike.png";
-import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
+// import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 
 const DeliveryHero = () => {
   return (

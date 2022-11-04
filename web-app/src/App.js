@@ -6,6 +6,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+
 import Formpage from './Pages/form/Formpage';
 import BusinessForm from './Components/BusinessForm/BusinessForm';
 import PersonalForm from './Components/PersonalForm/PersonalForm';
@@ -18,6 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
+      
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route path="signup" element={<Formpage />}>
@@ -26,6 +28,7 @@ class App extends React.Component {
           </Route>
           <Route path="dashboard" element={<Dashboard />} />
         </Routes>
+        
       </BrowserRouter>
     )
   };
