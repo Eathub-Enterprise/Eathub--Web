@@ -1,6 +1,6 @@
 import './shopHero.css';
 import background from '../../Assets/images/shopHero-img.png';
-import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
+// import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
 
 
 
