@@ -1,37 +1,36 @@
-import './Assets/styles/App.css';
-import Homepage from './Pages/Homepage';
-import React, { useState } from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import "./Assets/styles/App.css";
+import Homepage from "./Pages/Homepage";
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Protected from "./helper/isAuth/isAuth";
 
-import Formpage from './Pages/form/Formpage';
-import BusinessForm from './Components/BusinessForm/BusinessForm';
-import PersonalForm from './Components/PersonalForm/PersonalForm';
-import { Dashboard } from './Pages/dashboard/Dashboard';
-
+import Formpage from "./Pages/form/Formpage";
+import BusinessForm from "./Components/BusinessForm/BusinessForm";
+import PersonalForm from "./Components/PersonalForm/PersonalForm";
+import Login from "./Pages/login/Login";
+import DashboardPage from "./Pages/dashboard/DashboardPage";
 
 // first layer of Routing is done here!
-class App extends React.Component {
-
-  render() {
-    return (
-      <BrowserRouter>
-      
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route path="signup" element={<Formpage />}>
-            <Route index element={<PersonalForm />} />
-            <Route path="business" element={<BusinessForm />} />
-          </Route>
-          <Route path="dashboard" element={<Dashboard />} />
-        </Routes>
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Homepage />} />
         
-      </BrowserRouter>
-    )
-  };
+        <Route path="signup" element={<Formpage />}>
+          <Route index element={<PersonalForm />} />
+          <Route path="business" element={<BusinessForm />} />
+        </Route>
+
+        <Route path="login" element={<Login />} />
+        <Route path="dashboard" element={<DashboardPage />} />
+
+        <Route element={<Protected />}>
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
