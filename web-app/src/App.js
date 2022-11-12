@@ -2,7 +2,6 @@ import "./Assets/styles/App.css";
 import Homepage from "./Pages/Homepage";
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Protected from "./helper/isAuth/isAuth";
 
 import Formpage from "./Pages/form/Formpage";
 import BusinessForm from "./Components/BusinessForm/BusinessForm";
@@ -24,9 +23,6 @@ function App() {
 
         <Route path="login" element={<Login />} />
         <Route path="dashboard" element={<DashboardPage />} />
-
-        <Route element={<Protected />}>
-        </Route>
 
       </Routes>
     </BrowserRouter>

@@ -11,7 +11,7 @@ const vendorSignUp = async (data = {}) => {
         console.log(response);
         localStorage.clear();
       } else {
-        console.log("Wrong response being sent");
+        throw Error (`This isn't working due to ${response.status}`);
       }
     })
     .catch((err) => {
@@ -28,7 +28,7 @@ const vendorLogin = async(data={}) => {
         console.log(response);
         localStorage.setItem("vendor", JSON.stringify(response.data));
       } else {
-        console.log("Wrong response being sent");
+        throw Error (`This isn't working due to ${response.status}`);
       }
     })
     .catch((err) => {
@@ -46,6 +46,10 @@ const getVendorData =async (user) => {
   return console.log('it worked!');
 };
 
+const logOut = async(user) => {
+  await axios.interceptors.response.use()
+}
+
 const getVendorStatus = () => {
   return JSON.parse(localStorage.getItem("vendor"));
 };
@@ -54,7 +58,8 @@ const authService = {
   vendorSignUp,
   vendorLogin,
   getVendorData,
-  getVendorStatus
+  getVendorStatus,
+  logOut
 };
 
 export default authService;
