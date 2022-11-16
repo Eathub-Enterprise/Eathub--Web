@@ -1,6 +1,6 @@
 import "./Assets/styles/App.css";
 import Homepage from "./Pages/Homepage";
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Formpage from "./Pages/form/Formpage";
@@ -8,6 +8,13 @@ import BusinessForm from "./Components/BusinessForm/BusinessForm";
 import PersonalForm from "./Components/PersonalForm/PersonalForm";
 import Login from "./Pages/login/Login";
 import DashboardPage from "./Pages/dashboard/DashboardPage";
+
+import Overview from "./Pages/dashboard/pages/overview/Overview";
+import Order from "./Pages/dashboard/pages/order/Order";
+import Menu from "./Pages/dashboard/pages/menu/Menu";
+import Analytics from "./Pages/dashboard/pages/analytics/Analytics";
+import Message from "./Pages/dashboard/pages/message/Message";
+import Settings from "./Pages/dashboard/pages/settings/Settings";
 
 // first layer of Routing is done here!
 function App() {
@@ -22,7 +29,15 @@ function App() {
         </Route>
 
         <Route path="login" element={<Login />} />
-        <Route path="dashboard" element={<DashboardPage />} />
+       
+        <Route path="dashboard" element={<DashboardPage />}>
+          <Route index element={<Overview />} />
+          <Route path="orders" element={<Order />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="message" element={<Message />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
 
       </Routes>
     </BrowserRouter>

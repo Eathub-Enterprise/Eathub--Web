@@ -1,7 +1,6 @@
 import axios from "axios";
 import { URL } from "../../api/index";
-import  authHeader  from './authHeader';
-
+import authHeader from "./authHeader";
 
 const vendorSignUp = async (data = {}) => {
   const response = await axios
@@ -11,7 +10,7 @@ const vendorSignUp = async (data = {}) => {
         console.log(response);
         localStorage.clear();
       } else {
-        throw Error (`This isn't working due to ${response.status}`);
+        throw Error(`This isn't working due to ${response.status}`);
       }
     })
     .catch((err) => {
@@ -20,35 +19,35 @@ const vendorSignUp = async (data = {}) => {
   return response;
 };
 
-const vendorLogin = async(data={}) => {
+const vendorLogin = async (username, password) => {
   const response = await axios
-    .post(URL + "/token/login", data)
-    .then((response) => {
-      if(response){
-        console.log(response);
-        localStorage.setItem("vendor", JSON.stringify(response.data));
-      } else {
-        throw Error (`This isn't working due to ${response.status}`);
-      }
+    .post(URL + "/token/login", {
+      username,
+      password
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then((response) => {
+      if (response.data) {
+        console.log(response.data);
+        localStorage.setItem("vendor", JSON.stringify(response.data));
+        localStorage.getItem(
+            "vendor",
+            JSON.stringify(response.data)
+        );
+    }
+    })
     return response;
-}
-
+};
 
 // To get data for Vendor dashboard
 
-const getVendorData =async (user) => {
-  await axios
-    .get(URL + `/users/userdata/${user}`, authHeader());
-  return console.log('it worked!');
+const getVendorData = async (user) => {
+  await axios.get(URL + `/users/userdata/${user}`, authHeader());
+  return console.log("it worked!");
 };
 
-const logOut = async(user) => {
-  await axios.interceptors.response.use()
-}
+const logOut = async (user) => {
+  axios.interceptors.response.use();
+};
 
 const getVendorStatus = () => {
   return JSON.parse(localStorage.getItem("vendor"));
@@ -59,7 +58,7 @@ const authService = {
   vendorLogin,
   getVendorData,
   getVendorStatus,
-  logOut
+  logOut,
 };
 
 export default authService;

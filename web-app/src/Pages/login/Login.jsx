@@ -14,15 +14,19 @@ const Login = () => {
         username: "",
         password: "",
       }}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(true);
         try {
-          setTimeout(() => {
-            console.log("Submit", values);
-            authService.vendorLogin(values).then((response) => {
+          console.log("Submit",);
+          await authService.vendorLogin(values.username, values.password).then(
+            (response) => {
               navigate("/dashboard");
-            });
-            setSubmitting(false);
-          }, 1000);
+              console.log('Sucessfully logged in!',  values.username, values.password)
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         } catch (err) {
           console.log("Error", err);
         }
