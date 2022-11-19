@@ -22,14 +22,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        
+
         <Route path="signup" element={<Formpage />}>
           <Route index element={<PersonalForm />} />
           <Route path="business" element={<BusinessForm />} />
         </Route>
-
         <Route path="login" element={<Login />} />
-       
+
         <Route path="dashboard" element={<DashboardPage />}>
           <Route index element={<Overview />} />
           <Route path="orders" element={<Order />} />
@@ -38,7 +37,6 @@ function App() {
           <Route path="message" element={<Message />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );

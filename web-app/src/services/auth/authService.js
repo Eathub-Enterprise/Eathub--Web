@@ -23,41 +23,81 @@ const vendorLogin = async (username, password) => {
   const response = await axios
     .post(URL + "/token/login", {
       username,
-      password
+      password,
     })
     .then((response) => {
       if (response.data) {
         console.log(response.data);
         localStorage.setItem("vendor", JSON.stringify(response.data));
-        localStorage.getItem(
-            "vendor",
-            JSON.stringify(response.data)
-        );
-    }
-    })
-    return response;
+        localStorage.getItem("vendor", JSON.stringify(response.data));
+      }
+    });
+  return response;
 };
 
 // To get data for Vendor dashboard
-
-const getVendorData = async (user) => {
-  await axios.get(URL + `/users/userdata/${user}`, authHeader());
+const getVendorData = async (username) => {
+  await axios.get(URL + `/users/userdata/${username}`, authHeader());
   return console.log("it worked!");
 };
 
+
+// OR
+
+async function request({
+  method = "GET",
+  url,
+  data = {},
+  dispatch,
+  response,
+  useBaseURL = true,
+}) {
+  let baseURL = {};
+
+  if (useBaseURL) {
+    baseURL = { baseURL: URL };
+  }
+  try {
+    const vendor = JSON.parse(localStorage.getItem("vendor"));
+    const token = vendor?.auth_token || "";
+    console.log(token);
+    const result = await axios.request({
+      ...baseURL,
+      url,
+      method,
+      data,
+      headers: {
+        authorization: token,
+      },
+      response,
+      dispatch,
+    });
+
+    return result.data;
+  } catch (err) {
+    const error = err?.response?.data || err.msg;
+
+    if (typeof error == "string") {
+      //handle
+      throw new Error(error);
+    } else {
+      const { status, ...rest } = error;
+      throw new Error(error);
+    }
+  }
+}
+
+
+
 const logOut = async (user) => {
   axios.interceptors.response.use();
-};
-
-const getVendorStatus = () => {
-  return JSON.parse(localStorage.getItem("vendor"));
 };
 
 const authService = {
   vendorSignUp,
   vendorLogin,
   getVendorData,
-  getVendorStatus,
+  request,
   logOut,
 };
 
