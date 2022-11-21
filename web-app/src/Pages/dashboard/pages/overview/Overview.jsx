@@ -15,7 +15,7 @@ const Overview = () => {
       JSON.stringify(response.data);
       console.log(response.data);
       dispatch(getVendorData(response));
-    })
+    });
 
     return response;
     // const response = await authService.request({
@@ -30,6 +30,7 @@ const Overview = () => {
   
   useEffect(() => {
     vendorData();
+    console.log('Vendor Details', vendor);
   }, [])
 
   return (

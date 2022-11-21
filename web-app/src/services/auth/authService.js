@@ -36,8 +36,9 @@ const vendorLogin = async (username, password) => {
 };
 
 // To get data for Vendor dashboard
-const getVendorData = async (username) => {
-  await axios.get(URL + `/users/userdata/${username}`, authHeader());
+const getVendorData = async () => {
+  let user = JSON.parse(localStorage.getItem("vendor"));
+  await axios.get(URL + `/users/userdata/${user}`, authHeader());
   return console.log("it worked!");
 };
 
@@ -87,6 +88,9 @@ async function request({
   }
 }
 
+const getVendorStatus = () => {
+  return JSON.parse(localStorage.getItem("vendor"));
+}
 
 
 const logOut = async (user) => {
@@ -97,6 +101,7 @@ const authService = {
   vendorSignUp,
   vendorLogin,
   getVendorData,
+  getVendorStatus,
   request,
   logOut,
 };

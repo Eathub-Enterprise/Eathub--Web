@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React from "react";
+import React, {useState} from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
@@ -7,6 +7,8 @@ import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [rememberUser, setRememberUser] = useState(null);
+
   const navigate = useNavigate();
   return (
     <Formik
