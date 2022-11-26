@@ -38,12 +38,12 @@ const vendorLogin = async (username, password) => {
 // To get data for Vendor dashboard
 const getVendorData = async () => {
   let user = JSON.parse(localStorage.getItem("vendor"));
-  await axios.get(URL + `/users/userdata/${user}`, authHeader());
+  await axios.get(URL + `/users/userdata/${user.auth_token}`, authHeader());
   return console.log("it worked!");
 };
 
 
-// OR
+// OR this template
 
 async function request({
   method = "GET",

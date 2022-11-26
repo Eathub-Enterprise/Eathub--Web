@@ -30,6 +30,7 @@ const Overview = () => {
   
   useEffect(() => {
     vendorData();
+    authService.getVendorStatus();
     console.log('Vendor Details', vendor);
   }, [])
 

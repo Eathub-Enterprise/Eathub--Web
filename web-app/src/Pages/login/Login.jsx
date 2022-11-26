@@ -56,7 +56,7 @@ const Login = () => {
         return (
           <div className="login">
             <main>
-              <h1>Welcome Back</h1>
+              <h1>Dear Vendor!, <br />Welcome Back</h1>
               <h5>Enter your login details below</h5>
               <div className="login-input">
                 <form onSubmit={handleSubmit}>

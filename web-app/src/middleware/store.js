@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import vendorReducer from './vendorSlice';
+import vendorReducer from "./vendorSlice";
 
-export const store = configureStore({
-    reducer:{
-        vendor: vendorReducer
-    }
-})
+const store = configureStore({
+  reducer: {
+    vendor: vendorReducer,
+  },
+});
+
+export default store;
