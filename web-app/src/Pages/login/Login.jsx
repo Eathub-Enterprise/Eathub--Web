@@ -5,6 +5,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
+import img from '../../Assets/images/login-img.png';
 
 const Login = () => {
   const [rememberUser, setRememberUser] = useState(null);
@@ -55,7 +56,9 @@ const Login = () => {
 
         return (
           <div className="login">
-            <main>
+            <div className="login-container">
+              <aside className="login-left">
+              <main>
               <h1>Dear Vendor!, <br />Welcome Back</h1>
               <h5>Enter your login details below</h5>
               <div className="login-input">
@@ -107,6 +110,12 @@ const Login = () => {
                 </form>
               </div>
             </main>
+
+              </aside>
+              <aside className="login-right">
+                <img src={img} alt={img} />
+              </aside>
+            </div>
           </div>
         );
       }}
