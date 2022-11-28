@@ -30,13 +30,15 @@ function App() {
         </Route>
         <Route path="login" element={<Login />} />
 
-          <Route path="dashboard" element={<DashboardPage />}>
+        <Route path="/dashboard" element={<ProtectedRoute />}>
+
             <Route index element={<Overview />} />
             <Route path="orders" element={<Order />} />
             <Route path="menu" element={<Menu />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="message" element={<Message />} />
             <Route path="settings" element={<Settings />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
