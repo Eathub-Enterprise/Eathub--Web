@@ -1,7 +1,6 @@
 import axios from "axios";
 import { URL } from "../../api/index";
-import  authHeader  from './authHeader';
-
+import authHeader from "./authHeader";
 
 const vendorSignUp = async (data = {}) => {
   const response = await axios
@@ -11,7 +10,7 @@ const vendorSignUp = async (data = {}) => {
         console.log(response);
         localStorage.clear();
       } else {
-        console.log("Wrong response being sent");
+        throw Error(`This isn't working due to ${response.status}`);
       }
     })
     .catch((err) => {
@@ -20,41 +19,91 @@ const vendorSignUp = async (data = {}) => {
   return response;
 };
 
-const vendorLogin = async(data={}) => {
+const vendorLogin = async (username, password) => {
   const response = await axios
-    .post(URL + "/token/login", data)
-    .then((response) => {
-      if(response){
-        console.log(response);
-        localStorage.setItem("vendor", JSON.stringify(response.data));
-      } else {
-        console.log("Wrong response being sent");
-      }
+    .post(URL + "/token/login", {
+      username,
+      password,
     })
-    .catch((err) => {
-      console.log(err);
+    .then((response) => {
+      if (response.data) {
+        console.log(response.data);
+        localStorage.setItem("vendor", JSON.stringify(response.data));
+        localStorage.getItem("vendor", JSON.stringify(response.data));
+      }
     });
-    return response;
-}
-
+  return response;
+};
 
 // To get data for Vendor dashboard
-
-const getVendorData =async (user) => {
-  await axios
-    .get(URL + `/users/userdata/${user}`, authHeader());
-  return console.log('it worked!');
+const getVendorData = async () => {
+  let user = JSON.parse(localStorage.getItem("vendor"));
+  await axios.get(URL + `/users/userdata/${user.auth_token}`, authHeader());
+  return console.log("it worked!");
 };
+
+
+// OR this template
+
+async function request({
+  method = "GET",
+  url,
+  data = {},
+  dispatch,
+  response,
+  useBaseURL = true,
+}) {
+  let baseURL = {};
+
+  if (useBaseURL) {
+    baseURL = { baseURL: URL };
+  }
+  try {
+    const vendor = JSON.parse(localStorage.getItem("vendor"));
+    const token = vendor?.auth_token || "";
+    console.log(token);
+    const result = await axios.request({
+      ...baseURL,
+      url,
+      method,
+      data,
+      headers: {
+        authorization: token,
+      },
+      response,
+      dispatch,
+    });
+
+    return result.data;
+  } catch (err) {
+    const error = err?.response?.data || err.msg;
+
+    if (typeof error == "string") {
+      //handle
+      throw new Error(error);
+    } else {
+      const { status, ...rest } = error;
+      throw new Error(error);
+    }
+  }
+}
 
 const getVendorStatus = () => {
   return JSON.parse(localStorage.getItem("vendor"));
+}
+
+
+const logOut = async (user) => {
+  axios.interceptors.response.use();
 };
 
 const authService = {
   vendorSignUp,
   vendorLogin,
   getVendorData,
-  getVendorStatus
+  getVendorStatus,
+  request,
+  logOut,
 };
 
 export default authService;

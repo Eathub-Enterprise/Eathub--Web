@@ -5,7 +5,15 @@
   position: relative;
 }
 
-.login main {
+.login-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.login-left main {
   margin: auto auto;
   max-width: 35%;
   max-height: 40vh;
@@ -58,4 +66,35 @@
   font-size: 12px;
   text-decoration: none;
   color: var(--primary);
+}
+
+@media only screen and (max-width: 768px) {
+  .login{
+    height: 100vh;
+    overflow-x:hidden;
+  }
+  .login-container{
+    width:auto;
+    align-items:center;
+    justify-content: center;
+    margin: 0;
+  }
+  .login-right{
+    display: none;
+  }
+  .login-left main{
+    margin: 0 auto;
+    max-width: 80%;
+    max-height: 90vh;
+  }
+  .login-left form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:flex-start;
+  }
+
+  form input{
+    width: 100%; ;
+  }
 }

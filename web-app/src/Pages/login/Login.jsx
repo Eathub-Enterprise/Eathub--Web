@@ -1,12 +1,15 @@
 import { Formik } from "formik";
-import React from "react";
+import React, {useState} from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
 import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
+import img from '../../Assets/images/login-img.png';
 
 const Login = () => {
+  const [rememberUser, setRememberUser] = useState(null);
+
   const navigate = useNavigate();
   return (
     <Formik
@@ -14,15 +17,19 @@ const Login = () => {
         username: "",
         password: "",
       }}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(true);
         try {
-          setTimeout(() => {
-            console.log("Submit", values);
-            authService.vendorLogin(values).then((response) => {
+          console.log("Submit",);
+          await authService.vendorLogin(values.username, values.password).then(
+            (response) => {
               navigate("/dashboard");
-            });
-            setSubmitting(false);
-          }, 1000);
+              console.log('Sucessfully logged in!',  values.username, values.password)
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         } catch (err) {
           console.log("Error", err);
         }
@@ -49,8 +56,10 @@ const Login = () => {
 
         return (
           <div className="login">
-            <main>
-              <h1>Welcome Back</h1>
+            <div className="login-container">
+              <aside className="login-left">
+              <main>
+              <h1>Dear Vendor!, <br />Welcome Back</h1>
               <h5>Enter your login details below</h5>
               <div className="login-input">
                 <form onSubmit={handleSubmit}>
@@ -101,6 +110,12 @@ const Login = () => {
                 </form>
               </div>
             </main>
+
+              </aside>
+              <aside className="login-right">
+                <img src={img} alt={img} />
+              </aside>
+            </div>
           </div>
         );
       }}
