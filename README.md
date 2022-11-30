@@ -24,3 +24,5 @@ React-RouterV6 Docs: https://reactrouter.com/en/v6.3.0/getting-started/installat
 3. After every feature, bug fixes or code maintenance is done, push your code changes to your personal branch.
 4. Always create a pull request for code review and merging your changes.
 5. Ensure Your Pull-Request has been reviewed before commiting other changes.
+
+## ReduxJS/Toolkit used for State Management

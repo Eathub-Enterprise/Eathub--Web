@@ -67,7 +67,7 @@ const Footer = () => {
             <h4>Support</h4>
             <ul>
               {SUPPORT.map((link) => (
-                <li>
+                <li key={link}>
                   <a href={link.url}>{link.name}</a>
                 </li>
               ))}
@@ -77,7 +77,7 @@ const Footer = () => {
             <h4>Links</h4>
             <ul>
               {LINKS.map((link) => (
-                <li>
+                <li key={link}>
                   <a href={link.url}>
                     {link.name}
                   </a>
@@ -89,7 +89,7 @@ const Footer = () => {
             <h4>Get Help</h4>
             <ul>
               {BLOGS.map((link) => (
-                <li>
+                <li key={link}>
                   <a href={link.url}>
                     {link.name}
                   </a>

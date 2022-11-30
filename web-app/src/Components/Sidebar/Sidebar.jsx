@@ -21,27 +21,27 @@ const Sidebar = ({children}) => {
             icon: <FaThLarge/>
         },
         {
-            path: "/orders",
+            path: "/dashboard/orders",
             name: 'Orders',
             icon: <FaCartPlus/>
         },
         {
-            path: "/menu",
+            path: "/dashboard/menu",
             name: 'Menu',
             icon: <FaSpa/>
         },
         {
-            path: "/analytics",
+            path: "/dashboard/analytics",
             name: 'Analytics',
             icon: <FaChartLine/>
         },
         {
-            path: "/message",
+            path: "/dashboard/message",
             name: 'Message',
             icon: <FaEnvelope/>
         },
         {
-            path: "/settings",
+            path: "/dashboard/settings",
             name: 'Settings',
             icon: <FaCog/>
         },
@@ -55,7 +55,7 @@ const Sidebar = ({children}) => {
                 </div>
                 {
                     menuItem.map((item, index)=>(
-                        <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                        <NavLink to={item.path} key={index} className="link" activeclassname="active">
                             <div className='icon'>{item.icon}</div>
                             <div className='link-text'>{item.name}</div>
                         </NavLink>

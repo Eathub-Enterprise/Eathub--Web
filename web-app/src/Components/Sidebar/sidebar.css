@@ -36,4 +36,9 @@ main {
 
 .link-text {
     font-size: 20px;
+    margin-right: 0.5rem;
+}
+
+.active{
+    background-color: var(--primary-variant);
 }
