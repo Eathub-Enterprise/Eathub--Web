@@ -10,7 +10,7 @@
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .login-left main {
@@ -49,7 +49,7 @@
 .input-check {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: baseline;
 }
 
