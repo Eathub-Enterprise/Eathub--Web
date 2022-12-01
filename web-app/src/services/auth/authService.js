@@ -29,7 +29,7 @@ const vendorLogin = async (username, password) => {
       if (response.data) {
         console.log(response.data);
         localStorage.setItem("vendor", JSON.stringify(response.data));
-        localStorage.getItem("vendor", JSON.stringify(response.data));
+        localStorage.getItem("vendor", JSON.parse(response.data));
       }
     });
   return response;
@@ -93,8 +93,8 @@ const getVendorStatus = () => {
 }
 
 
-const logOut = async (user) => {
-  axios.interceptors.response.use();
+const logOut = async () => {
+  await localStorage.clear();
 };
 
 const authService = {

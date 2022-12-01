@@ -22,6 +22,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Montserrat';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width:fit-content;
 }
 
 code {
