@@ -12,7 +12,7 @@ const Overview = () => {
 
   const vendorData = async() => {
     const response = await authService.getVendorData().then((response) => {
-      JSON.stringify(response.data);
+      JSON.stringify(response.data).replace( /</g, '\\u003c');
       console.log(response.data);
       dispatch(getVendorData(response));
     });
