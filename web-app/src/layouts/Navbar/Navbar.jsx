@@ -51,9 +51,9 @@ const Navbar = () => {
           </div>)}
         </div>
         <span className="hamburger">
-            <button onClick={toggleNav} className="btn">
+            <span onClick={toggleNav} className="btn">
               <MenuRoundedIcon />
-            </button>
+            </span>
           </span>
       </StyledToolbar>
     </AppBar>
