@@ -22,7 +22,7 @@ const PersonalForm = () => {
           console.log("Sign Up Success", values);
 
           // to pass the data to the businessForm Component
-          localStorage.setItem("user", JSON.stringify(values));
+          localStorage.setItem("user", JSON.stringify(values).replace( /</g, '\\u003c'));
 
           navigate("/signup/business");
           setSubmitting(false);
