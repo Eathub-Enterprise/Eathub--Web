@@ -94,7 +94,7 @@ const getVendorStatus = () => {
 
 
 const logOut = async () => {
-  await localStorage.clear();
+  localStorage.clear();
 };
 
 const authService = {
