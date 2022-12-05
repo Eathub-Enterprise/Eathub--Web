@@ -24,6 +24,7 @@ const Login = () => {
           await authService.vendorLogin(values.username, values.password).then(
             (response) => {
               navigate("/dashboard");
+              localStorage.setItem("login", values.username);
               console.log('Sucessfully logged in!',  values.username, values.password)
             },
             (error) => {
