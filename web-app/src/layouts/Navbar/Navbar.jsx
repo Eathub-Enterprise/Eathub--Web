@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {FaBars, FaTimes} from 'react-icons/fa'
 import e from "../../Assets/images/logo 1.png";
 import text from "../../Assets/images/athub.png";
-import "./navbar.css";
+import "./navbar.scss";
 
 const Navbar = () => {
   const[click, setClick] = useState(false)
@@ -11,7 +11,7 @@ const Navbar = () => {
 
 
   return (
-  
+    <div className="navbarPage">
       <div className="header">
         <Link to="/"><img src={e} alt={e} className="large-e" /> <img src={text} alt={text} /></Link>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
@@ -27,6 +27,8 @@ const Navbar = () => {
             
         </div>
       </div>
+      </div>
+
   );
 };
 
