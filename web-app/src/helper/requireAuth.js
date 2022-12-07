@@ -2,10 +2,11 @@ import { Navigate, Outlet } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import authService from '../services/auth/authService';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
     let userLoggedIn = authService.getVendorStatus();
 
-    if(!userLoggedIn) {
+    // change back to !userLoggedIn
+    if(userLoggedIn) {
         return <Navigate to="/login" replace />
     }
     return (

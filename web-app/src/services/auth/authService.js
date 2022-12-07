@@ -4,10 +4,10 @@ import authHeader from "./authHeader";
 
 const vendorSignUp = async (data = {}) => {
   const response = await axios
-    .post(URL + "/user/create/vendor/", data)
+    .post(URL + "/user/create/vendor", data)
     .then((response) => {
-      if (response) {
-        console.log(response);
+      if (response.data) {
+        console.log(response.data);
         localStorage.clear();
       } else {
         throw Error(`This isn't working due to ${response.status}`);
@@ -31,19 +31,37 @@ const vendorLogin = async (username, password) => {
         localStorage.setItem("vendor", JSON.stringify(response.data));
         localStorage.getItem("vendor", JSON.parse(response.data));
       }
-    });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   return response;
 };
 
 // To get data for Vendor dashboard
 const getVendorData = async () => {
   let user = JSON.parse(localStorage.getItem("vendor"));
-  await axios.get(URL + `/users/userdata/${user.auth_token}`, authHeader());
+  await axios
+    .get(URL + `/user/vendordata/${user.auth_token}`, authHeader())
+    .then((response) => {
+      console.log(response);
+    })
+    .catch(error => {
+      // handle error
+      if (error.response.status === 404) {
+        console.error('User not found');
+      } else if (error.response.status === 500) {
+        console.error('Internal server error');
+      } else {
+        console.error(error.message);
+      }
+    })
+    .finally(vendorLogin());
   return console.log("it worked!");
 };
 
 
-// OR this template
+// OR this template -- which i can't seem to figur eout
 
 async function request({
   method = "GET",

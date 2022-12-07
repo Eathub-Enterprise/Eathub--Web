@@ -18,26 +18,26 @@ const BusinessForm = (e) => {
         business_email: "",
         business_phonenumber: "",
       }}
-
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(true);
         const value = {
           ...values,
           ...user,
         };
         // console.log(value);
-        try{
-          setTimeout(() => {
-            console.log("Sign Up Success", value);
-            authService.vendorSignUp(value).then((response) => {
+        try {
+          await authService.vendorSignUp(value).then(
+            (response) => {
               console.log("it Worked!", value);
-              navigate('/login');
-            });
-            setSubmitting(false);
-          }, 1000);
-        } catch(err){
+              navigate("/login");
+            },
+            (error) => {
+              console.log("it Failed!", error);
+            }
+          );
+        } catch (err) {
           console.log(err);
         }
-        
       }}
       // Yup Validation
       validationSchema={Yup.object().shape({
@@ -145,11 +145,11 @@ const BusinessForm = (e) => {
                   )}
 
                   <button
-                    className="personal-form-btn"
+                    className="business-form-btn"
                     type="submit"
                     disabled={isSubmitting}
                   >
-                    Continue
+                    Register
                   </button>
                 </form>
               </div>

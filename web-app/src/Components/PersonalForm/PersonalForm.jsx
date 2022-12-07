@@ -15,6 +15,7 @@ const PersonalForm = () => {
         middlename: "",
         username: "",
         password: "",
+        confirmPassword: "",
         gender: "",
       }}
       onSubmit={(values, { setSubmitting }) => {
@@ -22,7 +23,10 @@ const PersonalForm = () => {
           console.log("Sign Up Success", values);
 
           // to pass the data to the businessForm Component
-          localStorage.setItem("user", JSON.stringify(values).replace( /</g, '\\u003c'));
+          localStorage.setItem(
+            "user",
+            JSON.stringify(values).replace(/</g, "\\u003c")
+          );
 
           navigate("/signup/business");
           setSubmitting(false);
@@ -33,12 +37,17 @@ const PersonalForm = () => {
         firstname: Yup.string().required("First name is Required"),
         lastname: Yup.string().required("Last name is Required"),
         middlename: Yup.string().required("Middlename is Required"),
-        gender: Yup.string().required("Gender is Required"),
+        gender: Yup.string()
+          .oneOf(["male", "female", "other"])
+          .required("Gender is required"),
         username: Yup.string().required("Username is Required"),
         password: Yup.string()
           .required("No password provided.")
           .min(8, "Passwords must be a minimum of eight characters")
           .matches(/(?=.*[0-9])/, "Password must contain a number."),
+        confirmPassword: Yup.string()
+          .oneOf([Yup.ref("password"), null], "Passwords must match")
+          .required("Confirm password is required"),
       })}
     >
       {(props) => {
@@ -116,16 +125,18 @@ const PersonalForm = () => {
                     <div className="input-feedback">{errors.lastname}</div>
                   )}
 
-                  <input
+                  <select
                     id="gender"
                     name="gender"
-                    type="text"
-                    placeholder="Gender"
                     value={values.gender}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={errors.gender && touched.gender && "error"}
-                  />
+                  >
+                    <option value="">Sex</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
 
                   {errors.gender && touched.gender && (
                     <div className="input-feedback">{errors.gender}</div>
@@ -160,6 +171,19 @@ const PersonalForm = () => {
                   {errors.password && touched.password && (
                     <div className="input-feedback">{errors.password}</div>
                   )}
+
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.confirmPassword}
+                  />
+                  {errors.confirmPassword && touched.confirmPassword && (
+                    <div className="input-feedback">{errors.confirmPassword}</div>
+                  )}
+
                   <button
                     className="personal-form-btn"
                     type="submit"
