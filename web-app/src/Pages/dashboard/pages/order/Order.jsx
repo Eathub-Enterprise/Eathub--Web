@@ -15,7 +15,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import "./order.css";
 
 const Order = () => {
-  // API Value-based Table
+  // API values for Table
   const [tableData, setTableData] = useState([]);
 
   // formatted Date
@@ -182,7 +182,7 @@ const Order = () => {
       </div>
 
       <div className="order-table">
-        <Box sx={{ height: 400, width: "95%" }}>
+        <Box sx={{ height: "70vh", width: "95%" }}>
           <StyledDataGrid
             rows={rows}
             columns={columns}
