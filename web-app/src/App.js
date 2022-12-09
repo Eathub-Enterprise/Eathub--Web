@@ -24,27 +24,22 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-      
 
         <Route path="signup" element={<Formpage />}>
           <Route index element={<PersonalForm />} />
           <Route path="business" element={<BusinessForm />} />
         </Route>
         <Route path="login" element={<Login />} />
-        <Route path="*" element={<PageNotFound />} />
-
-
-
         <Route path="/dashboard" element={<ProtectedRoute />}>
-
-            <Route index element={<Overview />} />
-            <Route path="orders" element={<Order />} />
-            <Route path="menu" element={<Menu />} />
-            <Route path="analytics" element={<Analytics />} />
-            <Route path="message" element={<Message />} />
-            <Route path="settings" element={<Settings />} />
-
+          <Route index element={<Overview />} />
+          <Route path="orders" element={<Order />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="message" element={<Message />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
