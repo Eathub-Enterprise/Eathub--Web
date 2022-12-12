@@ -29,7 +29,9 @@ function App() {
           <Route index element={<PersonalForm />} />
           <Route path="business" element={<BusinessForm />} />
         </Route>
+        
         <Route path="login" element={<Login />} />
+
         <Route path="/dashboard" element={<ProtectedRoute />}>
           <Route index element={<Overview />} />
           <Route path="orders" element={<Order />} />

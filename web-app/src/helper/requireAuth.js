@@ -6,7 +6,7 @@ const ProtectedRoute = () => {
     let userLoggedIn = authService.getVendorStatus();
 
     // change back to !userLoggedIn
-    if(userLoggedIn) {
+    if(!userLoggedIn) {
         return <Navigate to="/login" replace />
     }
     return (
