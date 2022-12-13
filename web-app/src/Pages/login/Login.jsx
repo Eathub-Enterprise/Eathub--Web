@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
 import img from '../../Assets/images/login-img.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [rememberUser, setRememberUser] = useState(null);
+  let notify = () => toast("Test Notification")
 
   const navigate = useNavigate();
+  
   return (
     <Formik
       initialValues={{
@@ -25,7 +29,7 @@ const Login = () => {
             (response) => {
               navigate("/dashboard");
               localStorage.setItem("login", values.username);
-              console.log('Sucessfully logged in!',  values.username, values.password)
+              console.log('Sucessfully logged in!',  values.username, values.password);
             },
             (error) => {
               console.log(error);
@@ -101,10 +105,11 @@ const Login = () => {
                     <label>Remember Me</label>
                   </div>
 
-                  <button className="personal-form-btn" type="submit">
+                  <button onClick={notify} className="personal-form-btn" type="submit">
                     Login
                   </button>
-
+                  <ToastContainer />
+                  
                   <Link className="pwd-link" to="">
                     Forgot Password?
                   </Link>

@@ -21,8 +21,8 @@ const Overview = () => {
     vendorData();
     authService.getVendorStatus();
     console.log("Vendor Details", vendor); 
-    // need to fix the continous rendering issue
-  });
+    // need to fix the continous rendering issue when dependencies are placed
+  }, []);
 
   return <div>overview</div>;
 };
