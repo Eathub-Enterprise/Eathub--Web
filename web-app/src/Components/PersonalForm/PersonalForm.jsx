@@ -20,8 +20,6 @@ const PersonalForm = () => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          console.log("Sign Up Success", values);
-
           // to pass the data to the businessForm Component
           localStorage.setItem(
             "user",
@@ -65,10 +63,8 @@ const PersonalForm = () => {
           <div className="personal-form">
             <div className="personal-form-main">
               <header>
-                <h1>Get Started</h1>
-                <p className="header-text">
-                  Kindly fill the form below to sign up
-                </p>
+                <h1>Welcome Vendor!</h1>
+                <h4>Get Started With Us</h4>
               </header>
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>

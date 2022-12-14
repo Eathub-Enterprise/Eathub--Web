@@ -24,7 +24,7 @@ const BusinessForm = (e) => {
           ...values,
           ...user,
         };
-        // console.log(value);
+
         try {
           await authService.vendorSignUp(value).then(
             (response) => {
@@ -68,7 +68,7 @@ const BusinessForm = (e) => {
               <header>
                 <h1>Business Registration</h1>
                 <p className="header-text">
-                  Kindly fill the form below to sign up
+                  Kindly complete registeration
                 </p>
               </header>
               <div className="personal-form-input">

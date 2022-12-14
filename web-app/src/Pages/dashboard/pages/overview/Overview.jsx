@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getVendorData } from "../../../../Redux/actions";
 import authService from "../../../../services/auth/authService";
 
-// test Data
-
 const Overview = () => {
   const vendor = useSelector((state) => state.vendor);
   const dispatch = useDispatch();
@@ -22,7 +20,7 @@ const Overview = () => {
     authService.getVendorStatus();
     console.log("Vendor Details", vendor); 
     // need to fix the continous rendering issue when dependencies are placed
-  }, []);
+  }, [vendor]);
 
   return <div>overview</div>;
 };

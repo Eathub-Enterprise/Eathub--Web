@@ -7,7 +7,6 @@ const vendorSignUp = async (data = {}) => {
     .post(URL + "/user/create/vendor/", data)
     .then((response) => {
       if (response.data) {
-        console.log(response.data);
         localStorage.clear();
       } else {
         throw Error(`This isn't working due to ${response.status}`);
@@ -27,14 +26,13 @@ const vendorLogin = async (username, password) => {
     })
     .then((response) => {
       if (response.data) {
-        console.log(response.data);
         localStorage.setItem("vendor", JSON.stringify(response.data));
         localStorage.getItem("vendor", JSON.parse(response.data));
       }
     })
     .catch((error) => {
       console.log(error);
-    })
+    });
   return response;
 };
 
@@ -46,21 +44,20 @@ const getVendorData = async () => {
     .then((response) => {
       return response;
     })
-    .catch(error => {
+    .catch((error) => {
       // handle error
       if (error.response.status === 404) {
-        console.error('User not found');
+        console.error("User not found");
       } else if (error.response.status === 500) {
-        console.error('Internal server error');
+        console.error("Internal server error");
       } else {
         console.error(error.message);
       }
-    })
+    });
   return response;
 };
 
-
-// OR this template -- which i can't seem to figur eout
+// OR this template -- which i can't seem to figure out
 
 async function request({
   method = "GET",
@@ -78,7 +75,6 @@ async function request({
   try {
     const vendor = JSON.parse(localStorage.getItem("vendor"));
     const token = vendor?.auth_token || "";
-    console.log(token);
     const result = await axios.request({
       ...baseURL,
       url,
@@ -107,8 +103,7 @@ async function request({
 
 const getVendorStatus = () => {
   return JSON.parse(localStorage.getItem("vendor"));
-}
-
+};
 
 const logOut = async () => {
   localStorage.clear();
