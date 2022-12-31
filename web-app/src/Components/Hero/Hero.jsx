@@ -10,12 +10,16 @@ const Hero = () => {
             <div className="hero-container">
                 <div className="hero-header">
                     <span>
+                        <p>
                         Discover Restaurants &<br /> Delicious meal.
+                        </p>
                     </span>
                 </div>
                 <div className="hero-subheader">
                     <span>
+                        <p>
                         Delicious Meals Delivered to your door once you place an order from anywhere in Lagos with an hour delivery time.
+                        </p>
                     </span>
                 </div>
                 <div className="hero-input">
