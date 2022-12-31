@@ -6,7 +6,7 @@ import background from '../../Assets/images/emy-XoByiBymX20-unsplash 1.jpg';
 const Hero = () => {
     return ( 
         <Box className="hero-section">
-            <img src={background} alt={background} className="hero-background" />
+            <img loading='lazy' src={background} alt={background} className="hero-background" />
             <div className="hero-container">
                 <div className="hero-header">
                     <span>

@@ -9,7 +9,7 @@ const ShopHero = () => {
         <div className="shopHero">
             <div className="shopHero-container">
                 <div className="shopHero-img">
-                    <img src={background} alt={background} />
+                    <img loading='lazy' src={background} alt={background} />
                 </div>
                 <div className="shopHero-aside">
                     <div className="shopHero-header">

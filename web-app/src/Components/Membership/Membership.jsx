@@ -5,7 +5,7 @@ const Membership = () => {
     return ( 
         <div className="membership-container">
             <div className="membership-img">
-                <img src={Img} alt={Img} />
+                <img loading='lazy' src={Img} alt={Img} />
                 <div className="membership-content">
                     <div className="membership-content-section">
                         <div className="membership-header">

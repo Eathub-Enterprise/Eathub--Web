@@ -20,7 +20,7 @@ const Overview = () => {
     authService.getVendorStatus();
     console.log("Vendor Details", vendor); 
     // need to fix the continous rendering issue when dependencies are placed
-  }, [vendor]);
+  }, []);
 
   return <div>overview</div>;
 };

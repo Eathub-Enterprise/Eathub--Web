@@ -13,8 +13,8 @@ const Navbar = () => {
     <div className="navbarPage">
       <div className="header">
         <Link to="/">
-          <img src={e} alt={e} className="large-e" />{" "}
-          <img src={text} alt={text} />
+          <img loading='lazy' src={e} alt={e} className="large-e" />{" "}
+          <img loading='lazy' src={text} alt={text} />
         </Link>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li>

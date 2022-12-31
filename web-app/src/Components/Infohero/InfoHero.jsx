@@ -11,7 +11,7 @@ const InfoHero = () => {
 
                 <div className="infoHero-box">
                     <div className="infoHero-icon">
-                        <img src={info1} alt={info1} />
+                        <img loading='lazy' src={info1} alt={info1} />
                     </div>
                     <div className="infoHero-box-text">
                         <div className="infoHero-box-header">
@@ -25,7 +25,7 @@ const InfoHero = () => {
 
                 <div className="infoHero-box">
                     <div className="infoHero-icon">
-                        <img src={info2} alt={info2} />
+                        <img loading='lazy' src={info2} alt={info2} />
                     </div>
                     <div className="infoHero-box-text">
                         <div className="infoHero-box-header">
@@ -39,7 +39,7 @@ const InfoHero = () => {
 
                 <div className="infoHero-box">
                     <div className="infoHero-icon">
-                        <img src={info3} alt={info3} />
+                        <img loading='lazy' src={info3} alt={info3} />
                     </div>
                     <div className="infoHero-box-text">
                         <div className="infoHero-box-header">

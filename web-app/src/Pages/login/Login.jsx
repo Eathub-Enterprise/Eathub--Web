@@ -6,13 +6,22 @@ import { Link } from "react-router-dom";
 import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
 import img from "../../Assets/images/login-img.png";
+import { useDispatch, useSelector } from 'react-redux';
+import { Snackbar } from '@mui/material';
 
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { openSnackbar, closeSnackbar } from '../../Redux/actions';
+
 
 const Login = () => {
   const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { open, message, duration } = useSelector((state) => state.snackbar);
+
+  const handleClose = () => {
+    dispatch(closeSnackbar());
+  };
 
   return (
     <Formik
@@ -24,15 +33,14 @@ const Login = () => {
         setSubmitting(true);
         try {
           console.log("Submit");
-          await authService.vendorLogin(values.username, values.password).then(
-            (response) => {
-              navigate("/dashboard");
-              localStorage.setItem("login", values.username);
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
+          const loginStatus = await authService.vendorLogin(values.username, values.password);
+          if (loginStatus) {
+            dispatch(openSnackbar("Login successful!", 1000));
+            navigate("/dashboard");
+            localStorage.setItem("login", values.username);
+          } else {
+            dispatch(openSnackbar("Login failed. Please try again.", 3000));
+          }
         } catch (err) {
           console.log("Error", err);
         }
@@ -117,12 +125,13 @@ const Login = () => {
                       <Link className="pwd-link" to="">
                         Forgot Password?
                       </Link>
+                      <Snackbar open={open} message={message} duration={duration} onClose={handleClose} />
                     </form>
                   </div>
                 </main>
               </aside>
               <aside className="login-right">
-                <img src={img} alt={img} />
+                <img loading="lazy" src={img} alt={img} />
               </aside>
             </div>
           </div>

@@ -19,7 +19,8 @@ const vendorSignUp = async (data = {}) => {
 };
 
 const vendorLogin = async (username, password) => {
-  const response = await axios
+  let loginStatus = false;
+  await axios
     .post(URL + "/token/login", {
       username,
       password,
@@ -27,13 +28,13 @@ const vendorLogin = async (username, password) => {
     .then((response) => {
       if (response.data) {
         localStorage.setItem("vendor", JSON.stringify(response.data));
-        localStorage.getItem("vendor", JSON.parse(response.data));
+        loginStatus = true;
       }
     })
     .catch((error) => {
       console.log(error);
     });
-  return response;
+  return loginStatus;
 };
 
 // To get data for Vendor dashboard
@@ -57,50 +58,6 @@ const getVendorData = async () => {
   return response;
 };
 
-// OR this template -- which i can't seem to figure out
-
-async function request({
-  method = "GET",
-  url,
-  data = {},
-  dispatch,
-  response,
-  useBaseURL = true,
-}) {
-  let baseURL = {};
-
-  if (useBaseURL) {
-    baseURL = { baseURL: URL };
-  }
-  try {
-    const vendor = JSON.parse(localStorage.getItem("vendor"));
-    const token = vendor?.auth_token || "";
-    const result = await axios.request({
-      ...baseURL,
-      url,
-      method,
-      data,
-      headers: {
-        authorization: token,
-      },
-      response,
-      dispatch,
-    });
-
-    return result.data;
-  } catch (err) {
-    const error = err?.response?.data || err.msg;
-
-    if (typeof error == "string") {
-      //handle
-      throw new Error(error);
-    } else {
-      const { status, ...rest } = error;
-      throw new Error(error);
-    }
-  }
-}
-
 const getVendorStatus = () => {
   return JSON.parse(localStorage.getItem("vendor"));
 };
@@ -114,7 +71,6 @@ const authService = {
   vendorLogin,
   getVendorData,
   getVendorStatus,
-  request,
   logOut,
 };
 

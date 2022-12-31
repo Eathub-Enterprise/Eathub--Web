@@ -6,7 +6,7 @@ const ShowHero = () => {
     <div className="showHero">
       <div className="showHero-container">
         <div className="showHero-img">
-          <img src={phone} alt={phone} />
+          <img loading='lazy' src={phone} alt={phone} />
         </div>
         <div className="showHero-aside">
           <div className="showHero-head">

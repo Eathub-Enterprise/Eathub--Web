@@ -7,7 +7,7 @@ const DeliveryHero = () => {
     <div className="deliveryHero">
       <div className="deliveryHero-container">
         <div className="deliveryHero-img">
-          <img src={bike} alt={bike} />
+          <img loading="lazy" src={bike} alt={bike} />
         </div>
         <div className="deliveryHero-aside">
           <div className="deliveryHero-head">
