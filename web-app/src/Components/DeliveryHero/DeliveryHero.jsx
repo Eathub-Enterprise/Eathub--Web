@@ -7,14 +7,14 @@ const DeliveryHero = () => {
     <div className="deliveryHero">
       <div className="deliveryHero-container">
         <div className="deliveryHero-img">
-          <img src={bike} alt={bike} />
+          <img loading="lazy" src={bike} alt={bike} />
         </div>
         <div className="deliveryHero-aside">
           <div className="deliveryHero-head">
             <h3>Food Delivery</h3>
           </div>
           <div className="deliveryHero-header">
-            <h1>Best service to fulfill your expectations</h1>
+            <p>Best service to fulfill your expectations</p>
           </div>
           <div className="deliveryHero-body">
             <p>

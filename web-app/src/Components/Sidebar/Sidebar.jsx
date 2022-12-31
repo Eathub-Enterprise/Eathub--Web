@@ -50,8 +50,8 @@ const Sidebar = ({children}) => {
         <div className='container'>
             <div className='sidebar'>
                 <div className='top-section'>
-                <img src={e} alt={e} className="Logo" />
-                    <img src={text} alt={text} />
+                <img loading='lazy' src={e} alt={e} className="Logo" />
+                    <img loading='lazy'src={text} alt={text} />
                 </div>
                 {
                     menuItem.map((item, index)=>(

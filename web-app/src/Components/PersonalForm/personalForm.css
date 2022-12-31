@@ -6,6 +6,7 @@
 
 header h1{
     font-size: 32px;
+    margin-bottom: 1rem;
 }
 .personal-form-main {
     display: flex;
@@ -28,7 +29,7 @@ form{
 }
 
 .personal-form .header-text{
-    font-weight: 100;
+    font-weight: 600;
 }
 
 .personal-form-input{
@@ -123,9 +124,14 @@ form .input-header {
 }
 
 .input-feedback{
-    color: red;
+    background-color: var(--secondary);
+    color: white;
     font-size: 12px;
     margin-left: 1rem;
+    border-radius: 20px;
+    padding: .2rem;
+    padding-left: 5px;
+    margin-top: 5px;
 }
 
 @media only screen and (max-width: 768px) {

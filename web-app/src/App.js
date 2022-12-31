@@ -16,6 +16,7 @@ import Analytics from "./Pages/dashboard/pages/analytics/Analytics";
 import Message from "./Pages/dashboard/pages/message/Message";
 import Settings from "./Pages/dashboard/pages/settings/Settings";
 import ProtectedRoute from "./helper/requireAuth";
+import PageNotFound from "./Pages/pagenotfound/PageNotFound";
 
 // first layer of Routing is done here!
 function App() {
@@ -28,18 +29,19 @@ function App() {
           <Route index element={<PersonalForm />} />
           <Route path="business" element={<BusinessForm />} />
         </Route>
+        
         <Route path="login" element={<Login />} />
 
         <Route path="/dashboard" element={<ProtectedRoute />}>
-
-            <Route index element={<Overview />} />
-            <Route path="orders" element={<Order />} />
-            <Route path="menu" element={<Menu />} />
-            <Route path="analytics" element={<Analytics />} />
-            <Route path="message" element={<Message />} />
-            <Route path="settings" element={<Settings />} />
-
+          <Route index element={<Overview />} />
+          <Route path="orders" element={<Order />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="message" element={<Message />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );

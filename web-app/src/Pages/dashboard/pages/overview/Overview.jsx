@@ -1,42 +1,28 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getVendorData } from '../../../../Redux/actions';
+import { getVendorData } from "../../../../Redux/actions";
 import authService from "../../../../services/auth/authService";
 
-
-// test Data
-
 const Overview = () => {
-  const vendor = useSelector((state) => state);
+  const vendor = useSelector((state) => state.vendor);
   const dispatch = useDispatch();
 
-  const vendorData = async() => {
-    const response = await authService.getVendorData().then((response) => {
-      JSON.stringify(response.data).replace( /</g, '\\u003c');
-      console.log(response.data);
-      dispatch(getVendorData(response));
+  const vendorData = async () => {
+    const response = await authService.getVendorData()
+    .then((details) => {
+      dispatch(getVendorData(details));
     });
-
     return response;
-    // const response = await authService.request({
-    //   method: 'GET', url:`/users/userdata/${vendor}`,
-    //   data:{vendor}
-    // },((response) => {
-    //   JSON.stringify(response.data);
-    //   console.log(response.data);
-    //   dispatch(getVendorData(response.data));
-    // }))
-  }
-  
+  };
+
   useEffect(() => {
     vendorData();
     authService.getVendorStatus();
-    console.log('Vendor Details', vendor);
-  }, [])
+    console.log("Vendor Details", vendor); 
+    // need to fix the continous rendering issue when dependencies are placed
+  }, []);
 
-  return (
-    <div>overview</div>
-  )
-}
+  return <div>overview</div>;
+};
 
-export default Overview
+export default Overview;
