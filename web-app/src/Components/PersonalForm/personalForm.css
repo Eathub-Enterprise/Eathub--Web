@@ -136,8 +136,9 @@ form .input-header {
 
 @media only screen and (max-width: 768px) {
     .personal-form{
-        height: 100vh;
+        height: 80vh;
         overflow-x:hidden;
+        border-radius: 20px;
     }
 
     .personal-form-main{
@@ -145,10 +146,15 @@ form .input-header {
         align-items:center;
         justify-content: center;
         margin: 0;
+        /* background-color:rgba(236, 236, 236, 1); */
+    }
+    .personal-form-main header{
+        margin-top: .5rem;
     }
     .personal-form-input{
         align-items:flex-start;
         min-width: 80%;
+        margin-top: 0;
     }
 
     form{
@@ -159,7 +165,8 @@ form .input-header {
     }
 
     form input, select{
-        width: 100%; ;
+        width: 100%;
+        margin-top: 0.5rem;
     }
 
     form .input-header {
