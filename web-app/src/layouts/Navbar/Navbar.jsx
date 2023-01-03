@@ -19,12 +19,12 @@ const Navbar = () => {
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li>
             <Link to="/login">
-              <button className="btn-outline">Vendor Login</button>
+              <button className="btn-outline">Sign In</button>
             </Link>
           </li>
           <li>
             <Link to="/signup">
-              <button className="btn-contained">Become a Vendor</button>
+              <button className="btn-contained">Build Kitchen</button>
             </Link>
           </li>
         </ul>
