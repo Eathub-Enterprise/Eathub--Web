@@ -17,12 +17,11 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { open, message, duration } = useSelector((state) => state.snackbar);
+  const { open, message, duration, closeSnackbar } = useSelector((state) => state.snackbar);
 
   const handleClose = () => {
     dispatch(closeSnackbar());
   };
-
   return (
     <Formik
       initialValues={{
