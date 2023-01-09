@@ -33,6 +33,7 @@ const Order = () => {
     year: "numeric",
   });
 
+  // Pagination for the Data Table
   function CustomPagination() {
     const apiRef = useGridApiContext();
     const page = useGridSelector(apiRef, gridPageSelector);
@@ -141,7 +142,8 @@ const Order = () => {
     },
   ];
 
-  const rows = [];
+  const rows = [
+  ];
 
   useEffect(() => {});
   return (

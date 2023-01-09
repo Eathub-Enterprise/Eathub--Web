@@ -14,8 +14,9 @@ const ProtectedRoute = () => {
   const vendorData = async () => {
     const response = await authService
       .getVendorData()
-      .then((details, headers) => {
-        dispatch(getVendorData(details));
+      .then((details) => {
+        localStorage.setItem('vendor-info', JSON.stringify(response.data));
+        // dispatch(getVendorData(details));
       });
     return response;
   };

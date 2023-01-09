@@ -6,6 +6,7 @@ import {
     FaChartLine,
     FaEnvelope,
     FaCog,
+    FaMoneyBill,
 } from "react-icons/fa"
 import e from '../../Assets/images/white logo.png';
 import text from '../../Assets/images/athub-white.png';
@@ -44,6 +45,11 @@ const Sidebar = ({children}) => {
             path: "/dashboard/settings",
             name: 'Settings',
             icon: <FaCog/>
+        },
+        {
+            path: "/dashboard/payouts",
+            name: 'Payouts',
+            icon: <FaMoneyBill/>
         },
     ]
     return ( 

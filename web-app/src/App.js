@@ -15,6 +15,7 @@ import Menu from "./Pages/dashboard/pages/menu/Menu";
 import Analytics from "./Pages/dashboard/pages/analytics/Analytics";
 import Message from "./Pages/dashboard/pages/message/Message";
 import Settings from "./Pages/dashboard/pages/settings/Settings";
+import Payout from "./Pages/dashboard/pages/payout/Payout";
 import ProtectedRoute from "./helper/requireAuth";
 import PageNotFound from "./Pages/pagenotfound/PageNotFound";
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="analytics" element={<Analytics />} />
           <Route path="message" element={<Message />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="payouts" element={<Payout />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
