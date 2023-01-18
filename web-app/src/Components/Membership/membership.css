@@ -5,6 +5,7 @@
     justify-content:center;
     align-items:center;
     background: transparent;
+    margin-top: 2rem;
 }
 
 .membership-img {
@@ -79,9 +80,13 @@ input[type="submit"]:hover{
 }
 
 @media only screen and (max-width: 768px) {
+    .membership-container{
+        height:180px;
+    }
     .membership-img img{
         object-fit: contain;
-        margin-left: 15%;
+        margin-left: 2%;
+        width: 95%;
     }
 
     .membership-content {
@@ -99,19 +104,22 @@ input[type="submit"]:hover{
         padding-right: 0;
         padding-left: 0;
         width: 20%;
-        padding: 2px;
+        padding: 14px;
         font-size: var(--mobile-font);
+        margin-top: 1rem;
     }
 
     .membership-input input[type="email"]{
         width: 60%;
         height: 8px;
-        padding: 2px;
+        padding: 10px;
         font-size: var(--mobile-font);
+        margin-top: 1rem;
     }
 
     .membership-header {
-        font-size: var(--mobile-font);
+        font-size: var(--button-text);
+        width: 100%;
     }
 
     .membership-input {

@@ -1,51 +1,43 @@
-import * as React from 'react';
-import { AppBar, Toolbar, styled, Box, Tooltip } from '@mui/material';
-import './navbar.css';
-import e from '../../Assets/images/logo 1.png';
-import text from '../../Assets/images/athub.png';
-import LoginIcon from '@mui/icons-material/Login';
-import DownloadForOfflineRoundedIcon from '@mui/icons-material/DownloadForOfflineRounded';
-
-const StyledToolbar = styled(Toolbar) ({
-    display:"flex",
-    justifyContent:"space-between",
-});
-
-const Bar = styled(Box)(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    marginRight: "10px",
-    color:"#FF8323"
-}));
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import e from "../../Assets/images/logo 1.png";
+import text from "../../Assets/images/athub.png";
+import "./navbar.scss";
 
 const Navbar = () => {
-    return (
-        <AppBar maxWidth="xl" color="inherit" position="sticky">
-            <StyledToolbar>
-                <div className="navbar-link-wrapper">
-                    <img src={e} alt={e} className="large-e" />
-                    <img src={text} alt={text} />
-                </div>
-                <Bar sx={{display: {xs:"block", sm:"none"}}}>
-                    <Tooltip title="Sign Up">
-                        <LoginIcon />
-                    </Tooltip>
-                    <Tooltip title="Download Mobile App">
-                        <DownloadForOfflineRoundedIcon />
-                    </Tooltip>
-                </Bar>
-                <Bar sx={{display: {xs:"none", sm:"block"}}}>
-                    <button className="btn-outline">
-                        Sign Up
-                    </button>
-                    <button className="btn-contained">
-                        Download
-                    </button>
-                </Bar>
-            </StyledToolbar>
-        </AppBar>
-     );
-}
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
 
-export default Navbar; 
+  return (
+    <div className="navbarPage">
+      <div className="header">
+        <Link to="/">
+          <img loading='lazy' src={e} alt={e} className="large-e" />
+          <img loading='lazy' src={text} alt={text} />
+        </Link>
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <li>
+            <Link to="/login">
+              <button className="btn-outline">Sign In</button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/signup">
+              <button className="btn-contained">Build Kitchen</button>
+            </Link>
+          </li>
+        </ul>
+        <div className="hamburger" onClick={handleClick}>
+          {click ? (
+            <FaTimes size={30} style={{ color: "#FF8323" }} />
+          ) : (
+            <FaBars size={30} style={{ color: "#FF8323" }} />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

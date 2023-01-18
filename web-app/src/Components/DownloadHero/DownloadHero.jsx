@@ -13,15 +13,15 @@ const DownloadHero = () => {
             <h1>Download<br /> Eat<span className='special'>Hub</span> Mobile App</h1>
           </div>
           <div className="downloadHero-btn">
-            <img src={google} alt={google} />
-            <img src={apple} alt={apple} />
+            <img loading='lazy' src={google} alt={google} />
+            <img loading='lazy' src={apple} alt={apple} />
           </div>
           <div className="downloadHero-text">
             <p>...or click here to download directly</p>
           </div>
         </div>
         <div className="downloadHero-img">
-        <img src={phone} alt={phone} />
+        <img loading='lazy' src={phone} alt={phone} />
         </div>
       </div>
     </div>

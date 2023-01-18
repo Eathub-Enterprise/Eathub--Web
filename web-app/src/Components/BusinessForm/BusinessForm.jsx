@@ -1,33 +1,54 @@
 import { Formik } from "formik";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import authService from "../../services/auth/authService";
 
-const BusinessForm = () => {
+const BusinessForm = (e) => {
+  const navigate = useNavigate();
+
+  const userData = localStorage.getItem("user");
+  const user = JSON.parse(userData);
+
   return (
     <Formik
       initialValues={{
-        businessName: "",
-        businessAddress: "",
-        businessMail: "",
-        businessNumber: "",
-        businessDescription: "",
+        vendor_name: "",
+        address: "",
+        business_email: "",
+        business_phonenumber: "",
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          console.log("Sign Up Success", values);
-          setSubmitting(false);
-        });
+      onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(true);
+        const value = {
+          ...values,
+          ...user,
+        };
+
+        try {
+          await authService.vendorSignUp(value).then(
+            (response) => {
+              console.log("it Worked!", value);
+              navigate("/login");
+            },
+            (error) => {
+              console.log("it Failed!", error);
+            }
+          );
+        } catch (err) {
+          console.log(err);
+        }
       }}
       // Yup Validation
       validationSchema={Yup.object().shape({
-        businessName: Yup.string().required("Business Name is Required"),
-        businessAddress: Yup.string().required("Business Address is Required"),
-        businessNumber: Yup.number().required("Business Number is Required"),
-        businessMail: Yup.string()
+        vendor_name: Yup.string().required("Business Name is Required"),
+        address: Yup.string().required("Business Address is Required"),
+        business_phonenumber: Yup.number().required(
+          "Business Number is Required"
+        ),
+        business_email: Yup.string()
           .email()
           .required("Business Mail is Required"),
-        businessDescription: Yup.string().required(
-          "Business Description is Required"
-        ),
       })}
     >
       {(props) => {
@@ -47,111 +68,88 @@ const BusinessForm = () => {
               <header>
                 <h1>Business Registration</h1>
                 <p className="header-text">
-                  Kindly fill the form below to sign up
+                  Kindly complete registeration
                 </p>
               </header>
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>
                   <input
-                    id="businessName"
-                    name="businessName"
+                    id="vendor_name"
+                    name="vendor_name"
                     type="text"
                     placeholder="Business Name"
-                    value={values.businessName}
+                    value={values.vendor_name}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      errors.businessName && touched.businessName && "error"
+                      errors.vendor_name && touched.vendor_name && "error"
                     }
                   />
-                  {errors.businessName && touched.businessName && (
-                    <div className="input-feedback">{errors.businessName}</div>
-                  )}
+                  {/* {errors.vendor_name && touched.vendor_name && (
+                    <div className="input-feedback">{errors.vendor_name}</div>
+                  )} */}
                   <input
-                    id="businessAddress"
-                    name="businessAddress"
+                    id="address"
+                    name="address"
                     type="text"
                     placeholder="Business Address"
-                    value={values.businessAddress}
+                    value={values.address}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={errors.address && touched.address && "error"}
+                  />
+
+                  {/* {errors.address && touched.address && (
+                    <div className="input-feedback">{errors.address}</div>
+                  )} */}
+
+                  <input
+                    id="business_phonenumber"
+                    name="business_phonenumber"
+                    type="digits"
+                    placeholder="Business Number"
+                    value={values.business_phonenumber}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      errors.businessAddress &&
-                      touched.businessAddress &&
+                      errors.business_phonenumber &&
+                      touched.business_phonenumber &&
                       "error"
                     }
                   />
 
-                  {errors.businessAddress && touched.businessAddress && (
-                    <div className="input-feedback">
-                      {errors.businessAddress}
-                    </div>
-                  )}
+                  {/* {errors.business_phonenumber &&
+                    touched.business_phonenumber && (
+                      <div className="input-feedback">
+                        {errors.business_phonenumber}
+                      </div>
+                    )} */}
 
                   <input
-                    id="businessNumber"
-                    name="businessNumber"
-                    type="number"
-                    placeholder="Business Number"
-                    value={values.businessNumber}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.businessNumber && touched.businessNumber && "error"
-                    }
-                  />
-
-                  {errors.businessNumber && touched.businessNumber && (
-                    <div className="input-feedback">
-                      {errors.businessNumber}
-                    </div>
-                  )}
-
-                  <input
-                    id="businessMail"
-                    name="businessMail"
+                    id="business_email"
+                    name="business_email"
                     type="text"
                     placeholder="Business Mail"
-                    value={values.businessMail}
+                    value={values.business_email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      errors.businessMail && touched.businessMail && "error"
+                      errors.business_email && touched.business_email && "error"
                     }
                   />
 
-                  {errors.businessMail && touched.businessMail && (
-                    <div className="input-feedback">{errors.businessMail}</div>
-                  )}
-
-                  <input
-                    id="businessDescription"
-                    name="businessDescription"
-                    type="text"
-                    placeholder="Business Description"
-                    value={values.businessDescription}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.businessDescription &&
-                      touched.businessDescription &&
-                      "error"
-                    }
-                  />
-
-                  {errors.businessDescription &&
-                    touched.businessDescription && (
-                      <div className="input-feedback">
-                        {errors.businessDescription}
-                      </div>
-                    )}
+                  {/* {errors.business_email && touched.business_email && (
+                    <div className="input-feedback">
+                      {errors.business_email}
+                    </div>
+                  )} */}
 
                   <button
-                    className="personal-form-btn"
+                    className="business-form-btn"
                     type="submit"
                     disabled={isSubmitting}
                   >
-                    Continue
+                    Register
                   </button>
                 </form>
               </div>

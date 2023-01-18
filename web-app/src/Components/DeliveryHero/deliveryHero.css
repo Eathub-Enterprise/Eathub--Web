@@ -35,6 +35,11 @@
     color: var(--primary);
 }
 
+.deliveryHero-header{
+    font-size: var(--header-2);
+    font-weight: bold;
+}
+
 .deliveryHero-btn button {
     background-color: var(--primary);
     border: solid solid var(--primary);
@@ -56,7 +61,7 @@
 @media only screen and (max-width: 768px) {
     .deliveryHero-container {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: center;
     }
 
@@ -67,9 +72,13 @@
 
     .deliveryHero-aside {
         display: flex;
-        margin-bottom: 2rem;
         align-items: center;
-        text-align:center;
+        text-align: left;
         width: 80%;
+        margin-bottom: 2rem;
+        display: inline-block;
+    }
+    .deliveryHero-header{
+        font-size: var(--header-4);
     }
 }

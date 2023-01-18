@@ -7,7 +7,7 @@ export default function Formpage() {
         <div className="Formpage">
             <div className="Formpage-main">
                 <aside className="Formpage-img">
-                    <img src={background} alt={background} />
+                    <img loading='lazy' src={background} alt={background} />
                 </aside>
                 <aside className="Formpage-comp">
                     <Outlet />

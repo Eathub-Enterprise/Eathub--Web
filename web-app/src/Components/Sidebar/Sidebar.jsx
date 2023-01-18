@@ -6,6 +6,7 @@ import {
     FaChartLine,
     FaEnvelope,
     FaCog,
+    FaMoneyBill,
 } from "react-icons/fa"
 import e from '../../Assets/images/white logo.png';
 import text from '../../Assets/images/athub-white.png';
@@ -21,41 +22,46 @@ const Sidebar = ({children}) => {
             icon: <FaThLarge/>
         },
         {
-            path: "/orders",
+            path: "/dashboard/orders",
             name: 'Orders',
             icon: <FaCartPlus/>
         },
         {
-            path: "/menu",
+            path: "/dashboard/menu",
             name: 'Menu',
             icon: <FaSpa/>
         },
         {
-            path: "/analytics",
+            path: "/dashboard/analytics",
             name: 'Analytics',
             icon: <FaChartLine/>
         },
         {
-            path: "/message",
+            path: "/dashboard/message",
             name: 'Message',
             icon: <FaEnvelope/>
         },
         {
-            path: "/settings",
+            path: "/dashboard/settings",
             name: 'Settings',
             icon: <FaCog/>
+        },
+        {
+            path: "/dashboard/payouts",
+            name: 'Payouts',
+            icon: <FaMoneyBill/>
         },
     ]
     return ( 
         <div className='container'>
             <div className='sidebar'>
                 <div className='top-section'>
-                <img src={e} alt={e} className="Logo" />
-                    <img src={text} alt={text} />
+                <img loading='lazy' src={e} alt={e} className="Logo" />
+                    <img loading='lazy'src={text} alt={text} />
                 </div>
                 {
                     menuItem.map((item, index)=>(
-                        <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                        <NavLink to={item.path} key={index} className="link" activeclassname="active">
                             <div className='icon'>{item.icon}</div>
                             <div className='link-text'>{item.name}</div>
                         </NavLink>

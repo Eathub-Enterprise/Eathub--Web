@@ -79,6 +79,8 @@
     .downloadHero-container {
         position: absolute;
         height: 100%;
+        background-color: white;
+        color:black;
     }
 
     .downloadHero-Header{
@@ -92,7 +94,7 @@
     }
     
     .downloadHero-img img{
-        display: none;
+        /* display: none; */
     }
 
     .downloadHero-btn{

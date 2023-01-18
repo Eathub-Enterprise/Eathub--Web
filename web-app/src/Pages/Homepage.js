@@ -9,7 +9,9 @@ import DownloadHero from '../Components/DownloadHero/DownloadHero';
 import Membership from '../Components/Membership/Membership';
 import Footer  from '../layouts/Footer/Footer.jsx';
 
+
 export default function Homepage() {
+
   return (
     <div className="homepage">
         <Navbar />

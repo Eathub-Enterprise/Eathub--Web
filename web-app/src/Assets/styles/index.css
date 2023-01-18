@@ -7,7 +7,7 @@
   /* font sizes */
   --header-1:64px;
   --header-2:40px;
-  --header-3:24px;
+  --header-3:32px;
   --header-4:20px;
   --subtitle:14px;
   --body:16px;
@@ -22,6 +22,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Montserrat';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width:fit-content;
 }
 
 code {
