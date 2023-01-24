@@ -77,7 +77,7 @@ const Footer = () => {
             <h4>Links</h4>
             <ul>
               {LINKS.map((link) => (
-                <li key={link}>
+                <li key={link.url}>
                   <a href={link.url}>
                     {link.name}
                   </a>

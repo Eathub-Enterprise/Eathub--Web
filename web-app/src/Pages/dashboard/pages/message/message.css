@@ -1,0 +1,93 @@
+.message-section {
+  margin: 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.message-drop-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.message-dropdwn:first-child {
+  margin-left: 0;
+}
+
+.message-dropdwn {
+  margin-left: 1rem;
+}
+
+.message-dropdwn select {
+  width: 15vw;
+}
+
+.message-header {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.msg-btn {
+  padding: 0.5rem 0.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgb(208, 208, 208);
+  cursor: pointer;
+}
+
+.message-container {
+  margin-top: 2rem;
+  width: 100%;
+  height: 70vh;
+  border: .5px solid #000;
+  border-radius: 5px;
+}
+
+.msg-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.msg-1 {
+  flex: 1;
+  border-right: .5px solid black;
+  /* padding: .5rem 1rem; */
+}
+.msg-1 .msg-head,
+.msg-2 .msg-head {
+  width: 100%;
+  height: 8vh;
+  background: rgba(249, 191, 146, 0.11);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: .5px solid black;
+}
+
+.msg-2 {
+  flex: 2;
+  /* padding: 1rem 2rem; */
+}
+
+.msg-head input {
+  width: 65%;
+  padding: 0.25rem;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgb(208, 208, 208);
+  background-image: url(../../../../Assets/pngs/magnifying-glass.png);
+  background-repeat: no-repeat;
+  padding-left: 2rem;
+  background-position: 10px;
+  background-size: 20px;
+  color: #000;
+}

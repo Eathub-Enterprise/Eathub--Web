@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './menu.css';
 
 const Menu = () => {
@@ -8,7 +9,7 @@ const Menu = () => {
                 <div className="menu-title-header">
                 <h2>Menu</h2>
                 </div>
-                <button className='menu-btn'>
+                <button Link to='/addMenu' className='menu-btn'>
                     Add Meal
                 </button>
             </div>
