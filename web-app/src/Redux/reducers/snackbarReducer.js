@@ -20,7 +20,7 @@ export default function snackbarReducer(state = initialState, action) {
             ...state,
             open:false,
             message:'',
-            duration:3000,
+            duration:3,
         };
     default:
         return state;

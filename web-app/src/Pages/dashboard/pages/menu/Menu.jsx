@@ -1,9 +1,20 @@
-import React from 'react'
+import React from 'react';
+import './menu.css';
 
 const Menu = () => {
     return (
-        <div>
-            Menu
+        <div className="menu-section">
+            <div className="menu-title">
+                <div className="menu-title-header">
+                <h2>Menu</h2>
+                </div>
+                <button className='menu-btn'>
+                    Add Meal
+                </button>
+            </div>
+            <div className="menu-table">
+                <h4>Meal List here!</h4>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,91 @@
+.menu-section {
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.menu-title {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu-table {
+  height: 70vh;
+  width: 85%;
+  margin: 0 auto;
+  padding: 2rem;
+  box-shadow: 2px 2px 5px rgb(154, 153, 153);
+}
+
+.menu-btn {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  border: 2px solid var(--primary);
+  padding: 2px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.menu-table-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-table-row {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5rem;
+  align-items: baseline;
+}
+
+.menu-table select {
+  width: 260px;
+  height: 5vh;
+  padding-left: 0.5rem;
+  border-radius: 10px;
+}
+
+.menu-input input {
+  margin-top: 0.8rem;
+  width: 250px;
+  height: 5vh;
+  padding-left: 0.5rem;
+  border-radius: 10px;
+  border: solid rgb(187, 187, 187);
+}
+
+.menu-input textarea {
+  width: 250px;
+  height: 15vh;
+  border-radius: 5px;
+  padding-left: 0.5rem;
+  border: solid rgb(187, 187, 187);
+}
+
+.menu-input {
+  margin-top: 2rem;
+}
+
+.menu-small {
+  font-size: 8px;
+}
+
+.menu-img {
+  width: 50px;
+}
+
+.menu-input-img input {
+  margin-top: 2rem;
+  width: 200px;
+}

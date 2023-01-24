@@ -1,16 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  vendor: [],
+};
 
 const vendorSlice = createSlice({
-    name: 'vendor',
-    initialState: [],
-    reducers: {
-        vendorInfo(state, action){
-            state.push({
-                info: action.payload
-            })
-        }
+  name: "VENDOR_INFO",
+  initialState,
+  reducers: {
+    setVendorInfo: (state, action) => {
+      state.value = action.payload;
     },
-})
+    setContentType: (state, action) => {
+      state.contentType = action.payload.contentType;
+    },
+  },
+});
 
-export const { vendorInfo } = vendorSlice.actions;
-export default vendorSlice.reducer;
+export const { setVendorInfo, setContentType } = vendorSlice.actions;
+export const vendorReducer = vendorSlice.reducer;

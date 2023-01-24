@@ -18,6 +18,7 @@ import Settings from "./Pages/dashboard/pages/settings/Settings";
 import Payout from "./Pages/dashboard/pages/payout/Payout";
 import ProtectedRoute from "./helper/requireAuth";
 import PageNotFound from "./Pages/pagenotfound/PageNotFound";
+import AddMenu from "./Pages/dashboard/pages/menu/AddMenu";
 
 // first layer of Routing is done here!
 function App() {
@@ -35,8 +36,12 @@ function App() {
 
         <Route path="/dashboard" element={<ProtectedRoute />}>
           <Route index element={<Overview />} />
+
           <Route path="orders" element={<Order />} />
+
           <Route path="menu" element={<Menu />} />
+          <Route path="menu/addMenu" element={<AddMenu />} />
+          
           <Route path="analytics" element={<Analytics />} />
           <Route path="message" element={<Message />} />
           <Route path="settings" element={<Settings />} />
