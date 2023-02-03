@@ -40,13 +40,16 @@ const AddMenu = () => {
               </div>
 
               <div className="menu-input-img">
+                <label> <h4>Import Food Images</h4></label>
+                <input type="file" accept="image/*"></input>
+                <input type="file" accept="image/*"></input>
                 <input type="file" accept="image/*"></input>
                 <label>
                   <p className="menu-small">Image should be 2mb max</p>
                 </label>
               </div>
             </div>
-            <div className="menu-table-row">
+            <div className="menu-table-row second">
               <div className="menu-input">
                 <label>
                   <h4>DESCRIPTION</h4>

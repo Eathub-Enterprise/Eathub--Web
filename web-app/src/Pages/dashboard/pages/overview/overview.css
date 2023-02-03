@@ -1,0 +1,29 @@
+.overview-section {
+    margin: 1rem 2rem;
+}
+
+.overview-dropdown{
+    width: 150px;
+}
+
+.widgets{
+    width: 60%;
+}
+
+.charts{
+    width: 550px;
+    height: 300px;
+    box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.widgets, .charts {
+    gap: 5px;
+    display: flex;
+    padding-top: 15px; 
+    padding-bottom: 15px;  
+} 
+
+/* .charts {
+    padding: 25px 10px;
+} */

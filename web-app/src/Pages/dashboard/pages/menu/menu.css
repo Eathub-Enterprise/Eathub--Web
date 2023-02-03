@@ -33,6 +33,11 @@
   cursor: pointer;
 }
 
+.menu-btn Link{
+  text-decoration: none;
+  color: white;
+}
+
 .menu-table-inner {
   height: 100%;
   display: flex;
@@ -84,8 +89,21 @@
 .menu-img {
   width: 50px;
 }
+.menu-input-img{
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-input-img label h4{
+  margin-top: 2rem;
+}
 
 .menu-input-img input {
-  margin-top: 2rem;
+  margin-top: 0;
   width: 200px;
+}
+
+.second{
+  margin-top: 6rem;
+  margin-left: 8rem;
 }

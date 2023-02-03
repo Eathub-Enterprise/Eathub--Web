@@ -60,8 +60,8 @@ const Sidebar = ({children}) => {
                     <img loading='lazy'src={text} alt={text} />
                 </div>
                 {
-                    menuItem.map((item, index)=>(
-                        <NavLink to={item.path} key={index} className="link" activeclassname="active">
+                    menuItem.map((item)=>(
+                        <NavLink to={item.path} key={item.name} className="link" activeclassname="active">
                             <div className='icon'>{item.icon}</div>
                             <div className='link-text'>{item.name}</div>
                         </NavLink>
