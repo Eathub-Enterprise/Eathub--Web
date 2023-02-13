@@ -12,8 +12,8 @@ const Widget = ({ type }) => {
         icon: <CircularProgressbar value={70} strokeWidth={15} styles={buildStyles({
           pathColor: 'var(--primary)',
           trailColor: 'rgba(0, 0, 0, 0.2)',
+          strokeLinecap: 'round',
           trail: {
-            strokeLinecap: 'butt',
             transition: 'stroke-dashoffset 0.5s ease 0s',
           }
         })} />,
@@ -28,7 +28,8 @@ const Widget = ({ type }) => {
         isNumber: 4209,
         icon: <CircularProgressbar value={65} strokeWidth={15} styles={buildStyles({
           pathColor: 'var(--primary)',
-          trailColor: 'rgba(0, 0, 0, 0.2)'
+          trailColor: 'rgba(0, 0, 0, 0.2)',
+          strokeLinecap: 'round'
         })} />,
         isNew:62,
         isReturning: 13,

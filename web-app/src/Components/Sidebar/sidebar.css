@@ -1,44 +1,60 @@
 .container {
-    display: flex;
+  display: flex;
+  position: sticky;
+  height: 100vh;
+  box-shadow: 4px 0 4px -2px rgba(0, 0, 0, 0.25);
 }
 main {
-    width: 100%;
-    padding: 20px;
+  width: 100%;
+  padding: 20px;
 }
 .sidebar {
-    background: #FF8323;
-    color: white;
-    height: 100vh;
+  background: #ff8323;
+  color: white;
+  min-height: 100%;
 }
 .top-section {
-    display: flex;
-    align-items: center;
-    padding: 55px 40px;
+  display: flex;
+  align-items: center;
+  padding: 55px 40px;
 }
-.link {
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    padding: 20px 60px;
-    flex-direction: row-reverse;
-    transition: all 0.5s;
-    text-decoration: none;
-    /* gap: 20px; */
+.link, .sidebar-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 20px 60px;
+  flex-direction: row-reverse;
+  transition: all 0.5s;
+  text-decoration: none;
+  /* gap: 20px; */
 }
-.link:hover{
-    background: white;
-    color: #FF8323;
-    transition: all 0.5s;
+
+.sidebar-button{
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+  margin-left: 3rem;
+  margin-top: 5rem;
+  padding: 10px 30px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.link:hover {
+  background: white;
+  color: #ff8323;
+  transition: all 0.5s;
 }
 .icon {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .link-text {
-    font-size: 20px;
-    margin-right: 0.5rem;
+  font-size: 16px;
+  margin-right: 0.5rem;
 }
 
-.active{
-    background-color: var(--primary-variant);
+.active {
+  background-color: var(--primary-variant);
 }

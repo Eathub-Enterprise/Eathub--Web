@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
@@ -12,11 +12,11 @@ import { openSnackbar, closeSnackbar } from '../../Redux/actions';
 
 
 const Login = () => {
-  const [rememberUser, setRememberUser] = useState(null);
+  // const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { open, message, duration, closeSnackbar } = useSelector((state) => state.snackbar);
+  const { open, message, duration} = useSelector((state) => state.snackbar);
 
   const handleClose = () => {
     dispatch(closeSnackbar);
@@ -57,7 +57,6 @@ const Login = () => {
           values,
           touched,
           errors,
-          isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit,

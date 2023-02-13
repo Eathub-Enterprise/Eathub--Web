@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Box from "@mui/material/Box";
@@ -16,7 +16,7 @@ import "./order.css";
 
 const Order = () => {
   // API values for Table
-  const [tableData, setTableData] = useState([]);
+  // const [tableData, setTableData] = useState([]);
 
   // formatted Date
   const date = new Date();
@@ -61,10 +61,12 @@ const Order = () => {
     WebkitFontSmoothing: "auto",
     letterSpacing: "normal",
     "& .MuiDataGrid-main": {
+      borderRadius:10,
       backgroundColor: theme.palette.mode === "light" ? "#fff" : "#fff",
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? '#000' : '#000'
-      }`
+      // border: `.1px solid ${
+      //   theme.palette.mode === 'light' ? '#000' : '#000'
+      // }`,
+      boxShadow: `2px 4px 10px 1px rgba(0, 0, 0, 0.5)`,
     },
     "& .MuiDataGrid-columnsContainer": {
       backgroundColor: theme.palette.mode === "light" ? "#fff" : "#fff",
@@ -73,10 +75,10 @@ const Order = () => {
       display: "none",
     },
     "& .MuiDataGrid-columnHeaders":{
-      borderBottom: `1px solid ${theme.palette.mode === "light" ? "#000" : "#000"}`,
+      borderBottom: `.1px solid rgba(0, 0, 0, 0.5)`,
     },
     "& .MuiDataGrid-columnHeader, .MuiDataGrid-cell": {
-      borderLeft: `1px solid ${theme.palette.mode === "light" ? "#000" : "#000"}`
+      borderLeft: `.1px solid rgba(0, 0, 0, 0.5)`
     },
     "& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell": {
       borderBottom: `2px solid ${
@@ -95,7 +97,7 @@ const Order = () => {
     {
       field: "id",
       headerName: "#",
-      width: "80",
+      width: "20",
       headerAlign: "center",
     },
     {

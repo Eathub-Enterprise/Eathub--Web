@@ -1,0 +1,46 @@
+.charts-location{
+    padding: 1rem;
+    margin-left: 2rem;
+    border-radius: 10px; ;
+    box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.charts-location h5{
+    border-bottom: 0.2px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.713);
+    font-weight: 600;
+}
+
+.location-container{
+    margin-top: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 14px;
+}
+
+.charts-places, .location-graph{
+    flex:2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.charts-places{
+    margin-right: 2rem;
+}
+
+.charts-places ul li{
+    width: 80px;
+}
+.location-graph{
+    width: 100px;
+}
+
+.location-numbers{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 2rem;
+}

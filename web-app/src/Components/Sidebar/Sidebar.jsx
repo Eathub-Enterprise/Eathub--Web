@@ -3,18 +3,19 @@ import {
     FaThLarge,
     FaCartPlus,
     FaSpa,
-    FaChartLine,
     FaEnvelope,
-    FaCog,
     FaMoneyBill,
 } from "react-icons/fa"
 import e from '../../Assets/images/white logo.png';
 import text from '../../Assets/images/athub-white.png';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
 
  
 const Sidebar = ({children}) => {
+    const handleLogOut = () => {
+        localStorage.clear();
+    }
     const menuItem=[
         {
             path: "/dashboard",
@@ -31,21 +32,21 @@ const Sidebar = ({children}) => {
             name: 'Menu',
             icon: <FaSpa/>
         },
-        {
-            path: "/dashboard/analytics",
-            name: 'Analytics',
-            icon: <FaChartLine/>
-        },
+        // {
+        //     path: "/dashboard/analytics",
+        //     name: 'Analytics',
+        //     icon: <FaChartLine/>
+        // },
         {
             path: "/dashboard/message",
             name: 'Message',
             icon: <FaEnvelope/>
         },
-        {
-            path: "/dashboard/settings",
-            name: 'Settings',
-            icon: <FaCog/>
-        },
+        // {
+        //     path: "/dashboard/settings",
+        //     name: 'Settings',
+        //     icon: <FaCog/>
+        // },
         {
             path: "/dashboard/payouts",
             name: 'Payouts',
@@ -67,6 +68,9 @@ const Sidebar = ({children}) => {
                         </NavLink>
                     ))
                 }
+                <button onClick={handleLogOut} className='sidebar-button'>
+                    LogOut
+                </button>
             </div>
             <main>{children}</main>
         </div>

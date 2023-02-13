@@ -2,12 +2,9 @@ import React from "react";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import "./dashCarts.css";
@@ -90,10 +87,9 @@ const data = [
 const DashCharts = () => {
   return (
     <div className="dashCharts">
-      <ResponsiveContainer width={550} height={300}>
+      <h5>Overall Restaurant Activity</h5>
+      <ResponsiveContainer width={600} height={300}>
         <BarChart
-          width={500}
-          height={300}
           data={data}
           margin={{
             top: 20,
@@ -103,9 +99,8 @@ const DashCharts = () => {
           }}
         >
           <XAxis dataKey="name" />
-          {/* <YAxis /> */}
+          <YAxis />
           <CartesianGrid horizontal={true} vertical={false} strokeDasharray="5 5" />
-          <Legend />
           <Bar dataKey="pv" fill="#FF8323" />
           <Bar dataKey="uv" fill="#ECE9E6" />
         </BarChart>

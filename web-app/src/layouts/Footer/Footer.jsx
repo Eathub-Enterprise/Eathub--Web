@@ -51,7 +51,7 @@ const BLOGS = [
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="container">
+      <div className="footer-container">
         <div className="row">
           <div className="footer-logo">
             <h1>

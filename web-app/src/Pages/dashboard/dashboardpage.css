@@ -11,6 +11,11 @@
     padding: 0;
 }
 
+.dashboard .sidebar{
+    z-index: 99;
+    position:sticky;
+}
+
 .dashboard .body{
     flex:8;
 }
