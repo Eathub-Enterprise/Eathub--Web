@@ -19,6 +19,7 @@ import Payout from "./Pages/dashboard/pages/payout/Payout";
 import ProtectedRoute from "./helper/requireAuth";
 import PageNotFound from "./Pages/pagenotfound/PageNotFound";
 import AddMenu from "./Pages/dashboard/pages/menu/AddMenu";
+import HistoryOrder from "./Pages/dashboard/pages/order/HistoryOrder";
 
 // first layer of Routing is done here!
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route index element={<Overview />} />
 
           <Route path="orders" element={<Order />} />
+          <Route path="orders/history" element={<HistoryOrder />} />
 
           <Route path="menu" element={<Menu />} />
           <Route path="menu/addMenu" element={<AddMenu />} />

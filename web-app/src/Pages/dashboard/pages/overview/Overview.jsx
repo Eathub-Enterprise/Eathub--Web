@@ -2,6 +2,7 @@ import React from "react";
 import DashCharts from "../../../../Components/DashCharts/DashCharts";
 import Location from "../../../../Components/Location/Location";
 import ProgressBar from "../../../../Components/ProgressBar/ProgressBar";
+import OrderTable from "../../../../Components/Table/OrderTable";
 import Widget from "../../../../Components/Widgetss/Widget";
 import "./overview.css";
 
@@ -23,44 +24,7 @@ const Overview = () => {
         <Location />
       </div>
       <div className="orders">
-        {/* Convert to Component */}
-        <div className="order-container">
-        <h5>Recent Orders</h5>
-        <table>
-          <tbody>
-            <tr>
-              <td>Rice & Stew</td>
-              <td>#6000</td>
-              <td>Alimosho</td>
-              <td style={{color: 'lightgreen'}}>Delivered</td>
-            </tr>
-            <tr>
-              <td>Rice & Stew</td>
-              <td>#6000</td>
-              <td>Alimosho</td>
-              <td style={{color: 'lightgreen'}}>Delivered</td>
-            </tr>
-            <tr>
-              <td>Rice & Stew</td>
-              <td>#6000</td>
-              <td>Alimosho</td>
-              <td style={{color: 'red'}}>Cancelled</td>
-            </tr>
-            <tr>
-              <td>Rice & Stew</td>
-              <td>#6000</td>
-              <td>Alimosho</td>
-              <td style={{color: 'red'}}>Cancelled</td>
-            </tr>
-            <tr>
-              <td>Rice & Stew</td>
-              <td>#6000</td>
-              <td>Alimosho</td>
-              <td style={{color: 'lightgreen'}}>Delivered</td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
+        <OrderTable />
       </div>
     </div>
   );

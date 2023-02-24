@@ -1,4 +1,5 @@
 import React from "react";
+import icon from "../../../../Assets/pngs/ImgUpload.png";
 
 const AddMenu = () => {
   return (
@@ -40,10 +41,43 @@ const AddMenu = () => {
               </div>
 
               <div className="menu-input-img">
-                <label> <h4>Import Food Images</h4></label>
-                <input type="file" accept="image/*"></input>
-                <input type="file" accept="image/*"></input>
-                <input type="file" accept="image/*"></input>
+                <h4>Import Food Images</h4>
+                <div className="labels">
+                  <label htmlFor="Image">
+                    {/* sucessful display fix */}
+                    <input
+                      id="Image"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                    ></input>
+                    <label htmlFor="Image">
+                      <img src={icon} alt={icon} className="menu-inputImg" />
+                    </label>
+                  </label>
+                  <label htmlFor="Image">
+                    <input
+                      type="file"
+                      id="Image"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                    ></input>
+                    <label htmlFor="Image">
+                      <img src={icon} alt={icon} className="menu-inputImg" />
+                    </label>
+                  </label>
+                  <label htmlFor="Image">
+                    <input
+                      id="Image"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                    ></input>
+                    <label htmlFor="Image">
+                      <img src={icon} alt={icon} className="menu-inputImg" />
+                    </label>
+                  </label>
+                </div>
                 <label>
                   <p className="menu-small">Image should be 2mb max</p>
                 </label>

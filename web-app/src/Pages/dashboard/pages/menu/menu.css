@@ -16,10 +16,12 @@
 }
 
 .menu-table {
-  height: 70vh;
+  height: 80vh;
   width: 85%;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
+  border: 2px solid transparent;
+  border-radius: 10px;
   box-shadow: 2px 2px 5px rgb(154, 153, 153);
 }
 
@@ -33,7 +35,7 @@
   cursor: pointer;
 }
 
-.menu-btn Link{
+.menu-link{
   text-decoration: none;
   color: white;
 }
@@ -94,7 +96,7 @@
   flex-direction: column;
 }
 
-.menu-input-img label h4{
+.menu-input-img h4{
   margin-top: 2rem;
 }
 
@@ -103,7 +105,41 @@
   width: 200px;
 }
 
+.menu-input-img .labels{
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-inputImg{
+  width: 75px;
+  height: 60px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
 .second{
   margin-top: 6rem;
   margin-left: 8rem;
+}
+
+/* table */
+.menu-table table{
+  display:table;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.menu-table table thead, tbody{
+  text-align: center;
+}
+
+.menu-table table td, th{
+  border-bottom: .1px solid rgba(0, 0, 0, 0.2);
+  border-right:.1px solid rgba(0, 0, 0, 0.2) ;
+}
+
+.menu-table table th,td{
+  width: 100px;
+  height: 10vh;
+  padding: .25rem;
 }

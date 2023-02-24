@@ -14,17 +14,19 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 
 .charts{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     /* width: 600px; */
 }
 
 .widgets, .charts {
-    gap: 5px;
+    /* gap: 5px; */
     display: flex;
     padding-top: 15px; 
     padding-bottom: 15px;  
@@ -35,20 +37,4 @@
     margin-top: 2rem;
     box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-}
-
-.order-container{
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    color: rgba(0, 0, 0, 0.713) ;
-}
-
-.order-container h5{
-    border-bottom: .5px solid rgba(0, 0, 0, 0.2);
-}
-
-.order-container table{
-    font-weight: 600;
-    font-size: 12px;
 }

@@ -1,0 +1,39 @@
+.order-container{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.713) ;
+}
+
+.order-container h5{
+    border-bottom: .5px solid rgba(0, 0, 0, 0.2);
+    /* margin-left: 2rem; */
+}
+
+.order-container table{
+    width: 100%;
+    display: table;
+}
+
+.order-container img{
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-right: 0.25rem;
+}
+
+.order-container table th, td{
+    width: 50px;
+    height: 2vh;
+    text-align: left;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.food{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}

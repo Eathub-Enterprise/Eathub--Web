@@ -5,7 +5,8 @@
     justify-content:center;
     align-items:center;
     background: transparent;
-    margin-top: 2rem;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
 }
 
 .membership-img {
@@ -81,7 +82,7 @@ input[type="submit"]:hover{
 
 @media only screen and (max-width: 768px) {
     .membership-container{
-        height:180px;
+        height:200px;
     }
     .membership-img img{
         object-fit: contain;
@@ -123,7 +124,7 @@ input[type="submit"]:hover{
     }
 
     .membership-input {
-        margin-top: 2%;
+        margin-top: -.75rem;
     }
 
 }

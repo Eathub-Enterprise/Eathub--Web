@@ -1,46 +1,52 @@
-import React, { useEffect } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import React, { useState, useEffect, createContext } from "react";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import authService from "../services/auth/authService";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getVendorData } from "../Redux/actions";
+// import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
+
+export const ChartDataContext = createContext();
 
 const ProtectedRoute = () => {
+  const [chartData, setChartData] = useState({});
+  const navigate = useNavigate();
+
   let userLoggedIn = authService.getVendorStatus();
-
-  // const vendor = useSelector((state) => state.vendor);
-  // const dispatch = useDispatch();
-
-  const vendorData = async () => {
-    const response = await authService
-      .getVendorData()
-      .then((details) => {
-        localStorage.setItem('vendor-info', JSON.stringify(response.data));
-        // dispatch(getVendorData(details));
-      });
-    return response;
-  };
-
-    // need to fix the continous rendering issue when dependencies is not empty/available
+  
   useEffect(() => {
+    async function fetchData() {
+      try{
+        const response = await authService.getVendorProfile();
+      setChartData(response.data);
+      localStorage.setItem('vendor-info', JSON.stringify(response.data));
+      } catch(err){
+        console.log(err);
+      }
+    }
+
+    fetchData();
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
-      return <Navigate to="/login" replace />;
+      return navigate('/');
     }
     authService.getVendorStatus();
-    vendorData();
-    // console.log("Vendor Details", vendor);
-  });
+  }, []);
+
+  if(Object.keys(chartData).length === 0){
+    return <h1>Loading Data</h1>
+  }
+
   return (
     <div className="dashboard">
-      <main>
-        <aside className="sidebar">
-          <Sidebar />
-        </aside>
-        <aside className="body">
-          <Outlet />
-        </aside>
-      </main>
+      <ChartDataContext.Provider value={chartData}>
+        <main>
+          <aside className="sidebar">
+            <Sidebar />
+          </aside>
+          <aside className="body">
+            <Outlet />
+          </aside>
+        </main>
+      </ChartDataContext.Provider>
     </div>
   );
 };

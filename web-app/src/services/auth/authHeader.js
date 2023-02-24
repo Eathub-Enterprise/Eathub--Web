@@ -3,7 +3,7 @@ export default function authHeader() {
     if(vendor && vendor.auth_token){
         return {
             headers: {
-                "authorization": vendor.auth_token
+                "authorization": `Token ${vendor.auth_token}`
             }
         }
     } else{

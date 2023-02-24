@@ -1,6 +1,5 @@
 .charts-location{
-    padding: 1rem;
-    margin-left: 2rem;
+    width: 25%;
     border-radius: 10px; ;
     box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.2);
 }
@@ -13,6 +12,7 @@
 
 .location-container{
     margin-top: .5rem;
+    margin: auto .5rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

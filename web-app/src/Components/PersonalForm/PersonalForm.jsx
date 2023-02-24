@@ -17,6 +17,7 @@ const PersonalForm = () => {
         password: "",
         confirmPassword: "",
         gender: "",
+        location:""
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -30,7 +31,6 @@ const PersonalForm = () => {
           setSubmitting(false);
         }, 1000);
       }}
-
       // Yup Validation
       validationSchema={Yup.object().shape({
         firstname: Yup.string().required("First name is Required"),
@@ -47,6 +47,7 @@ const PersonalForm = () => {
         confirmPassword: Yup.string()
           .oneOf([Yup.ref("password"), null], "Passwords must match")
           .required("Confirm password is required"),
+        location:Yup.string().required('Location is Required!')
       })}
     >
       {(props) => {
@@ -180,6 +181,15 @@ const PersonalForm = () => {
                   {/* {errors.confirmPassword && touched.confirmPassword && (
                     <div className="input-feedback">{errors.confirmPassword}</div>
                   )} */}
+
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Axis Location"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.location}
+                  />
 
                   <button
                     className="personal-form-btn"

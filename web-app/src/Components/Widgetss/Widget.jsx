@@ -1,39 +1,64 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./widget.scss";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { ChartDataContext } from "../../helper/requireAuth";
 
 const Widget = ({ type }) => {
+  const glbData = useContext(ChartDataContext);
+  
+  /* variables + calculations */
+  // customers
+  const returnCustomer = glbData.no_of_returning_customers;
+  const customer = glbData.no_of_customers;
+  const newCustomer = customer - returnCustomer;
+  const inactive = newCustomer;
+
+  // orders
+  const orders = glbData.total_orders;
+
   let data;
   switch (type) {
     case "customers":
       data = {
         title: "Customers",
-        isNumber: 2409,
-        icon: <CircularProgressbar value={70} strokeWidth={15} styles={buildStyles({
-          pathColor: 'var(--primary)',
-          trailColor: 'rgba(0, 0, 0, 0.2)',
-          strokeLinecap: 'round',
-          trail: {
-            transition: 'stroke-dashoffset 0.5s ease 0s',
-          }
-        })} />,
-        isNew:62,
-        isReturning: 13,
-        isInactive: 23
+        isNumber: returnCustomer,
+        icon: (
+          <CircularProgressbar
+            value={customer}
+            strokeWidth={15}
+            styles={buildStyles({
+              pathColor: "var(--primary)",
+              trailColor: "rgba(0, 0, 0, 0.2)",
+              strokeLinecap: "round",
+              trail: {
+                transition: "stroke-dashoffset 0.5s ease 0s",
+              },
+            })}
+          />
+        ),
+        isNew: newCustomer,
+        isReturning: returnCustomer,
+        isInactive: inactive,
       };
       break;
     case "order":
       data = {
         title: "Orders",
-        isNumber: 4209,
-        icon: <CircularProgressbar value={65} strokeWidth={15} styles={buildStyles({
-          pathColor: 'var(--primary)',
-          trailColor: 'rgba(0, 0, 0, 0.2)',
-          strokeLinecap: 'round'
-        })} />,
-        isNew:62,
-        isReturning: 13,
-        isInactive: 23
+        isNumber: orders,
+        icon: (
+          <CircularProgressbar
+            value={orders}
+            strokeWidth={15}
+            styles={buildStyles({
+              pathColor: "var(--primary)",
+              trailColor: "rgba(0, 0, 0, 0.2)",
+              strokeLinecap: "round",
+            })}
+          />
+        ),
+        isNew: orders,
+        // isReturning: 13,
+        // isInactive: 23,
       };
       break;
     default:
@@ -49,15 +74,21 @@ const Widget = ({ type }) => {
           <div className="counter-list">
             <span className="counter-row">
               <div className="circle one"></div>
-              <div className="countr-data" style={{fontSize: 8}}>{data.isNew}% New</div>
+              <div className="countr-data" style={{ fontSize: 8 }}>
+                {data.isNew}% New
+              </div>
             </span>
             <span className="counter-row">
               <div className="circle two"></div>
-              <div className="countr-data" style={{fontSize: 8}}>{data.isReturning}% Returning</div>
+              <div className="countr-data" style={{ fontSize: 8 }}>
+                {data.isReturning}% Recurring
+              </div>
             </span>
             <span className="counter-row">
               <div className="circle three"></div>
-              <div className="countr-data" style={{fontSize: 8}}>{data.isInactive}% Inactive</div>
+              <div className="countr-data" style={{ fontSize: 8 }}>
+                {data.isInactive}% Inactive
+              </div>
             </span>
           </div>
         </div>

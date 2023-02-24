@@ -88,7 +88,7 @@ const DashCharts = () => {
   return (
     <div className="dashCharts">
       <h5>Overall Restaurant Activity</h5>
-      <ResponsiveContainer width={600} height={300}>
+      <ResponsiveContainer height={300}>
         <BarChart
           data={data}
           margin={{

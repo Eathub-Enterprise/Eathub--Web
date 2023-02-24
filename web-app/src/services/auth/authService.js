@@ -1,10 +1,10 @@
 import axios from "axios";
-import { URL } from "../../api/index";
+import { URL, testURL } from "../../api/index";
 import authHeader from "./authHeader";
 
 const vendorSignUp = async (data = {}) => {
   const response = await axios
-    .post(URL + "/user/create/vendor/", data)
+    .post(testURL + "/user/create/vendor/", data)
     .then((response) => {
       if (response.data) {
         localStorage.clear();
@@ -21,7 +21,7 @@ const vendorSignUp = async (data = {}) => {
 const vendorLogin = async (username, password) => {
   let loginStatus = false;
   await axios
-    .post(URL + "/token/login", {
+    .post(testURL + "/token/login", {
       username,
       password,
     })
@@ -29,6 +29,8 @@ const vendorLogin = async (username, password) => {
       if (response.data) {
         localStorage.setItem("vendor", JSON.stringify(response.data));
         loginStatus = true;
+      } else {
+        throw Error(`This isn't working due to ${response.status}`);
       }
     })
     .catch((error) => {
@@ -38,25 +40,43 @@ const vendorLogin = async (username, password) => {
 };
 
 // To get data for Vendor dashboard
-const getVendorData = async () => {
-  let user = JSON.parse(localStorage.getItem("vendor"));
+const getVendorProfile = async () => {
   const response = await axios
-    .get(URL + `/user/vendordata/${user.auth_token}`, authHeader())
+    .get(testURL + `/vendor/profile/`, authHeader())
     .then((response) => {
       return response;
     })
     .catch((error) => {
-      // handle error
-      if (error.status === 404) {
-        console.error("User not found");
-      } else if (error.status === 500) {
-        console.error("Internal server error");
-      } else {
-        console.error(error.message);
-      }
+      console.log(error);
     });
   return response;
 };
+
+// To get Ordered Meals
+const getOrderedMeals = async () => {
+  const response = await axios
+    .get(testURL + `/get_ordered_items_or_change status/null/`, authHeader())
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  return response;
+};
+
+// To get List of Meals
+const getMealList = async () => {
+  const response = await axios
+    .get(testURL + `/food/all/`, authHeader())
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return response;
+}
 
 const getVendorStatus = () => {
   return JSON.parse(localStorage.getItem("vendor"));
@@ -69,8 +89,10 @@ const logOut = async () => {
 const authService = {
   vendorSignUp,
   vendorLogin,
-  getVendorData,
+  getVendorProfile,
   getVendorStatus,
+  getOrderedMeals,
+  getMealList,
   logOut,
 };
 
