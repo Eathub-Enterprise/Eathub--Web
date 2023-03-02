@@ -78,6 +78,42 @@ const getMealList = async () => {
   return response;
 }
 
+// To get Categories for Meals
+const getMealCategory = async() => {
+  const response = await axios
+    .get(testURL + `/menu/cat/List/`, authHeader())
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    return response
+}
+
+// To create Meal
+const createMeal = async ( data = {}) => {
+  const key = JSON.parse(localStorage.getItem("vendor"));
+  const response = await axios
+    .post(testURL + '/menu/food/create_or_getAll/', data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "authorization": `Token ${key.auth_token}`
+      },
+    })
+    .then((response) => {
+      if(response.data){
+        // localStorage.clear();
+      } else {
+        throw Error(`This is clearly not working due to ${response.status}`);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    return response;
+}
+
 const getVendorStatus = () => {
   return JSON.parse(localStorage.getItem("vendor"));
 };
@@ -93,6 +129,8 @@ const authService = {
   getVendorStatus,
   getOrderedMeals,
   getMealList,
+  getMealCategory,
+  createMeal,
   logOut,
 };
 

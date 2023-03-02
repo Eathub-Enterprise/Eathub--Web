@@ -1,5 +1,5 @@
 .menu-section {
-  padding: 2rem 2rem;
+  margin: 2rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -42,6 +42,7 @@
 
 .menu-table-inner {
   height: 100%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -96,6 +97,10 @@
   flex-direction: column;
 }
 
+.menu-input-img .uploaded {
+  border-bottom: 2px dotted red;
+}
+
 .menu-input-img h4{
   margin-top: 2rem;
 }
@@ -106,8 +111,10 @@
 }
 
 .menu-input-img .labels{
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .menu-inputImg{
@@ -118,7 +125,7 @@
 }
 
 .second{
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
   margin-left: 8rem;
 }
 
@@ -134,6 +141,7 @@
 }
 
 .menu-table table td, th{
+  text-align: center;
   border-bottom: .1px solid rgba(0, 0, 0, 0.2);
   border-right:.1px solid rgba(0, 0, 0, 0.2) ;
 }

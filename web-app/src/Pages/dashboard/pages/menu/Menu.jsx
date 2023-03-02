@@ -49,7 +49,9 @@ const Menu = () => {
             {meals.map((meal) => {
               return (
                 <tr key={meal.id}>
-                  <td>{meal.image}</td>
+                  <td>
+                    <img src={meal.image} alt={meal.food_name} />
+                  </td>
                   <td>{meal.food_description}</td>
                   <td>#{meal.food_price}</td>
                   <td>{meal.prepare_time} Minutes</td>
