@@ -21,6 +21,11 @@ import PageNotFound from "./Pages/pagenotfound/PageNotFound";
 import AddMenu from "./Pages/dashboard/pages/menu/AddMenu";
 import HistoryOrder from "./Pages/dashboard/pages/order/HistoryOrder";
 
+import AboutUs from "./Pages/misc/Links/AboutUs";
+import PrivacyPolicy from "./Pages/misc/Links/PrivacyPolicy";
+import Terms from "./Pages/misc/Links/Terms";
+
+
 // first layer of Routing is done here!
 function App() {
   return (
@@ -49,6 +54,9 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="payouts" element={<Payout />} />
         </Route>
+        <Route path="about-us" element={<AboutUs />} />
+        <Route path="about-us" element={<PrivacyPolicy />} />
+        <Route path="about-us" element={<Terms />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
