@@ -82,6 +82,7 @@ const decideOrderStatus = async (mealId, orderedMeal) => {
     .catch((err) => {
       console.log("Error Making decision : ", err);
     });
+    return response;
 };
 
 // To get List of Meals
@@ -100,7 +101,7 @@ const getMealList = async () => {
 // To get a particular meal with it's id
 const getMeal = async (mealId) => {
   const response = await axios
-    .get(testURL + `/vendors/food/get_or_update/${mealId}/`, authHeader())
+    .get(testURL + `/menu/food/get_or_update/${mealId}/`, authHeader())
     .then((res) => {
       return res;
     })
@@ -149,11 +150,16 @@ const createMeal = async (data = {}) => {
 
 // To update a Meal
 const updateMeal = async (mealId, updatedMealData) => {
+  const key = JSON.parse(localStorage.getItem("vendor"));
   const response = await axios
     .put(
       testURL + `/vendors/food/get_or_update/${mealId}`,
-      updatedMealData,
-      authHeader()
+      updatedMealData,{
+      headers: {
+        "Content-Type": "multipart/form-data",
+        authorization: `Token ${key.auth_token}`,
+      },
+    }
     )
     .then((response) => {
       if (response.data) {
@@ -201,6 +207,7 @@ const authService = {
   createMeal,
   updateMeal,
   deleteMeal,
+  decideOrderStatus,
   logOut,
 };
 

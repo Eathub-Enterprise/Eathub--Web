@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Eathub-Enterprise/Eathub#readme",
   "dependencies": {
+    "gsap": "^3.11.4",
     "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.4.1"
   }

@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import "./menu.css";
+import Preloader from "../../../../layouts/Preloader/Preloader";
 
 const Menu = () => {
   const [meals, setMeals] = useState([]);
@@ -14,7 +15,7 @@ const Menu = () => {
       try {
         const response = await authService.getMealList();
         setMeals(response.data.results);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (err) {
         console.error(err);
       }
@@ -23,7 +24,7 @@ const Menu = () => {
   }, []);
 
   if (meals.length === 0) {
-    return <h1> Loading Meals</h1>;
+    return <Preloader />;
   }
 
   const handleStatus = (mealId) => {

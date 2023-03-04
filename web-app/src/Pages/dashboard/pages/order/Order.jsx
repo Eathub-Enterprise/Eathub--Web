@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import "./order.css";
 import foodImg from "../../../../Assets/images/foodImg.png";
+import Preloader from "../../../../layouts/Preloader/Preloader";
 
 const Order = () => {
   const [tableData, setTableData] = useState([]);
@@ -22,7 +23,7 @@ const Order = () => {
   }, []);
 
   if (tableData.length === 0) {
-    return <h1>Loading Orders...</h1>;
+    return <Preloader />
   }
   return (
     <div className="order">

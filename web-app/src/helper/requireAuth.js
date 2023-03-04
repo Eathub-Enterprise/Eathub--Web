@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import Preloader from "../layouts/Preloader/Preloader";
 import authService from "../services/auth/authService";
 // import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
 
@@ -32,7 +33,7 @@ const ProtectedRoute = () => {
   }, []);
 
   if(Object.keys(chartData).length === 0){
-    return <h1>Loading Data</h1>
+    return <Preloader />
   }
 
   return (

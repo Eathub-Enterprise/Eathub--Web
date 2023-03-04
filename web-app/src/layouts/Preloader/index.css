@@ -1,0 +1,20 @@
+.hero {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1, 1, 1, 0.241);
+  z-index: 9999;
+  color: var(--primary);
+  position: relative;
+}
+
+.hero h1 .text-reveal-line {
+  overflow: hidden;
+  font-size: 48px;
+  font-family: "Montserrat";
+  font-weight: 800;
+  position: absolute;
+  top:25%;
+  bottom: 25%;
+  left: 32.5%;
+  right: 25%;
+}

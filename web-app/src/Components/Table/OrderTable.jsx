@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import authService from "../../services/auth/authService";
 import "./orderTable.css";
 import foodImg from "../../Assets/images/foodImg.png";
+import Preloader from "../../layouts/Preloader/Preloader";
 
 const OrderTable = () => {
   const [tableData, setTableData] = useState([]);
@@ -20,7 +21,7 @@ const OrderTable = () => {
   }, []);
 
   if (tableData.length === 0) {
-    return <h1>Loading Orders...</h1>;
+    return <Preloader />;
   }
 
   return (

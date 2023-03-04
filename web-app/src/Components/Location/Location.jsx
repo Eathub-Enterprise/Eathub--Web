@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import "./location.css";
 import graph from "../../Assets/images/Graph.png";
 import { ChartDataContext } from "../../helper/requireAuth";
+import Preloader from "../../layouts/Preloader/Preloader";
 
 const Location = () => {
   const glbData = useContext(ChartDataContext);
   const locationData = glbData.getCustomerLocations;
 
   if (!locationData || Object.keys(locationData).length === 0) {
-    return <div>No data available</div>;
+    return <Preloader />;
   }
 
   // dealing with a bug here 😭
