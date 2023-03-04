@@ -26,6 +26,10 @@ const Menu = () => {
     return <h1> Loading Meals</h1>;
   }
 
+  const handleStatus = (mealId) => {
+
+  }
+
   return (
     <div className="menu-section">
       <div className="menu-title">
