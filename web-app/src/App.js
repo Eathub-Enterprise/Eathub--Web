@@ -24,7 +24,7 @@ import HistoryOrder from "./Pages/dashboard/pages/order/HistoryOrder";
 import AboutUs from "./Pages/misc/Links/AboutUs";
 import PrivacyPolicy from "./Pages/misc/Links/PrivacyPolicy";
 import Terms from "./Pages/misc/Links/Terms";
-
+import EditMenu from "./Pages/dashboard/pages/menu/EditMenu";
 
 // first layer of Routing is done here!
 function App() {
@@ -37,7 +37,7 @@ function App() {
           <Route index element={<PersonalForm />} />
           <Route path="business" element={<BusinessForm />} />
         </Route>
-        
+
         <Route path="login" element={<Login />} />
 
         <Route path="/dashboard" element={<ProtectedRoute />}>
@@ -48,15 +48,17 @@ function App() {
 
           <Route path="menu" element={<Menu />} />
           <Route path="menu/addMenu" element={<AddMenu />} />
-          
+          <Route path="menu/editMeal/:id" element={<EditMenu />} />
+
           <Route path="analytics" element={<Analytics />} />
           <Route path="message" element={<Message />} />
           <Route path="settings" element={<Settings />} />
           <Route path="payouts" element={<Payout />} />
         </Route>
+
         <Route path="about-us" element={<AboutUs />} />
-        <Route path="about-us" element={<PrivacyPolicy />} />
-        <Route path="about-us" element={<Terms />} />
+        <Route path="privacy" element={<PrivacyPolicy />} />
+        <Route path="terms" element={<Terms />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

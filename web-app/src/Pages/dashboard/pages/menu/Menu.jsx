@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import "./menu.css";
 
 const Menu = () => {
   const [meals, setMeals] = useState([]);
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -43,6 +46,7 @@ const Menu = () => {
               <th>Meal Description</th>
               <th>Price</th>
               <th>Meal Prep Time</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +59,20 @@ const Menu = () => {
                   <td>{meal.food_description}</td>
                   <td>#{meal.food_price}</td>
                   <td>{meal.prepare_time} Minutes</td>
+                  <td>
+                    <span className="btns">
+                        {/* Note: Using editMeal as the naming convention instead of editMenu */}
+                        <Link to={"editMeal/" + meal.id}>
+                          <p className="update">
+                            <EditIcon />
+                          </p>
+                        </Link>
+                        {/* Note: Using editMeal as the naming convention instead of editMenu */}
+                          <p className="update">
+                            <DeleteIcon />
+                          </p>
+                    </span>
+                  </td>
                 </tr>
               );
             })}
