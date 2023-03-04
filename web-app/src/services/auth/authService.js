@@ -67,6 +67,23 @@ const getOrderedMeals = async () => {
   return response;
 };
 
+// To accept or decline an order
+const decideOrderStatus = async (mealId, orderedMeal) => {
+  const response = await axios
+    .put(
+      testURL + `/get_ordered_items_or_change status/${mealId}`,
+      orderedMeal,
+      authHeader()
+    )
+    .then((response) => {
+      console.log("Order decison has been made");
+      return response;
+    })
+    .catch((err) => {
+      console.log("Error Making decision : ", err);
+    });
+};
+
 // To get List of Meals
 const getMealList = async () => {
   const response = await axios
@@ -161,6 +178,7 @@ const deleteMeal = async (mealId) => {
     .catch((err) => {
       console.log("Error occured during deletion : ", err);
     });
+    return response;
 };
 
 const getVendorStatus = () => {
