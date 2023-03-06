@@ -68,10 +68,10 @@ const getOrderedMeals = async () => {
 };
 
 // To accept or decline an order
-const decideOrderStatus = async (mealId, orderedMeal) => {
+const decideOrderStatus = async (mealId, status, orderedMeal) => {
   const response = await axios
     .put(
-      testURL + `/get_ordered_items_or_change status/${mealId}`,
+      testURL + `/get_ordered_items_or_change status/${mealId}/${status}`,
       orderedMeal,
       authHeader()
     )
@@ -153,7 +153,7 @@ const updateMeal = async (mealId, updatedMealData) => {
   const key = JSON.parse(localStorage.getItem("vendor"));
   const response = await axios
     .put(
-      testURL + `/vendors/food/get_or_update/${mealId}`,
+      testURL + `/vendors/food/get_or_update/${mealId}/`,
       updatedMealData,{
       headers: {
         "Content-Type": "multipart/form-data",

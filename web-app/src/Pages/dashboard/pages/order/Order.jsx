@@ -4,9 +4,50 @@ import authService from "../../../../services/auth/authService";
 import "./order.css";
 import foodImg from "../../../../Assets/images/foodImg.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
+import { useDispatch, useSelector } from 'react-redux';
+import { Snackbar } from '@mui/material';
+import { openSnackbar, closeSnackbar } from '../../../../Redux/actions';
 
 const Order = () => {
   const [tableData, setTableData] = useState([]);
+  const [status, setStatus] = useState('');
+
+  // handling notifications for now
+  const dispatch = useDispatch();
+  const { open, message, duration} = useSelector((state) => state.snackbar);
+  const handleClose = () => {
+    dispatch(closeSnackbar);
+  };
+  
+/* To decide whether to accept or decline
+ orders coming through for vendors */
+  const handleStatus = ( id, state ) => {
+    setStatus(state);
+
+    const meal = new FormData();
+    meal.append("action", state);
+
+    console.log(`This meal here is: ${state}`, id);
+    async function fetchData() {
+      try {
+        await authService.decideOrderStatus(id, status, meal).then(
+          (response) => {
+            console.log('Status Inputted!', meal);
+            authService.getOrderedMeals()
+            dispatch(openSnackbar(`Order has been ${state}`, 1000));
+          },
+          (error) => {
+            console.log('Something must be genuinely wrong : ', error);
+            dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
+          }
+        )
+      } catch(err) {
+        console.log(err)
+      }
+    }
+    fetchData();
+  }
+
 
   useEffect(() => {
     async function fetchData() {
@@ -62,10 +103,10 @@ const Order = () => {
                   <td>#{order.item.food_price}</td>
                   <td>
                     <div className="orderbtn">
-                      <button style={{ backgroundColor: "green" }}>
+                      <button onClick={() => handleStatus(order.id, 'accepted')} style={{ backgroundColor: "green" }}>
                         Accept
                       </button>
-                      <button style={{ backgroundColor: "red" }}>
+                      <button onClick={() => handleStatus(order.id, 'declined')} style={{ backgroundColor: "red" }}>
                         Decline
                       </button>
                     </div>
@@ -76,6 +117,7 @@ const Order = () => {
           </tbody>
         </table>
       </div>
+      <Snackbar open={open} message={message} duration={duration} onClose={handleClose} />
     </div>
   );
 };

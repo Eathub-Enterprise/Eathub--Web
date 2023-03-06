@@ -4,12 +4,23 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import authService from "../../../../services/auth/authService";
+import { useDispatch, useSelector } from 'react-redux';
+import { Snackbar } from '@mui/material';
+import { openSnackbar, closeSnackbar } from '../../../../Redux/actions';
 
 const AddMenu = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
   const [file, setFile] = useState(null);
   const [isImageUploaded, setIsImageUploaded] = useState(false);
+
+    // handling notifications for now
+    const dispatch = useDispatch();
+    const { open, message, duration} = useSelector((state) => state.snackbar);
+    const handleClose = () => {
+      dispatch(closeSnackbar);
+    };
+    
 
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
@@ -63,10 +74,16 @@ const AddMenu = () => {
           await authService.createMeal(formData).then(
             (response) => {
               console.log("it Worked!", formData);
-              navigate("/dashboard/menu");
               authService.getMealList();
+              if(response) {
+                dispatch(openSnackbar(`Meal Creation Sucessful`, 1000));
+                navigate("/dashboard/menu");
+              } else {
+                dispatch(openSnackbar(`Error Creating Meals`, 1000));
+              }
             },
             (error) => {
+              dispatch(openSnackbar(`Unsucessful Operation, Try again`, 1000));
               console.log("The Values are wrong or Incorrect!: ", error);
             }
           );
@@ -293,6 +310,7 @@ const AddMenu = () => {
                   </div>
                 </div>
               </div>
+              <Snackbar open={open} message={message} duration={duration} onClose={handleClose} />
             </form>
           </div>
         );

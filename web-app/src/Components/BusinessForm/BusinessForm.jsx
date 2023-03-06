@@ -3,12 +3,21 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import authService from "../../services/auth/authService";
+import { useDispatch, useSelector } from 'react-redux';
+import { Snackbar } from '@mui/material';
+import { openSnackbar, closeSnackbar } from '../../Redux/actions';
 
 const BusinessForm = (e) => {
   const navigate = useNavigate();
 
   const userData = localStorage.getItem("user");
   const user = JSON.parse(userData);
+
+  const dispatch = useDispatch();
+  const { open, message, duration:closeSnackbar } = useSelector((state) => state.snackbar);
+  const handleClose = () => {
+    dispatch(closeSnackbar);
+  };
 
   return (
     <Formik
@@ -29,10 +38,12 @@ const BusinessForm = (e) => {
           await authService.vendorSignUp(value).then(
             (response) => {
               console.log("it Worked!", value);
+              dispatch(openSnackbar("Business Registeration successful!", 1000));
               navigate("/login");
             },
             (error) => {
               console.log("it Failed!", error);
+              dispatch(openSnackbar("Registeration Unsuccessful!", 1000));
             }
           );
         } catch (err) {
@@ -155,6 +166,8 @@ const BusinessForm = (e) => {
               </div>
               <span className="progress-circles"></span>
             </div>
+
+            <Snackbar open={open} message={message} duration={closeSnackbar} onClose={handleClose} />
           </div>
         );
       }}

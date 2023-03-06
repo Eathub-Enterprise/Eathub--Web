@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import "./menu.css";
 import Preloader from "../../../../layouts/Preloader/Preloader";
 
+
 const Menu = () => {
   const [meals, setMeals] = useState([]);
   
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -25,10 +25,6 @@ const Menu = () => {
 
   if (meals.length === 0) {
     return <Preloader />;
-  }
-
-  const handleStatus = (mealId) => {
-
   }
 
   return (
