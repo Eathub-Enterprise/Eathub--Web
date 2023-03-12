@@ -13,8 +13,8 @@
   font-family: "Montserrat";
   font-weight: 800;
   position: absolute;
-  top:25%;
-  bottom: 25%;
-  left: 32.5%;
-  right: 25%;
+  top:30%;
+  /* bottom: 25%; */
+  left: 50%;
+  /* right: 25%; */
 }

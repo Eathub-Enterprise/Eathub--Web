@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import DashCharts from "../../../../Components/DashCharts/DashCharts";
 import Location from "../../../../Components/Location/Location";
 import ProgressBar from "../../../../Components/ProgressBar/ProgressBar";
@@ -7,6 +7,13 @@ import Widget from "../../../../Components/Widgetss/Widget";
 import "./overview.css";
 
 const Overview = () => {
+  // for performance in re-rendering
+  const WidgetMemo = React.memo(Widget);
+  const ProgressBarMemo = React.memo(ProgressBar);
+  const DashChartsMemo = React.memo(DashCharts);
+  const LocationMemo = React.memo(Location);
+  const OrderTableMemo = React.memo(OrderTable);
+
   return (
     <div className="overview-section">
       <div className="overview-dropdown">
@@ -15,16 +22,16 @@ const Overview = () => {
         </select>
       </div>
       <div className="widgets">
-        <Widget type="customers" />
-        <Widget type="order" />
-        <ProgressBar />
+        <WidgetMemo type="customers" />
+        <WidgetMemo type="order" />
+        <ProgressBarMemo />
       </div>
       <div className="charts">
-        <DashCharts />
-        <Location />
+        <DashChartsMemo />
+        <LocationMemo />
       </div>
       <div className="orders">
-        <OrderTable />
+        <OrderTableMemo />
       </div>
     </div>
   );

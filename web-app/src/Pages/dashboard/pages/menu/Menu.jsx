@@ -28,6 +28,7 @@ const Menu = () => {
   }
 
   return (
+  // to improve performance, abstract table below into smaller component
     <div className="menu-section">
       <div className="menu-title">
         <div className="menu-title-header">

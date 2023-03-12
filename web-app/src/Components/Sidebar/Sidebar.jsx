@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { ChartDataContext } from "../../helper/requireAuth";
+import { Link } from "react-router-dom";
 import "./sidebar.css";
 import {
   FaThLarge,
@@ -9,13 +11,16 @@ import {
 } from "react-icons/fa";
 import e from "../../Assets/images/white logo.png";
 import text from "../../Assets/images/athub-white.png";
-import {useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 
 const Sidebar = ({ children }) => {
   const navigate = useNavigate();
 
+  const glbData = useContext(ChartDataContext);
+
   const handleLogOut = () => {
-    navigate('/')
+    navigate("/");
     localStorage.clear();
   };
   const menuItem = [
@@ -55,6 +60,7 @@ const Sidebar = ({ children }) => {
       icon: <FaMoneyBill />,
     },
   ];
+
   return (
     <div className="container">
       <div className="sidebar">
@@ -73,9 +79,18 @@ const Sidebar = ({ children }) => {
             <div className="link-text">{item.name}</div>
           </NavLink>
         ))}
-        <button onClick={handleLogOut} className="sidebar-button">
-          LogOut
-        </button>
+        <span className="profile-space">
+          {/* need to fix an image tag here */}
+          <PermIdentityTwoToneIcon fontSize="large" />
+          <span>
+            <Link className="profile-link" activeclassname="active" to="/dashboard/profile">
+              {glbData.vendorname}
+            </Link>
+            <button onClick={handleLogOut} className="sidebar-button">
+              LogOut
+            </button>
+          </span>
+        </span>
       </div>
       <main>{children}</main>
     </div>

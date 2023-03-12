@@ -153,7 +153,7 @@ const updateMeal = async (mealId, updatedMealData) => {
   const key = JSON.parse(localStorage.getItem("vendor"));
   const response = await axios
     .put(
-      testURL + `/vendors/food/get_or_update/${mealId}/`,
+      testURL + `/menu/food/get_or_update/${mealId}/`,
       updatedMealData,{
       headers: {
         "Content-Type": "multipart/form-data",

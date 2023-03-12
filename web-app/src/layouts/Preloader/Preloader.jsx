@@ -21,8 +21,9 @@ const Preloader = () => {
           [headlineFirst.children],
           1,
           {
-            y: 500,
+            y: 0,
             ease: Power3.easeOut,
+            opacity:0
           },
           0.15
         );

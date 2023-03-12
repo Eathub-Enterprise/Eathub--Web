@@ -81,6 +81,8 @@ const EditMenu = () => {
     return <Preloader />;
   }
 
+
+
   return (
     <Formik
       initialValues={mealItems}
@@ -105,7 +107,7 @@ const EditMenu = () => {
           await authService.updateMeal(id, formData).then(
             (response) => {
               console.log("Update Inputted!", formData);
-              // navigate("/dashboard/menu");
+              navigate("/dashboard/menu");
               authService.getMealList();
               if(response){
                 dispatch(openSnackbar('Meal Updated!', 1000));

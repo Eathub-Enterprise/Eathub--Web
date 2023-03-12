@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react'
 
-function ErrorBoundary(props) {
-    const [hasError, setHasError] = useState(false);
-
-    useEffect(() => {
-        function componentDidCatch(error, errorInfo) {
-            console.error(error, errorInfo);
-            setHasError(true);
-        }
-
-        componentDidCatch();
-    })
-    if(hasError){
-        return <h1>
-            Something went Wrong!, try Again😔
-        </h1>
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+      super(props);
+      // initialize the error state
+      this.state = { hasError: false };
     }
-    return props.children;
-}
+  
+    // if an error happened, set the state to true
+    static getDerivedStateFromError(error) {
+      return { hasError: true };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        // send error to somewhere here
+        console.log(error, errorInfo);
+      }
+  
+    render() {
+      // if error happened, return a fallback component
+      if (this.state.hasError) {
+        return <>Oh no! Epic fail!</>
+      }
+  
+      return this.props.children;
+    }
+  }
 
 export default ErrorBoundary;
