@@ -14,7 +14,7 @@
     /* align-items: center; */
 }
 
-aside{
+ aside{
     flex:1;
 }
 
@@ -28,11 +28,23 @@ aside img{
     .Formpage-main{
         display: flex;
         flex-direction: column;
+        position: relative;
+        min-height: 100vh;
     }
     aside img{
-        display: none;
+        height: 100%;
+        width: 200%;
+        object-fit:fill;
     }
     .Formpage-comp{
+        /* display: none; */
         margin-top: 20;
+        z-index: 99;
+        position: absolute;
+        top:5%;
+        bottom:5%;
+        opacity: .85;
+        left:5%;
+        right:5%;
     }
 }

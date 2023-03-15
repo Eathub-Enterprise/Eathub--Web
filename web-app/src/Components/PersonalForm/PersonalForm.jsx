@@ -17,6 +17,7 @@ const PersonalForm = () => {
         password: "",
         confirmPassword: "",
         gender: "",
+        location:""
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -46,6 +47,7 @@ const PersonalForm = () => {
         confirmPassword: Yup.string()
           .oneOf([Yup.ref("password"), null], "Passwords must match")
           .required("Confirm password is required"),
+        location:Yup.string().required('Location is Required!')
       })}
     >
       {(props) => {
@@ -82,9 +84,9 @@ const PersonalForm = () => {
                           errors.firstname && touched.firstname && "error"
                         }
                       />
-                      {errors.firstname && touched.firstname && (
+                      {/* {errors.firstname && touched.firstname && (
                         <div className="input-feedback">{errors.firstname}</div>
-                      )}
+                      )} */}
                     </div>
                     <div className="input-top">
                       <input
@@ -99,11 +101,11 @@ const PersonalForm = () => {
                           errors.middlename && touched.middlename && "error"
                         }
                       />
-                      {errors.middlename && touched.middlename && (
+                      {/* {errors.middlename && touched.middlename && (
                         <div className="input-feedback">
                           {errors.middlename}
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                   <input
@@ -117,9 +119,9 @@ const PersonalForm = () => {
                     className={errors.lastname && touched.lastname && "error"}
                   />
 
-                  {errors.lastname && touched.lastname && (
+                  {/* {errors.lastname && touched.lastname && (
                     <div className="input-feedback">{errors.lastname}</div>
-                  )}
+                  )} */}
 
                   <select
                     id="gender"
@@ -134,9 +136,9 @@ const PersonalForm = () => {
                     <option value="other">Other</option>
                   </select>
 
-                  {errors.gender && touched.gender && (
+                  {/* {errors.gender && touched.gender && (
                     <div className="input-feedback">{errors.gender}</div>
-                  )}
+                  )} */}
 
                   <input
                     id="username"
@@ -149,24 +151,24 @@ const PersonalForm = () => {
                     className={errors.username && touched.username && "error"}
                   />
 
-                  {errors.username && touched.username && (
+                  {/* {errors.username && touched.username && (
                     <div className="input-feedback">{errors.username}</div>
-                  )}
+                  )} */}
 
                   <input
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Choose a password"
+                    placeholder="••••••••••••••"
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={errors.password && touched.password && "error"}
                   />
 
-                  {errors.password && touched.password && (
+                  {/* {errors.password && touched.password && (
                     <div className="input-feedback">{errors.password}</div>
-                  )}
+                  )} */}
 
                   <input
                     type="password"
@@ -176,9 +178,18 @@ const PersonalForm = () => {
                     onBlur={handleBlur}
                     value={values.confirmPassword}
                   />
-                  {errors.confirmPassword && touched.confirmPassword && (
+                  {/* {errors.confirmPassword && touched.confirmPassword && (
                     <div className="input-feedback">{errors.confirmPassword}</div>
-                  )}
+                  )} */}
+
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Axis Location"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.location}
+                  />
 
                   <button
                     className="personal-form-btn"

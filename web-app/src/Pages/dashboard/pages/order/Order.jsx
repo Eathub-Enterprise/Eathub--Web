@@ -1,200 +1,149 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import Box from "@mui/material/Box";
-import {
-  DataGrid,
-  gridPageCountSelector,
-  gridPageSelector,
-  useGridApiContext,
-  useGridSelector,
-} from "@mui/x-data-grid";
-import { styled } from "@mui/material/styles";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
+import authService from "../../../../services/auth/authService";
 import "./order.css";
+import foodImg from "../../../../Assets/images/foodImg.png";
+import Preloader from "../../../../layouts/Preloader/Preloader";
+import { useDispatch, useSelector } from "react-redux";
+import { Snackbar } from "@mui/material";
+import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
 
 const Order = () => {
-  // API values for Table
   const [tableData, setTableData] = useState([]);
+  const [status, setStatus] = useState("");
 
-  // formatted Date
-  const date = new Date();
-  const formattedDate = date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-  const prevdate = new Date();
-  prevdate.setMonth(date.getMonth() - 3);
-  const prevformattedDate = prevdate.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  // handling notifications for now
+  const dispatch = useDispatch();
+  const { open, message, duration } = useSelector((state) => state.snackbar);
+  const handleClose = () => {
+    dispatch(closeSnackbar);
+  };
 
-  function CustomPagination() {
-    const apiRef = useGridApiContext();
-    const page = useGridSelector(apiRef, gridPageSelector);
-    const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+  /* To decide whether to accept or decline
+ orders coming through for vendors */
+  const handleStatus = (id, state, index) => {
+    setStatus(state);
 
-    return (
-      <Pagination
-        color="primary"
-        variant="outlined"
-        shape="rounded"
-        page={page + 1}
-        count={pageCount}
-        // @ts-expect-error
-        renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
-        onChange={(event, value) => apiRef.current.setPage(value - 1)}
-      />
-    );
+    const meal = new FormData();
+    meal.append("action", state);
+
+    // console.log(`This meal here is: ${state}`, id);
+    async function fetchData() {
+      try {
+        await authService.decideOrderStatus(id, status, meal).then(
+          (response) => {
+            console.log("Status Inputted!", meal);
+            authService.getOrderedMeals();
+            dispatch(openSnackbar(`Order has been ${state}`, 1000));
+          },
+          (error) => {
+            console.log("Something must be genuinely wrong : ", error);
+            dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
+          }
+        );
+      } catch (err) {
+        dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
+        console.log(err);
+      }
+    }
+    fetchData();
+
+    // Remove the row from the table data
+    const updatedTableData = [...tableData];
+    updatedTableData.splice(index, 1);
+    setTableData(updatedTableData);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await authService.getOrderedMeals();
+        if (Array.isArray(response.data)) {
+          setTableData(response.data);
+        } else {
+          setTableData([]);
+        }
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  // Note: Fix in a feature that automatically takes the order after it has accepted or declined
+
+  if (!tableData || Object.keys(tableData).length === 0) {
+    return <Preloader />;
   }
 
-  const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
-    border: 20,
-    borderColor: "#000",
-    color: theme.palette.mode === "light" ? "#000" : "#000)",
-    fontFamily: ["montserrat"].join(","),
-    WebkitFontSmoothing: "auto",
-    letterSpacing: "normal",
-    "& .MuiDataGrid-main": {
-      backgroundColor: theme.palette.mode === "light" ? "#fff" : "#fff",
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? '#000' : '#000'
-      }`
-    },
-    "& .MuiDataGrid-columnsContainer": {
-      backgroundColor: theme.palette.mode === "light" ? "#fff" : "#fff",
-    },
-    "& .MuiDataGrid-iconSeparator": {
-      display: "none",
-    },
-    "& .MuiDataGrid-columnHeaders":{
-      borderBottom: `1px solid ${theme.palette.mode === "light" ? "#000" : "#000"}`,
-    },
-    "& .MuiDataGrid-columnHeader, .MuiDataGrid-cell": {
-      borderLeft: `1px solid ${theme.palette.mode === "light" ? "#000" : "#000"}`
-    },
-    "& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell": {
-      borderBottom: `2px solid ${
-        theme.palette.mode === "light" ? "#000" : "#000"
-      }`,
-    },
-    "& .MuiDataGrid-cell": {
-      color: theme.palette.mode === "light" ? "#000" : "#000",
-    },
-    "& .MuiPaginationItem-root": {
-      borderRadius: 10,
-    },
-  }));
-
-  const columns = [
-    {
-      field: "id",
-      headerName: "#",
-      width: "80",
-      headerAlign: "center",
-    },
-    {
-      field: "Date",
-      headerName: "Date",
-      editable: false,
-      headerAlign: "center",
-      width: "120",
-    },
-    {
-      field: "Products",
-      headerName: "Products",
-      editable: false,
-      headerAlign: "center",
-      width: "150",
-    },
-    {
-      field: "Address",
-      headerName: "Address",
-      editable: false,
-      headerAlign: "center",
-      width: "150",
-    },
-    {
-      field: "Price",
-      headerName: "Price",
-      type: "number",
-      editable: false,
-      headerAlign: "center",
-      width: "120",
-    },
-    {
-      field: "Meal Order",
-      headerName: "Meal Order",
-      editable: false,
-      headerAlign: "center",
-      width: "120",
-    },
-    {
-      field: "Status",
-      headerName: "Status",
-      editable: false,
-      headerAlign: "center",
-    },
-  ];
-
-  const rows = [];
-
-  useEffect(() => {});
   return (
-    <div className="order-main">
-      <div className="order-title">
-        <main>
-          <h1>Orders</h1>
-          <div className="circle">
-            <span>12</span>
-          </div>
-        </main>
-        <span>
-          <p>
-            <b>
-              Showing for: <CalendarTodayIcon style={{ fontSize: 18 }} />{" "}
-              {prevformattedDate} - {formattedDate}
-            </b>
-          </p>
-        </span>
+    <div className="order">
+      <span className="order-head">
+        <h1>Order List</h1>
+        <button>
+          <span className="order-link">
+            <Link to="/dashboard/orders/history" className="order-link">
+              History
+            </Link>
+          </span>
+        </button>
+      </span>
+      <div className="orderedTable">
+        <table>
+          <thead>
+            <tr>
+              <th>Meal</th>
+              <th>Order Description</th>
+              <th>Delivery Location</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((order, index) => {
+              return (
+                // to improve performance, abstract table below into smaller component
+                <tr key={order.id}>
+                  {/* convert the src link to image here! */}
+                  <td>
+                    {order.item.image ? null : (
+                      <img src={foodImg} alt={foodImg} />
+                    )}
+                  </td>
+                  <td>{order.item.food_description}</td>
+                  {/* This needs to be changed to an accurate Location */}
+                  <td>{order.client.location}</td>
+                  <td>#{order.item.food_price}</td>
+                  <td>
+                    <div className="orderbtn">
+                      <button
+                        onClick={() => handleStatus(order.id, "accepted", index)}
+                        style={{ backgroundColor: "green" }}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handleStatus(order.id, "declined", index)}
+                        style={{ backgroundColor: "red" }}
+                      >
+                        Decline
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-
-      {/* remember to write a functionality to filter here */}
-      <div className="order-bar">
-        <ul>
-          <li>
-            <Link>All Orders</Link>
-          </li>
-          <li>
-            <Link>Completed</Link>
-          </li>
-          <li>
-            <Link>Pending</Link>
-          </li>
-          <li>
-            <Link>Canceled</Link>
-          </li>
-        </ul>
-      </div>
-
-      <div className="order-table">
-        <Box sx={{ height: "70vh", width: "95%" }}>
-          <StyledDataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[10]}
-            experimentalFeatures={{ newEditingApi: false }}
-            components={{
-              Pagination: CustomPagination,
-            }}
-          />
-        </Box>
-      </div>
+      <Snackbar
+        open={open}
+        message={message}
+        duration={duration}
+        onClose={handleClose}
+      />
     </div>
   );
 };

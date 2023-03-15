@@ -15,8 +15,17 @@ import Menu from "./Pages/dashboard/pages/menu/Menu";
 import Analytics from "./Pages/dashboard/pages/analytics/Analytics";
 import Message from "./Pages/dashboard/pages/message/Message";
 import Settings from "./Pages/dashboard/pages/settings/Settings";
+import Payout from "./Pages/dashboard/pages/payout/Payout";
 import ProtectedRoute from "./helper/requireAuth";
 import PageNotFound from "./Pages/pagenotfound/PageNotFound";
+import AddMenu from "./Pages/dashboard/pages/menu/AddMenu";
+import HistoryOrder from "./Pages/dashboard/pages/order/HistoryOrder";
+
+import AboutUs from "./Pages/misc/Links/AboutUs";
+import PrivacyPolicy from "./Pages/misc/Links/PrivacyPolicy";
+import Terms from "./Pages/misc/Links/Terms";
+import EditMenu from "./Pages/dashboard/pages/menu/EditMenu";
+import Profile from "./Pages/dashboard/pages/profile/Profile";
 
 // first layer of Routing is done here!
 function App() {
@@ -29,17 +38,29 @@ function App() {
           <Route index element={<PersonalForm />} />
           <Route path="business" element={<BusinessForm />} />
         </Route>
-        
+
         <Route path="login" element={<Login />} />
 
         <Route path="/dashboard" element={<ProtectedRoute />}>
           <Route index element={<Overview />} />
+
           <Route path="orders" element={<Order />} />
+          <Route path="orders/history" element={<HistoryOrder />} />
+
           <Route path="menu" element={<Menu />} />
+          <Route path="menu/addMenu" element={<AddMenu />} />
+          <Route path="menu/editMeal/:id" element={<EditMenu />} />
+
           <Route path="analytics" element={<Analytics />} />
           <Route path="message" element={<Message />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="payouts" element={<Payout />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
+
+        <Route path="about-us" element={<AboutUs />} />
+        <Route path="privacy" element={<PrivacyPolicy />} />
+        <Route path="terms" element={<Terms />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

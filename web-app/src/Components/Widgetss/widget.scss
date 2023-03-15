@@ -1,0 +1,119 @@
+.widget-page {
+    width: 412px;
+    height: 150px;
+    margin: 1rem auto;
+    .widget {
+        display: flex;
+        /* flex-direction: row; */
+        justify-content: space-between;
+        flex: 1;
+        padding: 10px;
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        height: 120px;
+        width: 85%;
+        margin-right: 0;
+        // border: 5px solid red;
+        // gap: 15px;
+    }
+
+    .left {
+        padding-left: .75rem;
+    }
+
+    .right {
+        margin: auto 1rem;
+    }
+
+    .left,
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .title {
+        display: flex;
+        font-weight: bold;
+        font-size: 15px;
+        color: black;
+        font-weight: 500;
+        // justify-content: space-around;
+    }
+
+    .counter {
+        margin-top: 0;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .counter-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .counter-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-bottom: 0.1rem;
+        align-items: center;
+    }
+
+    .circle {
+        width: 15px;
+        height: 10px;
+        border-radius: 40%;
+    }
+
+    .one {
+        background-color: var(--primary);
+    }
+
+    .two {
+        background-color: #FFEB79;
+    }
+
+    .three {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .countr-data {
+        margin-left: 0.5rem;
+    }
+
+    .link {
+        width: max-content;
+        font-size: 12px;
+        border-bottom: 1px;
+        color: black;
+        text-decoration: none;
+    }
+
+    .percentage {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+
+        &.positive {
+            color: green;
+            // font-size: 10px;
+        }
+
+        &.negative {
+            color: red;
+        }
+    }
+
+
+    .icon {
+        font-size: 15px;
+        padding: 5px;
+        background-color: rgba(255, 131, 34);
+        border-radius: 5px;
+        align-self: flex-end;
+    }
+}

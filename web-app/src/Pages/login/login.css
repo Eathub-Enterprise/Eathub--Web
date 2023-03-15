@@ -73,12 +73,19 @@
   .login{
     height: 100vh;
     overflow-x:hidden;
+    background-image: url('../../Assets/images/login-img.png');
+    position: relative;
   }
   .login-container{
-    width:auto;
+    /* position: absolute; */
+    width:90vw;
+    height: 80vh;
     align-items:center;
     justify-content: center;
-    margin: 0;
+    margin: 2.5rem auto;
+    background-color: rgba(236, 236, 236, 1);
+    border-radius: 20px;
+    opacity: .85;
   }
   .login-right{
     display: none;

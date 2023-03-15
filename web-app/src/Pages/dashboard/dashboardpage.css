@@ -4,13 +4,27 @@
 }
 
 .dashboard main{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
-    margin: 0;
-    padding: 0;
+    justify-content:flex-start;
+}
+
+.dashboard .sidebar{
+    z-index: 99;
+    width: 22%;
+    height: 100%;
+    position: fixed;
 }
 
 .dashboard .body{
-    flex:8;
+    width: 75%;
+    margin-left: 20rem;
+}
+
+@media only screen and (min-width: 1500px) {
+    .dashboard .body{
+        width: 75%;
+        margin-left: 22.5rem;
+    }    
 }

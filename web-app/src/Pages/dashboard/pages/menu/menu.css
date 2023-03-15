@@ -1,0 +1,175 @@
+.menu-section {
+  margin: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.menu-title {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu-table {
+  height: 80vh;
+  width: 85%;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgb(154, 153, 153);
+}
+
+.menu-btn {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  border: 2px solid var(--primary);
+  padding: 2px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: white;
+}
+
+.menu-table-inner {
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-table-row {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5rem;
+  align-items: baseline;
+}
+
+.menu-table select {
+  width: 260px;
+  height: 5vh;
+  padding-left: 0.5rem;
+  border-radius: 10px;
+}
+
+.menu-input input {
+  margin-top: 0.8rem;
+  width: 250px;
+  height: 5vh;
+  padding-left: 0.5rem;
+  border-radius: 10px;
+  border: solid rgb(187, 187, 187);
+}
+
+.menu-input textarea {
+  width: 250px;
+  height: 15vh;
+  border-radius: 5px;
+  padding-left: 0.5rem;
+  border: solid rgb(187, 187, 187);
+}
+
+.menu-input {
+  margin-top: 2rem;
+}
+
+.menu-small {
+  font-size: 8px;
+}
+
+.menu-img {
+  width: 50px;
+}
+.menu-input-img {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-input-img .uploaded {
+  border-bottom: 2px dotted red;
+}
+
+.menu-input-img h4 {
+  margin-top: 2rem;
+}
+
+.menu-input-img input {
+  margin-top: 0;
+  width: 200px;
+}
+
+.menu-input-img .labels {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.menu-inputImg {
+  width: 75px;
+  height: 60px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.second {
+  /* margin-top: 6rem; */
+  margin-left: 8rem;
+}
+
+/* table */
+.menu-table table {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.menu-table table thead,
+tbody {
+  text-align: center;
+}
+
+.menu-table table td,
+th {
+  text-align: center;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2);
+  border-right: 0.1px solid rgba(0, 0, 0, 0.2);
+}
+.menu-table tr {
+  cursor: pointer;
+}
+
+.menu-table table th,
+td {
+  width: 100px;
+  height: 10vh;
+  padding: 0.25rem;
+}
+.menu-table .btns{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.btns p{
+  text-decoration: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.btns p:hover{
+  color: var(--secondary);
+}

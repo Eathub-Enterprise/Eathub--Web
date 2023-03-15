@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
@@ -8,21 +8,19 @@ import { useNavigate } from "react-router-dom";
 import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { Snackbar } from '@mui/material';
-
 import { openSnackbar, closeSnackbar } from '../../Redux/actions';
 
 
 const Login = () => {
-  const [rememberUser, setRememberUser] = useState(null);
+  // const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { open, message, duration } = useSelector((state) => state.snackbar);
+  const { open, message, duration} = useSelector((state) => state.snackbar);
 
   const handleClose = () => {
-    dispatch(closeSnackbar());
+    dispatch(closeSnackbar);
   };
-
   return (
     <Formik
       initialValues={{
@@ -59,7 +57,6 @@ const Login = () => {
           values,
           touched,
           errors,
-          isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit,
@@ -96,7 +93,7 @@ const Login = () => {
                       <input
                         id="password"
                         name="password"
-                        placeholder="Password"
+                        placeholder="*********"
                         type="password"
                         value={values.password}
                         onChange={handleChange}
