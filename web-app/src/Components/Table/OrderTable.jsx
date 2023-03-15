@@ -11,8 +11,8 @@ const OrderTable = () => {
     async function fetchData() {
       try {
         const response = await authService.getOrderedMeals();
-        setTableData(response.data.results);
-        console.log(response.data.results);
+        console.log(response.data);
+        setTableData(response.data);
       } catch (err) {
         console.error(err);
       }
@@ -20,15 +20,16 @@ const OrderTable = () => {
     fetchData();
   }, []);
 
-  if (tableData.length === 0) {
+  if (!tableData || Object.keys(tableData).length === 0) {
     return <Preloader />;
   }
+
 
   return (
     <div className="order-container">
       <h5>Recent Orders</h5>
       <table>
-        <tbody>
+        {/* <tbody>
           {tableData.map((order) => {
             return (
               <tr key={order.id}>
@@ -50,7 +51,7 @@ const OrderTable = () => {
               </tr>
             );
           })}
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   );

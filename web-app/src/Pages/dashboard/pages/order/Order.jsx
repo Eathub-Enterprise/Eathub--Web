@@ -58,10 +58,14 @@ const Order = () => {
     async function fetchData() {
       try {
         const response = await authService.getOrderedMeals();
-        setTableData(response.data.results);
-        console.log(response.data);
+        if (Array.isArray(response.data)) {
+          setTableData(response.data);
+        } else {
+          setTableData([]);
+        }
+        console.log(response);
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     }
 
@@ -70,9 +74,10 @@ const Order = () => {
 
   // Note: Fix in a feature that automatically takes the order after it has accepted or declined
 
-  if (tableData.length === 0) {
+  if (!tableData || Object.keys(tableData).length === 0) {
     return <Preloader />;
   }
+
   return (
     <div className="order">
       <span className="order-head">
