@@ -74,8 +74,12 @@ const Order = () => {
 
   // Note: Fix in a feature that automatically takes the order after it has accepted or declined
 
-  if (!tableData || Object.keys(tableData).length === 0) {
-    return <Preloader />;
+  if (Object.keys(tableData).length === 0) {
+    return <div><h1>No Order Made yet</h1></div>;
+  } 
+
+  if (!tableData){
+    return <Preloader />
   }
 
   return (

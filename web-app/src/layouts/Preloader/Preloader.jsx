@@ -10,7 +10,6 @@ const Preloader = () => {
   // best practice for writing gsap in react
   useLayoutEffect(() => {
     const headlineFirst = id.children[0].children[0];
-    console.log(headlineFirst);
 
     const ctx = gsap.context(() => {
       // adding timelines

@@ -9,6 +9,11 @@ import Preloader from "../../../../layouts/Preloader/Preloader";
 
 const Menu = () => {
   const [meals, setMeals] = useState([]);
+  const handleDelete = async(id) => {
+    await authService.deleteMeal(id).then(() => {
+      authService.getMealList()
+    })
+  }
   
   useEffect(() => {
     async function fetchData() {
@@ -70,7 +75,7 @@ const Menu = () => {
                           </p>
                         </Link>
                         {/* Note: Using editMeal as the naming convention instead of editMenu */}
-                          <p className="update">
+                          <p className="update" onClick={() => handleDelete(meal.id)}>
                             <DeleteIcon />
                           </p>
                     </span>
