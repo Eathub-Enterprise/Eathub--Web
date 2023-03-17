@@ -36,7 +36,7 @@ const ProtectedRoute = () => {
   return (
     <div className="dashboard">
       <ChartDataContext.Provider value={chartData}>
-        <Suspense fallback={<p>Loading Details</p>}>
+        <Suspense fallback={<Preloader />}>
         <ErrorBoundary>
           <main>
             <aside className="sidebar">

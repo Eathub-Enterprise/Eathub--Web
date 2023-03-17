@@ -8,11 +8,9 @@ const Location = () => {
   const glbData = useContext(ChartDataContext);
   const locationData = glbData.getCustomerLocations;
 
-  if (!locationData || Object.keys(locationData).length === 0) {
-    return <Preloader />;
+  if (!locationData) {
+    return <div className="empty"></div>;
   }
-
-  // dealing with a bug here 😭
 
   return (
     <div className="charts-location">

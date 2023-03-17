@@ -1,43 +1,19 @@
-import React, { useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { Power3 } from "gsap/src";
-import './index.css';
+import React from "react";
+import Lottie from "react-lottie";
+import animationData from "../../Assets/lotties/76899-delivery-grocery-and-food.json";
 
 const Preloader = () => {
-  let id = useRef(null);
-  let tl = useRef(null);
-
-  // best practice for writing gsap in react
-  useLayoutEffect(() => {
-    const headlineFirst = id.children[0].children[0];
-
-    const ctx = gsap.context(() => {
-      // adding timelines
-      tl.current = gsap
-        .timeline()
-        .to(id, 0, { css: { visibility: "visible" } })
-        .from(
-          [headlineFirst.children],
-          1,
-          {
-            y: 0,
-            ease: Power3.easeOut,
-            opacity:0
-          },
-          0.15
-        );
-    }, id);
-
-    return () => ctx.revert();
-  }, []);
-
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   return (
-    <div className="hero" ref={(el) => (id = el)}>
-      <h1>
-        <div className="text-reveal-line">
-          <div className="text-reveal-inner">Eathub</div>
-        </div>
-      </h1>
+    <div>
+      <Lottie options={defaultOptions} height={600} width={600} />
     </div>
   );
 };
