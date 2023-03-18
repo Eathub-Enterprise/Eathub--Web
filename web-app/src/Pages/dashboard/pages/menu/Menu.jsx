@@ -5,29 +5,52 @@ import { Link} from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import "./menu.css";
 import Preloader from "../../../../layouts/Preloader/Preloader";
+import EmptyMenu from "./EmptyMenu";
 
 
 const Menu = () => {
   const [meals, setMeals] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+  const handleDelete = async(id) => {
+    setLoading(true);
+    try{
+      await authService.deleteMeal(id);
+      await fetchData();
+    }catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await authService.getMealList();
+      setMeals(response.data.results);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
   
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await authService.getMealList();
-        setMeals(response.data.results);
-        // console.log(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
     fetchData();
   }, []);
 
-  if (meals.length === 0) {
+  if(loading){
     return <Preloader />;
   }
 
+  if (meals.length === 0) {
+    return <EmptyMenu />;
+  }
+
   return (
+  // to improve performance, abstract table below into smaller component
     <div className="menu-section">
       <div className="menu-title">
         <div className="menu-title-header">
@@ -69,7 +92,7 @@ const Menu = () => {
                           </p>
                         </Link>
                         {/* Note: Using editMeal as the naming convention instead of editMenu */}
-                          <p className="update">
+                          <p className="update" onClick={() => handleDelete(meal.id)}>
                             <DeleteIcon />
                           </p>
                     </span>

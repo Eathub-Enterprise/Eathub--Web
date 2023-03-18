@@ -25,6 +25,7 @@ import AboutUs from "./Pages/misc/Links/AboutUs";
 import PrivacyPolicy from "./Pages/misc/Links/PrivacyPolicy";
 import Terms from "./Pages/misc/Links/Terms";
 import EditMenu from "./Pages/dashboard/pages/menu/EditMenu";
+import Profile from "./Pages/dashboard/pages/profile/Profile";
 
 // first layer of Routing is done here!
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Route path="message" element={<Message />} />
           <Route path="settings" element={<Settings />} />
           <Route path="payouts" element={<Payout />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         <Route path="about-us" element={<AboutUs />} />

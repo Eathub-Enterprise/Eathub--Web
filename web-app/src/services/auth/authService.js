@@ -88,7 +88,7 @@ const decideOrderStatus = async (mealId, status, orderedMeal) => {
 // To get List of Meals
 const getMealList = async () => {
   const response = await axios
-    .get(testURL + `/food/all/`, authHeader())
+    .get(testURL + `/menu/food/create_or_getAll`, authHeader())
     .then((response) => {
       return response;
     })
@@ -153,7 +153,7 @@ const updateMeal = async (mealId, updatedMealData) => {
   const key = JSON.parse(localStorage.getItem("vendor"));
   const response = await axios
     .put(
-      testURL + `/vendors/food/get_or_update/${mealId}/`,
+      testURL + `/menu/food/get_or_update/${mealId}/`,
       updatedMealData,{
       headers: {
         "Content-Type": "multipart/form-data",
@@ -177,7 +177,7 @@ const updateMeal = async (mealId, updatedMealData) => {
 // to delete a meal
 const deleteMeal = async (mealId) => {
   const response = await axios
-    .delete(testURL + `/vendors/food/get_or_update/${mealId}`, authHeader())
+    .delete(testURL + `/menu/food/get_or_update_or_delete/${mealId}`, authHeader())
     .then((response) => {
       console.log("Data has been deleted");
     })

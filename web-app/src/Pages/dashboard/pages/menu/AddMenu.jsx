@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Preloader from "../../../../layouts/Preloader/Preloader";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +43,7 @@ const AddMenu = () => {
   }, []);
 
   if (category.length === 0) {
-    return <h5>Loading Categories</h5>;
+    return <Preloader />;
   }
 
   return (
@@ -70,28 +71,22 @@ const AddMenu = () => {
         formData.append("category_id", values.category_id);
         /* Note: In the case where multiple Images would be needed, 
           ensure to append to formData instead of destructuring.*/
-        try {
-          await authService.createMeal(formData).then(
-            (response) => {
-              console.log("it Worked!", formData);
-              authService.getMealList();
-              if(response) {
-                dispatch(openSnackbar(`Meal Creation Sucessful`, 1000));
-                navigate("/dashboard/menu");
-              } else {
-                dispatch(openSnackbar(`Error Creating Meals`, 1000));
-              }
-            },
-            (error) => {
-              dispatch(openSnackbar(`Unsucessful Operation, Try again`, 1000));
-              console.log("The Values are wrong or Incorrect!: ", error);
+          try {
+            const response = await authService.createMeal(formData);
+            console.log("it Worked!", formData);
+            authService.getMealList();
+            if (response) {
+              dispatch(openSnackbar(`Meal Creation Sucessful`, 1000));
+              navigate("/dashboard/menu");
+            } else {
+              dispatch(openSnackbar(`Error Creating Meals`, 1000));
             }
-          );
-        } catch (err) {
-          console.log("Something seems to wrong with the request: ", err);
-        } finally {
-          setSubmitting(false);
-        }
+          } catch (error) {
+            dispatch(openSnackbar(`Unsucessful Operation, Try again`, 1000));
+            console.log("The Values are wrong or Incorrect!: ", error);
+          } finally {
+            setSubmitting(false);
+          }
       }}
       // Yup Validation
       // validationSchema={Yup.object().shape({

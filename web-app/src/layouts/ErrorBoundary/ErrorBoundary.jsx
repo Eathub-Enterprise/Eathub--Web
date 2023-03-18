@@ -1,22 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import "./error.css";
+import { Link } from "react-router-dom";
+import image from "../../Assets/images/Server0down.png";
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    // initialize the error state
+    this.state = { hasError: false };
+  }
 
-function ErrorBoundary(props) {
-    const [hasError, setHasError] = useState(false);
+  // if an error happened, set the state to true
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
 
-    useEffect(() => {
-        function componentDidCatch(error, errorInfo) {
-            console.error(error, errorInfo);
-            setHasError(true);
-        }
+  componentDidCatch(error, errorInfo) {
+    // send error to somewhere here
+    console.log(error, errorInfo);
+  }
 
-        componentDidCatch();
-    })
-    if(hasError){
-        return <h1>
-            Something went Wrong!, try Again😔
-        </h1>
+  render() {
+    // if error happened, return a fallback component
+    if (this.state.hasError) {
+      return (
+        <div className="server">
+          <img src={image} alt={image} />
+          <h1>Hang on! Site is under maintenance</h1>
+          <h3>Currently looking for ways to serve you better</h3>
+          <button style={{ backgroundColor: "red", border: "1px solid red" }}>
+            <Link to="/" className="error-link">
+              <p>Return to Homepage</p>{" "}
+            </Link>
+          </button>
+        </div>
+      );
     }
-    return props.children;
+
+    return this.props.children;
+  }
 }
 
 export default ErrorBoundary;
