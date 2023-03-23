@@ -23,16 +23,11 @@ const Order = () => {
 
   /* To decide whether to accept or decline
  orders coming through for vendors */
-  const handleStatus = (id, state, index) => {
-    setStatus(state);
-    const meal = new FormData();
-    meal.append("action", state);
-
     const handleStatus = async (id, state, index) => {
       setStatus(state);
       const meal = new FormData();
       meal.append("action", state);
-  
+
       try {
         await authService.decideOrderStatus(id, status, meal);
         console.log("Status Inputted!", meal);
@@ -43,20 +38,19 @@ const Order = () => {
         const updatedTableData = [...tableData];
         updatedTableData.splice(index, 1);
         setTableData(updatedTableData);
-
       } catch (error) {
         console.log("Something must be genuinely wrong : ", error);
         dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
       }
     };
-  };
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await authService.getOrderedMeals();
-        if (Array.isArray(response.data)) {
-          setTableData(response.data);
+        if (response) {
+          setTableData(response.data.results);
+          console.log(response.data.results);
         } else {
           setTableData([]);
         }
@@ -78,7 +72,7 @@ const Order = () => {
   // in the case of empty data
   if (Object.keys(tableData).length === 0) {
     return <EmptyOrder />;
-  } 
+  }
 
   return (
     <div className="order">
@@ -114,20 +108,30 @@ const Order = () => {
                       <img src={foodImg} alt={foodImg} />
                     )}
                   </td>
-                  <td>{order.item.food_description}</td>
+                  <td>
+                    <p>{order.item.food_title}</p>
+                  </td>
                   {/* This needs to be changed to an accurate Location */}
-                  <td>{order.client.location}</td>
-                  <td>#{order.item.food_price}</td>
+                  <td>
+                    <p>{order.client.location}</p>
+                  </td>
+                  <td>
+                    <p> #{order.item.food_price}</p>
+                  </td>
                   <td>
                     <div className="orderbtn">
                       <button
-                        onClick={() => handleStatus(order.id, "accepted", index)}
+                        onClick={() =>
+                          handleStatus(order.id, "accepted", index)
+                        }
                         style={{ backgroundColor: "green" }}
                       >
                         Accept
                       </button>
                       <button
-                        onClick={() => handleStatus(order.id, "declined", index)}
+                        onClick={() =>
+                          handleStatus(order.id, "declined", index)
+                        }
                         style={{ backgroundColor: "red" }}
                       >
                         Decline
@@ -143,7 +147,7 @@ const Order = () => {
       <Snackbar
         open={open}
         message={message}
-        duration={duration}
+        autoHideDuration={duration}
         onClose={handleClose}
       />
     </div>

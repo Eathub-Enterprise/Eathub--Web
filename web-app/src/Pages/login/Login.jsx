@@ -122,7 +122,7 @@ const Login = () => {
                       <Link className="pwd-link" to="">
                         Forgot Password?
                       </Link>
-                      <Snackbar open={open} message={message} duration={duration} onClose={handleClose} />
+                      <Snackbar open={open} message={message} autoHideDuration={duration} onClose={handleClose} />
                     </form>
                   </div>
                 </main>

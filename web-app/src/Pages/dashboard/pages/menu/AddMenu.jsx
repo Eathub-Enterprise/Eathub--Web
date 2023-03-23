@@ -5,23 +5,23 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import authService from "../../../../services/auth/authService";
-import { useDispatch, useSelector } from 'react-redux';
-import { Snackbar } from '@mui/material';
-import { openSnackbar, closeSnackbar } from '../../../../Redux/actions';
+import { useDispatch, useSelector } from "react-redux";
+import { Snackbar } from "@mui/material";
+import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
 
 const AddMenu = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState([]);
   const [file, setFile] = useState(null);
   const [isImageUploaded, setIsImageUploaded] = useState(false);
 
-    // handling notifications for now
-    const dispatch = useDispatch();
-    const { open, message, duration} = useSelector((state) => state.snackbar);
-    const handleClose = () => {
-      dispatch(closeSnackbar);
-    };
-    
+  // handling notifications for now
+  const dispatch = useDispatch();
+  const { open, message, duration } = useSelector((state) => state.snackbar);
+  const handleClose = () => {
+    dispatch(closeSnackbar);
+  };
 
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
@@ -31,18 +31,20 @@ const AddMenu = () => {
 
   useEffect(() => {
     async function fetchCategory() {
+      setLoading(true);
       try {
         const response = await authService.getMealCategory();
         setCategory(response.data);
-        console.log(response.data);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     }
     fetchCategory();
   }, []);
 
-  if (category.length === 0) {
+  if (loading && category.length === 0) {
     return <Preloader />;
   }
 
@@ -71,22 +73,22 @@ const AddMenu = () => {
         formData.append("category_id", values.category_id);
         /* Note: In the case where multiple Images would be needed, 
           ensure to append to formData instead of destructuring.*/
-          try {
-            const response = await authService.createMeal(formData);
-            console.log("it Worked!", formData);
-            authService.getMealList();
-            if (response) {
-              dispatch(openSnackbar(`Meal Creation Sucessful`, 1000));
-              navigate("/dashboard/menu");
-            } else {
-              dispatch(openSnackbar(`Error Creating Meals`, 1000));
-            }
-          } catch (error) {
-            dispatch(openSnackbar(`Unsucessful Operation, Try again`, 1000));
-            console.log("The Values are wrong or Incorrect!: ", error);
-          } finally {
-            setSubmitting(false);
+        try {
+          const response = await authService.createMeal(formData);
+          console.log("it Worked!", formData);
+          authService.getMealList();
+          if (response) {
+            dispatch(openSnackbar(`Meal Creation Sucessful`, 1000));
+            navigate("/dashboard/menu");
+          } else {
+            dispatch(openSnackbar(`Error Creating Meals`, 1000));
           }
+        } catch (error) {
+          dispatch(openSnackbar(`Unsucessful Operation, Try again`, 1000));
+          console.log("The Values are wrong or Incorrect!: ", error);
+        } finally {
+          setSubmitting(false);
+        }
       }}
       // Yup Validation
       // validationSchema={Yup.object().shape({
@@ -296,16 +298,19 @@ const AddMenu = () => {
                         onBlur={handleBlur}
                       >
                         {category.map((meal) => {
-                          return (
-                              <option value={meal.id}>{meal.title}</option>
-                          );
+                          return <option value={meal.id}>{meal.title}</option>;
                         })}
                       </select>
                     </div>
                   </div>
                 </div>
               </div>
-              <Snackbar open={open} message={message} duration={duration} onClose={handleClose} />
+              <Snackbar
+                open={open}
+                message={message}
+                autoHideDuration={duration}
+                onClose={handleClose}
+              />
             </form>
           </div>
         );

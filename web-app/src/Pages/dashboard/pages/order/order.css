@@ -62,9 +62,13 @@ td {
   font-size: 14px;
   line-height: 24px;
   letter-spacing: -0.02em;
-  width: 100px;
-  height: 6vh;
-  padding: 0.75rem 0.25rem;
+  width: 20px;
+  height: 10vh;
+  padding: 0.125rem;
+}
+
+.orderedTable p {
+  font-size: 10px;
 }
 
 .orderbtn {

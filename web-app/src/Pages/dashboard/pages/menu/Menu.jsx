@@ -80,9 +80,9 @@ const Menu = () => {
                   <td>
                     <img src={meal.image} alt={meal.food_name} />
                   </td>
-                  <td>{meal.food_description}</td>
-                  <td>#{meal.food_price}</td>
-                  <td>{meal.prepare_time} Minutes</td>
+                  <td><p>{meal.food_description}</p></td>
+                  <td><p>#{meal.food_price}</p></td>
+                  <td><p>{meal.prepare_time} Minutes</p></td>
                   <td>
                     <span className="btns">
                         {/* Note: Using editMeal as the naming convention instead of editMenu */}
