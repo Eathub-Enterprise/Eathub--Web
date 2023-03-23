@@ -2,7 +2,7 @@
 import "./footer.css";
 import google from "../../Assets/images/Google.png";
 import apple from "../../Assets/images/Apple.png";
-
+// import { Link } from "react-router-dom";
 const SUPPORT = [
   {
     url: "/account",
@@ -20,15 +20,15 @@ const SUPPORT = [
 
 const LINKS = [
   {
-    url: "/aboutus",
+    url: "about-us",
     name: "About Us"
   },
   {
-    url: "/privacy",
+    url: "privacy",
     name: "Privacy Policy"
   },
   {
-    url:"/terms",
+    url:"terms",
     name: "Terms and Agreement"
   }
 ];
