@@ -1,0 +1,40 @@
+.about-us-container {
+    /* border: 5px solid red; */
+    height: 100%;
+    background-color: white;
+    border-left: 5rem solid #FF8323;
+    border-right: 5rem solid #FF8323;
+    /* margin-left: 20px; */
+
+
+}
+
+.text-container h2 {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 5rem;
+}
+
+.text-container span {
+    font-weight: bold;
+    color: black;
+}
+
+.text-container p {
+    /* line-height: 45px; */
+    /* line-height: 5rem; */
+    font-size: 25px;
+    color: #8B8B8B;
+
+
+}
+
+.text-container {
+    /* max-width: 100px; */
+	/* margin: 0 auto; */
+    margin-left: 7%;
+    margin-right: 7%;
+	padding: 40px;
+}
+   

@@ -2,34 +2,45 @@ import React, { useState, useEffect } from "react";
 import authService from "../../services/auth/authService";
 import "./orderTable.css";
 import foodImg from "../../Assets/images/foodImg.png";
-import Preloader from "../../layouts/Preloader/Preloader";
 
 const OrderTable = () => {
+  const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await authService.getOrderedMeals();
-        console.log(response.data);
-        setTableData(response.data);
+        if (Array.isArray(response.data)) {
+          setTableData(response.data);
+        } else {
+          setTableData([]);
+        }
+        setLoading(false);
+        console.log(response);
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     }
     fetchData();
   }, []);
 
-  if (!tableData || Object.keys(tableData).length === 0) {
-    return <Preloader />;
+  // when data is loading
+  if (loading) {
+    return <></>;
   }
+
+  // in the case of empty data
+  if (Object.keys(tableData).length === 0) {
+    return <></>;
+  } 
 
 
   return (
     <div className="order-container">
       <h5>Recent Orders</h5>
       <table>
-        {/* <tbody>
+        <tbody>
           {tableData.map((order) => {
             return (
               <tr key={order.id}>
@@ -51,7 +62,7 @@ const OrderTable = () => {
               </tr>
             );
           })}
-        </tbody> */}
+        </tbody>
       </table>
     </div>
   );

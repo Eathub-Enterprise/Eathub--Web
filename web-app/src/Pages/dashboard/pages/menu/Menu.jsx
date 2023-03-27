@@ -5,26 +5,48 @@ import { Link} from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import "./menu.css";
 import Preloader from "../../../../layouts/Preloader/Preloader";
+import EmptyMenu from "./EmptyMenu";
 
 
 const Menu = () => {
   const [meals, setMeals] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+  const handleDelete = async(id) => {
+    setLoading(true);
+    try{
+      await authService.deleteMeal(id);
+      await fetchData();
+    }catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await authService.getMealList();
+      setMeals(response.data.results);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
   
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await authService.getMealList();
-        setMeals(response.data.results);
-        // console.log(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
     fetchData();
   }, []);
 
-  if (meals.length === 0) {
+  if(loading){
     return <Preloader />;
+  }
+
+  if (meals.length === 0) {
+    return <EmptyMenu />;
   }
 
   return (
@@ -58,9 +80,9 @@ const Menu = () => {
                   <td>
                     <img src={meal.image} alt={meal.food_name} />
                   </td>
-                  <td>{meal.food_description}</td>
-                  <td>#{meal.food_price}</td>
-                  <td>{meal.prepare_time} Minutes</td>
+                  <td><p>{meal.food_description}</p></td>
+                  <td><p>#{meal.food_price}</p></td>
+                  <td><p>{meal.prepare_time} Minutes</p></td>
                   <td>
                     <span className="btns">
                         {/* Note: Using editMeal as the naming convention instead of editMenu */}
@@ -70,7 +92,7 @@ const Menu = () => {
                           </p>
                         </Link>
                         {/* Note: Using editMeal as the naming convention instead of editMenu */}
-                          <p className="update">
+                          <p className="update" onClick={() => handleDelete(meal.id)}>
                             <DeleteIcon />
                           </p>
                     </span>

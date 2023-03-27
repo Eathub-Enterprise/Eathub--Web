@@ -14,7 +14,7 @@ const BusinessForm = (e) => {
   const user = JSON.parse(userData);
 
   const dispatch = useDispatch();
-  const { open, message, duration:closeSnackbar } = useSelector((state) => state.snackbar);
+  const { open, message, duration } = useSelector((state) => state.snackbar);
   const handleClose = () => {
     dispatch(closeSnackbar);
   };
@@ -167,7 +167,7 @@ const BusinessForm = (e) => {
               <span className="progress-circles"></span>
             </div>
 
-            <Snackbar open={open} message={message} duration={closeSnackbar} onClose={handleClose} />
+            <Snackbar open={open} message={message} autoHideDuration={duration} onClose={handleClose} />
           </div>
         );
       }}

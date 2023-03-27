@@ -12,7 +12,7 @@
 
 .dashboard .sidebar{
     z-index: 99;
-    width: 22%;
+    width: 20%;
     height: 100%;
     position: fixed;
 }
