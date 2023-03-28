@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import "./order.css";
@@ -7,8 +7,10 @@ import Preloader from "../../../../layouts/Preloader/Preloader";
 import { useDispatch, useSelector } from "react-redux";
 import { Snackbar } from "@mui/material";
 import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
+import EmptyOrder from "./EmptyOrder";
 
 const Order = () => {
+  const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [status, setStatus] = useState("");
 
@@ -21,48 +23,38 @@ const Order = () => {
 
   /* To decide whether to accept or decline
  orders coming through for vendors */
-  const handleStatus = (id, state, index) => {
-    setStatus(state);
+    const handleStatus = async (id, state, index) => {
+      setStatus(state);
+      const meal = new FormData();
+      meal.append("action", state);
 
-    const meal = new FormData();
-    meal.append("action", state);
-
-    // console.log(`This meal here is: ${state}`, id);
-    async function fetchData() {
       try {
-        await authService.decideOrderStatus(id, status, meal).then(
-          (response) => {
-            console.log("Status Inputted!", meal);
-            authService.getOrderedMeals();
-            dispatch(openSnackbar(`Order has been ${state}`, 1000));
-          },
-          (error) => {
-            console.log("Something must be genuinely wrong : ", error);
-            dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
-          }
-        );
-      } catch (err) {
-        dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
-        console.log(err);
-      }
-    }
-    fetchData();
+        await authService.decideOrderStatus(id, status, meal);
+        console.log("Status Inputted!", meal);
+        authService.getOrderedMeals();
+        dispatch(openSnackbar(`Order has been ${state}`, 1000));
 
-    // Remove the row from the table data
-    const updatedTableData = [...tableData];
-    updatedTableData.splice(index, 1);
-    setTableData(updatedTableData);
-  };
+        // Remove the row from the table data
+        const updatedTableData = [...tableData];
+        updatedTableData.splice(index, 1);
+        setTableData(updatedTableData);
+      } catch (error) {
+        console.log("Something must be genuinely wrong : ", error);
+        dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
+      }
+    };
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await authService.getOrderedMeals();
-        if (Array.isArray(response.data)) {
-          setTableData(response.data);
+        if (response) {
+          setTableData(response.data.results);
+          console.log(response.data.results);
         } else {
           setTableData([]);
         }
+        setLoading(false);
         console.log(response);
       } catch (err) {
         console.log(err);
@@ -72,10 +64,14 @@ const Order = () => {
     fetchData();
   }, []);
 
-  // Note: Fix in a feature that automatically takes the order after it has accepted or declined
-
-  if (!tableData || Object.keys(tableData).length === 0) {
+  // when data is loading
+  if (loading) {
     return <Preloader />;
+  }
+
+  // in the case of empty data
+  if (Object.keys(tableData).length === 0) {
+    return <EmptyOrder />;
   }
 
   return (
@@ -112,20 +108,30 @@ const Order = () => {
                       <img src={foodImg} alt={foodImg} />
                     )}
                   </td>
-                  <td>{order.item.food_description}</td>
+                  <td>
+                    <p>{order.item.food_title}</p>
+                  </td>
                   {/* This needs to be changed to an accurate Location */}
-                  <td>{order.client.location}</td>
-                  <td>#{order.item.food_price}</td>
+                  <td>
+                    <p>{order.client.location}</p>
+                  </td>
+                  <td>
+                    <p> #{order.item.food_price}</p>
+                  </td>
                   <td>
                     <div className="orderbtn">
                       <button
-                        onClick={() => handleStatus(order.id, "accepted", index)}
+                        onClick={() =>
+                          handleStatus(order.id, "accepted", index)
+                        }
                         style={{ backgroundColor: "green" }}
                       >
                         Accept
                       </button>
                       <button
-                        onClick={() => handleStatus(order.id, "declined", index)}
+                        onClick={() =>
+                          handleStatus(order.id, "declined", index)
+                        }
                         style={{ backgroundColor: "red" }}
                       >
                         Decline
@@ -141,7 +147,7 @@ const Order = () => {
       <Snackbar
         open={open}
         message={message}
-        duration={duration}
+        autoHideDuration={duration}
         onClose={handleClose}
       />
     </div>

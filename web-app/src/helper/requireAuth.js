@@ -33,14 +33,10 @@ const ProtectedRoute = () => {
     authService.getVendorStatus();
   }, []);
 
-  // if (Object.keys(chartData).length === 0) {
-  //   return <Preloader />;
-  // }
-
   return (
     <div className="dashboard">
       <ChartDataContext.Provider value={chartData}>
-        <Suspense fallback={<p>Loading Details</p>}>
+        <Suspense fallback={<Preloader />}>
         <ErrorBoundary>
           <main>
             <aside className="sidebar">

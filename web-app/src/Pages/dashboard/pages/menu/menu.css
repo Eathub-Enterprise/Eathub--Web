@@ -153,9 +153,13 @@ th {
 
 .menu-table table th,
 td {
-  width: 100px;
+  width: 20px;
   height: 10vh;
-  padding: 0.25rem;
+  padding: 0.125rem;
+}
+
+.menu-table p {
+  font-size: 10px;
 }
 .menu-table .btns{
   width: 100%;
@@ -172,4 +176,18 @@ td {
 
 .btns p:hover{
   color: var(--secondary);
+}
+
+/* empty menu page */
+.empty-menu{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 5%;
+  left: 45%;
+}
+
+.empty-menu h1{
+  margin-bottom: 2rem;
 }

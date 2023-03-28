@@ -12,12 +12,13 @@ import { openSnackbar, closeSnackbar } from '../../../../Redux/actions';
 
 const EditMenu = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   const [mealItems, setMealItems] = useState({image: ""});
   const navigate = useNavigate();
 
       // handling notifications for now - remind to update
       const dispatch = useDispatch();
-      const { open, message, duration:closeSnackbar } = useSelector((state) => state.snackbar);
+      const { open, message, duration } = useSelector((state) => state.snackbar);
       const handleClose = () => {
         dispatch(closeSnackbar);
       };
@@ -38,11 +39,14 @@ const EditMenu = () => {
   // This gets the category data from the backend
   useEffect(() => {
     async function fetchCategory() {
+      setLoading(true);
       try {
         const response = await authService.getMealCategory();
         setCategory(response.data);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     }
     fetchCategory();
@@ -51,6 +55,7 @@ const EditMenu = () => {
   // This is to get the pre-existing data
   useEffect(() => {
     async function fetchData() {
+      setLoading(true)
       try {
         const response = await authService.getMeal(id);
         const meal = response.data;
@@ -68,13 +73,19 @@ const EditMenu = () => {
         });
       } catch (err) {
         console.log(err);
+      } finally{
+        setLoading(false)
       }
     }
     fetchData();
   }, [id]);
 
+  if(loading) {
+    <Preloader />
+  }
+
   if (category.length === 0) {
-    return <h5>Loading Categories</h5>;
+    return <Preloader />;
   }
 
   if (mealItems.length === 0) {
@@ -343,7 +354,7 @@ const EditMenu = () => {
                 </div>
               </div>
             </form>
-            <Snackbar open={open} message={message} duration={closeSnackbar} onClose={handleClose} />
+            <Snackbar open={open} message={message} autoHideDuration={duration} onClose={handleClose} />
           </div>
         );
       }}
