@@ -6,16 +6,16 @@ const ShowHero = () => {
     <div className="showHero">
       <div className="showHero-container">
         <div className="showHero-img">
-          <img src={phone} alt={phone} />
+          <img loading='lazy' src={phone} alt={phone} />
         </div>
         <div className="showHero-aside">
           <div className="showHero-head">
             <h3>Own your Food Space with Us</h3>
           </div>
           <div className="showHero-header">
-            <h1>
+            <p>
               Showcase your <br /> business to different customers
-            </h1>
+            </p>
           </div>
           <div className="showHero-body">
             <p>

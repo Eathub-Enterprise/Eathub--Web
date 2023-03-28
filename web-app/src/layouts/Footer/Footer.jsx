@@ -2,7 +2,7 @@
 import "./footer.css";
 import google from "../../Assets/images/Google.png";
 import apple from "../../Assets/images/Apple.png";
-
+// import { Link } from "react-router-dom";
 const SUPPORT = [
   {
     url: "/account",
@@ -20,15 +20,15 @@ const SUPPORT = [
 
 const LINKS = [
   {
-    url: "/aboutus",
+    url: "about-us",
     name: "About Us"
   },
   {
-    url: "/privacy",
+    url: "privacy",
     name: "Privacy Policy"
   },
   {
-    url:"/terms",
+    url:"terms",
     name: "Terms and Agreement"
   }
 ];
@@ -51,7 +51,7 @@ const BLOGS = [
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="container">
+      <div className="footer-container">
         <div className="row">
           <div className="footer-logo">
             <h1>
@@ -67,7 +67,7 @@ const Footer = () => {
             <h4>Support</h4>
             <ul>
               {SUPPORT.map((link) => (
-                <li>
+                <li key={link}>
                   <a href={link.url}>{link.name}</a>
                 </li>
               ))}
@@ -77,7 +77,7 @@ const Footer = () => {
             <h4>Links</h4>
             <ul>
               {LINKS.map((link) => (
-                <li>
+                <li key={link.url}>
                   <a href={link.url}>
                     {link.name}
                   </a>
@@ -89,7 +89,7 @@ const Footer = () => {
             <h4>Get Help</h4>
             <ul>
               {BLOGS.map((link) => (
-                <li>
+                <li key={link}>
                   <a href={link.url}>
                     {link.name}
                   </a>

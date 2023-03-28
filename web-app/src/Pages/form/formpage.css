@@ -1,0 +1,50 @@
+.Formpage {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0 auto;
+    background:rgba(236, 236, 236, 1);
+}
+
+.Formpage-main{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    /* align-items: center; */
+}
+
+ aside{
+    flex:1;
+}
+
+aside img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+@media only screen and (max-width: 768px) {
+    .Formpage-main{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        min-height: 100vh;
+    }
+    aside img{
+        height: 100%;
+        width: 200%;
+        object-fit:fill;
+    }
+    .Formpage-comp{
+        /* display: none; */
+        margin-top: 20;
+        z-index: 99;
+        position: absolute;
+        top:5%;
+        bottom:5%;
+        opacity: .85;
+        left:5%;
+        right:5%;
+    }
+}

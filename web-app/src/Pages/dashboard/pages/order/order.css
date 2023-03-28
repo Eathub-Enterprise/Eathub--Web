@@ -1,0 +1,169 @@
+/* Mixed up classes for both ORder.jsx & HistoryOrders.jsx here */
+
+.order {
+  margin: 2rem 2rem;
+}
+
+.order-head {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.order-head button {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  border: 2px solid var(--primary);
+  padding: 2px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button .order-link {
+  text-decoration: none;
+  color: white;
+}
+
+/* order Table */
+.orderedTable {
+  margin: 0 auto;
+  width: 90%;
+  height: 70vh;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgb(154, 153, 153);
+}
+
+.orderedTable table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 1rem;
+}
+
+.orderedTable table thead,
+tbody {
+  text-align: center;
+}
+
+.orderedTable table td,
+th {
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2);
+  border-right: 0.1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.orderedTable table th,
+td {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  width: 20px;
+  height: 10vh;
+  padding: 0.125rem;
+}
+
+.orderedTable p {
+  font-size: 10px;
+}
+
+.orderbtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.orderbtn button {
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-size: 12px;
+  color: white;
+  font-weight: 700;
+}
+
+.orderedTable img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* I think History Orders here */
+
+.order-main {
+  padding: 4rem 2rem 1rem 5rem;
+}
+
+.order-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.order-title main {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.order-title h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.order-title .circle {
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  background: var(--secondary);
+  border: 2px solid var(--secondary);
+  border-radius: 50%;
+  margin: 0 6px;
+  color: white;
+  font-size: 12px;
+}
+
+.circle span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-bar {
+  margin-top: 2rem;
+}
+
+.order-bar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.order-bar ul li {
+  margin-right: 2rem;
+}
+
+.order-bar ul li a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.order-bar ul li:first-child {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.order-table {
+  margin-top: 3rem;
+}

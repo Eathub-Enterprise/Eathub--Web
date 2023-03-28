@@ -49,12 +49,18 @@
     color: var(--primary);
 }
 
+.shopHero-header{
+    font-size: var(--header-2);
+    font-weight:bold;
+}
+
 
 @media only screen and (max-width: 768px) {
     .shopHero-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        height: 537px;
     }
 
     .shopHero-img {
@@ -66,7 +72,18 @@
         display: flex;
         margin-top: 1rem;
         align-items: center;
-        text-align:center;
+        text-align:left;
         width: 80%;
+        line-height: 30px;
+        letter-spacing: 0.2px;
+    }
+
+    .shopHero-aside h2{
+        font-size: 18px;
+    }
+    .shopHero-header{
+        margin-top: 1rem;
+        font-size: var(--header-4);
+        font-weight:bold;
     }
 }
