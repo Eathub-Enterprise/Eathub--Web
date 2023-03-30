@@ -18,6 +18,7 @@ const Sidebar = ({ children }) => {
   const navigate = useNavigate();
 
   const glbData = useContext(ChartDataContext);
+  console.log(glbData.vendorname)
 
   const handleLogOut = () => {
     navigate("/");

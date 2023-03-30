@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { Snackbar } from '@mui/material';
 import { openSnackbar, closeSnackbar } from '../../Redux/actions';
+import Preloader from "../../layouts/Preloader/Preloader";
 
 
 const Login = () => {
@@ -38,6 +39,9 @@ const Login = () => {
             localStorage.setItem("login", values.username);
           } else {
             dispatch(openSnackbar("Login failed. Please try again.", 3000));
+            // setTimeout(() => {
+            //   window.location.reload();
+            // }, 2000);
           }
         } catch (err) {
           console.log("Error", err);
@@ -48,8 +52,8 @@ const Login = () => {
         username: Yup.string().required("Username is Required"),
         password: Yup.string()
           .required("No password provided.")
-          .min(8, "Passwords must be a minimum of eight characters")
-          .matches(/(?=.*[0-9])/, "Password must contain a number."),
+          .min(8, "Minimum of eight characters")
+          .matches(/(?=.*[0-9])/, "Must contain a number."),
       })}
     >
       {(props) => {
