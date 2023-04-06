@@ -28,16 +28,15 @@ const Profile = () => {
     // ...
   };
 
-  const [value, setValue] = useState("");
+  //
   const maxLength = 450;
   const [remainingLength, setRemainingLength] = useState(450);
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    // setValue(event.target.value);
     setKitchenDescription(event.target.value);
     setRemainingLength(maxLength - kitchenDescription.length);
   };
-
   return (
     <Formik>
       {(props) => {
