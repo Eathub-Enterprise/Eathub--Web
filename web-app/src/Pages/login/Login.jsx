@@ -6,18 +6,18 @@ import { Link } from "react-router-dom";
 import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
 import img from "../../Assets/images/login-img.png";
-import { useDispatch, useSelector } from 'react-redux';
-import { Snackbar } from '@mui/material';
-import { openSnackbar, closeSnackbar } from '../../Redux/actions';
-import Preloader from "../../layouts/Preloader/Preloader";
-
+import { useDispatch, useSelector } from "react-redux";
+import { Snackbar } from "@mui/material";
+import { openSnackbar, closeSnackbar } from "../../Redux/actions";
+import Preloader from '../../layouts/Preloader/Preloader';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const Login = () => {
   // const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { open, message, duration} = useSelector((state) => state.snackbar);
+  const { open, message, duration } = useSelector((state) => state.snackbar);
 
   const handleClose = () => {
     dispatch(closeSnackbar);
@@ -32,7 +32,10 @@ const Login = () => {
         setSubmitting(true);
         try {
           console.log("Submit");
-          const loginStatus = await authService.vendorLogin(values.username, values.password);
+          const loginStatus = await authService.vendorLogin(
+            values.username,
+            values.password
+          );
           if (loginStatus) {
             dispatch(openSnackbar("Login successful!", 1000));
             navigate("/dashboard");
@@ -68,6 +71,12 @@ const Login = () => {
 
         return (
           <div className="login">
+            <Link to={"/signup/business"} className="backArrow">
+            <p className="arrowP"> 
+              <ArrowBackIosNewIcon/>
+              <span>back</span>
+            </p>
+            </Link>
             <div className="login-container">
               <aside className="login-left">
                 <main>
@@ -126,7 +135,12 @@ const Login = () => {
                       <Link className="pwd-link" to="">
                         Forgot Password?
                       </Link>
-                      <Snackbar open={open} message={message} autoHideDuration={duration} onClose={handleClose} />
+                      <Snackbar
+                        open={open}
+                        message={message}
+                        autoHideDuration={duration}
+                        onClose={handleClose}
+                      />
                     </form>
                   </div>
                 </main>

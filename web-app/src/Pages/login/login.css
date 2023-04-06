@@ -6,6 +6,20 @@
   overflow-y: hidden;
 }
 
+.backArrow{
+  text-decoration: none;
+  color: #000;
+  width: 100px;
+  display: flex;
+  margin: 0;
+}
+.arrowP{
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  color: #DB7002;
+}
+
 .login-container {
   width: 100%;
   height: 100%;
@@ -75,6 +89,13 @@
     overflow-x:hidden;
     background-image: url('../../Assets/images/login-img.png');
     position: relative;
+  }
+
+  .backArrow{
+    text-decoration: none;
+    color: #fff;
+    width: 100px;
+    display: flex;
   }
   .login-container{
     /* position: absolute; */

@@ -8,14 +8,14 @@
 
 .profile-head {
   margin: 1.5rem auto;
-  width: 80%;
+  width: 90%;
   position: relative;
 }
 
 .profile-header {
   width: 100%;
   height: 20vh;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 10px 10px 10px 0;
 }
 
@@ -60,24 +60,115 @@
 }
 
 .profile-btn #cancel {
-    border: 2px solid black;
-    background-color: white;
+  border: 2px solid black;
+  background-color: white;
 }
 
-.profile-btn #cancel:hover{
-    border: 2px solid black;
-    background-color: var(--primary);
-    color: white;
+.profile-btn #cancel:hover {
+  border: 2px solid black;
+  background-color: var(--primary);
+  color: white;
 }
 
 .profile-btn #save {
-    margin-left: 0.5rem;
-    border: 2px solid var(--primary);
-    background-color: var(--primary);
-    color: white;
+  margin-left: 0.5rem;
+  border: 2px solid var(--primary);
+  background-color: var(--primary);
+  color: white;
 }
 
-.profile-btn #save:hover{
-    background-color: white;
-    color: var(--primary);
+.profile-btn #save:hover {
+  background-color: white;
+  color: var(--primary);
+}
+
+.form-div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #a5a5a5;
+  padding-top: 20px;
+}
+
+.label {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  width: 260px;
+}
+
+.photo-label {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  width: 260px;
+}
+.photo-p {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 140%;
+  width: 200px;
+}
+
+#username,
+#website,
+#photo {
+  border: 1px solid #a5a5a5;
+  border-radius: 15px;
+  height: 40px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+}
+
+#kitchen-description {
+  height: 150px;
+  width: 50%;
+  border-radius: 20px;
+  resize: none;
+  padding: 10px;
+}
+
+#kitchen-description::placeholder {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 140%;
+  color: black;
+  
+}
+
+
+.kitchen-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.photo-labels {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  width: 260px;
 }
