@@ -3,19 +3,21 @@ import { URL, testURL } from "../../api/index";
 import authHeader from "./authHeader";
 
 const vendorSignUp = async (data = {}) => {
-  const response = await axios
-    .post(testURL + "/user/create/vendor/", data)
-    .then((response) => {
-      if (response.data) {
-        localStorage.clear();
-      } else {
-        throw Error(`This isn't working due to ${response.status}`);
-      }
-    })
-    .catch((err) => {
-      console.log("Error occurred during the process of Sign Up : ", err);
-    });
-  return response;
+  try {
+    const response = await axios.post(testURL + "/user/create/vendor/", data);
+    if (response.data) {
+      localStorage.setItem("signup", JSON.stringify(response.data));
+    } else {
+      throw Error(`This isn't working due to ${response.status}`);
+    }
+    return response;
+  } catch (error) {
+    if (error.response && error.response.status === 409) {
+      throw Error("User already exists");
+    }
+    console.log("Error occurred during the process of Sign Up : ", error);
+    throw error;
+  }
 };
 
 // To Login

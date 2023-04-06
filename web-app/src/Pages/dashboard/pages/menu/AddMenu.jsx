@@ -208,6 +208,17 @@ const AddMenu = () => {
                             style={{ display: "none" }}
                             onChange={handleImageUpload}
                           ></input>
+                          <div className="img-display">
+                            {isImageUploaded && (
+                              <img
+                                src={URL.createObjectURL(file)}
+                                alt="food-img"
+                              />
+                            )}
+                            {!isImageUploaded && (
+                              <img src={values.image} alt="food-img" />
+                            )}
+                          </div>
                           <label htmlFor="Image1">
                             <img
                               src={icon}

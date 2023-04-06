@@ -1,12 +1,18 @@
+import { useState, useEffect } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./personalForm.css";
 import { useNavigate } from "react-router-dom";
+import Preloader from "../../layouts/Preloader/Preloader";
 
 // reminder to separate into smart and dumb component
 
 const PersonalForm = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  if(loading) {
+    <Preloader />
+  }
   return (
     <Formik
       initialValues={{
@@ -29,6 +35,7 @@ const PersonalForm = () => {
 
           navigate("/signup/business");
           setSubmitting(false);
+          setLoading(true);
         }, 1000);
       }}
       // Yup Validation
@@ -84,9 +91,9 @@ const PersonalForm = () => {
                           errors.firstname && touched.firstname && "error"
                         }
                       />
-                      {/* {errors.firstname && touched.firstname && (
+                      {errors.firstname && touched.firstname && (
                         <div className="input-feedback">{errors.firstname}</div>
-                      )} */}
+                      )}
                     </div>
                     <div className="input-top">
                       <input
@@ -101,11 +108,11 @@ const PersonalForm = () => {
                           errors.middlename && touched.middlename && "error"
                         }
                       />
-                      {/* {errors.middlename && touched.middlename && (
+                      {errors.middlename && touched.middlename && (
                         <div className="input-feedback">
                           {errors.middlename}
                         </div>
-                      )} */}
+                      )}
                     </div>
                   </div>
                   <input
@@ -119,9 +126,9 @@ const PersonalForm = () => {
                     className={errors.lastname && touched.lastname && "error"}
                   />
 
-                  {/* {errors.lastname && touched.lastname && (
+                  {errors.lastname && touched.lastname && (
                     <div className="input-feedback">{errors.lastname}</div>
-                  )} */}
+                  )}
 
                   <select
                     id="gender"
@@ -136,12 +143,12 @@ const PersonalForm = () => {
                     <option value="other">Other</option>
                   </select>
 
-                  {/* {errors.gender && touched.gender && (
+                  {errors.gender && touched.gender && (
                     <div className="input-feedback">{errors.gender}</div>
-                  )} */}
+                  )}
 
                   <input
-                    id="username"
+                    id="form-username"
                     name="username"
                     type="text"
                     placeholder="Username"
@@ -151,9 +158,9 @@ const PersonalForm = () => {
                     className={errors.username && touched.username && "error"}
                   />
 
-                  {/* {errors.username && touched.username && (
+                  {errors.username && touched.username && (
                     <div className="input-feedback">{errors.username}</div>
-                  )} */}
+                  )}
 
                   <input
                     id="password"
@@ -166,9 +173,9 @@ const PersonalForm = () => {
                     className={errors.password && touched.password && "error"}
                   />
 
-                  {/* {errors.password && touched.password && (
+                  {errors.password && touched.password && (
                     <div className="input-feedback">{errors.password}</div>
-                  )} */}
+                  )}
 
                   <input
                     type="password"
@@ -178,9 +185,9 @@ const PersonalForm = () => {
                     onBlur={handleBlur}
                     value={values.confirmPassword}
                   />
-                  {/* {errors.confirmPassword && touched.confirmPassword && (
+                  {errors.confirmPassword && touched.confirmPassword && (
                     <div className="input-feedback">{errors.confirmPassword}</div>
-                  )} */}
+                  )}
 
                   <input
                     type="text"

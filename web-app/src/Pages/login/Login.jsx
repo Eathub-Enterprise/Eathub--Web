@@ -1,22 +1,23 @@
 import { Formik } from "formik";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
 import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
 import img from "../../Assets/images/login-img.png";
-import { useDispatch, useSelector } from 'react-redux';
-import { Snackbar } from '@mui/material';
-import { openSnackbar, closeSnackbar } from '../../Redux/actions';
-
+import { useDispatch, useSelector } from "react-redux";
+import { Snackbar } from "@mui/material";
+import { openSnackbar, closeSnackbar } from "../../Redux/actions";
+import Preloader from '../../layouts/Preloader/Preloader';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const Login = () => {
   // const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { open, message, duration} = useSelector((state) => state.snackbar);
+  const { open, message, duration } = useSelector((state) => state.snackbar);
 
   const handleClose = () => {
     dispatch(closeSnackbar);
@@ -31,13 +32,19 @@ const Login = () => {
         setSubmitting(true);
         try {
           console.log("Submit");
-          const loginStatus = await authService.vendorLogin(values.username, values.password);
+          const loginStatus = await authService.vendorLogin(
+            values.username,
+            values.password
+          );
           if (loginStatus) {
             dispatch(openSnackbar("Login successful!", 1000));
             navigate("/dashboard");
             localStorage.setItem("login", values.username);
           } else {
             dispatch(openSnackbar("Login failed. Please try again.", 3000));
+            // setTimeout(() => {
+            //   window.location.reload();
+            // }, 2000);
           }
         } catch (err) {
           console.log("Error", err);
@@ -48,8 +55,8 @@ const Login = () => {
         username: Yup.string().required("Username is Required"),
         password: Yup.string()
           .required("No password provided.")
-          .min(8, "Passwords must be a minimum of eight characters")
-          .matches(/(?=.*[0-9])/, "Password must contain a number."),
+          .min(8, "Minimum of eight characters")
+          .matches(/(?=.*[0-9])/, "Must contain a number."),
       })}
     >
       {(props) => {
@@ -64,6 +71,12 @@ const Login = () => {
 
         return (
           <div className="login">
+            <Link to={"/signup"} className="backArrow">
+            <p className="arrowP"> 
+              <ArrowBackIosNewIcon/>
+              <span>Sign up?</span>
+            </p>
+            </Link>
             <div className="login-container">
               <aside className="login-left">
                 <main>
@@ -75,7 +88,7 @@ const Login = () => {
                   <div className="login-input">
                     <form onSubmit={handleSubmit}>
                       <input
-                        id="username"
+                        id="login-username"
                         name="username"
                         placeholder="Username"
                         type="text"
@@ -122,7 +135,12 @@ const Login = () => {
                       <Link className="pwd-link" to="">
                         Forgot Password?
                       </Link>
-                      <Snackbar open={open} message={message} autoHideDuration={duration} onClose={handleClose} />
+                      <Snackbar
+                        open={open}
+                        message={message}
+                        autoHideDuration={duration}
+                        onClose={handleClose}
+                      />
                     </form>
                   </div>
                 </main>
