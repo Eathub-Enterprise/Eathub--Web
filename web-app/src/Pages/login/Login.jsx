@@ -9,6 +9,7 @@ import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Snackbar } from "@mui/material";
 import { openSnackbar, closeSnackbar } from "../../Redux/actions";
+import Preloader from '../../layouts/Preloader/Preloader';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const Login = () => {
