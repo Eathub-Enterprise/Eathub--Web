@@ -1,14 +1,16 @@
 import { Formik } from "formik";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import authService from "../../services/auth/authService";
 import { useDispatch, useSelector } from 'react-redux';
 import { Snackbar } from '@mui/material';
 import { openSnackbar, closeSnackbar } from '../../Redux/actions';
+import Preloader from "../../layouts/Preloader/Preloader";
 
 const BusinessForm = (e) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const userData = localStorage.getItem("user");
   const user = JSON.parse(userData);
@@ -19,6 +21,10 @@ const BusinessForm = (e) => {
     dispatch(closeSnackbar);
   };
 
+  if(loading) {
+    <Preloader />
+  }
+
   return (
     <Formik
       initialValues={{
@@ -28,6 +34,7 @@ const BusinessForm = (e) => {
         business_phonenumber: "",
       }}
       onSubmit={async (values, { setSubmitting }) => {
+        setLoading(true);
         setSubmitting(true);
         const value = {
           ...values,
@@ -48,6 +55,13 @@ const BusinessForm = (e) => {
           );
         } catch (err) {
           console.log(err);
+          if (err.message === "User already exists") {
+            dispatch(openSnackbar("User already exists.", 1000));
+          } else {
+            dispatch(openSnackbar("Registration Unsuccessful.", 1000));
+          }
+        } finally {
+          setLoading(false);
         }
       }}
       // Yup Validation
@@ -96,9 +110,9 @@ const BusinessForm = (e) => {
                       errors.vendor_name && touched.vendor_name && "error"
                     }
                   />
-                  {/* {errors.vendor_name && touched.vendor_name && (
+                  {errors.vendor_name && touched.vendor_name && (
                     <div className="input-feedback">{errors.vendor_name}</div>
-                  )} */}
+                  )}
                   <input
                     id="address"
                     name="address"
@@ -110,9 +124,9 @@ const BusinessForm = (e) => {
                     className={errors.address && touched.address && "error"}
                   />
 
-                  {/* {errors.address && touched.address && (
+                  {errors.address && touched.address && (
                     <div className="input-feedback">{errors.address}</div>
-                  )} */}
+                  )}
 
                   <input
                     id="business_phonenumber"
@@ -129,12 +143,12 @@ const BusinessForm = (e) => {
                     }
                   />
 
-                  {/* {errors.business_phonenumber &&
+                  {errors.business_phonenumber &&
                     touched.business_phonenumber && (
                       <div className="input-feedback">
                         {errors.business_phonenumber}
                       </div>
-                    )} */}
+                    )}
 
                   <input
                     id="business_email"
@@ -149,11 +163,11 @@ const BusinessForm = (e) => {
                     }
                   />
 
-                  {/* {errors.business_email && touched.business_email && (
+                  {errors.business_email && touched.business_email && (
                     <div className="input-feedback">
                       {errors.business_email}
                     </div>
-                  )} */}
+                  )}
 
                   <button
                     className="business-form-btn"
