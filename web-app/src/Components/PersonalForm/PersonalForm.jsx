@@ -148,7 +148,7 @@ const PersonalForm = () => {
                   )}
 
                   <input
-                    id="username"
+                    id="form-username"
                     name="username"
                     type="text"
                     placeholder="Username"

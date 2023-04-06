@@ -71,10 +71,10 @@ const Login = () => {
 
         return (
           <div className="login">
-            <Link to={"/signup/business"} className="backArrow">
+            <Link to={"/signup"} className="backArrow">
             <p className="arrowP"> 
               <ArrowBackIosNewIcon/>
-              <span>back</span>
+              <span>Sign up?</span>
             </p>
             </Link>
             <div className="login-container">
@@ -88,7 +88,7 @@ const Login = () => {
                   <div className="login-input">
                     <form onSubmit={handleSubmit}>
                       <input
-                        id="username"
+                        id="login-username"
                         name="username"
                         placeholder="Username"
                         type="text"
