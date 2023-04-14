@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import icon from "../../../../Assets/pngs/profile.png";
 import icons from "../../../../Assets/pngs/ImgUpload.png";
 
-
 const Profile = () => {
   const glbData = useContext(ChartDataContext);
 
@@ -32,8 +31,8 @@ const Profile = () => {
     // Use a regular expression to remove any non-numeric characters
     const numericValue = inputValue.replace(/\D/g, "");
     setKitchenNumber(numericValue);
-  }
-  
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Send form data to the server for processing
@@ -128,11 +127,7 @@ const Profile = () => {
                       onChange={handleImageUpload}
                     ></input>
                     <label htmlFor="Image1">
-                      <img
-                        src={icons}
-                        alt={icons}
-                        className="menu-inputImg"
-                      />
+                      <img src={icons} alt={icons} className="menu-inputImg" />
                     </label>
                   </label>
                 </div>
