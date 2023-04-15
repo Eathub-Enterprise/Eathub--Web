@@ -4,6 +4,7 @@ import "./profile.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import icon from "../../../../Assets/pngs/profile.png";
+import icons from "../../../../Assets/pngs/ImgUpload.png";
 
 const Profile = () => {
   const glbData = useContext(ChartDataContext);
@@ -18,9 +19,19 @@ const Profile = () => {
     console.log(event.target.files[0]);
   };
   const [username, setUsername] = useState("");
-  const [website, setWebsite] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [address, setAddress] = useState("");
+  const [kitchenNumber, setKitchenNumber] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [fullName, setFullName] = useState("");
   const [photo, setPhoto] = useState("");
   const [kitchenDescription, setKitchenDescription] = useState("");
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    // Use a regular expression to remove any non-numeric characters
+    const numericValue = inputValue.replace(/\D/g, "");
+    setKitchenNumber(numericValue);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -71,23 +82,26 @@ const Profile = () => {
                 <label htmlFor="username" className="label">
                   Username
                 </label>
+                <div className="vertical-line">eathub.com.ng/</div>
                 <input
                   type="text"
                   id="username"
                   value={username}
                   onChange={(event) => setUsername(event.target.value)}
+                  className="input-field"
                 />
               </div>
 
               <div className="form-div">
                 <label htmlFor="website" className="label">
-                  Website
+                  Full Name
                 </label>
+                <div className="vertical-line">First and Last Name</div>
                 <input
                   type="text"
-                  id="website"
-                  value={website}
-                  onChange={(event) => setWebsite(event.target.value)}
+                  id="fullName"
+                  value={fullName}
+                  onChange={(event) => setFullName(event.target.value)}
                 />
               </div>
 
@@ -98,10 +112,73 @@ const Profile = () => {
                     This will be displayed on your profile
                   </p>
                 </label>
+                <div className="labels">
+                  <label
+                    htmlFor="Image1"
+                    className={isImageUploaded ? "uploaded" : ""}
+                  >
+                    {/* sucessful display fix needs to be better */}
+                    <input
+                      id="Image1"
+                      name="image"
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageUpload}
+                    ></input>
+                    <label htmlFor="Image1">
+                      <img src={icons} alt={icons} className="menu-inputImg" />
+                    </label>
+                  </label>
+                </div>
+              </div>
+              <h2 className="businessHead">BUSINESS DETAILS</h2>
+              <div className="form-div">
+                <label htmlFor="businessName" className="label">
+                  Business Name
+                </label>
+                <div className="vertical-line">eathub.com.ng/</div>
                 <input
-                  type="file"
-                  id="photo"
-                  onChange={(event) => setPhoto(event.target.files[0])}
+                  type="text"
+                  id="username"
+                  value={businessName}
+                  onChange={(event) => setBusinessName(event.target.value)}
+                />
+              </div>
+              <div className="form-div">
+                <label htmlFor="address" className="label">
+                  Address
+                </label>
+                <div className="vertical-line">Block/Plot/No</div>
+                <input
+                  type="address"
+                  id="username"
+                  value={address}
+                  onChange={(event) => setAddress(event.target.value)}
+                />
+              </div>
+              <div className="form-div">
+                <label htmlFor="kitchenNumber" className="label">
+                  Kitchen Number
+                </label>
+                <div className="vertical-line">(+234)</div>
+                <input
+                  type="numeric"
+                  id="username"
+                  value={kitchenNumber}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-div">
+                <label htmlFor="email" className="label">
+                  Email Address
+                </label>
+                <div className="vertical-line">@gmail,outlook,yahoo</div>
+                <input
+                  type="email"
+                  id="username"
+                  value={emailAddress}
+                  onChange={(event) => setEmailAddress(event.target.value)}
                 />
               </div>
 
