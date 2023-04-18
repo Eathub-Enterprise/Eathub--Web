@@ -37,16 +37,16 @@ const ProtectedRoute = () => {
     <div className="dashboard">
       <ChartDataContext.Provider value={chartData}>
         <Suspense fallback={<Preloader />}>
-        <ErrorBoundary>
-          <main>
-            <aside className="sidebar">
-              <Sidebar />
-            </aside>
-            <aside className="body">
-              <Outlet />
-            </aside>
-          </main>
-        </ErrorBoundary>
+          <ErrorBoundary>
+            <main>
+              <aside className="sidebar">
+                <Sidebar />
+              </aside>
+              <aside className="body">
+                <Outlet />
+              </aside>
+            </main>
+          </ErrorBoundary>
         </Suspense>
       </ChartDataContext.Provider>
     </div>
