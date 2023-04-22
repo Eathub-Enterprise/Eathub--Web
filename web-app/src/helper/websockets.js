@@ -26,5 +26,5 @@ const MyComponent = () => {
     // Use the new data to update the chart
   };
 
-  return null;
+  return false;
 };

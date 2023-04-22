@@ -1,10 +1,10 @@
 import axios from "axios";
-import { URL, testURL } from "../../api/index";
+import { URL } from "../../api/index";
 import authHeader from "./authHeader";
 
 const vendorSignUp = async (data = {}) => {
   try {
-    const response = await axios.post(testURL + "/user/create/vendor/", data);
+    const response = await axios.post(URL + "/user/create/vendor/", data);
     if (response.data) {
       localStorage.setItem("signup", JSON.stringify(response.data));
     } else {
@@ -24,7 +24,7 @@ const vendorSignUp = async (data = {}) => {
 const vendorLogin = async (username, password) => {
   let loginStatus = false;
   await axios
-    .post(testURL + "/token/login", {
+    .post(URL + "/token/login", {
       username,
       password,
     })
@@ -46,7 +46,7 @@ const vendorLogin = async (username, password) => {
 // To get data for Vendor dashboard
 const getVendorProfile = async () => {
   const response = await axios
-    .get(testURL + `/vendor/profile/`, authHeader())
+    .get(URL + `/vendor/profile/`, authHeader())
     .then((response) => {
       return response;
     })
@@ -59,7 +59,7 @@ const getVendorProfile = async () => {
 // To get Ordered Meals
 const getOrderedMeals = async () => {
   const response = await axios
-    .get(testURL + `/get_ordered_items_or_change status/null/`, authHeader())
+    .get(URL + `/get_ordered_items_or_change status/null/`, authHeader())
     .then((response) => {
       return response;
     })
@@ -73,7 +73,7 @@ const getOrderedMeals = async () => {
 const decideOrderStatus = async (mealId, status, orderedMeal) => {
   const response = await axios
     .put(
-      testURL + `/get_ordered_items_or_change status/${mealId}/${status}`,
+      URL + `/get_ordered_items_or_change status/${mealId}/${status}`,
       orderedMeal,
       authHeader()
     )
@@ -90,7 +90,7 @@ const decideOrderStatus = async (mealId, status, orderedMeal) => {
 // To get List of Meals
 const getMealList = async () => {
   const response = await axios
-    .get(testURL + `/menu/food/create_or_getAll`, authHeader())
+    .get(URL + `/menu/food/create_or_getAll`, authHeader())
     .then((response) => {
       return response;
     })
@@ -103,7 +103,7 @@ const getMealList = async () => {
 // To get a particular meal with it's id
 const getMeal = async (mealId) => {
   const response = await axios
-    .get(testURL + `/menu/food/get_or_update_or_delete/${mealId}/`, authHeader())
+    .get(URL + `/menu/food/get_or_update_or_delete/${mealId}/`, authHeader())
     .then((res) => {
       return res;
     })
@@ -116,7 +116,7 @@ const getMeal = async (mealId) => {
 // To get Categories for Meals
 const getMealCategory = async () => {
   const response = await axios
-    .get(testURL + `/menu/cat/List/`, authHeader())
+    .get(URL + `/menu/cat/List/`, authHeader())
     .then((response) => {
       return response;
     })
@@ -130,7 +130,7 @@ const getMealCategory = async () => {
 const createMeal = async (data = {}) => {
   const key = JSON.parse(localStorage.getItem("vendor"));
   const response = await axios
-    .post(testURL + "/menu/food/create_or_getAll/", data, {
+    .post(URL + "/menu/food/create_or_getAll/", data, {
       headers: {
         "Content-Type": "multipart/form-data",
         authorization: `Token ${key.auth_token}`,
@@ -155,7 +155,7 @@ const updateMeal = async (mealId, updatedMealData) => {
   const key = JSON.parse(localStorage.getItem("vendor"));
   const response = await axios
     .put(
-      testURL + `/menu/food/get_or_update_or_delete/${mealId}/`,
+      URL + `/menu/food/get_or_update_or_delete/${mealId}/`,
       updatedMealData,{
       headers: {
         "Content-Type": "multipart/form-data",
@@ -179,7 +179,7 @@ const updateMeal = async (mealId, updatedMealData) => {
 // to delete a meal
 const deleteMeal = async (mealId) => {
   const response = await axios
-    .delete(testURL + `/menu/food/get_or_update_or_delete/${mealId}`, authHeader())
+    .delete(URL + `/menu/food/get_or_update_or_delete/${mealId}`, authHeader())
     .then((response) => {
       console.log("Data has been deleted");
     })
