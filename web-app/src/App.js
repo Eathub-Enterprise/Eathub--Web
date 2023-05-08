@@ -12,17 +12,6 @@ import DashboardPage from "./Pages/dashboard/DashboardPage";
 import Overview from "./Pages/dashboard/pages/overview/Overview";
 import ProtectedRoute from "./helper/requireAuth";
 import PageNotFound from "./Pages/pagenotfound/PageNotFound";
-/* import Order from "./Pages/dashboard/pages/order/Order";
- import Menu from "./Pages/dashboard/pages/menu/Menu";
- import Analytics from "./Pages/dashboard/pages/analytics/Analytics";
- import Message from "./Pages/dashboard/pages/message/Message";
- import Settings from "./Pages/dashboard/pages/settings/Settings";
- import Payout from "./Pages/dashboard/pages/payout/Payout";
- import AddMenu from "./Pages/dashboard/pages/menu/AddMenu";
- import HistoryOrder from "./Pages/dashboard/pages/order/HistoryOrder";
- import EditMenu from "./Pages/dashboard/pages/menu/EditMenu";
- import Profile from "./Pages/dashboard/pages/profile/Profile"; */
-
 import AboutUs from "./Pages/misc/Links/AboutUs";
 import PrivacyPolicy from "./Pages/misc/Links/PrivacyPolicy";
 import Terms from "./Pages/misc/Links/Terms";

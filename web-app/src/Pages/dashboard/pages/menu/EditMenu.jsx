@@ -5,23 +5,22 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
-import { useDispatch, useSelector } from 'react-redux';
-import { Snackbar } from '@mui/material';
-import { openSnackbar, closeSnackbar } from '../../../../Redux/actions';
-
+import { useDispatch, useSelector } from "react-redux";
+import { Snackbar } from "@mui/material";
+import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
 
 const EditMenu = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
-  const [mealItems, setMealItems] = useState({image: ""});
+  const [mealItems, setMealItems] = useState({ image: "" });
   const navigate = useNavigate();
 
-      // handling notifications for now - remind to update
-      const dispatch = useDispatch();
-      const { open, message, duration } = useSelector((state) => state.snackbar);
-      const handleClose = () => {
-        dispatch(closeSnackbar);
-      };
+  // handling notifications for now - remind to update
+  const dispatch = useDispatch();
+  const { open, message, duration } = useSelector((state) => state.snackbar);
+  const handleClose = () => {
+    dispatch(closeSnackbar);
+  };
 
   // to grab the catgeories need for the Meal Category Select tag
   const [category, setCategory] = useState([]);
@@ -29,10 +28,12 @@ const EditMenu = () => {
   // to update the value % state of an image into a file acceptable to the backend
   const [file, setFile] = useState("");
   const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const [showImage, setShowImage] = useState(false);
   // The Method handling that
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
     setFile(event.target.files[0]);
+    setShowImage(true);
     console.log(event.target.files[0]);
   };
 
@@ -55,7 +56,7 @@ const EditMenu = () => {
   // This is to get the pre-existing data
   useEffect(() => {
     async function fetchData() {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await authService.getMeal(id);
         const meal = response.data;
@@ -73,15 +74,15 @@ const EditMenu = () => {
         });
       } catch (err) {
         console.log(err);
-      } finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     }
     fetchData();
   }, [id]);
 
-  if(loading) {
-    <Preloader />
+  if (loading) {
+    <Preloader />;
   }
 
   if (category.length === 0) {
@@ -91,8 +92,6 @@ const EditMenu = () => {
   if (mealItems.length === 0) {
     return <Preloader />;
   }
-
-
 
   return (
     <Formik
@@ -120,19 +119,19 @@ const EditMenu = () => {
               console.log("Update Inputted!", formData);
               navigate("/dashboard/menu");
               authService.getMealList();
-              if(response){
-                dispatch(openSnackbar('Meal Updated!', 1000));
+              if (response) {
+                dispatch(openSnackbar("Meal Updated!", 1000));
               } else {
-                dispatch(openSnackbar('Meal Update Error!', 1000));
+                dispatch(openSnackbar("Meal Update Error!", 1000));
               }
             },
             (error) => {
-              dispatch(openSnackbar('Error updating Meal, Try Again', 1000));
+              dispatch(openSnackbar("Error updating Meal, Try Again", 1000));
               console.log("The Values are wrong or Incorrect!: ", error);
             }
           );
         } catch (err) {
-          dispatch(openSnackbar('Something went wrong!', 1000));
+          dispatch(openSnackbar("Something went wrong!", 1000));
           console.log("Something seems to wrong with the request: ", err);
         } finally {
           setSubmitting(false);
@@ -235,7 +234,6 @@ const EditMenu = () => {
                           htmlFor="Image1"
                           className={isImageUploaded ? "uploaded" : ""}
                         >
-                          {/* sucessful display fix needs to be better */}
                           <input
                             id="Image1"
                             name="image"
@@ -245,17 +243,19 @@ const EditMenu = () => {
                             style={{ display: "none" }}
                             onChange={handleImageUpload}
                           ></input>
-                          <div className="img-display">
-                            {isImageUploaded && (
-                              <img
-                                src={URL.createObjectURL(file)}
-                                alt="food-img"
-                              />
-                            )}
-                            {!isImageUploaded && (
-                              <img src={values.image} alt="food-img" />
-                            )}
-                          </div>
+                          {showImage && (
+                            <div className="img-display">
+                              {isImageUploaded && (
+                                <img
+                                  src={URL.createObjectURL(file)}
+                                  alt="food-img"
+                                />
+                              )}
+                              {!isImageUploaded && (
+                                <img src={values.image} alt="food-img" />
+                              )}
+                            </div>
+                          )}
                           <label htmlFor="Image1">
                             <img
                               src={icon}
@@ -354,7 +354,12 @@ const EditMenu = () => {
                 </div>
               </div>
             </form>
-            <Snackbar open={open} message={message} autoHideDuration={duration} onClose={handleClose} />
+            <Snackbar
+              open={open}
+              message={message}
+              autoHideDuration={duration}
+              onClose={handleClose}
+            />
           </div>
         );
       }}

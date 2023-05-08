@@ -15,6 +15,7 @@ const AddMenu = () => {
   const [category, setCategory] = useState([]);
   const [file, setFile] = useState(null);
   const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
   // handling notifications for now
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const AddMenu = () => {
 
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
+    setShowImage(true);
     setFile(event.target.files[0]);
     console.log(event.target.files[0]);
   };
@@ -198,7 +200,6 @@ const AddMenu = () => {
                           htmlFor="Image1"
                           className={isImageUploaded ? "uploaded" : ""}
                         >
-                          {/* sucessful display fix needs to be better */}
                           <input
                             id="Image1"
                             name="image"
@@ -208,17 +209,19 @@ const AddMenu = () => {
                             style={{ display: "none" }}
                             onChange={handleImageUpload}
                           ></input>
-                          <div className="img-display">
-                            {isImageUploaded && (
-                              <img
-                                src={URL.createObjectURL(file)}
-                                alt="food-img"
-                              />
-                            )}
-                            {!isImageUploaded && (
-                              <img src={values.image} alt="food-img" />
-                            )}
-                          </div>
+                          {showImage && (
+                            <div className="img-display">
+                              {isImageUploaded && (
+                                <img
+                                  src={URL.createObjectURL(file)}
+                                  alt="food-img"
+                                />
+                              )}
+                              {!isImageUploaded && (
+                                <img src={values.image} alt="food-img" />
+                              )}
+                            </div>
+                          )}
                           <label htmlFor="Image1">
                             <img
                               src={icon}
