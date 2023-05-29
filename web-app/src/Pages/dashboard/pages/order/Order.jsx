@@ -23,26 +23,26 @@ const Order = () => {
 
   /* To decide whether to accept or decline
  orders coming through for vendors */
-    const handleStatus = async (id, state, index) => {
-      setStatus(state);
-      const meal = new FormData();
-      meal.append("action", state);
+  const handleStatus = async (id, state, index) => {
+    setStatus(state);
+    const meal = new FormData();
+    meal.append("action", state);
 
-      try {
-        await authService.decideOrderStatus(id, status, meal);
-        console.log("Status Inputted!", meal);
-        authService.getOrderedMeals();
-        dispatch(openSnackbar(`Order has been ${state}`, 1000));
+    try {
+      await authService.decideOrderStatus(id, state, meal); // Corrected parameter
+      console.log("Status Inputted!", meal);
+      authService.getOrderedMeals();
+      // dispatch(openSnackbar(`Order has been ${state}`, 1000));
 
-        // Remove the row from the table data
-        const updatedTableData = [...tableData];
-        updatedTableData.splice(index, 1);
-        setTableData(updatedTableData);
-      } catch (error) {
-        console.log("Something must be genuinely wrong : ", error);
-        dispatch(openSnackbar(`${status} Order Failed!, Try again`, 3000));
-      }
-    };
+      // Remove the row from the table data
+      const updatedTableData = [...tableData];
+      updatedTableData.splice(index, 1);
+      setTableData(updatedTableData);
+    } catch (error) {
+      console.log("Something must be genuinely wrong : ", error);
+      // dispatch(openSnackbar(`${state} Order Failed!, Try again`, 3000)); // Corrected parameter
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -55,7 +55,7 @@ const Order = () => {
           setTableData([]);
         }
         setLoading(false);
-        console.log(response);
+        // console.log(response);
       } catch (err) {
         console.log(err);
       }

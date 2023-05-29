@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, {useState, useEffect} from "react";
+import React from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
@@ -9,8 +9,7 @@ import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Snackbar } from "@mui/material";
 import { openSnackbar, closeSnackbar } from "../../Redux/actions";
-import Preloader from '../../layouts/Preloader/Preloader';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const Login = () => {
   // const [rememberUser, setRememberUser] = useState(null);
@@ -42,12 +41,13 @@ const Login = () => {
             localStorage.setItem("login", values.username);
           } else {
             dispatch(openSnackbar("Login failed. Please try again.", 3000));
-            // setTimeout(() => {
-            //   window.location.reload();
-            // }, 2000);
           }
-        } catch (err) {
-          console.log("Error", err);
+        } catch (error) {
+          console.log("Error", error);
+        } finally {
+          setTimeout(() => {
+            window.location.reload();
+          }, 10000);
         }
       }}
       //  Yup validation
@@ -72,10 +72,10 @@ const Login = () => {
         return (
           <div className="login">
             <Link to={"/signup"} className="backArrow">
-            <p className="arrowP"> 
-              <ArrowBackIosNewIcon/>
-              <span>Sign up?</span>
-            </p>
+              <p className="arrowP">
+                <ArrowBackIosNewIcon />
+                <span>Sign up?</span>
+              </p>
             </Link>
             <div className="login-container">
               <aside className="login-left">

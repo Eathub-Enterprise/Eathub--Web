@@ -56,7 +56,7 @@ const Profile = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [glbData]);
 
   if (loading) {
     <Preloader />;

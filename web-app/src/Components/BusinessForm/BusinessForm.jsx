@@ -1,16 +1,21 @@
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import authService from "../../services/auth/authService";
-import { useDispatch, useSelector } from 'react-redux';
-import { Snackbar } from '@mui/material';
-import { openSnackbar, closeSnackbar } from '../../Redux/actions';
+import { useDispatch, useSelector } from "react-redux";
+import { Snackbar } from "@mui/material";
+import { openSnackbar, closeSnackbar } from "../../Redux/actions";
 import Preloader from "../../layouts/Preloader/Preloader";
 
 const BusinessForm = (e) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   const userData = localStorage.getItem("user");
   const user = JSON.parse(userData);
@@ -21,8 +26,8 @@ const BusinessForm = (e) => {
     dispatch(closeSnackbar);
   };
 
-  if(loading) {
-    <Preloader />
+  if (loading) {
+    <Preloader />;
   }
 
   return (
@@ -45,7 +50,9 @@ const BusinessForm = (e) => {
           await authService.vendorSignUp(value).then(
             (response) => {
               console.log("it Worked!", value);
-              dispatch(openSnackbar("Business Registeration successful!", 1000));
+              dispatch(
+                openSnackbar("Business Registeration successful!", 1000)
+              );
               navigate("/login");
             },
             (error) => {
@@ -71,6 +78,7 @@ const BusinessForm = (e) => {
         business_phonenumber: Yup.number().required(
           "Business Number is Required"
         ),
+        checked: Yup.boolean().oneOf([true], "Please check the checkbox"),
         business_email: Yup.string()
           .email()
           .required("Business Mail is Required"),
@@ -92,9 +100,7 @@ const BusinessForm = (e) => {
             <div className="personal-form-main">
               <header>
                 <h1>Business Registration</h1>
-                <p className="header-text">
-                  Kindly complete registeration
-                </p>
+                <p className="header-text">Kindly complete registeration</p>
               </header>
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>
@@ -169,6 +175,22 @@ const BusinessForm = (e) => {
                     </div>
                   )}
 
+                  {/* make the state do something */}
+                  <label className="check-container">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={handleCheckboxChange}
+                    />
+                    I accept to the terms and agreement.{" "}
+                  </label>
+                  <Link to="/terms" className="check-link">
+                    <i>Terms and Agreement</i>
+                  </Link>
+                  {errors.checked && touched.checked && (
+                    <div className="input-feedback">{errors.checked}</div>
+                  )}
+
                   <button
                     className="business-form-btn"
                     type="submit"
@@ -181,7 +203,12 @@ const BusinessForm = (e) => {
               <span className="progress-circles"></span>
             </div>
 
-            <Snackbar open={open} message={message} autoHideDuration={duration} onClose={handleClose} />
+            <Snackbar
+              open={open}
+              message={message}
+              autoHideDuration={duration}
+              onClose={handleClose}
+            />
           </div>
         );
       }}

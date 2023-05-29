@@ -26,6 +26,8 @@
 }
 
 .menu-btn {
+  position: relative;
+  z-index: 1;
   background-color: var(--primary);
   color: white;
   font-weight: 600;

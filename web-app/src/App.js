@@ -17,8 +17,14 @@ import PrivacyPolicy from "./Pages/misc/Links/PrivacyPolicy";
 import Terms from "./Pages/misc/Links/Terms";
 import Preloader from "./layouts/Preloader/Preloader";
 
+import Order from "./Pages/dashboard/pages/order/Order";
+
+// testing react-query
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 // lazy-loading some of these components
-const Order = lazy(() => import("./Pages/dashboard/pages/order/Order"));
+// const Order = lazy(() => import("./Pages/dashboard/pages/order/Order"));
 const Menu = lazy(() => import("./Pages/dashboard/pages/menu/Menu"));
 const Analytics = lazy(() =>
   import("./Pages/dashboard/pages/analytics/Analytics")
@@ -35,46 +41,51 @@ const HistoryOrder = lazy(() =>
 const EditMenu = lazy(() => import("./Pages/dashboard/pages/menu/EditMenu"));
 const Profile = lazy(() => import("./Pages/dashboard/pages/profile/Profile"));
 
+// creating an instance for the Client
+const queryClient = new QueryClient();
+
 // first layer of Routing is done here!
 function App() {
   return (
-    <Suspense fallback={<Preloader />}>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<Preloader />}>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Homepage />} />
 
-          <Route path="signup" element={<Formpage />}>
-            <Route index element={<PersonalForm />} />
-            <Route path="business" element={<BusinessForm />} />
-          </Route>
+            <Route path="signup" element={<Formpage />}>
+              <Route index element={<PersonalForm />} />
+              <Route path="business" element={<BusinessForm />} />
+            </Route>
 
-          <Route path="login" element={<Login />} />
+            <Route path="login" element={<Login />} />
 
-          <Route path="/dashboard" element={<ProtectedRoute />}>
-            <Route index element={<Overview />} />
+            <Route path="/dashboard" element={<ProtectedRoute />}>
+              <Route index element={<Overview />} />
 
-            <Route path="orders" element={<Order />} />
-            <Route path="orders/history" element={<HistoryOrder />} />
+              <Route path="orders" element={<Order />} />
+              <Route path="orders/history" element={<HistoryOrder />} />
 
-            <Route path="menu" element={<Menu />} />
-            <Route path="menu/addMenu" element={<AddMenu />} />
-            <Route path="menu/editMeal/:id" element={<EditMenu />} />
+              <Route path="menu" element={<Menu />} />
+              <Route path="menu/addMenu" element={<AddMenu />} />
+              <Route path="menu/editMeal/:id" element={<EditMenu />} />
 
-            <Route path="analytics" element={<Analytics />} />
-            <Route path="message" element={<Message />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="payouts" element={<Payout />} />
-            <Route path="profile" element={<Profile />} />
-          </Route>
+              <Route path="analytics" element={<Analytics />} />
+              <Route path="message" element={<Message />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="payouts" element={<Payout />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
 
-          <Route path="about-us" element={<AboutUs />} />
-          <Route path="privacy" element={<PrivacyPolicy />} />
-          <Route path="terms" element={<Terms />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="privacy" element={<PrivacyPolicy />} />
+            <Route path="terms" element={<Terms />} />
 
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </Suspense>
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Suspense>
+    </QueryClientProvider>
   );
 }
 
