@@ -41,7 +41,7 @@ form{
    width: 80%;
 }
 
-form input, select{
+.personal-form input, select{
     margin-top: 1rem;
     padding: .5%;
     width: 100%;

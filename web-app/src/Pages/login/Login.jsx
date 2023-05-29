@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
@@ -9,8 +9,10 @@ import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Snackbar } from "@mui/material";
 import { openSnackbar, closeSnackbar } from "../../Redux/actions";
-import Preloader from '../../layouts/Preloader/Preloader';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Preloader from "../../layouts/Preloader/Preloader";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { ReactComponent as EyeIcon } from "../../Assets/pngs/eyepass.svg";
+import { pipe } from "ramda";
 
 const Login = () => {
   // const [rememberUser, setRememberUser] = useState(null);
@@ -22,6 +24,9 @@ const Login = () => {
   const handleClose = () => {
     dispatch(closeSnackbar);
   };
+
+  const [passwordShown, setPasswordShown] = useState(false);
+
   return (
     <Formik
       initialValues={{
@@ -72,10 +77,10 @@ const Login = () => {
         return (
           <div className="login">
             <Link to={"/signup"} className="backArrow">
-            <p className="arrowP"> 
-              <ArrowBackIosNewIcon/>
-              <span>Sign up?</span>
-            </p>
+              <p className="arrowP">
+                <ArrowBackIosNewIcon />
+                <span>Sign up?</span>
+              </p>
             </Link>
             <div className="login-container">
               <aside className="login-left">
@@ -85,64 +90,69 @@ const Login = () => {
                     Welcome Back
                   </h1>
                   <h5>Enter your login details below</h5>
-                  <div className="login-input">
-                    <form onSubmit={handleSubmit}>
-                      <input
-                        id="login-username"
-                        name="username"
-                        placeholder="Username"
-                        type="text"
-                        value={values.username}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        className={
-                          errors.username && touched.username && "error"
-                        }
-                      />
-                      {errors.username && touched.username && (
-                        <div className="input-feedback">{errors.username}</div>
-                      )}
 
+                  <form className="login-input" onSubmit={handleSubmit}>
+                    <input
+                      id="login-username"
+                      name="username"
+                      placeholder="Username"
+                      type="text"
+                      value={values.username}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={errors.username && touched.username && "error"}
+                    />
+                    {errors.username && touched.username && (
+                      <div className="input-feedback">{errors.username}</div>
+                    )}
+                    <div className="password-input">
                       <input
                         id="password"
                         name="password"
                         placeholder="*********"
-                        type="password"
+                        type={passwordShown ? "text" : "password"}
                         value={values.password}
-                        onChange={handleChange}
+                        onChange={pipe(handleChange
+                          
+                        )}
                         onBlur={handleBlur}
                         className={
                           errors.password && touched.password && "error"
                         }
+                        
                       />
-                      {errors.password && touched.password && (
-                        <div className="input-feedback">{errors.password}</div>
-                      )}
-
-                      <div className="input-check">
-                        <input
-                          type="checkbox"
-                          name="rememberUser"
-                          id="rememberUser"
-                        />
-                        <label>Remember Me</label>
-                      </div>
-
-                      <button className="personal-form-btn" type="submit">
-                        Login
-                      </button>
-
-                      <Link className="pwd-link" to="">
-                        Forgot Password?
-                      </Link>
-                      <Snackbar
-                        open={open}
-                        message={message}
-                        autoHideDuration={duration}
-                        onClose={handleClose}
+                      <EyeIcon
+                        onClick={() => setPasswordShown(!passwordShown)}
+                        className={passwordShown ? "hide" : ""}
                       />
-                    </form>
-                  </div>
+                    </div>
+                    {errors.password && touched.password && (
+                      <div className="input-feedback">{errors.password}</div>
+                    )}
+
+                    <div className="input-check">
+                      <input
+                        type="checkbox"
+                        name="rememberUser"
+                        id="rememberUser"
+                      />
+                      <label>Remember Me</label>
+                    </div>
+
+                    <button className="personal-form-btn" type="submit">
+                      Login
+                    </button>
+
+                    <Link className="pwd-link" to="">
+                      Forgot Password?
+                    </Link>
+                    <Snackbar
+                      open={open}
+                      message={message}
+                      autoHideDuration={duration}
+                      onClose={handleClose}
+                    />
+                  </form>
                 </main>
               </aside>
               <aside className="login-right">
