@@ -21,7 +21,6 @@ import Order from "./Pages/dashboard/pages/order/Order";
 
 // testing react-query
 import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 
 // lazy-loading some of these components
 // const Order = lazy(() => import("./Pages/dashboard/pages/order/Order"));

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./menu.css";
 import Preloader from "../../../../layouts/Preloader/Preloader";
-import { Formik, Field, Form } from "formik";
-import * as Yup from "yup";
+import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import authService from "../../../../services/auth/authService";
@@ -22,7 +21,7 @@ const AddMenu = () => {
   const dispatch = useDispatch();
   const { open, message, duration } = useSelector((state) => state.snackbar);
   const handleClose = () => {
-    dispatch(closeSnackbar);
+    dispatch(closeSnackbar());
   };
 
   const handleImageUpload = (event) => {
@@ -102,7 +101,6 @@ const AddMenu = () => {
           values,
           touched,
           errors,
-          isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit,

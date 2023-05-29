@@ -19,7 +19,7 @@ const Login = () => {
   const { open, message, duration } = useSelector((state) => state.snackbar);
 
   const handleClose = () => {
-    dispatch(closeSnackbar);
+    dispatch(closeSnackbar());
   };
   return (
     <Formik

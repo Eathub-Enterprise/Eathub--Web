@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import authService from "../../../../services/auth/authService";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +18,7 @@ const EditMenu = () => {
   const dispatch = useDispatch();
   const { open, message, duration } = useSelector((state) => state.snackbar);
   const handleClose = () => {
-    dispatch(closeSnackbar);
+    dispatch(closeSnackbar());
   };
 
   // to grab the catgeories need for the Meal Category Select tag
@@ -144,7 +143,6 @@ const EditMenu = () => {
           values,
           touched,
           errors,
-          isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit,
