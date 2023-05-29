@@ -48,6 +48,7 @@ const Profile = () => {
     setKitchenDescription(event.target.value);
     setRemainingLength(maxLength - kitchenDescription.length);
   };
+  
   return (
     <Formik>
       {(props) => {
