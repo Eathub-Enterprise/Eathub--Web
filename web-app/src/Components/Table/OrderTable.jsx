@@ -17,7 +17,7 @@ const OrderTable = () => {
           setTableData([]);
         }
         setLoading(false);
-        console.log(response);
+        // console.log(response);
       } catch (err) {
         console.log(err);
       }
@@ -33,8 +33,7 @@ const OrderTable = () => {
   // in the case of empty data
   if (Object.keys(tableData).length === 0) {
     return <></>;
-  } 
-
+  }
 
   return (
     <div className="order-container">

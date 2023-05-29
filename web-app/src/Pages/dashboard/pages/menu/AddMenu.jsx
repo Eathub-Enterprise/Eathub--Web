@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import "./menu.css";
 import Preloader from "../../../../layouts/Preloader/Preloader";
-import { Formik, Field, Form } from "formik";
-import * as Yup from "yup";
+import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import authService from "../../../../services/auth/authService";
@@ -15,16 +15,18 @@ const AddMenu = () => {
   const [category, setCategory] = useState([]);
   const [file, setFile] = useState(null);
   const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
   // handling notifications for now
   const dispatch = useDispatch();
   const { open, message, duration } = useSelector((state) => state.snackbar);
   const handleClose = () => {
-    dispatch(closeSnackbar);
+    dispatch(closeSnackbar());
   };
 
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
+    setShowImage(true);
     setFile(event.target.files[0]);
     console.log(event.target.files[0]);
   };
@@ -74,35 +76,24 @@ const AddMenu = () => {
         /* Note: In the case where multiple Images would be needed, 
           ensure to append to formData instead of destructuring.*/
         try {
+          setLoading(true);
           const response = await authService.createMeal(formData);
           console.log("it Worked!", formData);
           authService.getMealList();
           if (response) {
-            dispatch(openSnackbar(`Meal Creation Sucessful`, 1000));
+            dispatch(openSnackbar(`Meal Creation Successful`, 1000));
             navigate("/dashboard/menu");
           } else {
-            dispatch(openSnackbar(`Error Creating Meals`, 1000));
+            console.log("Meal has a bug!");
           }
         } catch (error) {
-          dispatch(openSnackbar(`Unsucessful Operation, Try again`, 1000));
+          dispatch(openSnackbar(`Unsuccessful Operation, Try again`, 1000));
           console.log("The Values are wrong or Incorrect!: ", error);
         } finally {
           setSubmitting(false);
+          setLoading(false);
         }
       }}
-      // Yup Validation
-      // validationSchema={Yup.object().shape({
-      //   category_id: Yup.number().required("Category ID needed here"),
-      //   food_title: Yup.string().required("Meal Name is Required"),
-      //   food_description: Yup.string().required("Meal Description is Required"),
-      //   food_price: Yup.number().required("Meal Price is Required"),
-      //   food_type: Yup.string().required("Meal Type is Needed"),
-      //   prepare_time: Yup.number().required("Prepare Time has not been filled"),
-      //   delivery_type: Yup.string().required(
-      //     "Type of Delivery has not been filled"
-      //   ),
-      //   image: Yup.mixed().required("Image is required"),
-      // })}
       validator={() => ({})}
     >
       {(props) => {
@@ -110,7 +101,6 @@ const AddMenu = () => {
           values,
           touched,
           errors,
-          isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit,
@@ -123,7 +113,7 @@ const AddMenu = () => {
                   <h2>Add Meal</h2>
                 </div>
                 <button type="submit" className="menu-btn">
-                  Save Meal
+                  {loading ? <Preloader /> : "Save Meal"}
                 </button>
               </div>
               <div className="menu-table">
@@ -198,7 +188,6 @@ const AddMenu = () => {
                           htmlFor="Image1"
                           className={isImageUploaded ? "uploaded" : ""}
                         >
-                          {/* sucessful display fix needs to be better */}
                           <input
                             id="Image1"
                             name="image"
@@ -208,17 +197,19 @@ const AddMenu = () => {
                             style={{ display: "none" }}
                             onChange={handleImageUpload}
                           ></input>
-                          <div className="img-display">
-                            {isImageUploaded && (
-                              <img
-                                src={URL.createObjectURL(file)}
-                                alt="food-img"
-                              />
-                            )}
-                            {!isImageUploaded && (
-                              <img src={values.image} alt="food-img" />
-                            )}
-                          </div>
+                          {showImage && (
+                            <div className="img-display">
+                              {isImageUploaded && (
+                                <img
+                                  src={URL.createObjectURL(file)}
+                                  alt="food-img"
+                                />
+                              )}
+                              {!isImageUploaded && (
+                                <img src={values.image} alt="food-img" />
+                              )}
+                            </div>
+                          )}
                           <label htmlFor="Image1">
                             <img
                               src={icon}
@@ -309,7 +300,11 @@ const AddMenu = () => {
                         onBlur={handleBlur}
                       >
                         {category.map((meal) => {
-                          return <option value={meal.id}>{meal.title}</option>;
+                          return (
+                            <option key={meal.id} value={meal.id}>
+                              {meal.title}
+                            </option>
+                          );
                         })}
                       </select>
                     </div>

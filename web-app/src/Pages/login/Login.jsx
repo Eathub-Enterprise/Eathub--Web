@@ -9,6 +9,7 @@ import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Snackbar } from "@mui/material";
 import { openSnackbar, closeSnackbar } from "../../Redux/actions";
+
 import Preloader from "../../layouts/Preloader/Preloader";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { ReactComponent as EyeIcon } from "../../Assets/pngs/eyepass.svg";
@@ -22,7 +23,7 @@ const Login = () => {
   const { open, message, duration } = useSelector((state) => state.snackbar);
 
   const handleClose = () => {
-    dispatch(closeSnackbar);
+    dispatch(closeSnackbar());
   };
 
   const [passwordShown, setPasswordShown] = useState(false);
@@ -47,12 +48,13 @@ const Login = () => {
             localStorage.setItem("login", values.username);
           } else {
             dispatch(openSnackbar("Login failed. Please try again.", 3000));
-            // setTimeout(() => {
-            //   window.location.reload();
-            // }, 2000);
           }
-        } catch (err) {
-          console.log("Error", err);
+        } catch (error) {
+          console.log("Error", error);
+        } finally {
+          setTimeout(() => {
+            window.location.reload();
+          }, 10000);
         }
       }}
       //  Yup validation

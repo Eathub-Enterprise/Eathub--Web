@@ -1,13 +1,12 @@
+@import url("http://fonts.cdnfonts.com/css/montserrat");
 
-@import url('http://fonts.cdnfonts.com/css/montserrat');
-              
 /* Global styles */
 
 * {
-  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
-  box-sizing: 'border-box';
+  font-family: "Montserrat", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: "border-box";
   margin: 0;
   padding: 0;
-  line-height:140%;
+  line-height: 140%;
   letter-spacing: -2%;
 }

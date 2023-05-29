@@ -16,10 +16,7 @@ import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 
 const Sidebar = ({ children }) => {
   const navigate = useNavigate();
-
   const glbData = useContext(ChartDataContext);
-  console.log(glbData.vendorname)
-
   const handleLogOut = () => {
     navigate("/");
     localStorage.clear();
@@ -84,7 +81,11 @@ const Sidebar = ({ children }) => {
           {/* need to fix an image tag here */}
           <PermIdentityTwoToneIcon fontSize="large" />
           <span>
-            <Link className="profile-link" activeclassname="active" to="/dashboard/profile">
+            <Link
+              className="profile-link"
+              activeclassname="active"
+              to="/dashboard/profile"
+            >
               {glbData.vendorname}
             </Link>
             <button onClick={handleLogOut} className="sidebar-button">

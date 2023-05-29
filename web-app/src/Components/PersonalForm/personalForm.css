@@ -1,46 +1,47 @@
-.personal-form{
-    width: auto;
-    height: 100vh; 
-    background-color:rgba(236, 236, 236, 1);
+.personal-form {
+  width: auto;
+  height: 100vh;
+  background-color: rgba(236, 236, 236, 1);
 }
 
-header h1{
-    font-size: 32px;
-    margin-bottom: 1rem;
+header h1 {
+  font-size: 32px;
+  margin-bottom: 1rem;
 }
 .personal-form-main {
-    display: flex;
-    flex-direction: column;
-    /* justify-content:flex-start; */
-    align-items:center;
-    padding: 5%;
-    margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content:flex-start; */
+  align-items: center;
+  padding: 5%;
+  margin-top: 3rem;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* align-items: center; */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* align-items: center; */
 }
 
-.personal-form header{
-    text-align: center;
+.personal-form header {
+  text-align: center;
 }
 
-.personal-form .header-text{
-    font-weight: 600;
+.personal-form .header-text {
+  font-weight: 600;
 }
 
-.personal-form-input{
-   display: flex;
-   flex-direction: column;
-   justify-content:baseline;
-   align-items: center;
-   margin-top: 2rem;
-   width: 80%;
+.personal-form-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+  margin-top: 2rem;
+  width: 80%;
 }
 
+=======
 .personal-form input, select{
     margin-top: 1rem;
     padding: .5%;
@@ -52,130 +53,148 @@ form{
 }
 
 form input::placeholder,
-select *::placeholder{
-    padding-left: 1rem;
+select *::placeholder {
+  padding-left: 1rem;
 }
 
-.personal-form-btn{
-    background-color: var(--primary);
-    background-image: url(../../Assets/pngs/icons8-right-arrow-30.png);
-    background-position:right;
-    background-size: 20px;
-    color:#fff;
-    background-repeat: no-repeat;
-    color: white;
-    cursor: pointer;
-    border: 2px solid var(--primary);
-    font-weight: 600;
-    text-align: left;
-    border-radius: 10px;
-    padding: .5%;
-    width: 100%;
-    height: 6vh;
-    padding-left: 1rem;
-    padding-right: 2rem;
-    margin-top: 1rem;
+.personal-form-btn {
+  background-color: var(--primary);
+  background-image: url(../../Assets/pngs/icons8-right-arrow-30.png);
+  background-position: right;
+  background-size: 20px;
+  color: #fff;
+  background-repeat: no-repeat;
+  color: white;
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  font-weight: 600;
+  text-align: left;
+  border-radius: 10px;
+  padding: 0.5%;
+  width: 100%;
+  height: 6vh;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  margin-top: 1rem;
 }
-
 
 .personal-form-btn:hover,
-.business-form-btn:hover{
-    background-color:white ;
-    color: var(--primary);
-    border: 2px solid white;
+.business-form-btn:hover {
+  background-color: white;
+  color: var(--primary);
+  border: 2px solid white;
 }
 
-.business-form-btn{
-    background-color: var(--primary);
-    background-image: url(../../Assets/pngs/icons8-shopping-mall-24.png);
-    background-position:right;
-    background-size: 20px;;
-    color:#fff;
-    background-repeat: no-repeat;
-    color: white;
-    cursor: pointer;
-    border: 2px solid var(--primary);
-    font-weight: 600;
-    text-align: left;
-    border-radius: 10px;
-    padding: .5%;
-    width: 100%;
-    height: 6vh;
-    padding-left: 1rem;
-    /* padding-right: 2rem; */
-    margin-top: 1rem;
+.business-form-btn {
+  background-color: var(--primary);
+  background-image: url(../../Assets/pngs/icons8-shopping-mall-24.png);
+  background-position: right;
+  background-size: 20px;
+  color: #fff;
+  background-repeat: no-repeat;
+  color: white;
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  font-weight: 600;
+  text-align: left;
+  border-radius: 10px;
+  padding: 0.5%;
+  width: 100%;
+  height: 6vh;
+  padding-left: 1rem;
+  /* padding-right: 2rem; */
+  margin-top: 1rem;
 }
 
 form .input-header {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
-.input-top{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
+.input-top {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
 
-.input-top input{
-    width: 90%;
-    padding: 2%;
+.input-top input {
+  width: 90%;
+  padding: 2%;
 }
 
-.input-feedback{
-    background-color: var(--secondary);
-    color: white;
-    font-size: 12px;
-    margin-left: 1rem;
-    border-radius: 20px;
-    padding: .2rem;
-    padding-left: 5px;
-    margin-top: 5px;
+.input-feedback {
+  background-color: var(--secondary);
+  color: white;
+  font-size: 12px;
+  margin-left: 1rem;
+  border-radius: 20px;
+  padding: 0.2rem;
+  padding-left: 5px;
+  margin-top: 5px;
+}
+
+.check-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.check-container input {
+  width: 10%;
+  margin-left: 0.5rem;
+  height: 20px;
+}
+
+.check-link {
+  font-size: 12px;
+  margin-left: 2rem;
 }
 
 @media only screen and (max-width: 768px) {
-    .personal-form{
-        height: 80vh;
-        overflow-x:hidden;
-        border-radius: 20px;
-    }
+  .personal-form {
+    height: 80vh;
+    overflow-x: hidden;
+    border-radius: 20px;
+  }
 
-    .personal-form-main{
-        width:auto;
-        align-items:center;
-        justify-content: center;
-        margin: 0;
-        /* background-color:rgba(236, 236, 236, 1); */
-    }
-    .personal-form-main header{
-        margin-top: .5rem;
-    }
-    .personal-form-input{
-        align-items:flex-start;
-        min-width: 80%;
-        margin-top: 0;
-    }
+  .personal-form-main {
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    /* background-color:rgba(236, 236, 236, 1); */
+  }
+  .personal-form-main header {
+    margin-top: 0.5rem;
+  }
+  .personal-form-input {
+    align-items: flex-start;
+    min-width: 80%;
+    margin-top: 0;
+  }
 
-    form{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items:flex-start;
-    }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 
-    form input, select{
-        width: 100%;
-        margin-top: 0.5rem;
-    }
+  form input,
+  select {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 
-    form .input-header {
-        width: 100%;
-        flex-direction: column;
-    }
+  form .input-header {
+    width: 100%;
+    flex-direction: column;
+  }
 
-    .input-top input{
-        width: 100%;
-        padding: 1%;
-    }
+  .input-top input {
+    width: 100%;
+    padding: 1%;
+  }
 }
