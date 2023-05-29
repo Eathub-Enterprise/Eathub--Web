@@ -61,7 +61,13 @@ const Profile = () => {
   if (loading) {
     <Preloader />;
   }
-
+  const handleChange = (event) => {
+    // setValue(event.target.value);
+    setKitchenDescription(event.target.value);
+    setRemainingLength(maxLength - kitchenDescription.length);
+  };
+  
+>>>>>>> review
   return (
     <Formik
       initialValues={{ profileData }}
