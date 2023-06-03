@@ -99,5 +99,7 @@ ul {
   .footer-bottom-text {
     align-items: center;
     justify-content: space-between;
+    align-items: stretch;
+    margin-left: 2rem;
   }
 }
