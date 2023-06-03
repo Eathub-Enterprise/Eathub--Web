@@ -105,7 +105,7 @@ const Footer = () => {
           </div> */}
         </div>
         <div className="footer-bottom-text">
-          <p>2022 Eathub</p>
+          <p>2023 Eathub</p>
           <p>
             <b>Email Us</b>: officialeathub@gmail.com
           </p>
