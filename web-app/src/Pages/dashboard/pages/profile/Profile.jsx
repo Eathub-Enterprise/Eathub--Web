@@ -3,7 +3,6 @@ import { ChartDataContext } from "../../../../helper/requireAuth";
 import Preloader from "../../../../layouts/Preloader/Preloader";
 import "./profile.css";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import icon from "../../../../Assets/pngs/profile (1).png";
 import icons from "../../../../Assets/pngs/ImgUpload.png";
 
@@ -66,8 +65,7 @@ const Profile = () => {
     setKitchenDescription(event.target.value);
     setRemainingLength(maxLength - kitchenDescription.length);
   };
-  
->>>>>>> review
+
   return (
     <Formik
       initialValues={{ profileData }}

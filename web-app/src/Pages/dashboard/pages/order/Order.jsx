@@ -32,13 +32,13 @@ const Order = () => {
     try {
       await authService.decideOrderStatus(id, state, meal); // Corrected parameter
       console.log("Status Inputted!", meal);
-      authService.getOrderedMeals();
       dispatch(openSnackbar(`Order has been ${state}`, 1000));
 
       // Remove the row from the table data
       const updatedTableData = [...tableData];
       updatedTableData.splice(index, 1);
       setTableData(updatedTableData);
+      authService.getOrderedMeals();
     } catch (error) {
       console.log("Something must be genuinely wrong : ", error);
       dispatch(openSnackbar(`${state} Order Failed!, Try again`, 3000)); // Corrected parameter
