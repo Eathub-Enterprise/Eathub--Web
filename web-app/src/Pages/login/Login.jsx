@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
@@ -9,8 +9,6 @@ import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Snackbar } from "@mui/material";
 import { openSnackbar, closeSnackbar } from "../../Redux/actions";
-
-import Preloader from "../../layouts/Preloader/Preloader";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { ReactComponent as EyeIcon } from "../../Assets/pngs/eyepass.svg";
 import { pipe } from "ramda";
@@ -114,14 +112,11 @@ const Login = () => {
                         placeholder="*********"
                         type={passwordShown ? "text" : "password"}
                         value={values.password}
-                        onChange={pipe(handleChange
-                          
-                        )}
+                        onChange={pipe(handleChange)}
                         onBlur={handleBlur}
                         className={
                           errors.password && touched.password && "error"
                         }
-                        
                       />
                       <EyeIcon
                         onClick={() => setPasswordShown(!passwordShown)}
