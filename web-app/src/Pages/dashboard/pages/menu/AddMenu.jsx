@@ -88,6 +88,7 @@ const AddMenu = () => {
           }
         } catch (error) {
           dispatch(openSnackbar(`Unsuccessful Operation, Try again`, 1000));
+          navigate("/dashboard/menu");
           console.log("The Values are wrong or Incorrect!: ", error);
         } finally {
           setSubmitting(false);
