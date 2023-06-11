@@ -41,7 +41,7 @@ const Login = () => {
             values.password
           );
           if (loginStatus) {
-            dispatch(openSnackbar("Login successful!", 1000));
+            dispatch(openSnackbar("Login successful!", 50));
             navigate("/dashboard");
             localStorage.setItem("login", values.username);
           } else {
@@ -50,9 +50,9 @@ const Login = () => {
         } catch (error) {
           console.log("Error", error);
         } finally {
-          setTimeout(() => {
-            window.location.reload();
-          }, 10000);
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 10000);
         }
       }}
       //  Yup validation
