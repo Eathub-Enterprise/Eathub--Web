@@ -41,10 +41,17 @@
 }
 
 .profile-img-header img {
+  cursor: pointer;
   width: 120px;
   height: 120px;
+  border-radius: 50%;
   position: absolute;
   top: 45%;
+  transition: filter 0.3s ease-in-out;
+}
+
+.profile-img-header img:hover {
+  filter: brightness(50%) hue-rotate(15deg);
 }
 
 .profile-btn {
@@ -196,4 +203,31 @@
   font-size: 20px;
   line-height: 29px;
   width: 260px;
+}
+
+.labels {
+  display: flex;
+  height: 120px;
+  flex-direction: column;
+  position: relative;
+}
+
+.img-display img {
+  width: 128px;
+  height: 128px;
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+}
+
+.img-display:not(:empty) + .Image1 {
+  display: none;
+}
+
+.menu-inputImg {
+  width: 64px;
+  height: 86px;
+  object-fit: contain;
+  cursor: pointer;
+  margin-left: 2rem;
 }

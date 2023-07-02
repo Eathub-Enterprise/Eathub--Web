@@ -73,7 +73,7 @@ const getOrderedMeals = async () => {
 const decideOrderStatus = async (mealId, status, orderedMeal) => {
   const response = await axios
     .put(
-      URL + `/get_ordered_items_or_change status/${mealId}/${status}`,
+      URL + `/get_ordered_items_or_change_status/${mealId}/${status}`,
       orderedMeal,
       authHeader()
     )
@@ -84,7 +84,7 @@ const decideOrderStatus = async (mealId, status, orderedMeal) => {
     .catch((err) => {
       console.log("Error Making decision : ", err);
     });
-    return response;
+  return response;
 };
 
 // To get List of Meals
@@ -129,25 +129,28 @@ const getMealCategory = async () => {
 // To create Meal
 const createMeal = async (data = {}) => {
   const key = JSON.parse(localStorage.getItem("vendor"));
-  const response = await axios
-    .post(URL + "/menu/food/create_or_getAll/", data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        authorization: `Token ${key.auth_token}`,
-      },
-    })
-    .then((response) => {
-      if (response.data) {
-        console.log("Data inputed!");
-        // localStorage.clear();
-      } else {
-        throw Error(`This is clearly not working due to ${response.status}`);
+  try {
+    const response = await axios.post(
+      URL + "/menu/food/create_or_getAll/",
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          authorization: `Token ${key.auth_token}`,
+        },
       }
-    })
-    .catch((err) => {
-      console.log(" Error occured during Creation of Meal : ", err);
-    });
-  return response;
+    );
+    if (response.data) {
+      console.log("Data inputed!", response.data);
+      return response.data; // Return the response data
+    } else {
+      throw new Error(`This is clearly not working due to ${response.status}`);
+    }
+  } catch (err) {
+    console.log("Error occurred during Creation of Meal: ", err);
+    throw err; // Rethrow the error to be caught in the calling code
+  } finally {
+  }
 };
 
 // To update a Meal
@@ -156,12 +159,13 @@ const updateMeal = async (mealId, updatedMealData) => {
   const response = await axios
     .put(
       URL + `/menu/food/get_or_update_or_delete/${mealId}/`,
-      updatedMealData,{
-      headers: {
-        "Content-Type": "multipart/form-data",
-        authorization: `Token ${key.auth_token}`,
-      },
-    }
+      updatedMealData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          authorization: `Token ${key.auth_token}`,
+        },
+      }
     )
     .then((response) => {
       if (response.data) {
@@ -186,7 +190,7 @@ const deleteMeal = async (mealId) => {
     .catch((err) => {
       console.log("Error occured during deletion : ", err);
     });
-    return response;
+  return response;
 };
 
 const getVendorStatus = () => {

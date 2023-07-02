@@ -12,8 +12,24 @@ const Preloader = () => {
     },
   };
   return (
-    <div style={{height: '100vh'}}>
-      <Lottie options={defaultOptions} height={500} width={500} />
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 2,
+        marginLeft: "8rem",
+        backgroundColor: "white",
+      }}
+    >
+      <div style={{ height: "100vh", zIndex: "100" }}>
+        <Lottie options={defaultOptions} height={500} width={500} />
+      </div>
     </div>
   );
 };

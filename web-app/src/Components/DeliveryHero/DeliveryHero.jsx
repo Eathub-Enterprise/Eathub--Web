@@ -23,9 +23,7 @@ const DeliveryHero = () => {
             </p>
           </div>
           <div className="deliveryHero-btn">
-            <button>
-              <span className="text">Place Order</span>
-            </button>
+            <button>{/* <span className="text">Place Order</span> */}</button>
           </div>
         </div>
       </div>

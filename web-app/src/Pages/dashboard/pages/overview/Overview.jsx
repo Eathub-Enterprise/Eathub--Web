@@ -8,7 +8,7 @@ import Preloader from "../../../../layouts/Preloader/Preloader";
 import "./overview.css";
 
 const Overview = () => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   // for performance in re-rendering
   const WidgetMemo = React.memo(Widget);
   const ProgressBarMemo = React.memo(ProgressBar);
@@ -20,11 +20,11 @@ const Overview = () => {
     setTimeout(() => {
       setLoading(false);
     }, 2000); // Set a delay time for the preloader to show before hiding it
-  }, [])
+  }, []);
 
   return (
     <div className="overview-section">
-      {loading && <Preloader /> }
+      {loading && <Preloader />}
       <div className="overview-dropdown">
         <select>
           <option value="msg">Overview: All-time</option>

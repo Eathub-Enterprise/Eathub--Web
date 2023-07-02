@@ -1,70 +1,104 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ChartDataContext } from "../../../../helper/requireAuth";
+import Preloader from "../../../../layouts/Preloader/Preloader";
 import "./profile.css";
 import { Formik } from "formik";
-import * as Yup from "yup";
-import icon from "../../../../Assets/pngs/profile.png";
+import icon from "../../../../Assets/pngs/profile (1).png";
 import icons from "../../../../Assets/pngs/ImgUpload.png";
 
 const Profile = () => {
   const glbData = useContext(ChartDataContext);
+  const [loading, setLoading] = useState(false);
+  const [profileData, setProfileData] = useState({
+    image: "",
+    kitchenDescription: "",
+  });
+  // New inputs
+  const [kitchenDescription, setKitchenDescription] = useState("");
+  const maxLength = 450;
+  const [remainingLength, setRemainingLength] = useState(450);
+
+  const handleChangeDEsc = (event) => {
+    // setValue(event.target.value);
+    setKitchenDescription(event.target.value);
+    setRemainingLength(maxLength - kitchenDescription.length);
+  };
 
   // to update the value % state of an image into a file acceptable to the backend
   const [file, setFile] = useState("");
   const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+
   // The Method handling that
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
+    setShowImage(true);
     setFile(event.target.files[0]);
     console.log(event.target.files[0]);
   };
-  const [username, setUsername] = useState("");
-  const [businessName, setBusinessName] = useState("");
-  const [address, setAddress] = useState("");
-  const [kitchenNumber, setKitchenNumber] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [kitchenDescription, setKitchenDescription] = useState("");
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value;
-    // Use a regular expression to remove any non-numeric characters
-    const numericValue = inputValue.replace(/\D/g, "");
-    setKitchenNumber(numericValue);
-  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Send form data to the server for processing
-    // ...
-  };
+  // Getting Pre-existing data
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        setProfileData({
+          username: glbData.username,
+          vendorName: glbData.vendorname,
+          address: glbData.mainbusinessaddress,
+          kitchenNumber: glbData.businessphonenumber,
+          emailAddress: glbData.businessemail,
+          fullName: "John Doe",
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, [glbData]);
 
-  //
-  const maxLength = 450;
-  const [remainingLength, setRemainingLength] = useState(450);
-
+  if (loading) {
+    <Preloader />;
+  }
   const handleChange = (event) => {
     // setValue(event.target.value);
     setKitchenDescription(event.target.value);
     setRemainingLength(maxLength - kitchenDescription.length);
   };
+
   return (
-    <Formik>
+    <Formik
+      initialValues={{ profileData }}
+      onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(true);
+        const formData = new FormData();
+        formData.append("username", values.username);
+        formData.append("vendorname", values.vendorName);
+        formData.append("address", values.address);
+        formData.append("kitchenNumber", values.kitchenNumber);
+        formData.append("emailAddress", values.emailAddress);
+        formData.append("fullName", values.fullName);
+        formData.append("image", file);
+        formData.append("kitchenDescription", kitchenDescription);
+      }}
+    >
       {(props) => {
+        const { handleChange, handleSubmit, values } = props;
         return (
           <div className="profile-container">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="profile-head">
                 <div className="profile-header">
                   <h1>Welcome {glbData.username}!</h1>
                 </div>
                 <span className="profile-img-header">
-                  {/* remember to make this container circled */}
                   <span className="profile-img">
                     {/* <span className="img-container">
-
                         </span> */}
-                    <img src={icon} alt={icon} />
+                    <img
+                      src={showImage ? URL.createObjectURL(file) : icon}
+                      alt={icon}
+                    />
                   </span>
                   <div className="profile-details">
                     <h2>Profile</h2>
@@ -77,7 +111,7 @@ const Profile = () => {
                 </span>
               </div>
             </form>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="form-div">
                 <label htmlFor="username" className="label">
                   Username
@@ -86,9 +120,10 @@ const Profile = () => {
                 <input
                   type="text"
                   id="username"
-                  value={username}
-                  onChange={(event) => setUsername(event.target.value)}
+                  defaultValue={profileData.username}
+                  onChange={handleChange}
                   className="input-field"
+                  disabled
                 />
               </div>
 
@@ -100,8 +135,8 @@ const Profile = () => {
                 <input
                   type="text"
                   id="fullName"
-                  value={fullName}
-                  onChange={(event) => setFullName(event.target.value)}
+                  value={profileData.fullName}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -117,15 +152,25 @@ const Profile = () => {
                     htmlFor="Image1"
                     className={isImageUploaded ? "uploaded" : ""}
                   >
-                    {/* sucessful display fix needs to be better */}
                     <input
                       id="Image1"
                       name="image"
+                      value={values.image}
                       type="file"
                       accept="image/*"
                       style={{ display: "none" }}
                       onChange={handleImageUpload}
                     ></input>
+                    {showImage && (
+                      <div className="img-display">
+                        {isImageUploaded && (
+                          <img src={URL.createObjectURL(file)} alt="food-img" />
+                        )}
+                        {!isImageUploaded && (
+                          <img src={values.image} alt="food-img" />
+                        )}
+                      </div>
+                    )}
                     <label htmlFor="Image1">
                       <img src={icons} alt={icons} className="menu-inputImg" />
                     </label>
@@ -134,15 +179,15 @@ const Profile = () => {
               </div>
               <h2 className="businessHead">BUSINESS DETAILS</h2>
               <div className="form-div">
-                <label htmlFor="businessName" className="label">
+                <label htmlFor="vendorName" className="label">
                   Business Name
                 </label>
                 <div className="vertical-line">eathub.com.ng/</div>
                 <input
                   type="text"
                   id="username"
-                  value={businessName}
-                  onChange={(event) => setBusinessName(event.target.value)}
+                  defaultValue={profileData.vendorName}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form-div">
@@ -153,8 +198,8 @@ const Profile = () => {
                 <input
                   type="address"
                   id="username"
-                  value={address}
-                  onChange={(event) => setAddress(event.target.value)}
+                  defaultValue={profileData.address}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form-div">
@@ -165,8 +210,8 @@ const Profile = () => {
                 <input
                   type="numeric"
                   id="username"
-                  value={kitchenNumber}
-                  onChange={handleInputChange}
+                  defaultValue={profileData.kitchenNumber}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form-div">
@@ -177,8 +222,8 @@ const Profile = () => {
                 <input
                   type="email"
                   id="username"
-                  value={emailAddress}
-                  onChange={(event) => setEmailAddress(event.target.value)}
+                  defaultValue={profileData.emailAddress}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -192,7 +237,7 @@ const Profile = () => {
                   value={kitchenDescription}
                   placeholder="Add a short bio..."
                   maxLength={maxLength}
-                  onChange={handleChange}
+                  onChange={handleChangeDEsc}
                 ></textarea>
                 <div>{remainingLength} characters left</div>
               </div>
