@@ -120,6 +120,7 @@
   line-height: 29px;
   width: 260px;
 }
+
 .photo-p {
   font-family: "Montserrat";
   font-style: normal;
@@ -164,6 +165,7 @@
   font-size: 10px;
   line-height: 140%;
 }
+
 #kitchen-description {
   height: 150px;
   width: 50%;
@@ -178,7 +180,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 140%;
-  color: black;
+  color: hsl(0, 0%, 0%);
 }
 
 .businessHead {
@@ -220,7 +222,7 @@
   left: 0.5rem;
 }
 
-.img-display:not(:empty) + .Image1 {
+.img-display:not(:empty)+.Image1 {
   display: none;
 }
 
