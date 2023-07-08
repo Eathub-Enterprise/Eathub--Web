@@ -18,7 +18,7 @@
 
 .text-container span {
     font-weight: bold;
-    color: black;
+    color: hsl(0, 0%, 0%);
 }
 
 .text-container p {
@@ -32,9 +32,8 @@
 
 .text-container {
     /* max-width: 100px; */
-	/* margin: 0 auto; */
+    /* margin: 0 auto; */
     margin-left: 7%;
     margin-right: 7%;
-	padding: 40px;
+    padding: 40px;
 }
-   
