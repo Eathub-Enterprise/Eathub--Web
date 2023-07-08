@@ -433,6 +433,7 @@ button:hover {
     margin: 0 8rem;
     position: relative;
     padding-left: 1rem;
+    box-shadow: -6px 4px 14px 3px rgba(170, 170, 170, 0.5) inset;
 }
 
 .membership-input input[type="submit"] {
@@ -441,10 +442,11 @@ button:hover {
     position: absolute;
     right: 28%;
     border-radius: 20px;
-    background-color: var(--primary);
+    background-image: linear-gradient(180deg, #ff8324, #b2572a);
     border: 1px solid var(--primary);
-    color: white;
-    font-weight: bold;
+    color: rgba(255, 255, 255, 0.212);
+    font-weight: 700;
+    font-size: var(--body);
     cursor: pointer;
 }
 
