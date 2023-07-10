@@ -140,14 +140,22 @@ Header {
     margin-left: 6px;
 }
 
+/* .dropdown::before {
+    content: '';
+    filter: blur(20px);
+} */
+
 .dropdown {
     display: none;
     position: absolute;
-    background: transparent;
+    background: hsla(0, 0%, 100%, 0.5);
     min-width: 120px;
     height: 100px;
-    /* box-shadow: 0 8px 16px 0 rgba(130, 130, 130, 0.2); */
+    box-shadow: 0 8px 16px 0 rgba(130, 130, 130, 0.2);
     z-index: 1;
+    padding: .5%;
+    border: 2px solid transparent;
+    border-radius: 10px 10px 20px 20px;
 }
 
 .dropdwn-wrapper:hover .dropdown {
@@ -183,7 +191,7 @@ header img {
     font-weight: 800;
     letter-spacing: -2%;
     font-size: var(--header-1);
-    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 20px hsla(0, 0%, 0%, 0.8);
 }
 
 .hero-title h3 {
@@ -191,7 +199,7 @@ header img {
     width: 70%;
     font-size: var(--subtitle);
     font-weight: 800;
-    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 20px hsla(0, 0%, 0%, 0.8);
 }
 
 /* InfoHero Section */
@@ -491,7 +499,7 @@ header img {
     margin: 0 8rem;
     position: relative;
     padding-left: 1rem;
-    box-shadow: -6px 4px 14px 3px rgba(170, 170, 170, 0.5) inset;
+    box-shadow: -6px 4px 14px 3px hsla(0, 0%, 67%, 0.5) inset;
 }
 
 .membership-input input[type="submit"] {
