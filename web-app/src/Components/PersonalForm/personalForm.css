@@ -163,6 +163,10 @@ form .input-header {
     border-radius: 20px;
   }
 
+  .personal-form::-webkit-scrollbar {
+    width: 0.5em; /* adjust the width as needed */
+    display: none;
+  }
   .personal-form-main {
     width: auto;
     align-items: center;

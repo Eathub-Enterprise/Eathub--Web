@@ -8,11 +8,12 @@ import {
   FaSpa,
   FaEnvelope,
   FaMoneyBill,
+  
 } from "react-icons/fa";
-import e from "../../Assets/images/white logo.png";
+import imgg from "../../Assets/pngs/logo.svg";
 import text from "../../Assets/images/athub-white.png";
 import { useNavigate, NavLink } from "react-router-dom";
-import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
+import Person from "@mui/icons-material/PermIdentityTwoTone";
 
 const Sidebar = ({ children }) => {
   const navigate = useNavigate();
@@ -37,25 +38,20 @@ const Sidebar = ({ children }) => {
       name: "Menu",
       icon: <FaSpa />,
     },
-    // {
-    //     path: "/dashboard/analytics",
-    //     name: 'Analytics',
-    //     icon: <FaChartLine/>
-    // },
     {
       path: "/dashboard/message",
       name: "Message",
       icon: <FaEnvelope />,
     },
-    // {
-    //     path: "/dashboard/settings",
-    //     name: 'Settings',
-    //     icon: <FaCog/>
-    // },
     {
       path: "/dashboard/payouts",
       name: "Payouts",
       icon: <FaMoneyBill />,
+    },
+    {
+      path: "/dashboard/profile",
+      name: "Profile",
+      icon: <Person />,
     },
   ];
 
@@ -63,8 +59,7 @@ const Sidebar = ({ children }) => {
     <div className="container">
       <div className="sidebar">
         <div className="top-section">
-          <img loading="lazy" src={e} alt={e} className="Logo" />
-          <img loading="lazy" src={text} alt={text} />
+          <img loading="lazy" src={imgg} alt="logo" className="Logo" />
         </div>
         {menuItem.map((item) => (
           <NavLink
@@ -78,20 +73,9 @@ const Sidebar = ({ children }) => {
           </NavLink>
         ))}
         <span className="profile-space">
-          {/* need to fix an image tag here */}
-          <PermIdentityTwoToneIcon fontSize="large" />
-          <span>
-            <Link
-              className="profile-link"
-              activeclassname="active"
-              to="/dashboard/profile"
-            >
-              {glbData.vendorname}
-            </Link>
             <button onClick={handleLogOut} className="sidebar-button">
               LogOut
             </button>
-          </span>
         </span>
       </div>
       <main>{children}</main>

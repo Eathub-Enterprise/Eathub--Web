@@ -1,4 +1,6 @@
 .navbarPage {
+  position: relative;
+  height: 75px;
   .header {
     position: fixed;
     background: white;
@@ -9,7 +11,6 @@
     align-items: center;
     padding: 30px 20px;
     z-index: 1;
-
   }
 
   img {
@@ -81,8 +82,7 @@
     display: none;
   }
 
-  @media screen and (max-width:768px) {
-
+  @media screen and (max-width: 768px) {
     .navbarPage {
       width: 100%;
       overflow-x: hidden;
@@ -105,8 +105,6 @@
       min-height: 1024px;
       transition: 0.5s;
       z-index: -1;
-
-
     }
 
     .nav-menu.active {
@@ -142,24 +140,7 @@
       width: 60%;
     }
   }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* .navbar-logo {
   display: flex;

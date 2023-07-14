@@ -11,7 +11,7 @@ import { Snackbar } from "@mui/material";
 import { openSnackbar, closeSnackbar } from "../../Redux/actions";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { ReactComponent as EyeIcon } from "../../Assets/pngs/eyepass.svg";
-import { pipe } from "ramda";
+
 
 const Login = () => {
   // const [rememberUser, setRememberUser] = useState(null);
@@ -76,17 +76,18 @@ const Login = () => {
 
         return (
           <div className="login">
-            <Link to={"/signup"} className="backArrow">
-              <p className="arrowP">
-                <ArrowBackIosNewIcon />
-                <span>Sign up?</span>
-              </p>
-            </Link>
             <div className="login-container">
               <aside className="login-left">
+                <Link to={"/signup"} className="backArrow">
+                  <p className="arrowP">
+                    <ArrowBackIosNewIcon />
+                    <span>Sign up</span>
+                  </p>
+                </Link>
                 <main>
                   <h1>
-                    Dear Vendor!, <br />
+                    Dear Vendor!
+                    <br />
                     Welcome Back
                   </h1>
                   <h5>Enter your login details below</h5>
@@ -105,24 +106,20 @@ const Login = () => {
                     {errors.username && touched.username && (
                       <div className="input-feedback">{errors.username}</div>
                     )}
-                    <div className="password-input">
-                      <input
-                        id="password"
-                        name="password"
-                        placeholder="*********"
-                        type={passwordShown ? "text" : "password"}
-                        value={values.password}
-                        onChange={pipe(handleChange)}
-                        onBlur={handleBlur}
-                        className={
-                          errors.password && touched.password && "error"
-                        }
-                      />
-                      <EyeIcon
+                    <input
+                      id="password"
+                      name="password"
+                      placeholder="*********"
+                      type={passwordShown ? "text" : "password"}
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={errors.password && touched.password && "error"}
+                    />
+                    {/* <EyeIcon
                         onClick={() => setPasswordShown(!passwordShown)}
                         className={passwordShown ? "hide" : ""}
-                      />
-                    </div>
+                      /> */}
                     {errors.password && touched.password && (
                       <div className="input-feedback">{errors.password}</div>
                     )}
