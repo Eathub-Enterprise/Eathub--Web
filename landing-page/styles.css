@@ -18,6 +18,30 @@
     --mobile-font: 6px;
 }
 
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url("../assets/OpenSans-VariableFont_wdth\,wght.ttf");
+}
+
+* {
+    font-family: "Open Sans", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 140%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    min-width: fit-content;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 button {
     background-color: var(--primary);
     border: solid solid var(--primary);
@@ -42,30 +66,6 @@ button:hover {
     color: var(--primary);
 }
 
-@font-face {
-    font-family: 'Open Sans';
-    src: url("../assets/OpenSans-VariableFont_wdth\,wght.ttf");
-}
-
-* {
-    font-family: "Open Sans", Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 140%;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    min-width: fit-content;
-    scroll-behavior: smooth;
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-}
-
 .hero {
     width: 100%;
     min-height: 100vh;
@@ -81,7 +81,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    max-width: 100%;
+    width: 100%;
 }
 
 Header {
@@ -173,8 +173,8 @@ Header {
 }
 
 header img {
-    width: 130px;
-    height: 60px;
+    width: 128px;
+    height: 128px;
     object-fit: contain;
     margin-left: 2rem;
 }
@@ -602,4 +602,179 @@ ul {
     padding: 35px 100px 0px 0px;
     /* border: 5px solid red; */
     color: white;
+}
+
+/* responsiveness */
+
+@media only screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        width: 768px;
+    }
+
+    .hero {
+        background-size: cover;
+        min-width: 100vw;
+        min-height: 1024px;
+        /* object-fit: fill; */
+    }
+
+    .hero-inline {
+        min-height: calc(100% - 1rem);
+    }
+
+    .hero-title {
+        margin: 30% calc(10% - 30px) 0;
+    }
+
+    .hero-title,
+    .hero-title h3 {
+        width: 90%;
+        text-align: center;
+    }
+
+    .hero-title h1 {
+        font-size: 56px;
+    }
+
+    .hero-title h3 {
+        font-size: var(--header-4);
+        margin-left: 1.25rem;
+    }
+
+
+    .nav {
+        justify-content: center;
+        width: 65%;
+    }
+
+    .nav-link {
+        display: none;
+        /* width: 50%; */
+    }
+
+    .infoHero {
+        min-height: 1024px;
+    }
+
+    .infoHero-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin: 10% auto;
+    }
+
+    .infoHero-box:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    .infoHero-box-body p {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .shopHero {
+        min-height: 960px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .shopHero-container,
+    .showHero-container,
+    .deliveryHero-container,
+    .showHero-aside {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+    }
+
+    .shopHero-img img {
+        width: 100%;
+    }
+
+    .shopHero-aside {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .shopHero-btn {
+        margin-top: 2rem;
+    }
+
+    .showHero {
+        margin: 0 auto;
+        width: 90%;
+        min-height: 200px;
+    }
+
+    .showHero-aside,
+    .showHero-body {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .showHero-img {
+        display: none;
+    }
+
+    .showHero-btn button {
+        margin: 0 auto;
+    }
+
+    .deliveryHero {
+        margin-top: 6rem;
+        min-height: 960px;
+        margin-bottom: 0;
+    }
+
+    .deliveryHero-aside {
+        width: 90%;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    .downloadHero {
+        width: 100%;
+        height: 50vh;
+        margin-bottom: 0;
+    }
+
+    .downloadHero-Header>h1 {
+        font-size: 32px;
+    }
+
+    .downloadHero-container {
+        background: transparent;
+        color: #1D2832;
+    }
+
+    .downloadHero-img img {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+    }
+
+    .membership {
+        margin: 0;
+        width: 100%;
+    }
+
+    .membership-container {
+        background-size: 100%;
+    }
+
+    .membership-content {
+        height: 30%;
+    }
+
+    .membership-input {
+        margin: 0;
+    }
+
+    .membership-input input[type="submit"] {
+        width: 75px;
+        right: calc(100% - 33em);
+    }
+
 }
