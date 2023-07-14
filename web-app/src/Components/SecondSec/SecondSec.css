@@ -1,0 +1,63 @@
+.SecondSection {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  margin: auto 50px;
+}
+
+.secondContain {
+  display: flex;
+  gap: 100px;
+}
+
+.Mimg {
+  width: 600px;
+  height: 450px;
+}
+.secondP {
+  color: #252b42;
+  font-family: Montserrat;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.marketP {
+  color: #fa4a0c;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0.1px;
+}
+.marketP2 {
+  color: var(--text, #252b42);
+  font-family: Montserrat;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.marketP3 {
+  color: var(--second-text, #737373);
+  font-family: Montserrat;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.2px;
+  width: 96%;
+}
+
+.marketContainers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

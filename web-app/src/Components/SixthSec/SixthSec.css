@@ -1,0 +1,87 @@
+.SixthSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 50px;
+}
+.secondContainer {
+  display: flex;
+  width: 100%;
+  gap: 200px;
+}
+
+.sixP {
+  color: var(--text, #252b42);
+  font-family: Montserrat;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.marketContainer {
+  display: flex;
+  width: 100%;
+  gap: 300px;
+}
+
+.secondContainer img {
+  width: 400px;
+  height: 400px;
+}
+
+.login-inputs {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  border-radius: 5px;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.login-inputs h5 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.login-inputs label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.login-inputs input,
+.login-inputs textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #757575;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.suggest {
+  width: 100%;
+  height: 100px;
+  padding: 12px;
+  border: 2px solid #757575;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-inputs input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-inputs input[type="submit"]:hover {
+  background-color: #45a049;
+}

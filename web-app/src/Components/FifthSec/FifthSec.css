@@ -1,0 +1,22 @@
+.FifthSection {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.data {
+  color: var(--text, #252b42);
+  font-family: Montserrat;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.timeImg {
+  width: 100%;
+}
