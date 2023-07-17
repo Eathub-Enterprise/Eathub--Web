@@ -92,6 +92,12 @@ Header {
     /* margin-top: 2rem; */
 }
 
+.hero-button {
+    width: 100%;
+    display: none;
+}
+
+
 #top {
     transition: background-color 0.3s ease;
 }
@@ -120,6 +126,7 @@ Header {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
     margin-right: 20px;
 }
 
@@ -139,11 +146,6 @@ Header {
 .dropdwn a svg {
     margin-left: 6px;
 }
-
-/* .dropdown::before {
-    content: '';
-    filter: blur(20px);
-} */
 
 .dropdown {
     display: none;
@@ -215,6 +217,7 @@ header img {
     display: flex;
     flex-direction: row;
 }
+
 
 .infoHero-box {
     flex: 1;
@@ -642,6 +645,25 @@ ul {
         margin-left: 1.25rem;
     }
 
+    .hero-button {
+        width: 100%;
+        z-index: 99;
+        display: block;
+        margin: 2rem calc(40% - 5rem);
+    }
+
+    .hero-button-inner {
+        width: 45%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .hero-button .dropdwn {
+        background-color: white;
+        color: var(--primary);
+    }
+
 
     .nav {
         justify-content: center;
@@ -775,6 +797,23 @@ ul {
     .membership-input input[type="submit"] {
         width: 75px;
         right: calc(100% - 33em);
+    }
+
+}
+
+@media only screen and (min-width: 1024px) {
+    h1 {
+        font-size: 64px !important;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    h1 {
+        font-size: 76px !important;
+    }
+
+    .hero-title {
+        margin: 20% 5% 0%;
     }
 
 }
