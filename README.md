@@ -29,5 +29,5 @@ Merge Contents from another branch : git pull origin <branch-name>
 - VanillaCss should be used only.
 
 # Branches[Information]:
-Frontend Overhaul - Only Admin has access to this branch, it holds the static website template and it's majorly dedicated to storing that.
+Overhaul - An Isolated branch, Only Admin has access to this branch, it holds the static website template and it's majorly dedicated to storing that.
 Experiment - This should only be used for when we are working integrating a major feature/ service that could break the entire-app, consider this branch as a sort of sandbox for that.
