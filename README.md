@@ -25,4 +25,10 @@ React-RouterV6 Docs: https://reactrouter.com/en/v6.3.0/getting-started/installat
 4. Always create a pull request for code review and merging your changes.
 5. Ensure Your Pull-Request has been reviewed before commiting other changes.
 
-## ReduxJS/Toolkit used for State Management
+## React-Redux used for State Management
+- We use RTK as an upgrade in the feature.
+
+
+# Branches[Information]:
+Frontend Overhaul - Only Admin has access to this branch, it holds the static website template and it's majorly dedicated to storing that.
+Experiment - This should only be used for when we are working integrating a major feature/ service that could break the entire-app, consider this branch as a sort of sandbox for that.
