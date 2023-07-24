@@ -53,7 +53,7 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    box-shadow: 21px 35px 128px -5px rgb(0, 0, 7);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.24);
 }
 
 button a {
@@ -62,8 +62,11 @@ button a {
 }
 
 button:hover {
+    transform: translateY(-2px);
+    transition: box-shadow, transform 200ms ease-in-out 0s;
     background-color: rgb(228, 228, 228);
     color: var(--primary);
+    box-shadow: 21px 35px 128px -5px rgb(0, 0, 7);
 }
 
 .hero {
@@ -133,6 +136,11 @@ Header {
 .dropdwn {
     background-color: transparent;
     color: var(--primary);
+}
+
+.dropdwn:hover {
+    transform: translateY(1px) !important;
+    transition: transform 200ms ease-out 0s !important;
 }
 
 .dropdwn a {
