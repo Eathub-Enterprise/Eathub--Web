@@ -62,7 +62,7 @@ button a {
 }
 
 button:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     transition: box-shadow, transform 200ms ease-in-out 0s;
     background-color: rgb(228, 228, 228);
     color: var(--primary);
