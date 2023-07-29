@@ -72,8 +72,8 @@ button:hover {
 .hero {
     width: 100%;
     min-height: 100vh;
-    background-image: url(./img/background.png);
-    background-size: 100%;
+    background-image: url(./img/background.png), radial-gradient(var(--primary), var(--secondary));
+    background-size: cover;
     background-repeat: no-repeat;
     object-fit: contain;
     overflow-x: hidden;
