@@ -12,12 +12,7 @@ const ProtectedRoute = () => {
   const [chartData, setChartData] = useState({});
   const navigate = useNavigate();
 
-  // Checks if the Vendor has Logged in
-  const getVendorStatus = () => {
-    return JSON.parse(localStorage.getItem("vendorInfo"));
-  };
-
-  let userLoggedIn = getVendorStatus();
+  let userLoggedIn = authService.getVendorStatus();
 
   useEffect(() => {
     async function fetchData() {
@@ -35,7 +30,7 @@ const ProtectedRoute = () => {
     if (!userLoggedIn) {
       return navigate("/");
     }
-    getVendorStatus();
+    authService.getVendorStatus();
   }, []);
 
   return (
