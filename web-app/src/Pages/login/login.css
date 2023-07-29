@@ -12,7 +12,9 @@
   width: 100%;
   display: flex;
   margin: 0;
+  background-color: transparent;
 }
+
 .arrowP {
   display: flex;
   padding: 10px;
@@ -38,6 +40,7 @@
   top: 20%;
   left: 5%;
 }
+
 .login h1 {
   font-weight: 600;
   font-size: 32px;
@@ -65,6 +68,7 @@
   display: flex;
   gap: 10px;
   border-radius: 5px;
+  margin-top: 2rem;
 }
 
 #login-username {
@@ -73,6 +77,7 @@
   border: none;
   outline: none;
 }
+
 .password-input {
   display: flex;
   justify-content: space-between;
@@ -92,10 +97,12 @@
 }
 
 .password-input input:focus {
+  border: black;
   box-shadow: none;
   outline: none;
   border: 1px thin;
 }
+
 .password-input:focus {
   border: black;
 }
@@ -131,11 +138,17 @@
   }
 
   .backArrow {
+    position: absolute;
+    top: 0;
     text-decoration: none;
-    color: #fff;
     width: 100px;
     display: flex;
   }
+
+  .backArrow span {
+    color: white;
+  }
+
   .login-container {
     /* position: absolute; */
     width: 90vw;
@@ -147,14 +160,17 @@
     border-radius: 20px;
     opacity: 0.85;
   }
+
   .login-right {
     display: none;
   }
+
   .login-left main {
     margin: 1rem 2rem;
     max-width: 80%;
     max-height: 90vh;
   }
+
   .login-left form {
     display: flex;
     flex-direction: column;

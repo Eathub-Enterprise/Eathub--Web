@@ -17,13 +17,10 @@ const Login = () => {
   // const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const { open, message, duration } = useSelector((state) => state.snackbar);
-
   const handleClose = () => {
     dispatch(closeSnackbar());
   };
-
   const [passwordShown, setPasswordShown] = useState(false);
 
   return (
@@ -76,14 +73,14 @@ const Login = () => {
 
         return (
           <div className="login">
-            <Link to={"/signup"} className="backArrow">
-              <p className="arrowP">
-                <ArrowBackIosNewIcon />
-                <span>Sign up?</span>
-              </p>
-            </Link>
             <div className="login-container">
               <aside className="login-left">
+                <Link to={"/"} className="backArrow">
+                  <p className="arrowP">
+                    <ArrowBackIosNewIcon />
+                    <span>HomePage</span>
+                  </p>
+                </Link>
                 <main>
                   <h1>
                     Dear Vendor!, <br />
