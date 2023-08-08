@@ -86,7 +86,7 @@ const Profile = () => {
         const { handleChange, handleSubmit, values } = props;
         return (
           <div className="profile-container">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="secForm">
               <div className="profile-head">
                 <div className="profile-header">
                   <h1>Welcome {glbData.username}!</h1>
@@ -111,7 +111,7 @@ const Profile = () => {
                 </span>
               </div>
             </form>
-            <form>
+            <form className="secForm">
               <div className="form-div">
                 <label htmlFor="username" className="label">
                   Username

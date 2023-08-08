@@ -6,6 +6,11 @@
   align-items: flex-start;
 }
 
+.secForm{
+  width: 70vw;
+  margin-left: 50px;
+}
+
 .profile-head {
   margin: 1.5rem auto;
   width: 90%;
@@ -232,4 +237,11 @@
   object-fit: contain;
   cursor: pointer;
   margin-left: 2rem;
+}
+
+@media (max-width: 1000px){
+  .secForm{
+    width: 85vw;
+    margin-left: 50px;
+  }
 }
