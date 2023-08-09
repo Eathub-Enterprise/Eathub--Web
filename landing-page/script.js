@@ -16,10 +16,8 @@ function observeElements(elements, animationClass, threshold) {
         if (entry.isIntersecting) {
           entry.target.classList.add(animationClass);
           let data = entry.intersectionRect;
-          // console.log("I can detect you..", data);
         } else {
           entry.target.classList.remove(animationClass);
-          // console.log("I can't find you anymore");
         }
       });
     },
@@ -39,4 +37,8 @@ observeElements(animate, "scroll-animation", 0.1);
 const animate2 = document.querySelectorAll(".slide-in");
 observeElements(animate2, "slide-animation", 0.2);
 
-module.exports = { event, observeElements, animate, animate2 };
+// for the text-reveal
+const lineInnerElements = document.querySelectorAll(".line-inner");
+lineInnerElements.forEach((element, index) => {
+  element.style.animationDelay = `${index * 250}ms`;
+});
