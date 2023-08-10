@@ -706,21 +706,26 @@ ul {
 
     .hero-title {
         position: absolute;
-        top: 10%;
+        top: 25%;
+        left: 6%;
+        right: 6%;
+        width: 80%;
         z-index: 0;
         text-align: center;
+        margin: 0;
     }
 
     .hero-title h1 {
-        font-size: calc(100vw / 20);
-        width: 80%;
+        font-size: calc(100vw / 15);
+        width: 100%;
     }
 
     .hero-title h3 {
         font-size: calc(100vw / 25);
         padding: 0;
         margin-left: 0;
-        width: 80%;
+        width: 100%;
+        /* width: 70%; */
         /* margin-left: 1.25rem; */
     }
 
@@ -878,6 +883,180 @@ ul {
         right: calc(100% - 33em);
     }
 
+}
+
+@media only screen and (max-width: 425px) {
+    .hero-title {
+        position: absolute;
+        top: 30%;
+        left: 12.5%;
+        right: 12.5%;
+        width: 70%;
+        z-index: 0;
+        text-align: center;
+        margin: 0;
+    }
+
+    .hero-title h1 {
+        font-size: calc(100vw / 15);
+        width: 100%;
+    }
+
+    .hero-title h3 {
+        font-size: calc(100vw / 25);
+        padding: 0;
+        margin-left: 0;
+        width: 100%;
+        /* width: 70%; */
+        /* margin-left: 1.25rem; */
+    }
+
+    .hero-button {
+        width: 80%;
+        z-index: 99;
+        display: block;
+        margin: 5vw auto;
+    }
+
+    .hero-button-inner {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .infoHero-wrapper {
+        width: 70%;
+        margin: 5% 15%;
+    }
+
+    .infoHero {
+        min-height: 960px;
+    }
+
+    .infoHero-box h2 {
+        font-size: calc(100vw /10);
+    }
+
+    .shopHero {
+        min-height: 820px;
+        margin-top: 2rem;
+    }
+
+    .shopHero-container,
+    .showHero-container,
+    .deliveryHero-container {
+        height: 100%;
+        width: 70%;
+        margin: 5% 15%;
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+    }
+
+
+    .shopHero-img {
+        flex: .5;
+    }
+
+    .shopHero-aside {
+        width: 100%;
+    }
+
+    .showHero {
+        min-height: 500px;
+    }
+
+    .deliveryHero {
+        margin-bottom: 4rem;
+    }
+
+    .deliveryHero {
+        min-height: 500px;
+    }
+
+    .deliveryHero-img {
+        display: none;
+    }
+
+    .downloadHero,
+    .membership {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .hero-title {
+        position: absolute;
+        top: 25%;
+        left: 8%;
+        right: 8%;
+        width: 80%;
+        z-index: 0;
+        text-align: center;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .hero-title {
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        right: 5%;
+        width: 90%;
+        z-index: 0;
+        text-align: center;
+        margin: 0;
+    }
+
+    .infoHero {
+        min-height: 960px;
+    }
+
+    .infoHero-wrapper {
+        width: 70%;
+        margin: 5% 15%;
+    }
+
+    .infoHero-box h2 {
+        font-size: calc(100vw /12);
+    }
+
+    .infoHero-box-body p {
+        width: 80%;
+    }
+
+    .shopHero-container,
+    .showHero-container,
+    .deliveryHero-container {
+        height: 100%;
+        width: 70%;
+        margin: 5% 15%;
+        display: flex;
+        flex-direction: column;
+        text-align: start
+    }
+
+    .shopHero-header p,
+    .showHero-header p,
+    .deliveryHero-header p {
+        font-size: calc(100vw /12);
+    }
+
+    .shopHero {
+        margin-top: 6rem;
+    }
+
+    .deliveryHero-aside,
+    .showHero-aside {
+        align-items: flex-start;
+        text-align: start;
+    }
+
+    .footer-logo {
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
