@@ -1,11 +1,11 @@
 import React from "react";
-import AboutHeroImg from "../../../Components/AboutHeroImg/AboutHeroImg";
 import "./index.css";
+import PrivacyHeroImg from "../../../Components/PrivacyHeroImg/PrivacyHeroImg";
 
 const PrivacyPolicy = () => {
   return (
     <div className="PrivacyPage">
-      <AboutHeroImg heading="Privacy Policy" />
+      <PrivacyHeroImg heading="Privacy Policy" />
 
       <div className="about-us-container">
         <div className="text-container">
