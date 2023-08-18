@@ -20,7 +20,7 @@ const Menu = () => {
       await fetchData();
     }catch (err) {
       console.error(err);
-    } finally {
+    }finally {
       setLoading(false);
     }
   }

@@ -112,13 +112,17 @@
   .sidebar {
     width: 0;
     transition: width 0.2s ease-out;
-    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 1000;
   }
 
   .sidebar.open {
     width: 205px; /* Adjust the width as needed */
-    overflow-y: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    overflow-x: hidden;
   }
+
 
   .menu-icon {
     display: block;
@@ -135,11 +139,4 @@
     color: #ff8323;
   }
 
-  .main-content {
-    transition: margin-left 0.3s ease-out;
-  }
-
-  .main-content.shift {
-    margin-left: 250px; /* Adjust the value to match the sidebar width */
-  }
 }
