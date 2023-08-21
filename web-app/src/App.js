@@ -26,6 +26,9 @@ import PageNotFound from "./Pages/pagenotfound/PageNotFound";
 import AboutUs from "./Pages/misc/Links/AboutUs";
 import PrivacyPolicy from "./Pages/misc/Links/PrivacyPolicy";
 import Terms from "./Pages/misc/Links/Terms";
+import Account from "./Pages/misc/Support/Account";
+import Feedback from "./Pages/misc/Support/Feedback"
+import Help from "./Pages/misc/Support/Help"
 import Preloader from "./layouts/Preloader/Preloader";
 
 // lazy-loading some of these components
@@ -77,6 +80,9 @@ function App() {
           <Route path="about-us" element={<AboutUs />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<Terms />} />
+          <Route path="account" element={<Account />} />
+          <Route path="feedback" element={<Feedback />} />
+          <Route path="help" element={<Help />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

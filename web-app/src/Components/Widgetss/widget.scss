@@ -4,17 +4,13 @@
     margin: 1rem auto;
     .widget {
         display: flex;
-        /* flex-direction: row; */
         justify-content: space-between;
-        flex: 1;
         padding: 10px;
         box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
-        height: 120px;
+        height: 160px;
         width: 85%;
         margin-right: 0;
-        // border: 5px solid red;
-        // gap: 15px;
     }
 
     .left {

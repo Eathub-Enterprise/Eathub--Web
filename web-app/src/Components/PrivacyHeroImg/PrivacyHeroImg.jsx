@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import './AboutHeroImg.css'
+import './PrivacyHeroImg.css'
 
-class AboutHeroImg extends Component {
+class PrivacyHeroImg extends Component {
     render() {
         return (
-
-                <div className='hero-abimg'>
+                <div className='hero-img'>
                     
                     <div className='heading'>
                         <h1>{this.props.heading}</h1>
@@ -18,4 +17,4 @@ class AboutHeroImg extends Component {
     }
 }
 
-export default AboutHeroImg;
+export default PrivacyHeroImg;

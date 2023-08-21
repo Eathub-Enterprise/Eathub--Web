@@ -7,8 +7,9 @@
 
 .payout-navbar {
     margin-bottom: 4rem;
-    width: 60%;
+    width: 65vw;
     height: 3rem;
+    margin-left: 50px;
 }
 
 .payout-search{
@@ -27,4 +28,18 @@
 
 .payout-table{
     height: 100%;
+    width: 65vw;
+    margin-left: 50px;
+}
+
+@media (max-width: 1000px){
+    .payout-navbar{
+        margin-left: 50px;
+        width: 80vw;
+    }
+
+    .payout-table{
+        margin-left: 50px;
+        width: 80vw;
+    }
 }
