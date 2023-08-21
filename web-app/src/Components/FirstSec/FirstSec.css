@@ -1,5 +1,5 @@
 .FirstSection {
-  height: 751px;
+  height: 80vh;
   background: url("../../Assets/images/foods.png");
   background-size: cover;
   background-position: center;
@@ -10,18 +10,18 @@
   width: 100%;
   overflow-x: hidden;
   gap: 10px;
-  padding-bottom: 100px;
-  margin-bottom: 100px;
+  padding: 20px;
+  margin-bottom: 5%;
 }
 
 .heroP {
   font-family: Open Sans;
-  font-size: 50px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: -1.28px;
-  width: 70%;
+  width: 90%;
   text-align: center;
   color: #fff;
 }
@@ -34,25 +34,47 @@
   color: #fff;
   text-align: center;
   font-family: Montserrat;
-  font-size: 25px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.64px;
-  width: 60%;
+  width: 90%;
 }
 
 .firstbtn {
   border-radius: 20px;
   border: 2px solid #fff;
   background: var(--primary, #ff8323);
-  padding: 20px 30px;
+  padding: 15px 25px;
   color: #fff;
   font-family: Montserrat;
-  font-size: 20px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   letter-spacing: 0.8px;
   text-transform: uppercase;
+}
+
+
+@media (max-width: 768px) {
+  .FirstSection {
+    height: auto;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroP {
+    font-size: 1.5rem;
+  }
+
+  .heroP2 {
+    font-size: 1rem;
+  }
+
+  .firstbtn {
+    padding: 10px 20px; /* Adjust padding for smaller screens */
+  }
 }

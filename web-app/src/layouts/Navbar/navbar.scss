@@ -21,6 +21,7 @@
     object-fit: scale-down;
     height: 20%;
     width: 20%;
+    border: 5px solid red;
   }
 
   .btn-contained {
@@ -92,6 +93,7 @@
     .hamburger {
       display: block;
       margin-right: 30px;
+     
     }
 
     .nav-menu {
