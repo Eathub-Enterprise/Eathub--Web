@@ -29,10 +29,9 @@ const ProtectedRoute = () => {
       setChartData(profileData);
       localStorage.setItem("vendor-info", JSON.stringify(profileData));
     }
-    
-    fetchData();
+
     // always change back to !userLoggedIn
-    if (!userLoggedIn) {
+    if (userLoggedIn) {
       return navigate("/");
     }
     getVendorStatus();
