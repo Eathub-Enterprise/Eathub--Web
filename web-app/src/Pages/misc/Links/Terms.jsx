@@ -1,11 +1,11 @@
 import React from "react";
-import AboutHeroImg from "../../../Components/AboutHeroImg/AboutHeroImg";
 import "./index.css";
+import TermsHeroImg from "../../../Components/TermsHeroImg/TermsHeroImg";
 
 const Terms = () => {
   return (
     <div className="TermsPage">
-      <AboutHeroImg heading="Terms & Agreement" />
+      <TermsHeroImg heading="Terms & Agreement" />
 
       <div className="about-us-container">
         <div className="text-container">

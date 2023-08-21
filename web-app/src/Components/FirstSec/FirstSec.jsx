@@ -11,4 +11,4 @@ const FirstSec = () => {
   )
 }
 
-export default FirstSec
+export default FirstSec;

@@ -4,7 +4,7 @@ import supportImage from "../../../Assets/images/undermain.png";
 import { Link } from "react-router-dom";
 import "./sitemaintenance.css";
 
-const Feedback = () => {
+const Support = () => {
   return (
     
           <div className="maintainPage">
@@ -22,4 +22,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback;
+export default Support;
