@@ -56,10 +56,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
+
           <Route path="signup" element={<Formpage />}>
             <Route index element={<PersonalForm />} />
             <Route path="business" element={<BusinessForm />} />
           </Route>
+
           <Route path="login" element={<Login />} />
           <Route path="/dashboard" element={<ProtectedRoute />}>
             <Route index element={<Overview />} />
@@ -74,6 +76,7 @@ function App() {
             <Route path="payouts" element={<Payout />} />
             <Route path="profile" element={<Profile />} />
           </Route>
+
           <Route path="about-us" element={<AboutUs />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<Terms />} />
