@@ -27,7 +27,7 @@ const ProtectedRoute = () => {
 
     fetchData();
     // always change back to !userLoggedIn
-    if (!userLoggedIn) {
+    if (userLoggedIn) {
       return navigate("/");
     }
     authService.getVendorStatus();

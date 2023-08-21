@@ -9,7 +9,8 @@
 .menu-title {
   margin-left: 2rem;
   margin-bottom: 2rem;
-  width: 95%;
+  width: 70vw;
+  margin-left: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -17,9 +18,9 @@
 
 .menu-table {
   height: 80vh;
-  width: 85%;
-  margin: 0 auto;
-  /* padding: 2rem; */
+  align-items: center;
+  width: 70vw;
+  margin-left: 70px;
   border: 2px solid transparent;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgb(154, 153, 153);
@@ -207,4 +208,16 @@ td {
 
 .empty-menu h1 {
   margin-bottom: 2rem;
+}
+
+@media (max-width:1000px){
+  .empty-menu{
+    position: absolute;
+    left: 30%;
+  }
+
+  .menu-table, .menu-title{
+    width: 80vw;
+    margin-left: 70px;
+  }
 }

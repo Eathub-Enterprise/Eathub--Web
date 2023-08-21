@@ -1,7 +1,11 @@
 /* Mixed up classes for both ORder.jsx & HistoryOrders.jsx here */
 
-.order {
-  margin: 2rem 2rem;
+.menu-section{
+  display: flex;
+  margin-left: 300px;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
 }
 
 .order-head {
@@ -166,4 +170,11 @@ td {
 
 .order-table {
   margin-top: 3rem;
+}
+
+
+@media (max-width: 1000px){
+  .menu-section{
+    margin-left: 200px;
+  }
 }
