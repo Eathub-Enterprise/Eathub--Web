@@ -1,9 +1,10 @@
-const navbar = document.getElementById("top");
+const navbar = document.getElementById("nav");
 const scrollOffset = window.innerHeight;
 
 let event = window.addEventListener("scroll", () => {
   if (window.scrollY > scrollOffset) {
     navbar.classList.add("scrolled");
+    console.log("scroll added!");
   } else {
     navbar.classList.remove("scrolled");
   }
