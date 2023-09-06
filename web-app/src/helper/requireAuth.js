@@ -33,7 +33,7 @@ const ProtectedRoute = () => {
     fetchProfileData();
 
     // always change back to !userLoggedIn
-    if (!userLoggedIn) {
+    if (userLoggedIn) {
       return navigate("/");
     }
   }, []);
