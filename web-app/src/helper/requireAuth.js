@@ -3,9 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
 import Preloader from "../layouts/Preloader/Preloader";
-import authHeader from "../services/auth/authHeader";
 import authService from "../services/auth/authService";
-// import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
 
 export const ChartDataContext = createContext();
 
@@ -14,10 +12,7 @@ const ProtectedRoute = () => {
   const navigate = useNavigate();
 
   // Checks if the Vendor has Logged in from token stored in LocalStorage
-  const getVendorStatus = () => {
-    return JSON.parse(localStorage.getItem("vendor"));
-  };
-  let userLoggedIn = getVendorStatus();
+  let userLoggedIn = authService.getVendorStatus();
 
   useEffect(() => {
     // grab & make the data from the profile endpoint available in the dashboard globally
@@ -34,7 +29,7 @@ const ProtectedRoute = () => {
 
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
-      return navigate("/");
+      return navigate("/login");
     }
   }, []);
 
