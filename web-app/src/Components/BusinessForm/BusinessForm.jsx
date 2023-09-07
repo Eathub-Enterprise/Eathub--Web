@@ -25,10 +25,6 @@ const BusinessForm = (e) => {
     (state) => state.auth
   );
 
-  if (loading) {
-    return <Preloader />;
-  }
-
   return (
     <Formik
       initialValues={{
@@ -52,6 +48,8 @@ const BusinessForm = (e) => {
             console.log("Vendor Already Exists!");
           } else if (error) {
             console.error(error);
+          } else if (loading) {
+            return <Preloader />;
           }
         } catch (error) {
           console.error("Error During Registration", error);
