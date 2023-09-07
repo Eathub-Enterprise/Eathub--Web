@@ -2,12 +2,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { vendorLogin, vendorRegister } from "./authAction";
 
+// initialize userToken from local storage
+const auth_token = localStorage.getItem("vendor")
+  ? localStorage.getItem("vendor")
+  : null;
+
 const initialState = {
   loading: false,
   vendor: null,
   error: null,
   success: false,
-  auth_token: {},
+  auth_token,
 };
 
 const authSlice = createSlice({
@@ -42,7 +47,12 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    setCredentials: (state, { payload }) => {
+      state.token = payload;
+    },
+    logout: (state) => {},
   },
 });
 
+export const { logout, setCredentials } = authSlice.actions;
 export default authSlice.reducer;
