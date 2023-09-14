@@ -8,7 +8,6 @@ export const authApi = createApi({
     prepareHeaders: (Headers, { getState }) => {
       // const token = getState().auth.token;
       const token = JSON.parse(localStorage.getItem("vendor"));
-      console.log(token);
       if (token) {
         Headers.set("authorization", `Token ${token.auth_token}`);
         return Headers;
