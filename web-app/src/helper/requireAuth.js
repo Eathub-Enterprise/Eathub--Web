@@ -4,12 +4,17 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
 import Preloader from "../layouts/Preloader/Preloader";
 import authService from "../services/auth/authService";
+import { useGetVendorProfileQuery } from "../model/auth/authServices";
 
 export const ChartDataContext = createContext();
 
 const ProtectedRoute = () => {
   const [chartData, setChartData] = useState({});
   const navigate = useNavigate();
+
+  const { data, isFetching } = useGetVendorProfileQuery("userDetails", {});
+
+  console.log(data); // user object
 
   // Checks if the Vendor has Logged in from token stored in LocalStorage
   let userLoggedIn = authService.getVendorStatus();
