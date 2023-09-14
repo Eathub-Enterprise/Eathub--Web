@@ -12,7 +12,7 @@ const ProtectedRoute = () => {
   const [chartData, setChartData] = useState({});
   const navigate = useNavigate();
 
-  const { data, isFetching } = useGetVendorProfileQuery("userDetails", {});
+  const { data, isFetching } = useGetVendorProfileQuery("userDetails", {refetchOnReconnect: true});
 
   console.log(data); // user object
 

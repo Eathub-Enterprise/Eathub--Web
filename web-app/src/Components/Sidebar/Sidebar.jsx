@@ -14,7 +14,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
   const navigate = useNavigate();
-  const glbData = useContext(ChartDataContext);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleToggleSidebar = () => {
