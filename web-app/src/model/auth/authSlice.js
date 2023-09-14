@@ -48,7 +48,7 @@ const authSlice = createSlice({
       state.error = payload;
     },
     setCredentials: (state, { payload }) => {
-      state.token = payload;
+      state.auth_token = payload;
     },
     logout: (state) => {},
   },
