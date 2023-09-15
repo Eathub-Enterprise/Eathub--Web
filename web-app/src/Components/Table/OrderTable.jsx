@@ -11,8 +11,9 @@ const OrderTable = () => {
     async function fetchData() {
       try {
         const response = await authService.getOrderedMeals();
-        if (Array.isArray(response.data)) {
-          setTableData(response.data);
+        if (response) {
+          setTableData(response.data.results);
+          console.log(response.data.results);
         } else {
           setTableData([]);
         }
@@ -22,17 +23,25 @@ const OrderTable = () => {
         console.log(err);
       }
     }
+
     fetchData();
   }, []);
 
   // when data is loading
   if (loading) {
-    return <></>;
+    return <>Loading Orders</>;
   }
 
   // in the case of empty data
   if (Object.keys(tableData).length === 0) {
-    return <></>;
+    return <div className="order-contain">
+      <h5>Empty Orders!</h5>
+      <table>
+        <tbody>
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>;
   }
 
   return (

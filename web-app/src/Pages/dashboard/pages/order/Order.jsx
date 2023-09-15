@@ -4,9 +4,6 @@ import authService from "../../../../services/auth/authService";
 import "./order.css";
 import foodImg from "../../../../Assets/images/foodImg.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
-import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
 import EmptyOrder from "./EmptyOrder";
 
 const Order = () => {
@@ -14,12 +11,6 @@ const Order = () => {
   const [tableData, setTableData] = useState([]);
   const [status, setStatus] = useState("");
 
-  // handling notifications for now
-  const dispatch = useDispatch();
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-  const handleClose = () => {
-    dispatch(closeSnackbar());
-  };
 
   /* To decide whether to accept or decline
  orders coming through for vendors */
@@ -30,10 +21,8 @@ const Order = () => {
     console.log(status);
 
     try {
-      await authService.decideOrderStatus(id, state, meal); // Corrected parameter
+      await authService.decideOrderStatus(id, state, meal);
       console.log("Status Inputted!", meal);
-      dispatch(openSnackbar(`Order has been ${state}`, 1000));
-
       // Remove the row from the table data
       const updatedTableData = [...tableData];
       updatedTableData.splice(index, 1);
@@ -41,7 +30,6 @@ const Order = () => {
       authService.getOrderedMeals();
     } catch (error) {
       console.log("Something must be genuinely wrong : ", error);
-      dispatch(openSnackbar(`${state} Order Failed!, Try again`, 3000)); // Corrected parameter
     }
   };
 
@@ -145,12 +133,6 @@ const Order = () => {
           </tbody>
         </table>
       </div>
-      <Snackbar
-        open={open}
-        message={message}
-        autoHideDuration={duration}
-        onClose={handleClose}
-      />
     </div>
   );
 };

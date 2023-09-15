@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { ChartDataContext } from "../../helper/requireAuth";
+import React, { useState } from "react";
 import "./sidebar.css";
 import {
   FaThLarge,
