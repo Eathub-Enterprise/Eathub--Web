@@ -3,9 +3,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
 import Preloader from "../layouts/Preloader/Preloader";
-import authHeader from "../services/auth/authHeader";
 import authService from "../services/auth/authService";
-// import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
+import { useGetVendorProfileQuery } from "../model/auth/authServices";
 
 export const ChartDataContext = createContext();
 
@@ -13,28 +12,18 @@ const ProtectedRoute = () => {
   const [chartData, setChartData] = useState({});
   const navigate = useNavigate();
 
+  const { data, isFetching } = useGetVendorProfileQuery("userDetails", {refetchOnReconnect: true});
+
+  console.log(data); // user object
+
   // Checks if the Vendor has Logged in from token stored in LocalStorage
-  const getVendorStatus = () => {
-    return JSON.parse(localStorage.getItem("vendor"));
-  };
-  let userLoggedIn = getVendorStatus();
+  let userLoggedIn = authService.getVendorStatus();
 
   useEffect(() => {
-    // grab & make the data from the profile endpoint available in the dashboard globally
-    async function fetchProfileData() {
-      try {
-        const response = await authService.getVendorProfile();
-        setChartData(response.data);
-        localStorage.setItem("vendor-info", JSON.stringify(response.data));
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchProfileData();
-
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
-      return navigate("/");
+      setChartData(data);
+      return navigate("/login");
     }
   }, []);
 

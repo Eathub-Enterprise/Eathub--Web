@@ -3,24 +3,20 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
-import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
 import img from "../../Assets/images/login-img.png";
 import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../Redux/actions";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { ReactComponent as EyeIcon } from "../../Assets/pngs/eyepass.svg";
-
+import { vendorLogin } from "../../model/auth/authAction";
+import Preloader from "../../layouts/Preloader/Preloader";
 
 const Login = () => {
-  // const [rememberUser, setRememberUser] = useState(null);
+  /// const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-  const handleClose = () => {
-    dispatch(closeSnackbar());
-  };
+
+  // Handling state with RTK
+  const { loading, error } = useSelector((state) => state.auth);
   const [passwordShown, setPasswordShown] = useState(false);
 
   return (
@@ -32,24 +28,19 @@ const Login = () => {
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
         try {
-          console.log("Submit");
-          const loginStatus = await authService.vendorLogin(
-            values.username,
-            values.password
-          );
-          if (loginStatus) {
-            dispatch(openSnackbar("Login successful!", 50));
-            navigate("/dashboard");
-            localStorage.setItem("login", values.username);
-          } else {
-            dispatch(openSnackbar("Login failed. Please try again.", 3000));
+          const loginStatus = await dispatch(vendorLogin(values));
+          console.log("submit!", loginStatus);
+          navigate("/dashboard");
+          if (error) {
+            console.error("Error from Store: ", error);
+            navigate("/login");
+          } else if (loading) {
+            return <Preloader />;
           }
         } catch (error) {
-          console.log("Error", error);
+          console.error("Error Within Component");
         } finally {
-          // setTimeout(() => {
-          //   window.location.reload();
-          // }, 10000);
+          setSubmitting(false);
         }
       }}
       //  Yup validation
@@ -137,12 +128,6 @@ const Login = () => {
                     <Link className="pwd-link" to="">
                       Forgot Password?
                     </Link>
-                    <Snackbar
-                      open={open}
-                      message={message}
-                      autoHideDuration={duration}
-                      onClose={handleClose}
-                    />
                   </form>
                 </main>
               </aside>
