@@ -12,7 +12,7 @@ const ProtectedRoute = () => {
   const [chartData, setChartData] = useState({});
   const navigate = useNavigate();
 
-  const { data, isFetching } = useGetVendorProfileQuery("userDetails", {});
+  const { data, isFetching } = useGetVendorProfileQuery("userDetails", {refetchOnReconnect: true});
 
   console.log(data); // user object
 
@@ -20,20 +20,9 @@ const ProtectedRoute = () => {
   let userLoggedIn = authService.getVendorStatus();
 
   useEffect(() => {
-    // grab & make the data from the profile endpoint available in the dashboard globally
-    async function fetchProfileData() {
-      try {
-        const response = await authService.getVendorProfile();
-        setChartData(response.data);
-        localStorage.setItem("vendor-info", JSON.stringify(response.data));
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchProfileData();
-
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
+      setChartData(data);
       return navigate("/login");
     }
   }, []);

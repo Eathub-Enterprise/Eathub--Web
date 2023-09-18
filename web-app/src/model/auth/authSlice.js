@@ -28,7 +28,6 @@ const authSlice = createSlice({
     [vendorLogin.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.vendor = payload;
-      state.token = payload.auth_token;
     },
     [vendorLogin.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -48,9 +47,8 @@ const authSlice = createSlice({
       state.error = payload;
     },
     setCredentials: (state, { payload }) => {
-      state.auth_token = payload;
-    },
-    logout: (state) => {},
+      state.token = payload;
+    }
   },
 });
 

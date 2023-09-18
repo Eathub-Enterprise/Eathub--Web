@@ -6,9 +6,10 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: URL,
     prepareHeaders: (Headers, { getState }) => {
-      const token = getState().auth.auth_token;
+      // const token = getState().auth.token;
+      const token = JSON.parse(localStorage.getItem("vendor"));
       if (token) {
-        Headers.set("authorization", `Token ${token}`);
+        Headers.set("authorization", `Token ${token.auth_token}`);
         return Headers;
       }
     },
