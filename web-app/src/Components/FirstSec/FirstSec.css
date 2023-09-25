@@ -1,5 +1,5 @@
 .FirstSection {
-  height: 80vh;
+  height: 100vh;
   background: url("../../Assets/images/foods.png");
   background-size: cover;
   background-position: center;
@@ -15,7 +15,7 @@
 }
 
 .heroP {
-  font-family: Open Sans;
+  font-family: Montserrat;
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -58,23 +58,3 @@
 }
 
 
-@media (max-width: 768px) {
-  .FirstSection {
-    height: auto;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .heroP {
-    font-size: 1.5rem;
-  }
-
-  .heroP2 {
-    font-size: 1rem;
-  }
-
-  .firstbtn {
-    padding: 10px 20px; /* Adjust padding for smaller screens */
-  }
-}

@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   padding: 50px;
+  width: 100vw;
 }
 
 .FourthSection h2 {
@@ -15,6 +16,9 @@
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.96px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 
 .FourthSection p {
@@ -24,5 +28,18 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  line-height: 40px; 
+  line-height: 35px; 
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  padding-top: 0;
+}
+
+@media screen and (max-width: 768px){
+  .FourthSection p{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+  }
 }
