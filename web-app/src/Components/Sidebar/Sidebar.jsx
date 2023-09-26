@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { ChartDataContext } from "../../helper/requireAuth";
+import React, { useState } from "react";
 import "./sidebar.css";
 import {
   FaThLarge,
@@ -14,7 +13,6 @@ import { useNavigate, NavLink } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
   const navigate = useNavigate();
-  const glbData = useContext(ChartDataContext);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleToggleSidebar = () => {

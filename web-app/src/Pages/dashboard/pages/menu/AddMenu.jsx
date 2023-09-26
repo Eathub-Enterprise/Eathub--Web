@@ -5,9 +5,7 @@ import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import authService from "../../../../services/auth/authService";
-import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
+
 
 const AddMenu = () => {
   const navigate = useNavigate();
@@ -16,13 +14,6 @@ const AddMenu = () => {
   const [file, setFile] = useState(null);
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [showImage, setShowImage] = useState(false);
-
-  // handling notifications for now
-  const dispatch = useDispatch();
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-  const handleClose = () => {
-    dispatch(closeSnackbar());
-  };
 
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
@@ -81,13 +72,11 @@ const AddMenu = () => {
           console.log("it Worked!", formData);
           authService.getMealList();
           if (response) {
-            dispatch(openSnackbar(`Meal Creation Successful`, 1000));
             navigate("/dashboard/menu");
           } else {
             console.log("Meal has a bug!");
           }
         } catch (error) {
-          dispatch(openSnackbar(`Unsuccessful Operation, Try again`, 1000));
           navigate("/dashboard/menu");
           console.log("The Values are wrong or Incorrect!: ", error);
         } finally {
@@ -312,12 +301,6 @@ const AddMenu = () => {
                   </div>
                 </div>
               </div>
-              <Snackbar
-                open={open}
-                message={message}
-                autoHideDuration={duration}
-                onClose={handleClose}
-              />
             </form>
           </div>
         );

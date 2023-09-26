@@ -4,22 +4,12 @@ import authService from "../../../../services/auth/authService";
 import { Formik } from "formik";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
-import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
 
 const EditMenu = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [mealItems, setMealItems] = useState({ image: "" });
   const navigate = useNavigate();
-
-  // handling notifications for now - remind to update
-  const dispatch = useDispatch();
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-  const handleClose = () => {
-    dispatch(closeSnackbar());
-  };
 
   // to grab the catgeories need for the Meal Category Select tag
   const [category, setCategory] = useState([]);
@@ -119,18 +109,16 @@ const EditMenu = () => {
               navigate("/dashboard/menu");
               authService.getMealList();
               if (response) {
-                dispatch(openSnackbar("Meal Updated!", 1000));
+                console.log("it's sent!")
               } else {
-                dispatch(openSnackbar("Meal Update Error!", 1000));
+                console.log("There's an issue with it!")
               }
             },
             (error) => {
-              dispatch(openSnackbar("Error updating Meal, Try Again", 1000));
               console.log("The Values are wrong or Incorrect!: ", error);
             }
           );
         } catch (err) {
-          dispatch(openSnackbar("Something went wrong!", 1000));
           console.log("Something seems to wrong with the request: ", err);
         } finally {
           setSubmitting(false);
@@ -352,12 +340,6 @@ const EditMenu = () => {
                 </div>
               </div>
             </form>
-            <Snackbar
-              open={open}
-              message={message}
-              autoHideDuration={duration}
-              onClose={handleClose}
-            />
           </div>
         );
       }}

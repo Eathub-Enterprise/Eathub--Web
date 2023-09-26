@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-// import e from "../../Assets/images/logo 1.png";
 import e from "../../Assets/images/EathubL.png";
+
 import "./navbar.scss";
 
 const Navbar = () => {
@@ -15,6 +15,7 @@ const Navbar = () => {
         <Link to="/">
           <img loading='lazy' src={e} alt={e} className="large-e" />
           {/* <img loading='lazy' src={text} alt={text} /> */}
+
         </Link>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li>
