@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import e from "../../Assets/images/EathubL.png";
+import e from "../../Assets/pngs/logo.png";
 
 import "./navbar.scss";
 
@@ -14,8 +14,6 @@ const Navbar = () => {
       <div className="header">
         <Link to="/">
           <img loading='lazy' src={e} alt={e} className="large-e" />
-          {/* <img loading='lazy' src={text} alt={text} /> */}
-
         </Link>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li>
