@@ -57,4 +57,18 @@
   text-transform: uppercase;
 }
 
+@media screen and (orientation: portrait) {
+  .FirstSection {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
 
+  .heroP {
+    font-size: calc(3vw + 12px);
+  }
+
+  .heroP2 {
+    font-size: calc(1.5vw + 12px);
+  }
+}

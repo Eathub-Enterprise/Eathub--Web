@@ -7,7 +7,7 @@ const SixthSec = () => {
 
   return (
     <div className="SixthSection">
-      <p className="sixP">Want to know <span className="Pcolours">Eathub?</span></p>
+      <p className="sixP">Want to know more about <span className="Pcolours">Eathub?</span></p>
       <div className="secondContainer">
         <img src={Faq} alt="A marketplace"  />
         <div className="marketContainer">
