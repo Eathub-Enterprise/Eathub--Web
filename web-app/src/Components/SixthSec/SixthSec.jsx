@@ -9,7 +9,7 @@ const SixthSec = () => {
     <div className="SixthSection">
       <p className="sixP">Want to know <span className="Pcolours">Eathub?</span></p>
       <div className="secondContainer">
-        <img src={Faq} alt="A marketplace" />
+        <img src={Faq} alt="A marketplace"  />
         <div className="marketContainer">
           <form className="login-inputs">
             <input
