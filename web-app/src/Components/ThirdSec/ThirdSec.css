@@ -48,31 +48,37 @@
 }
 
 
-@media screen and  (max-width: 768px){
-  .ThirdP2{
-    font-size: 20px;
-  }
-  .ThirdP3{
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0.1px;
-    width: 100%;
-    color: black;
+@media screen and (orientation: portrait) {
+  .ThirdSection {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding: 5vw;
   }
 
-  .mobimg{
-    width: 50%;
-    border-radius: 15px;
-    height: auto;
-    margin-left: 0;
+  .thirdsec {
     margin-top: 0;
   }
 
-  .ThirdSection{
-    gap: 25px;
+  .ThirdP1 {
+    display: none;
+  }
 
+  .ThirdP2 {
+    font-size: calc(4vw + 10px);
+    margin-bottom: .5rem;
+  }
+
+  .ThirdP3{
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+  }
+
+  .mobimg {
+    object-fit: contain;
+    width: 60vw;
+    height: 60vh;
+    margin-inline: calc(100vw / 8);
   }
 }

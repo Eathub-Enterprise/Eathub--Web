@@ -88,8 +88,43 @@
   background-color: #45a049;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (orientation: portrait) {
+  .SixthSection {
+    padding: 15px;
+  }
+
+  .sixP {
+    font-size: calc(4vw + 12px);
+    text-align: center;
+  }
+  .secondContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .secondContainer img {
+    object-fit: contain;
+    margin-inline: calc(100vw / 4);
+    width: 80vw;
+    height: 60vw;
+  }
+
   .secondContainer img{
     width: 50%;
+  }
+
+  .marketContainer{
+    display: flex;
+   justify-content: center;
+  }
+
+  .login-inputs {
+    padding: 0 auto;
+    width: 100%;
+  }
+
+  .login-inputs input, .login-inputs textarea {
+    width: 100%;
   }
 }
