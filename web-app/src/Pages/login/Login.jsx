@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { vendorLogin } from "../../model/auth/authAction";
 import Preloader from "../../layouts/Preloader/Preloader";
+import Swal from 'sweetalert2'
 
 const Login = () => {
   /// const [rememberUser, setRememberUser] = useState(null);
@@ -18,6 +19,10 @@ const Login = () => {
   // Handling state with RTK
   const { loading, error } = useSelector((state) => state.auth);
   const [passwordShown, setPasswordShown] = useState(false);
+  
+  if (loading) {
+    return <Preloader />;
+  }
 
   return (
     <Formik
@@ -29,13 +34,31 @@ const Login = () => {
         setSubmitting(true);
         try {
           const loginStatus = await dispatch(vendorLogin(values));
-          console.log("submit!", loginStatus);
-          navigate("/dashboard");
-          if (error) {
-            console.error("Error from Store: ", error);
-            navigate("/login");
-          } else if (loading) {
-            return <Preloader />;
+          if(loginStatus.type === 'auth/login/fulfilled'){
+            Swal.fire({
+              text: 'Logged in Sucessfully',
+              icon: 'success',
+              iconColor: '#fff',
+              toast: true,
+              position: 'top-right',
+              showConfirmButton: false,
+              timer: 2000,
+              background: '#ff8323',
+              color: '#fff'
+            });
+            console.log("submit!", loginStatus.type);
+            navigate("/dashboard");
+          } else if (error) {
+            Swal.fire({
+              text: 'Unsucessful Login',
+              icon: 'error',
+              toast: true,
+              position: 'top-right',
+              showConfirmButton: false,
+              timer: 2000
+            });
+              console.error("Error from Store: ", error);
+              navigate("/login");
           }
         } catch (error) {
           console.error("Error Within Component");
