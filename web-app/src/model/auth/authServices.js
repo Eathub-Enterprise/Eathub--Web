@@ -21,7 +21,19 @@ export const authApi = createApi({
         method: "GET",
       }),
     }),
+    getOrderedMeal: builder.query({
+      query: () => ({
+        url: `${URL}/get_ordered_items_or_change status/null/`,
+        method: "GET"
+      })
+    }),
+    getMenuList: builder.query({
+      query: () => ({
+        url: `${URL}/menu/food/create_or_getAll`,
+        method: "GET"
+      })
+    })
   }),
 });
 
-export const { useGetVendorProfileQuery } = authApi;
+export const { useGetVendorProfileQuery, useGetOrderedMealQuery, useGetMenuListQuery, useGetMenuQuery } = authApi;

@@ -2,55 +2,27 @@ import React, { useState, useEffect } from "react";
 import authService from "../../services/auth/authService";
 import "./orderTable.css";
 import foodImg from "../../Assets/images/foodImg.png";
+import { useGetOrderedMealQuery } from "../../model/auth/authServices";
 
 const OrderTable = () => {
-  const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
 
+  // using RTK to handle api state
+  const { data } = useGetOrderedMealQuery();
+
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await authService.getOrderedMeals();
-        if (response) {
-          setTableData(response.data.results);
-          console.log(response.data.results);
-        } else {
-          setTableData([]);
-        }
-        setLoading(false);
-        // console.log(response);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  // when data is loading
-  if (loading) {
-    return <>Loading Orders</>;
-  }
-
-  // in the case of empty data
-  if (Object.keys(tableData).length === 0) {
-    return <div className="order-contain">
-      <h5>Empty Orders!</h5>
-      <table>
-        <tbody>
-          <tr></tr>
-        </tbody>
-      </table>
-    </div>;
-  }
+    if (data) {
+      setTableData(data.results || []); // Use data.results if it matches your API response structure
+    } 
+  }, [data]);
 
   return (
     <div className="order-container">
       <h5>Recent Orders</h5>
       <table>
         <tbody>
-          {tableData.map((order) => {
-            return (
+          {tableData && tableData.length > 0 ? (
+            tableData.map((order) => (
               <tr key={order.id}>
                 <td>
                   <span className="food">
@@ -68,8 +40,12 @@ const OrderTable = () => {
                   {order.status}
                 </td>
               </tr>
-            );
-          })}
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4">No recent orders available.</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

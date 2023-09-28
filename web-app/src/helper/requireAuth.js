@@ -12,17 +12,14 @@ const ProtectedRoute = () => {
   const [chartData, setChartData] = useState({});
   const navigate = useNavigate();
 
-  const { data, isFetching } = useGetVendorProfileQuery("userDetails", {refetchOnReconnect: true});
-
-  console.log(data); // user object
-
+  const { data } = useGetVendorProfileQuery("userDetails", {refetchOnReconnect: true});
   // Checks if the Vendor has Logged in from token stored in LocalStorage
   let userLoggedIn = authService.getVendorStatus();
 
   useEffect(() => {
+    setChartData(data);
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
-      setChartData(data);
       return navigate("/login");
     }
   }, []);
