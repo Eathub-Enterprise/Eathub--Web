@@ -6,18 +6,21 @@ import authService from "../../../../services/auth/authService";
 import "./menu.css";
 import Preloader from "../../../../layouts/Preloader/Preloader";
 import EmptyMenu from "./EmptyMenu";
+import { useGetMenuListQuery, useGetMenuQuery } from "../../../../model/auth/authServices";
 
 
 const Menu = () => {
   const [meals, setMeals] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // using RTK to handle Api Request
+  const { data } = useGetMenuListQuery("menuList", {refetchOnFocus: true});
 
   const handleDelete = async(id) => {
     setLoading(true);
     try{
       await authService.deleteMeal(id);
-      await fetchData();
+      await authService.getMealList();
     }catch (err) {
       console.error(err);
     }finally {
@@ -25,28 +28,14 @@ const Menu = () => {
     }
   }
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await authService.getMealList();
-      setMeals(response.data.results);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
   useEffect(() => {
-    fetchData();
-  }, []);
+    if(data) {
+      setMeals(data.results)
+    }
+  }, [data]);
 
   if(loading){
     return <Preloader />;
-  }
-
-  if (meals.length === 0) {
-    return <EmptyMenu />;
   }
 
   return (
@@ -74,7 +63,8 @@ const Menu = () => {
             </tr>
           </thead>
           <tbody>
-            {meals.map((meal) => {
+            {meals && meals.length > 0 ? 
+            (meals.map((meal) => {
               return (
                 <tr key={meal.id}>
                   <td>
@@ -99,7 +89,8 @@ const Menu = () => {
                   </td>
                 </tr>
               );
-            })}
+            })
+            ): (<EmptyMenu />)}
           </tbody>
         </table>
       </div>

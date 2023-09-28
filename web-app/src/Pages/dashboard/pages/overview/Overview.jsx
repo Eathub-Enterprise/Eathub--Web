@@ -8,7 +8,6 @@ import Preloader from "../../../../layouts/Preloader/Preloader";
 import "./overview.css";
 
 const Overview = () => {
-  const [loading, setLoading] = useState(true);
   // for performance in re-rendering
   const WidgetMemo = React.memo(Widget);
   const ProgressBarMemo = React.memo(ProgressBar);
@@ -16,15 +15,9 @@ const Overview = () => {
   const LocationMemo = React.memo(Location);
   const OrderTableMemo = React.memo(OrderTable);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000); // Set a delay time for the preloader to show before hiding it
-  }, []);
 
   return (
     <div className="overview-section">
-      {loading && <Preloader />}
       <div className="overview-dropdown">
         <select>
           <option value="msg">Overview: All-time</option>
@@ -37,7 +30,7 @@ const Overview = () => {
       </div>
       <div className="charts">
         <DashChartsMemo />
-        <LocationMemo />
+        {/* <LocationMemo /> */}
       </div>
       <div className="orders">
         <OrderTableMemo />

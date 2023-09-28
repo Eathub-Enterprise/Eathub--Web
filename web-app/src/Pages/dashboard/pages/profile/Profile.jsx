@@ -13,6 +13,7 @@ const Profile = () => {
     image: "",
     kitchenDescription: "",
   });
+
   // New inputs
   const [kitchenDescription, setKitchenDescription] = useState("");
   const maxLength = 450;
@@ -34,7 +35,7 @@ const Profile = () => {
     setIsImageUploaded(true);
     setShowImage(true);
     setFile(event.target.files[0]);
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
   };
 
   // Getting Pre-existing data
@@ -55,6 +56,7 @@ const Profile = () => {
       }
     }
     fetchData();
+    // console.log(glbData);
   }, [glbData]);
 
   if (loading) {

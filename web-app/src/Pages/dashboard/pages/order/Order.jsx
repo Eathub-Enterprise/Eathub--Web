@@ -5,11 +5,15 @@ import "./order.css";
 import foodImg from "../../../../Assets/images/foodImg.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
 import EmptyOrder from "./EmptyOrder";
+import { useGetOrderedMealQuery } from "../../../../model/auth/authServices";
 
 const Order = () => {
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [status, setStatus] = useState("");
+
+    // using RTK to handle api state
+    const { data } = useGetOrderedMealQuery("userOrders", {refetchOnFocus: true});
 
 
   /* To decide whether to accept or decline
@@ -34,34 +38,10 @@ const Order = () => {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await authService.getOrderedMeals();
-        if (response) {
-          setTableData(response.data.results);
-          console.log(response.data.results);
-        } else {
-          setTableData([]);
-        }
-        setLoading(false);
-        // console.log(response);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  // when data is loading
-  if (loading) {
-    return <Preloader />;
-  }
-
-  // in the case of empty data
-  if (Object.keys(tableData).length === 0) {
-    return <EmptyOrder />;
-  }
+    if (data) {
+      setTableData(data.results || []); // Use data.results if it matches your API response structure
+    } 
+  }, [data]);
 
   return (
     <div className="order">
@@ -87,7 +67,8 @@ const Order = () => {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((order, index) => {
+            {tableData && tableData.length > 0 ? (
+              tableData.map((order, index) => {
               return (
                 // to improve performance, abstract table below into smaller component
                 <tr key={order.id}>
@@ -128,8 +109,10 @@ const Order = () => {
                     </div>
                   </td>
                 </tr>
-              );
-            })}
+              )
+            })): (
+              <EmptyOrder />
+            )}
           </tbody>
         </table>
       </div>
