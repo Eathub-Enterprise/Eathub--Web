@@ -30,7 +30,7 @@ test("AuthSlice behaviour", () => {
 
     it("should set loading to false and update vendor on vendorLogin.fulfilled", () => {
       const mockPayload = {
-        /* your mock payload here */
+        
       };
       store.dispatch(vendorLogin.fulfilled(mockPayload));
       const state = store.getState().auth;
