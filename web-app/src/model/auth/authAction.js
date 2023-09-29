@@ -38,6 +38,7 @@ export const vendorLogin = createAsyncThunk(
         config
       );
       localStorage.setItem("vendor", JSON.stringify(data));
+      console.log(data);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
