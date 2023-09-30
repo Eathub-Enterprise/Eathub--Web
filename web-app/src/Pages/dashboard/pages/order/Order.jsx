@@ -12,9 +12,10 @@ const Order = () => {
   const [tableData, setTableData] = useState([]);
   const [status, setStatus] = useState("");
 
-    // using RTK to handle api state
-    const { data } = useGetOrderedMealQuery("userOrders", {refetchOnFocus: true});
-
+  // using RTK to handle api state
+  const { data } = useGetOrderedMealQuery("userOrders", {
+    refetchOnFocus: true,
+  });
 
   /* To decide whether to accept or decline
  orders coming through for vendors */
@@ -22,11 +23,11 @@ const Order = () => {
     setStatus(state);
     const meal = new FormData();
     meal.append("action", state);
-    console.log(status);
+    // console.log(status);
 
     try {
       await authService.decideOrderStatus(id, state, meal);
-      console.log("Status Inputted!", meal);
+      // console.log("Status Inputted!", meal);
       // Remove the row from the table data
       const updatedTableData = [...tableData];
       updatedTableData.splice(index, 1);
@@ -40,7 +41,7 @@ const Order = () => {
   useEffect(() => {
     if (data) {
       setTableData(data.results || []); // Use data.results if it matches your API response structure
-    } 
+    }
   }, [data]);
 
   return (
@@ -69,48 +70,49 @@ const Order = () => {
           <tbody>
             {tableData && tableData.length > 0 ? (
               tableData.map((order, index) => {
-              return (
-                // to improve performance, abstract table below into smaller component
-                <tr key={order.id}>
-                  {/* convert the src link to image here! */}
-                  <td>
-                    {order.item.image ? null : (
-                      <img src={foodImg} alt={foodImg} />
-                    )}
-                  </td>
-                  <td>
-                    <p>{order.item.food_title}</p>
-                  </td>
-                  {/* This needs to be changed to an accurate Location */}
-                  <td>
-                    <p>{order.client.location}</p>
-                  </td>
-                  <td>
-                    <p> #{order.item.food_price}</p>
-                  </td>
-                  <td>
-                    <div className="orderbtn">
-                      <button
-                        onClick={() =>
-                          handleStatus(order.id, "accepted", index)
-                        }
-                        style={{ backgroundColor: "green" }}
-                      >
-                        Accept
-                      </button>
-                      <button
-                        onClick={() =>
-                          handleStatus(order.id, "declined", index)
-                        }
-                        style={{ backgroundColor: "red" }}
-                      >
-                        Decline
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              )
-            })): (
+                return (
+                  // to improve performance, abstract table below into smaller component
+                  <tr key={order.id}>
+                    {/* convert the src link to image here! */}
+                    <td>
+                      {order.item.image ? null : (
+                        <img src={foodImg} alt={foodImg} />
+                      )}
+                    </td>
+                    <td>
+                      <p>{order.item.food_title}</p>
+                    </td>
+                    {/* This needs to be changed to an accurate Location */}
+                    <td>
+                      <p>{order.client.location}</p>
+                    </td>
+                    <td>
+                      <p> #{order.item.food_price}</p>
+                    </td>
+                    <td>
+                      <div className="orderbtn">
+                        <button
+                          onClick={() =>
+                            handleStatus(order.id, "accepted", index)
+                          }
+                          style={{ backgroundColor: "green" }}
+                        >
+                          Accept
+                        </button>
+                        <button
+                          onClick={() =>
+                            handleStatus(order.id, "declined", index)
+                          }
+                          style={{ backgroundColor: "red" }}
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
               <EmptyOrder />
             )}
           </tbody>

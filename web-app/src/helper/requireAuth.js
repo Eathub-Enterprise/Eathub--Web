@@ -18,7 +18,6 @@ const ProtectedRoute = () => {
 
   useEffect(() => {
     setChartData(data);
-    console.log(data);
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
       return navigate("/login");

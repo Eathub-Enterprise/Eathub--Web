@@ -56,13 +56,11 @@ const Profile = () => {
       }
     }
     fetchData();
-    // console.log(glbData);
   }, [glbData]);
 
   if (loading) {
     <Preloader />;
   }
-  
 
   return (
     <Formik
@@ -120,7 +118,6 @@ const Profile = () => {
                   defaultValue={profileData.username}
                   onChange={handleChange}
                   className="input-field"
-                  
                 />
               </div>
               <div className="form-div">

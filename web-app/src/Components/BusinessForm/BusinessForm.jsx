@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import Preloader from "../../layouts/Preloader/Preloader";
 import { vendorRegister } from "../../model/auth/authAction";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const BusinessForm = (e) => {
   const navigate = useNavigate();
@@ -46,30 +46,30 @@ const BusinessForm = (e) => {
         };
         try {
           const registrationStatus = await dispatch(vendorRegister(value));
-          console.log("Submit!", registrationStatus);
+          // console.log("Submit!", registrationStatus);
           navigate("/login");
           if (vendor) {
             Swal.fire({
-              text: 'Registered Sucessfully',
-              icon: 'success',
-              iconColor: '#fff',
+              text: "Registered Sucessfully",
+              icon: "success",
+              iconColor: "#fff",
               toast: true,
-              position: 'top-right',
+              position: "top-right",
               showConfirmButton: false,
               timer: 2000,
-              background: '#ff8323',
-              color: '#fff'
+              background: "#ff8323",
+              color: "#fff",
             });
             navigate("/login");
-            console.log("Vendor Already Exists!");
+            // console.log("Vendor Already Exists!");
           } else if (error) {
             Swal.fire({
-              text: 'Unsucessful Registeration',
-              icon: 'error',
+              text: "Unsucessful Registeration",
+              icon: "error",
               toast: true,
-              position: 'top-right',
+              position: "top-right",
               showConfirmButton: false,
-              timer: 2000
+              timer: 2000,
             });
             console.error(error);
             navigate("/signup/business");

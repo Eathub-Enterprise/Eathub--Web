@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import authService from "../../../../services/auth/authService";
 
-
 const AddMenu = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -19,7 +18,7 @@ const AddMenu = () => {
     setIsImageUploaded(true);
     setShowImage(true);
     setFile(event.target.files[0]);
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
   };
 
   useEffect(() => {
@@ -69,7 +68,7 @@ const AddMenu = () => {
         try {
           setLoading(true);
           const response = await authService.createMeal(formData);
-          console.log("it Worked!", formData);
+          // console.log("it Worked!", formData);
           authService.getMealList();
           if (response) {
             navigate("/dashboard/menu");

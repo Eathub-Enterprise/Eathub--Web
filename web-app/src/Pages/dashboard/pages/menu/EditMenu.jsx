@@ -23,7 +23,7 @@ const EditMenu = () => {
     setIsImageUploaded(true);
     setFile(event.target.files[0]);
     setShowImage(true);
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
   };
 
   // This gets the category data from the backend
@@ -49,7 +49,7 @@ const EditMenu = () => {
       try {
         const response = await authService.getMeal(id);
         const meal = response.data;
-        console.log(meal);
+        // console.log(meal);
         // setting the state
         setMealItems({
           category_id: meal.id,
@@ -105,13 +105,13 @@ const EditMenu = () => {
         try {
           await authService.updateMeal(id, formData).then(
             (response) => {
-              console.log("Update Inputted!", formData);
+              // console.log("Update Inputted!", formData);
               navigate("/dashboard/menu");
               authService.getMealList();
               if (response) {
-                console.log("it's sent!")
+                console.log("it's sent!", response);
               } else {
-                console.log("There's an issue with it!")
+                console.log("There's an issue with it!");
               }
             },
             (error) => {
