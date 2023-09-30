@@ -52,7 +52,8 @@
       "global": {
         "lines": 80
       }
-    }
+    },
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"]
   },
   "browserslist": {
     "production": [
