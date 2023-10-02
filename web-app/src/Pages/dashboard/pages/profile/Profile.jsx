@@ -7,6 +7,7 @@ import icon from "../../../../Assets/pngs/profile (1).png";
 import icons from "../../../../Assets/pngs/ImgUpload.png";
 
 const Profile = () => {
+  // grabbing data from my contex.
   const glbData = useContext(ChartDataContext);
   const [loading, setLoading] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -14,7 +15,7 @@ const Profile = () => {
     kitchenDescription: "",
   });
 
-  // New inputs
+  // TextArea keyword tracker
   const [kitchenDescription, setKitchenDescription] = useState("");
   const maxLength = 450;
   const [remainingLength, setRemainingLength] = useState(450);
@@ -30,7 +31,7 @@ const Profile = () => {
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [showImage, setShowImage] = useState(false);
 
-  // The Method handling that
+  // The Method handling image upload
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
     setShowImage(true);
@@ -43,14 +44,18 @@ const Profile = () => {
     async function fetchData() {
       setLoading(true);
       try {
-        setProfileData({
-          username: glbData.username,
-          vendorName: glbData.vendorname,
-          address: glbData.mainbusinessaddress,
-          kitchenNumber: glbData.businessphonenumber,
-          emailAddress: glbData.businessemail,
-          fullName: glbData.fullName,
-        });
+        if (glbData) {
+          setProfileData({
+            username: glbData.username,
+            vendorName: glbData.vendorname,
+            address: glbData.mainbusinessaddress,
+            kitchenNumber: glbData.businessphonenumber,
+            emailAddress: glbData.businessemail,
+            fullName: glbData.fullName,
+          });
+        } else {
+          setProfileData({});
+        }
       } catch (err) {
         console.log(err);
       }

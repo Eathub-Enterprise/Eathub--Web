@@ -4,6 +4,7 @@ import authService from "../../../../services/auth/authService";
 import { Formik } from "formik";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
+import { showToastNotification } from "../../../../helper/ToastNotify";
 
 const EditMenu = () => {
   const { id } = useParams();
@@ -103,15 +104,20 @@ const EditMenu = () => {
           ensure to append to formData instead of destructuring.*/
 
         try {
+          setLoading(true);
           await authService.updateMeal(id, formData).then(
             (response) => {
               // console.log("Update Inputted!", formData);
-              navigate("/dashboard/menu");
-              authService.getMealList();
               if (response) {
-                console.log("it's sent!", response);
+                showToastNotification(
+                  `${values.food_title} has been updated!`,
+                  "success"
+                );
+                navigate("/dashboard/menu");
+                authService.getMealList();
               } else {
                 console.log("There's an issue with it!");
+                showToastNotification(`Error updating this meal`, "error");
               }
             },
             (error) => {
