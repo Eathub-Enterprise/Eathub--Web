@@ -6,6 +6,8 @@ import foodImg from "../../../../Assets/images/foodImg.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
 import EmptyOrder from "./EmptyOrder";
 import { useGetOrderedMealQuery } from "../../../../model/auth/authServices";
+import Swal from "sweetalert2";
+import { showToastNotification } from "../../../../helper/ToastNotify";
 
 const Order = () => {
   const [loading, setLoading] = useState(true);
@@ -25,22 +27,24 @@ const Order = () => {
     meal.append("action", state);
     // console.log(status);
 
-    try {
-      await authService.decideOrderStatus(id, state, meal);
-      // console.log("Status Inputted!", meal);
-      // Remove the row from the table data
-      const updatedTableData = [...tableData];
-      updatedTableData.splice(index, 1);
-      setTableData(updatedTableData);
-      authService.getOrderedMeals();
-    } catch (error) {
-      console.log("Something must be genuinely wrong : ", error);
-    }
+    await authService.decideOrderStatus(id, state, meal).then((response) => {
+      if (response) {
+        // Remove the row from the table data
+        const updatedTableData = [...tableData];
+        updatedTableData.splice(index, 1);
+        setTableData(updatedTableData);
+        authService.getOrderedMeals();
+        showToastNotification(`Order has been ${state}`, "success");
+      } else {
+        console.log("Issue here!");
+        showToastNotification(`Order could not be ${state}`, "warning");
+      }
+    });
   };
 
   useEffect(() => {
     if (data) {
-      setTableData(data.results || []); // Use data.results if it matches your API response structure
+      setTableData(data.results || []);
     }
   }, [data]);
 

@@ -17,6 +17,7 @@ class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     // send error to somewhere here
     console.log(error, errorInfo);
+    localStorage.clear();
   }
 
   render() {
@@ -28,8 +29,8 @@ class ErrorBoundary extends React.Component {
           <h1>Hang on! Site is under maintenance</h1>
           <h3>Currently looking for ways to serve you better</h3>
           <button style={{ backgroundColor: "red", border: "1px solid red" }}>
-            <Link to="/" className="error-link">
-              <p>Return to Homepage</p>{" "}
+            <Link to="/login" className="error-link">
+              <p>Try to Login</p>
             </Link>
           </button>
         </div>

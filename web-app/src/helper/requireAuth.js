@@ -17,7 +17,12 @@ const ProtectedRoute = () => {
   let userLoggedIn = authService.getVendorStatus();
 
   useEffect(() => {
-    setChartData(data);
+    if (data) {
+      setChartData(data);
+    } else {
+      setChartData({});
+    }
+
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
       return navigate("/login");
