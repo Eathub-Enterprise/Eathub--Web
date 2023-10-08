@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { vendorLogin } from "../../model/auth/authAction";
 import Preloader from "../../layouts/Preloader/Preloader";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const Login = () => {
   /// const [rememberUser, setRememberUser] = useState(null);
@@ -19,7 +19,7 @@ const Login = () => {
   // Handling state with RTK
   const { loading, error } = useSelector((state) => state.auth);
   const [passwordShown, setPasswordShown] = useState(false);
-  
+
   if (loading) {
     return <Preloader />;
   }
@@ -27,38 +27,38 @@ const Login = () => {
   return (
     <Formik
       initialValues={{
-        username: "",
+        vendor_name: "",
         password: "",
       }}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
         try {
           const loginStatus = await dispatch(vendorLogin(values));
-          if(loginStatus.type === 'auth/login/fulfilled'){
+          if (loginStatus.type === "auth/login/fulfilled") {
             Swal.fire({
-              text: 'Logged in Sucessfully',
-              icon: 'success',
-              iconColor: '#fff',
+              text: "Logged in Sucessfully",
+              icon: "success",
+              iconColor: "#fff",
               toast: true,
-              position: 'top-right',
+              position: "top-right",
               showConfirmButton: false,
               timer: 2000,
-              background: '#ff8323',
-              color: '#fff'
+              background: "#ff8323",
+              color: "#fff",
             });
             console.log("submit!", loginStatus.type);
             navigate("/dashboard");
           } else if (error) {
             Swal.fire({
-              text: 'Unsucessful Login',
-              icon: 'error',
+              text: "Unsucessful Login",
+              icon: "error",
               toast: true,
-              position: 'top-right',
+              position: "top-right",
               showConfirmButton: false,
-              timer: 2000
+              timer: 2000,
             });
-              console.error("Error from Store: ", error);
-              navigate("/login");
+            console.error("Error from Store: ", error);
+            navigate("/login");
           }
         } catch (error) {
           console.error("Error Within Component");
@@ -68,7 +68,7 @@ const Login = () => {
       }}
       //  Yup validation
       validationSchema={Yup.object().shape({
-        username: Yup.string().required("Username is Required"),
+        vendor_name: Yup.string().required("vendor_name is Required"),
         password: Yup.string()
           .required("No password provided.")
           .min(8, "Minimum of eight characters")
@@ -105,17 +105,19 @@ const Login = () => {
 
                   <form className="login-input" onSubmit={handleSubmit}>
                     <input
-                      id="login-username"
-                      name="username"
-                      placeholder="Username"
+                      id="login-vendor_name"
+                      name="vendor_name"
+                      placeholder="Vendor Name"
                       type="text"
-                      value={values.username}
+                      value={values.vendor_name}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={errors.username && touched.username && "error"}
+                      className={
+                        errors.vendor_name && touched.vendor_name && "error"
+                      }
                     />
-                    {errors.username && touched.username && (
-                      <div className="input-feedback">{errors.username}</div>
+                    {errors.vendor_name && touched.vendor_name && (
+                      <div className="input-feedback">{errors.vendor_name}</div>
                     )}
                     <input
                       id="password"
