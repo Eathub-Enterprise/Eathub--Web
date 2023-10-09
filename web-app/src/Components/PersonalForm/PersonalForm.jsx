@@ -78,7 +78,6 @@ const PersonalForm = () => {
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>
                   <div className="input-header">
-                    <div className="input-top">
                       <input
                         id="firstname"
                         name="firstname"
@@ -95,26 +94,6 @@ const PersonalForm = () => {
                         <div className="input-feedback">{errors.firstname}</div>
                       )}
                     </div>
-                    <div className="input-top2">
-                      <input
-                        id="middlename"
-                        name="middlename"
-                        type="text"
-                        placeholder="Middle Name"
-                        value={values.middlename}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        className={
-                          errors.middlename && touched.middlename && "error"
-                        }
-                      />
-                      {errors.middlename && touched.middlename && (
-                        <div className="input-feedback">
-                          {errors.middlename}
-                        </div>
-                      )}
-                    </div>
-                  </div>
                   <input
                     id="lastname"
                     name="lastname"
