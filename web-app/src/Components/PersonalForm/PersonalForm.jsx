@@ -16,7 +16,7 @@ const PersonalForm = () => {
   return (
     <Formik
       initialValues={{
-        firstname: "",
+        firstname: "", 
         lastname: "",
         middlename: "",
         username: "",
@@ -95,7 +95,7 @@ const PersonalForm = () => {
                         <div className="input-feedback">{errors.firstname}</div>
                       )}
                     </div>
-                    <div className="input-top">
+                    <div className="input-top2">
                       <input
                         id="middlename"
                         name="middlename"
@@ -163,7 +163,7 @@ const PersonalForm = () => {
                   )}
 
                   <input
-                    id="password"
+                    id="Password"
                     name="password"
                     type="password"
                     placeholder="••••••••••••••"
