@@ -16,7 +16,7 @@ const PersonalForm = () => {
   return (
     <Formik
       initialValues={{
-        firstname: "",
+        firstname: "", 
         lastname: "",
         password: "",
         confirmPassword: "",
@@ -70,22 +70,22 @@ const PersonalForm = () => {
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>
                   <div className="input-header">
-                    <input
-                      id="firstname"
-                      name="firstname"
-                      type="text"
-                      placeholder="First Name"
-                      value={values.firstname}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={
-                        errors.firstname && touched.firstname && "error"
-                      }
-                    />
-                    {errors.firstname && touched.firstname && (
-                      <div className="input-feedback">{errors.firstname}</div>
-                    )}
-                  </div>
+                      <input
+                        id="firstname"
+                        name="firstname"
+                        type="text"
+                        placeholder="First Name"
+                        value={values.firstname}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={
+                          errors.firstname && touched.firstname && "error"
+                        }
+                      />
+                      {errors.firstname && touched.firstname && (
+                        <div className="input-feedback">{errors.firstname}</div>
+                      )}
+                    </div>
                   <input
                     id="lastname"
                     name="lastname"
@@ -102,7 +102,7 @@ const PersonalForm = () => {
                   )}
 
                   <input
-                    id="password"
+                    id="Password"
                     name="password"
                     type="password"
                     placeholder="••••••••••••••"

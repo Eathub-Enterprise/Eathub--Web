@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { vendorLogin } from "../../model/auth/authAction";
 import Preloader from "../../layouts/Preloader/Preloader";
+import EyeIcon from "@mui/icons-material/VisibilityOutlined";
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -18,7 +19,10 @@ const Login = () => {
 
   // Handling state with RTK
   const { loading, error } = useSelector((state) => state.auth);
-  const [passwordShown, setPasswordShown] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   if (loading) {
     return <Preloader />;
@@ -119,20 +123,24 @@ const Login = () => {
                     {errors.username && touched.username && (
                       <div className="input-feedback">{errors.username}</div>
                     )}
+
                     <input
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       name="password"
                       placeholder="*********"
-                      type={passwordShown ? "text" : "password"}
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className={errors.password && touched.password && "error"}
                     />
-                    {/* <EyeIcon
-                        onClick={() => setPasswordShown(!passwordShown)}
-                        className={passwordShown ? "hide" : ""}
-                      /> */}
+                    <EyeIcon
+                      className={`eye-icon ${
+                        showPassword ? "visible" : "invisible"
+                      }`}
+                      onClick={handleTogglePassword}
+                    ></EyeIcon>
+
                     {errors.password && touched.password && (
                       <div className="input-feedback">{errors.password}</div>
                     )}
@@ -143,7 +151,7 @@ const Login = () => {
                         name="rememberUser"
                         id="rememberUser"
                       />
-                      <label>Remember Me</label>
+                      <label className="remember">Remember Me</label>
                     </div>
 
                     <button className="personal-form-btn" type="submit">

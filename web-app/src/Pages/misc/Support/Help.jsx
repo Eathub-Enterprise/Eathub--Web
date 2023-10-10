@@ -12,6 +12,8 @@ const Support = () => {
               src={supportImage}
               loading='lazy'
               alt="not found"
+              className="maintenanceimg"
+
             ></img>
             <h1>Hang On! We are under maintenance <br></br>
              We’re preparing to serve you better </h1>
