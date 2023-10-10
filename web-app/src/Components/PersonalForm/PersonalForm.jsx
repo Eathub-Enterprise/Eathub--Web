@@ -10,20 +10,17 @@ import Preloader from "../../layouts/Preloader/Preloader";
 const PersonalForm = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  if(loading) {
-    <Preloader />
+  if (loading) {
+    <Preloader />;
   }
   return (
     <Formik
       initialValues={{
         firstname: "", 
         lastname: "",
-        middlename: "",
-        username: "",
         password: "",
         confirmPassword: "",
-        gender: "",
-        location:""
+        location: "",
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -42,11 +39,6 @@ const PersonalForm = () => {
       validationSchema={Yup.object().shape({
         firstname: Yup.string().required("First name is Required"),
         lastname: Yup.string().required("Last name is Required"),
-        middlename: Yup.string().required("Middlename is Required"),
-        gender: Yup.string()
-          .oneOf(["male", "female", "other"])
-          .required("Gender is required"),
-        username: Yup.string().required("Username is Required"),
         password: Yup.string()
           .required("No password provided.")
           .min(8, "Passwords must be a minimum of eight characters")
@@ -54,7 +46,7 @@ const PersonalForm = () => {
         confirmPassword: Yup.string()
           .oneOf([Yup.ref("password"), null], "Passwords must match")
           .required("Confirm password is required"),
-        location:Yup.string().required('Location is Required!')
+        location: Yup.string().required("Location is Required!"),
       })}
     >
       {(props) => {
@@ -109,38 +101,6 @@ const PersonalForm = () => {
                     <div className="input-feedback">{errors.lastname}</div>
                   )}
 
-                  <select
-                    id="gender"
-                    name="gender"
-                    value={values.gender}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    <option value="">Sex</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-
-                  {errors.gender && touched.gender && (
-                    <div className="input-feedback">{errors.gender}</div>
-                  )}
-
-                  <input
-                    id="form-username"
-                    name="username"
-                    type="text"
-                    placeholder="Username"
-                    value={values.username}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={errors.username && touched.username && "error"}
-                  />
-
-                  {errors.username && touched.username && (
-                    <div className="input-feedback">{errors.username}</div>
-                  )}
-
                   <input
                     id="Password"
                     name="password"
@@ -165,7 +125,9 @@ const PersonalForm = () => {
                     value={values.confirmPassword}
                   />
                   {errors.confirmPassword && touched.confirmPassword && (
-                    <div className="input-feedback">{errors.confirmPassword}</div>
+                    <div className="input-feedback">
+                      {errors.confirmPassword}
+                    </div>
                   )}
 
                   <input

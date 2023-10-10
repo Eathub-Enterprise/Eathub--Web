@@ -46,12 +46,25 @@ const BusinessForm = (e) => {
         };
         try {
           const registrationStatus = await dispatch(vendorRegister(value));
-          // console.log("Submit!", registrationStatus);
-          navigate("/login");
-          if (vendor) {
+          if (registrationStatus.type === "auth/register/fulfilled") {
             Swal.fire({
               text: "Registered Sucessfully",
               icon: "success",
+              iconColor: "#fff",
+              toast: true,
+              position: "top-right",
+              showConfirmButton: false,
+              timer: 2000,
+              background: "#ff8323",
+              color: "#fff",
+            });
+            navigate("/login");
+          }
+          // console.log("Submit!", registrationStatus);
+          if (vendor) {
+            Swal.fire({
+              text: "User Already Existing",
+              icon: "warning",
               iconColor: "#fff",
               toast: true,
               position: "top-right",

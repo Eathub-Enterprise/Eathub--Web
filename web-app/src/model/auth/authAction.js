@@ -25,7 +25,7 @@ export const vendorRegister = createAsyncThunk(
 
 export const vendorLogin = createAsyncThunk(
   "auth/login",
-  async ({ username, password }, { rejectWithValue }) => {
+  async ({username, password }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -34,7 +34,7 @@ export const vendorLogin = createAsyncThunk(
       };
       const { data } = await axios.post(
         URL + "/token/login",
-        { username, password },
+        {username, password },
         config
       );
       localStorage.setItem("vendor", JSON.stringify(data));
