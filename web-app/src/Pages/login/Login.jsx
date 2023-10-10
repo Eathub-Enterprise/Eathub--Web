@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <Formik
       initialValues={{
-        vendor_name: "",
+        username: "",
         password: "",
       }}
       onSubmit={async (values, { setSubmitting }) => {
@@ -68,7 +68,7 @@ const Login = () => {
       }}
       //  Yup validation
       validationSchema={Yup.object().shape({
-        vendor_name: Yup.string().required("vendor_name is Required"),
+        username: Yup.string().required("username is Required"),
         password: Yup.string()
           .required("No password provided.")
           .min(8, "Minimum of eight characters")
@@ -105,19 +105,19 @@ const Login = () => {
 
                   <form className="login-input" onSubmit={handleSubmit}>
                     <input
-                      id="login-vendor_name"
-                      name="vendor_name"
+                      id="login-username"
+                      name="username"
                       placeholder="Vendor Name"
                       type="text"
-                      value={values.vendor_name}
+                      value={values.username}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className={
-                        errors.vendor_name && touched.vendor_name && "error"
+                        errors.username && touched.username && "error"
                       }
                     />
-                    {errors.vendor_name && touched.vendor_name && (
-                      <div className="input-feedback">{errors.vendor_name}</div>
+                    {errors.username && touched.username && (
+                      <div className="input-feedback">{errors.username}</div>
                     )}
                     <input
                       id="password"
