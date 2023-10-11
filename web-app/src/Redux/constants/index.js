@@ -1,5 +1,0 @@
-export const actionTypes = {
-    VENDOR_INFO: "VENDOR_INFO",
-    OPEN_SNACKBAR: "OPEN_SNACKBAR",
-    CLOSE_SNACKBAR: "CLOSE_SNACKBAR"
-}
