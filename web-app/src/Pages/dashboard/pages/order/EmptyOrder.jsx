@@ -15,7 +15,8 @@ const EmptyOrder = () => {
   return (
     <div className="menu-section">
       <span className="empty-menu">
-      <Lottie options={defaultOptions} height={450} width={450} />
+      <div className="lottie-container"><Lottie options={defaultOptions} height={350} width={350} />
+     </div>
         <h1>You have no Order Request Currently</h1>
       </span>
     </div>

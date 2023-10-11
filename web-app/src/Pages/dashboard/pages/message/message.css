@@ -101,20 +101,30 @@
   color: #000;
 }
 
-
-@media (max-width: 1000px){
-  .message-container{
-    width: 80vw;
-    margin-left: 50px;
-    transition: ease-out;
-
+@media (max-width: 768px) {
+  .message-section {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .message-header{
-    margin-left: 50px;
+  .message-dropdwn,
+  select {
+    margin: 10px 0;
   }
 
-  .message-drop-list{
-    margin-left: 50px;
+  .message-header {
+    text-align: center;
+  }
+
+  .msg-section {
+    flex-direction: column;
+  }
+
+  .msg-1,
+  .msg-2 {
+    width: 100%;
   }
 }
+
+
+

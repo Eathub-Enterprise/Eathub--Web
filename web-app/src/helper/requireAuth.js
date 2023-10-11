@@ -21,7 +21,7 @@ const ProtectedRoute = () => {
     console.log(data);
     // always change back to !userLoggedIn
     if (!userLoggedIn) {
-      return navigate("/login");
+      return navigate("/logon");
     }
   }, [data, navigate, userLoggedIn]);
 
