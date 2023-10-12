@@ -16,7 +16,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import "./order.css";
 
 const HistoryOrder = () => {
-  const [count, setCount ] = useState({});
+  const [count, setCount] = useState({});
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
@@ -25,16 +25,19 @@ const HistoryOrder = () => {
         const response = await authService.getOrderedMeals();
         setTableData(response.data.results);
         setCount(response.data.count);
-        console.log(response.data);
+        // console.log(response.data);
 
         // tryna work with the date value
         const tableDate = response.data.results.map((item) => {
-          return item.item.date_created = new Date().toLocaleDateString("en-US", {
-            month: "2-digit",
-            day: "2-digit",
-            year:"numeric"
-          });
-        })
+          return (item.item.date_created = new Date().toLocaleDateString(
+            "en-US",
+            {
+              month: "2-digit",
+              day: "2-digit",
+              year: "numeric",
+            }
+          ));
+        });
       } catch (err) {
         console.error(err);
       }
@@ -46,7 +49,6 @@ const HistoryOrder = () => {
   if (tableData.length === 0) {
     return <h1>Loading Orders...</h1>;
   }
-
 
   // formatted Date
   const date = new Date();
@@ -62,7 +64,6 @@ const HistoryOrder = () => {
     day: "numeric",
     year: "numeric",
   });
-
 
   // Pagination for the Data Table
   function CustomPagination() {
@@ -89,7 +90,7 @@ const HistoryOrder = () => {
     borderColor: "#000",
     color: theme.palette.mode === "light" ? "#000" : "#000)",
     fontFamily: ["montserrat"].join(","),
-    textAlign: 'center',
+    textAlign: "center",
     WebkitFontSmoothing: "auto",
     letterSpacing: "normal",
     "& .MuiDataGrid-main": {
@@ -111,12 +112,12 @@ const HistoryOrder = () => {
       borderBottom: `.1px solid rgba(0, 0, 0, 0.5)`,
     },
     "& .MuiDataGrid-columnHeader, .MuiDataGrid-cell": {
-      borderLeft: `.1px solid rgba(0, 0, 0, 0.5)`
+      borderLeft: `.1px solid rgba(0, 0, 0, 0.5)`,
     },
     "& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell": {
       borderBottom: `.1px solid ${
         theme.palette.mode === "light" ? "#000" : "#000"
-      }`
+      }`,
     },
     "& .MuiDataGrid-cell": {
       color: theme.palette.mode === "light" ? "#000" : "#000",

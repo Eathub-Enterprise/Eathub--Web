@@ -43,8 +43,8 @@
 
 .login h1 {
   font-weight: 600;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 30px;
+  line-height: 35px;
   text-align: center;
   letter-spacing: -1.6px;
   color: #1a1919;
@@ -71,52 +71,17 @@
   margin-top: 2rem;
 }
 
-#login-username {
-  border-radius: 10px;
-  padding: 0 0 0 10px;
-  border: none;
-  outline: none;
-}
-
-.password-input {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding-right: 10px;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-}
-
-#password {
-  padding: 0 0 0 10px;
-  border: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-.password-input input:focus {
-  border: black;
-  box-shadow: none;
-  outline: none;
-  border: 1px thin;
-}
-
-.password-input:focus {
-  border: black;
-}
-
 .input-check {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: baseline;
+  align-items: center;
 }
 
 .input-check input {
-  width: 5%;
+  width: 7%;
   height: 20%;
+  
 }
 
 .login form button {
@@ -129,12 +94,38 @@
   color: var(--primary);
 }
 
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.password-input {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 92%;
+  right: 8px;
+  left: 85%;
+  cursor: pointer;
+}
+
+
+
+
+
 @media only screen and (max-width: 768px) {
   .login {
     height: 100vh;
-    overflow-x: hidden;
+    overflow-y: auto;
     background-image: url("../../Assets/images/login-img.png");
     position: relative;
+  
   }
 
   .backArrow {
@@ -150,7 +141,6 @@
   }
 
   .login-container {
-    /* position: absolute; */
     width: 90vw;
     height: 80vh;
     align-items: center;
@@ -165,11 +155,23 @@
     display: none;
   }
 
-  .login-left main {
-    margin: 1rem 2rem;
-    max-width: 80%;
-    max-height: 90vh;
+  .input-check input{
+    margin-top: 0;
+
   }
+
+  .login-left main {
+    position: relative;
+    margin: 1rem 2rem;
+    max-width: 70%;
+    max-height: 90vh;
+    left: 9%;
+  }
+
+.input-check{
+  width: 50vw;
+
+}
 
   .login-left form {
     display: flex;
@@ -180,5 +182,9 @@
 
   form input {
     width: 100%;
+  }
+  .eye-icon{
+    top: 57%;
+    left: 88%;
   }
 }

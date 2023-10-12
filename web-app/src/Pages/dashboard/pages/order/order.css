@@ -2,10 +2,10 @@
 
 .menu-section{
   display: flex;
-  margin-left: 300px;
+  /* margin-left: 300px; */
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 80vw;
 }
 
 .order-head {

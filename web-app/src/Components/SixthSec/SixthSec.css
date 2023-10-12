@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  width: 100vw;
   padding: 50px;
 }
 .secondContainer {
   display: flex;
   width: 100%;
-  gap: 200px;
+  gap: 50px;
 }
 
 .sixP {
@@ -28,20 +28,22 @@
 }
 
 .secondContainer img {
-  width: 400px;
-  height: 400px;
+  width: 50vw;
+  height: 60vh;
+  margin: 0;
 }
 
 .login-inputs {
   display: flex;
-  width: 100%;
+  width: 40vw;
   gap: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   flex-direction: column;
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   background-color: #ffffff;
+  justify-content: center;
 }
 
 .login-inputs h5 {
@@ -57,10 +59,10 @@
 
 .login-inputs input,
 .login-inputs textarea {
-  width: 100%;
+  width: 90%;
   padding: 12px;
   border: 2px solid #757575;
-  border-radius: 4px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -69,7 +71,7 @@
   height: 100px;
   padding: 12px;
   border: 2px solid #757575;
-  border-radius: 4px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -78,10 +80,51 @@
   color: white;
   padding: 12px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .login-inputs input[type="submit"]:hover {
   background-color: #45a049;
+}
+
+@media screen and (orientation: portrait) {
+  .SixthSection {
+    padding: 15px;
+  }
+
+  .sixP {
+    font-size: calc(4vw + 12px);
+    text-align: center;
+  }
+  .secondContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .secondContainer img {
+    object-fit: contain;
+    margin-inline: calc(100vw / 4);
+    width: 80vw;
+    height: 60vw;
+  }
+
+  .secondContainer img{
+    width: 50%;
+  }
+
+  .marketContainer{
+    display: flex;
+   justify-content: center;
+  }
+
+  .login-inputs {
+    padding: 0 auto;
+    width: 100%;
+  }
+
+  .login-inputs input, .login-inputs textarea {
+    width: 100%;
+  }
 }

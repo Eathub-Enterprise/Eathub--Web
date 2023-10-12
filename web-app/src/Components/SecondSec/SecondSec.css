@@ -4,7 +4,7 @@
   gap: 50px;
   justify-content: center;
   align-items: center;
-  margin: auto 50px;
+  padding: 50px;
 }
 
 .secondContain {
@@ -13,8 +13,9 @@
 }
 
 .Mimg {
-  width: 600px;
-  height: 450px;
+  height: 50vh;
+  margin-left: 0;
+  margin-top: 0;
 }
 .secondP {
   color: #252b42;
@@ -48,12 +49,12 @@
 .marketP3 {
   color: var(--second-text, #737373);
   font-family: Montserrat;
-  font-size: 15px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 30px;
-  letter-spacing: 0.2px;
-  width: 96%;
+  letter-spacing: 0.1px;
+  width: 100%;
 }
 
 .marketContainers {
@@ -62,47 +63,49 @@
   justify-content: center;
 }
 
-
-
-@media screen and (max-width: 1140px) {
+@media screen and (orientation: portrait) {
   .secondContain {
-    border: 5px solid red;
+    width: 90vw;
+    gap: 10px;
     display: flex;
     flex-direction: column;
-    width: 70%;
-    margin: auto;
-    /* grid-template-columns: 2fr; */
-    /* margin: 5% 10% 5%; */
+  }
+
+  .secondP {
+    margin-bottom: -3rem;
+    padding: .5vw;
   }
 
   .Mimg {
-      width: 50%;
-      border-radius: 15px;
-      /* margin-left: 18% */
-      border: 5px solid red;
-   
+    object-fit: contain;
+    margin-inline: calc(100vw / 16);
   }
 
-   .marketContainers {
-      color: black;
-      font-size: 23px;
-      font-size: 5px;
-  }
-
-  .marketContainers .marketP3 {
+  .marketContainers {
     color: black;
+    font-size: 23px;
+    font-size: 5px;
+  }
+
+  .marketP2{
+    font-size: calc(4vw + 10px);
+    margin-bottom: .5rem;
+  }
+
+  .marketP3{
+    font-family: Montserrat;
     font-size: 15px;
-    border: 5px solid red;
-  
-}
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    width: 100%;
+    color: black;
+  }
 
-
-
-
-  /* .about .left p {
-      color: black;
-      font-size: 20px;
-      margin: 1rem 0;
-  }  */
-
+  .marketContainers {
+    color: black;
+    font-size: 12px;
+    
+  }
 }

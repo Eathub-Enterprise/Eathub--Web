@@ -1,33 +1,33 @@
 import { Formik } from "formik";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import authService from "../../services/auth/authService";
 import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../Redux/actions";
 import Preloader from "../../layouts/Preloader/Preloader";
+import { vendorRegister } from "../../model/auth/authAction";
+import Swal from "sweetalert2";
 
 const BusinessForm = (e) => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
 
+  // remember-me feature
+  const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
+  // leftover data from the previous form
   const userData = localStorage.getItem("user");
   const user = JSON.parse(userData);
 
-  const dispatch = useDispatch();
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-  const handleClose = () => {
-    dispatch(closeSnackbar);
-  };
+  // for Registeration state with RTK
+  const { loading, vendor, error, success } = useSelector(
+    (state) => state.auth
+  );
 
   if (loading) {
-    <Preloader />;
+    return <Preloader />;
   }
 
   return (
@@ -39,36 +39,58 @@ const BusinessForm = (e) => {
         business_phonenumber: "",
       }}
       onSubmit={async (values, { setSubmitting }) => {
-        setLoading(true);
         setSubmitting(true);
         const value = {
           ...values,
           ...user,
         };
-
         try {
-          await authService.vendorSignUp(value).then(
-            (response) => {
-              console.log("it Worked!", value);
-              dispatch(
-                openSnackbar("Business Registeration successful!", 1000)
-              );
-              navigate("/login");
-            },
-            (error) => {
-              console.log("it Failed!", error);
-              dispatch(openSnackbar("Registeration Unsuccessful!", 1000));
-            }
-          );
-        } catch (err) {
-          console.log(err);
-          if (err.message === "User already exists") {
-            dispatch(openSnackbar("User already exists.", 1000));
-          } else {
-            dispatch(openSnackbar("Registration Unsuccessful.", 1000));
+          const registrationStatus = await dispatch(vendorRegister(value));
+          if (registrationStatus.type === "auth/register/fulfilled") {
+            Swal.fire({
+              text: "Registered Sucessfully",
+              icon: "success",
+              iconColor: "#fff",
+              toast: true,
+              position: "top-right",
+              showConfirmButton: false,
+              timer: 2000,
+              background: "#ff8323",
+              color: "#fff",
+            });
+            navigate("/login");
           }
+          // console.log("Submit!", registrationStatus);
+          if (vendor) {
+            Swal.fire({
+              text: "User Already Existing",
+              icon: "warning",
+              iconColor: "#fff",
+              toast: true,
+              position: "top-right",
+              showConfirmButton: false,
+              timer: 2000,
+              background: "#ff8323",
+              color: "#fff",
+            });
+            navigate("/login");
+            // console.log("Vendor Already Exists!");
+          } else if (error) {
+            Swal.fire({
+              text: "Unsucessful Registeration",
+              icon: "error",
+              toast: true,
+              position: "top-right",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            console.error(error);
+            navigate("/signup/business");
+          }
+        } catch (error) {
+          console.error("Error During Registration", error);
         } finally {
-          setLoading(false);
+          setSubmitting(false);
         }
       }}
       // Yup Validation
@@ -202,13 +224,6 @@ const BusinessForm = (e) => {
               </div>
               <span className="progress-circles"></span>
             </div>
-
-            <Snackbar
-              open={open}
-              message={message}
-              autoHideDuration={duration}
-              onClose={handleClose}
-            />
           </div>
         );
       }}

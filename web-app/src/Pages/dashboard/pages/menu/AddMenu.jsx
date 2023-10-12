@@ -5,9 +5,8 @@ import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import authService from "../../../../services/auth/authService";
-import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
+import { showToastNotification } from "../../../../helper/ToastNotify";
+import * as Yup from "yup";
 
 const AddMenu = () => {
   const navigate = useNavigate();
@@ -17,18 +16,15 @@ const AddMenu = () => {
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [showImage, setShowImage] = useState(false);
 
-  // handling notifications for now
-  const dispatch = useDispatch();
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-  const handleClose = () => {
-    dispatch(closeSnackbar());
-  };
-
+  // handling the formats of the image to be uploaded
+  const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+  // handles the image upload itself
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
+    // this previews the image
     setShowImage(true);
     setFile(event.target.files[0]);
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
   };
 
   useEffect(() => {
@@ -43,9 +39,10 @@ const AddMenu = () => {
         setLoading(false);
       }
     }
-    fetchCategory();
+    fetchCategory(); // fetches the meal category for meal creation
   }, []);
 
+  // unclear why i had to do this.
   if (loading && category.length === 0) {
     return <Preloader />;
   }
@@ -64,6 +61,7 @@ const AddMenu = () => {
       }}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
+        // as requested from backend, formData had to be used.
         const formData = new FormData();
         formData.append("food_title", values.food_title);
         formData.append("food-type", values.food_type);
@@ -76,26 +74,54 @@ const AddMenu = () => {
         /* Note: In the case where multiple Images would be needed, 
           ensure to append to formData instead of destructuring.*/
         try {
-          setLoading(true);
           const response = await authService.createMeal(formData);
-          console.log("it Worked!", formData);
+          // console.log("it Worked!", formData);
+          setLoading(true);
           authService.getMealList();
           if (response) {
-            dispatch(openSnackbar(`Meal Creation Successful`, 1000));
             navigate("/dashboard/menu");
+            showToastNotification(
+              `${values.food_title} has been created!`,
+              "success"
+            );
           } else {
+            showToastNotification(
+              `Error in creating ${values.food_title}`,
+              "error"
+            );
             console.log("Meal has a bug!");
           }
         } catch (error) {
-          dispatch(openSnackbar(`Unsuccessful Operation, Try again`, 1000));
-          navigate("/dashboard/menu");
-          console.log("The Values are wrong or Incorrect!: ", error);
+          showToastNotification(
+            "An error occurred while creating the meal",
+            "error"
+          );
         } finally {
-          setSubmitting(false);
           setLoading(false);
         }
       }}
-      validator={() => ({})}
+      validationSchema={Yup.object().shape({
+        food_title: Yup.string().required("Meal name is required"),
+        food_description: Yup.string().required(
+          "Your meal deserves a description"
+        ),
+        food_price: Yup.number().required("Give your meal a price"),
+        prepare_time: Yup.number().required("Set a time to prepare the meal"),
+        // image: Yup.mixed()
+        //   .nullable()
+        //   .required("A file is required")
+        //   .test(
+        //     "Fichier taille",
+        //     "upload file",
+        //     (value) => !value || (value && value.size <= 1024 * 1024)
+        //   )
+        //   .test(
+        //     "format",
+        //     "upload file",
+        //     (value) =>
+        //       !value || (value && SUPPORTED_FORMATS.includes(value.type))
+        //   ),
+      })}
     >
       {(props) => {
         const {
@@ -312,12 +338,6 @@ const AddMenu = () => {
                   </div>
                 </div>
               </div>
-              <Snackbar
-                open={open}
-                message={message}
-                autoHideDuration={duration}
-                onClose={handleClose}
-              />
             </form>
           </div>
         );

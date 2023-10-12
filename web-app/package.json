@@ -29,7 +29,9 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.3.2",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.56.1",
+    "sweetalert2": "^11.7.31",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
@@ -44,6 +46,13 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    }
   },
   "browserslist": {
     "production": [
