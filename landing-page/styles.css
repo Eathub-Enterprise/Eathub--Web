@@ -134,6 +134,7 @@ button:hover {
     border-radius: 80px;
     box-shadow: 21px 35px 128px -25px rgba(0, 0, 7);
     cursor: pointer;
+    padding: 4px 0;
 }
 
 .nav-inner {
