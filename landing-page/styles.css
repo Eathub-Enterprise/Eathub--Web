@@ -256,8 +256,8 @@ header img {
 }
 
 .hero-content h1 {
-    font-family: "Open Sans";
-    font-weight: 800;
+    font-family: "Montserrat";
+    font-weight: bold;
     letter-spacing: -2%;
     text-shadow: 2px 2px 20px hsla(0, 0%, 0%, 0.8);
     font-size: 6vw;
