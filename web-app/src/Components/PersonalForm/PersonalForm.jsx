@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import "./personalForm.css";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../../layouts/Preloader/Preloader";
+import { Locations } from "../../helper/Location";
 
 // reminder to separate into smart and dumb component
 
@@ -16,7 +17,7 @@ const PersonalForm = () => {
   return (
     <Formik
       initialValues={{
-        firstname: "", 
+        firstname: "",
         lastname: "",
         password: "",
         confirmPassword: "",
@@ -70,22 +71,22 @@ const PersonalForm = () => {
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>
                   <div className="input-header">
-                      <input
-                        id="firstname"
-                        name="firstname"
-                        type="text"
-                        placeholder="First Name"
-                        value={values.firstname}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        className={
-                          errors.firstname && touched.firstname && "error"
-                        }
-                      />
-                      {errors.firstname && touched.firstname && (
-                        <div className="input-feedback">{errors.firstname}</div>
-                      )}
-                    </div>
+                    <input
+                      id="firstname"
+                      name="firstname"
+                      type="text"
+                      placeholder="First Name"
+                      value={values.firstname}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.firstname && touched.firstname && "error"
+                      }
+                    />
+                    {errors.firstname && touched.firstname && (
+                      <div className="input-feedback">{errors.firstname}</div>
+                    )}
+                  </div>
                   <input
                     id="lastname"
                     name="lastname"
@@ -130,14 +131,21 @@ const PersonalForm = () => {
                     </div>
                   )}
 
-                  <input
-                    type="text"
+                  <select
                     name="location"
-                    placeholder="Axis Location"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.location}
-                  />
+                  >
+                    <option value="" disabled>
+                      Select Axis
+                    </option>
+                    {Locations.map((location, index) => (
+                      <option key={index} value={location.location}>
+                        {location.location}
+                      </option>
+                    ))}
+                  </select>
 
                   <button
                     className="personal-form-btn"
