@@ -173,8 +173,24 @@ td {
 }
 
 
-@media (max-width: 1000px){
-  .menu-section{
-    margin-left: 200px;
+@media (max-width: 768px) {
+  .order-head {
+    flex-direction: column;
+    align-items: flex-start;
   }
+
+  .order-head button {
+    margin-top: 10px;
+  }
+
+  .empty-menu {
+    margin-top: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+
+ 
+  
 }

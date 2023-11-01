@@ -210,14 +210,41 @@ td {
   margin-bottom: 2rem;
 }
 
-@media (max-width:1000px){
-  .empty-menu{
-    position: absolute;
-    left: 30%;
+@media (max-width: 768px) {
+  .menu-btn {
+    text-align: center;
+  }
+  
+  .menu-link {
+    display: block;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  th {
+    font-size: 14px;
+  }
+  
+  .empty-menu {
+    margin-top: 10px;
+    
+    
+  }
+  
+  .menu-content {
+    padding: 10px;
   }
 
-  .menu-table, .menu-title{
-    width: 80vw;
-    margin-left: 70px;
+  h1 {
+    font-size: 24px;
+    margin-right: 55%;
   }
+
+  .menu-btn {
+    margin-top: 10px;
+  }
+
+  
 }
