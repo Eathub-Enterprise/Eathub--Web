@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import img from "../../Assets/images/login-img.png";
+import img from "../../Assets/images/login-img.webp";
 import { useDispatch, useSelector } from "react-redux";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { vendorLogin } from "../../model/auth/authAction";
