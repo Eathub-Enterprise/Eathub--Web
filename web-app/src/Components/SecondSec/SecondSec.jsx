@@ -9,7 +9,7 @@ const SecondSec = () => {
         How We <span className="Pcolours">Serve</span> You
       </p>
       <div className="secondContain">
-        <img src={Market} alt="A marketplace" className="Mimg"/>
+        <img src={Market} alt="A marketplace" className="Mimg" loading="lazy"/>
         <div className="marketContainers">
           <p className="marketP">Customer Starved?</p>
           <p className="marketP2">Looking For Customers?</p>

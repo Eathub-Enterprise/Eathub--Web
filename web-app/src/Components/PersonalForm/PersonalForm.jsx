@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./personalForm.css";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Preloader from "../../layouts/Preloader/Preloader";
 import { Locations } from "../../helper/Location";
 
-// reminder to separate into smart and dumb component
+// reminder to separate component
 
 const PersonalForm = () => {
   const navigate = useNavigate();

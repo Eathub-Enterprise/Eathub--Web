@@ -1,6 +1,6 @@
 import React from "react";
 import "./ThirdSec.css";
-import Order from "../../Assets/images/order.png";
+import Order from "../../Assets/images/order.webp";
 
 const ThirdSec = () => {
   return (
