@@ -18,11 +18,6 @@ const EmptyMenu = () => {
       <span className="empty-menu" style={{marginTop: 50}}>
       <Lottie options={defaultOptions} height={400} width={400} />
         <h1>Your Menu List is currently Empty!</h1>
-        <button className="menu-btn">
-          <Link to="/dashboard/menu/addMenu" className="menu-link">
-            Add Meal
-          </Link>
-        </button>
       </span>
     </div>
   );

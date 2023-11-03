@@ -24,6 +24,8 @@
   border: 2px solid transparent;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgb(154, 153, 153);
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .menu-btn {

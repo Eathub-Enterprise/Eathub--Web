@@ -96,6 +96,7 @@
 
 input[type='text'],
 input[type='password'] {
+  position: relative;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -103,9 +104,7 @@ input[type='password'] {
   outline: none;
 }
 
-.password-input {
-  position: relative;
-}
+
 
 .eye-icon {
   position: absolute;

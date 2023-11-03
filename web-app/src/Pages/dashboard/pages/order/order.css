@@ -8,6 +8,15 @@
   width: 80vw;
 }
 
+.order{
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+}
+
 .order-head {
   margin-left: 2rem;
   margin-bottom: 2rem;
@@ -36,17 +45,14 @@ button .order-link {
 .orderedTable {
   margin: 0 auto;
   width: 90%;
-  height: 70vh;
+  height: 75vh;
   border: 2px solid transparent;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgb(154, 153, 153);
+  overflow-y: scroll;
 }
 
-.orderedTable table {
-  width: 100%;
-  border-collapse: collapse;
-  padding: 1rem;
-}
+
 
 .orderedTable table thead,
 tbody {
@@ -101,6 +107,15 @@ td {
 
 .order-main {
   padding: 4rem 2rem 1rem 5rem;
+}
+
+.empty-menu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 450px;
+
 }
 
 .order-title {

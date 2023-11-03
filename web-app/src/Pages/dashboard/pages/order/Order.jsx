@@ -68,7 +68,6 @@ const Order = () => {
               <th>Order Description</th>
               <th>Delivery Location</th>
               <th>Price</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
