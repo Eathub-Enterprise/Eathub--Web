@@ -4,8 +4,8 @@ import './AboutHeroImg.css'
 class AboutHeroImg extends Component {
     render() {
         return (
-            // <div className='aboutheroimgPage'>
-                <div className='hero-img'>
+
+                <div className='hero-abimg'>
                     
                     <div className='heading'>
                         <h1>{this.props.heading}</h1>
@@ -13,7 +13,7 @@ class AboutHeroImg extends Component {
                     </div>
                 </div>
 
-            // </div>
+
         )
     }
 }

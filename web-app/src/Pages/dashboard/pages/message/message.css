@@ -8,6 +8,9 @@
 .message-drop-list {
   display: flex;
   flex-direction: row;
+  margin-left: 50px;
+  transition: 5ms;
+
 }
 
 .message-dropdwn:first-child {
@@ -24,10 +27,13 @@
 
 .message-header {
   margin-top: 2rem;
+  margin-left: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  transition: 5ms;
+
 }
 
 .msg-btn {
@@ -43,10 +49,13 @@
 
 .message-container {
   margin-top: 2rem;
-  width: 100%;
+  width: 70vw;
+  margin-left: 50px;
   height: 70vh;
   border: .5px solid #000;
   border-radius: 5px;
+  transition: 5ms;
+
 }
 
 .msg-section {
@@ -90,4 +99,30 @@
   background-position: 10px;
   background-size: 20px;
   color: #000;
+}
+
+
+@media (max-width: 768px) {
+  .message-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .message-dropdwn,
+  select {
+    margin: 10px 0;
+  }
+
+  .message-header {
+    text-align: center;
+  }
+
+  .msg-section {
+    flex-direction: column;
+  }
+
+  .msg-1,
+  .msg-2 {
+    width: 100%;
+  }
 }

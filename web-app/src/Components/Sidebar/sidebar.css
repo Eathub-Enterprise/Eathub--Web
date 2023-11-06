@@ -1,14 +1,20 @@
-.container {
+.sidebar {
   display: flex;
-  position: sticky;
+  flex-direction: column;
   height: 100vh;
   box-shadow: 4px 0 4px -2px rgba(0, 0, 0, 0.25);
+  width:230px ;
+  position: fixed;
+  top: 0;
+  transition: 0.1s ease-in;
+  
 }
-.container main {
+
+.sidebar main {
   width: 100%;
-  padding: 20px;
+  padding: 70px;
 }
-.container .sidebar {
+.sidebar {
   background: #ff8323;
   color: white;
   min-height: 100%;
@@ -16,20 +22,21 @@
 .top-section {
   display: flex;
   align-items: center;
-  padding: 55px 40px;
+  justify-content: center;
 }
 .link {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 20px 60px;
-  flex-direction: row-reverse;
+  padding: 15px 50px;
   transition: all 0.5s;
   text-decoration: none;
-  /* gap: 20px; */
 }
 
+.Logo {
+  width: 250px;
+  padding: 30px;
+}
 
 .link:hover {
   background: white;
@@ -39,6 +46,7 @@
 
 .icon {
   font-size: 22px;
+  margin-right: 20px;
 }
 
 .link-text {
@@ -51,42 +59,84 @@
 }
 
 .profile-space:hover {
-  background: white;
   color: #ff8323;
   transition: all 0.5s;
 }
 
-.profile-link:hover{
+.profile-link:hover {
   color: #ff8323;
 }
 
-.sidebar-button{
+.sidebar-button {
   color: red;
   background-color: white;
   border-radius: 20px;
-  padding: 3px 8px;
+  padding: 10px 20px;
   cursor: pointer;
   border: 2px solid transparent;
 }
 
-.profile-space{
+.profile-space {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  margin-top: 3rem;
-  padding: 5px 40px;
+  padding: 20px 60px;
 }
 
-.profile-space span{
-  flex:1;
+.profile-space span {
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
+  align-items: center;
+  width: 500px;
+  justify-content: center;
   margin-left: 0.5rem;
 }
 
-.profile-space a{
+.profile-link {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-space a {
   text-decoration: none;
   color: white;
+}
+
+
+/* Add your existing styles for the sidebar here */
+
+/* Media query for screens with a width of 765px or less */
+@media (max-width: 1000px) {
+  .sidebar {
+    width: 0;
+    transition: width 0.2s ease-out;
+    overflow-y: hidden;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    width: 205px; /* Adjust the width as needed */
+    overflow-y: auto;
+    z-index: 1;
+    overflow-x: hidden;
+  }
+
+
+  .menu-icon {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    color: black;
+  }
+
+  .menu-icon.open{
+    color: #ff8323;
+  }
+
 }

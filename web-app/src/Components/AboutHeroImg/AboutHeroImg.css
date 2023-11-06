@@ -1,6 +1,6 @@
 /* .aboutheroimgPage { */
 
-    .hero-img {
+    .hero-abimg {
         background: rgba(255, 130, 34, 0.24); 
         /* rgba(255, 131, 34, 0.8) */
         height: 50vh;
@@ -9,9 +9,9 @@
         /* background-color: #FF8323; */
     }
 
-    .hero-img:before {
+    .hero-abimg:before {
         content: '';
-        background: url(../../Assets/images/heroimg.png) no-repeat center center/cover;
+        background: url(../../Assets/images/heroimg.webp) no-repeat center center/cover;
         height: 100%;
         width: 100%;
         position: absolute;
@@ -20,7 +20,7 @@
         z-index: -1;
     }
 
-    .hero-img .heading {
+    .hero-abimg .heading {
         width: 100%;
         height: 100%;
         display: flex;
@@ -30,27 +30,44 @@
         align-items: center;
     }
  
-    .hero-img h1 {
+    .hero-abimg h1 {
         font-size: 3.4rem;
         border-bottom: 5px solid #fff;
     }
 
-    .hero-img p {
+    .hero-abimg p {
         font-size: 1.4rem;
     }
 
 
     @media screen and (max-width:640px) {
-        .hero-img h1 {
+        .hero-abimg h1 {
+            font-size: 15rem;
+        }
+        
+        .hero-abimg {
+            background: rgba(0,0,0,.7);
+            height: 30vh;
+            width: 100%;
+            
+        }
+    }  
+
+
+    @media screen and (max-width:640px) {
+        .hero-abimg h1 {
             font-size: 2rem;
         }
 
-        .hero-img {
+        .hero-abimg {
             background: rgba(0,0,0,.7);
             height: 30vh;
             width: 100%;
         }
-    }
+    } 
+
+
+
+
     
 
-/* } */

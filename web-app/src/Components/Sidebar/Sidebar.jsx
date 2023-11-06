@@ -1,6 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import { ChartDataContext } from "../../helper/requireAuth";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./sidebar.css";
 import {
   FaThLarge,
@@ -8,19 +6,27 @@ import {
   FaSpa,
   FaEnvelope,
   FaMoneyBill,
+  FaUser,
 } from "react-icons/fa";
-import e from "../../Assets/images/white logo.png";
-import text from "../../Assets/images/athub-white.png";
+import imgg from "../../Assets/pngs/logo.svg";
 import { useNavigate, NavLink } from "react-router-dom";
-import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 
 const Sidebar = ({ children }) => {
   const navigate = useNavigate();
-  const glbData = useContext(ChartDataContext);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleToggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   const handleLogOut = () => {
     navigate("/");
     localStorage.clear();
+    if (isSidebarOpen) {
+      setIsSidebarOpen(false);
+    }
   };
+
   const menuItem = [
     {
       path: "/dashboard",
@@ -37,62 +43,52 @@ const Sidebar = ({ children }) => {
       name: "Menu",
       icon: <FaSpa />,
     },
-    // {
-    //     path: "/dashboard/analytics",
-    //     name: 'Analytics',
-    //     icon: <FaChartLine/>
-    // },
     {
       path: "/dashboard/message",
       name: "Message",
       icon: <FaEnvelope />,
     },
-    // {
-    //     path: "/dashboard/settings",
-    //     name: 'Settings',
-    //     icon: <FaCog/>
-    // },
     {
       path: "/dashboard/payouts",
       name: "Payouts",
       icon: <FaMoneyBill />,
     },
+    {
+      path: "/dashboard/profile",
+      name: "Profile",
+      icon: <FaUser />,
+    },
   ];
 
   return (
-    <div className="container">
-      <div className="sidebar">
+    <div className={`container ${isSidebarOpen ? "open" : ""}`}>
+      <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="top-section">
-          <img loading="lazy" src={e} alt={e} className="Logo" />
-          <img loading="lazy" src={text} alt={text} />
+          <img loading="lazy" src={imgg} alt="logo" className="Logo" />
         </div>
         {menuItem.map((item) => (
           <NavLink
             to={item.path}
             key={item.name}
             className="link"
-            activeclassname="active"
+            activeClassName="active" // Use activeClassName to set the active class
+            onClick={handleToggleSidebar}
           >
             <div className="icon">{item.icon}</div>
             <div className="link-text">{item.name}</div>
           </NavLink>
         ))}
         <span className="profile-space">
-          {/* need to fix an image tag here */}
-          <PermIdentityTwoToneIcon fontSize="large" />
-          <span>
-            <Link
-              className="profile-link"
-              activeclassname="active"
-              to="/dashboard/profile"
-            >
-              {glbData.vendorname}
-            </Link>
-            <button onClick={handleLogOut} className="sidebar-button">
-              LogOut
-            </button>
-          </span>
+          <button onClick={handleLogOut} className="sidebar-button">
+            LogOut
+          </button>
         </span>
+      </div>
+      <div
+        className={`menu-icon ${isSidebarOpen ? "open" : ""}`}
+        onClick={handleToggleSidebar}
+      >
+        ☰
       </div>
       <main>{children}</main>
     </div>

@@ -1,0 +1,111 @@
+.SecondSection {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.secondContain {
+  display: flex;
+  gap: 100px;
+}
+
+.Mimg {
+  height: 50vh;
+  margin-left: 0;
+  margin-top: 0;
+}
+.secondP {
+  color: #252b42;
+  font-family: Montserrat;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.marketP {
+  color: #fa4a0c;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0.1px;
+}
+.marketP2 {
+  color: var(--text, #252b42);
+  font-family: Montserrat;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.marketP3 {
+  color: var(--second-text, #737373);
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.1px;
+  width: 100%;
+}
+
+.marketContainers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (orientation: portrait) {
+  .secondContain {
+    width: 90vw;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .secondP {
+    margin-bottom: -3rem;
+    padding: .5vw;
+  }
+
+  .Mimg {
+    object-fit: contain;
+    margin-inline: calc(100vw / 16);
+  }
+
+  .marketContainers {
+    color: black;
+    font-size: 23px;
+    font-size: 5px;
+  }
+
+  .marketP2{
+    font-size: calc(4vw + 10px);
+    margin-bottom: .5rem;
+  }
+
+  .marketP3{
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    width: 100%;
+    color: black;
+  }
+
+  .marketContainers {
+    color: black;
+    font-size: 12px;
+    
+  }
+}

@@ -1,0 +1,130 @@
+.SixthSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  padding: 50px;
+}
+.secondContainer {
+  display: flex;
+  width: 100%;
+  gap: 50px;
+}
+
+.sixP {
+  color: var(--text, #252b42);
+  font-family: Montserrat;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+}
+
+.marketContainer {
+  display: flex;
+  width: 100%;
+  gap: 300px;
+}
+
+.secondContainer img {
+  width: 50vw;
+  height: 60vh;
+  margin: 0;
+}
+
+.login-inputs {
+  display: flex;
+  width: 40vw;
+  gap: 10px;
+  border-radius: 10px;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  justify-content: center;
+}
+
+.login-inputs h5 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.login-inputs label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.login-inputs input,
+.login-inputs textarea {
+  width: 90%;
+  padding: 12px;
+  border: 2px solid #757575;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.suggest {
+  width: 100%;
+  height: 100px;
+  padding: 12px;
+  border: 2px solid #757575;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.login-inputs input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.login-inputs input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+@media screen and (orientation: portrait) {
+  .SixthSection {
+    padding: 15px;
+  }
+
+  .sixP {
+    font-size: calc(4vw + 12px);
+    text-align: center;
+  }
+  .secondContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .secondContainer img {
+    object-fit: contain;
+    margin-inline: calc(100vw / 4);
+    width: 80vw;
+    height: 60vw;
+  }
+
+  .secondContainer img{
+    width: 50%;
+  }
+
+  .marketContainer{
+    display: flex;
+   justify-content: center;
+  }
+
+  .login-inputs {
+    padding: 0 auto;
+    width: 100%;
+  }
+
+  .login-inputs input, .login-inputs textarea {
+    width: 100%;
+  }
+}

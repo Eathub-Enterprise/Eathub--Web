@@ -4,22 +4,13 @@ import authService from "../../../../services/auth/authService";
 import { Formik } from "formik";
 import icon from "../../../../Assets/pngs/ImgUpload.png";
 import Preloader from "../../../../layouts/Preloader/Preloader";
-import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../../../Redux/actions";
+import { showToastNotification } from "../../../../helper/ToastNotify";
 
 const EditMenu = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [mealItems, setMealItems] = useState({ image: "" });
   const navigate = useNavigate();
-
-  // handling notifications for now - remind to update
-  const dispatch = useDispatch();
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-  const handleClose = () => {
-    dispatch(closeSnackbar());
-  };
 
   // to grab the catgeories need for the Meal Category Select tag
   const [category, setCategory] = useState([]);
@@ -33,7 +24,7 @@ const EditMenu = () => {
     setIsImageUploaded(true);
     setFile(event.target.files[0]);
     setShowImage(true);
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
   };
 
   // This gets the category data from the backend
@@ -59,7 +50,7 @@ const EditMenu = () => {
       try {
         const response = await authService.getMeal(id);
         const meal = response.data;
-        console.log(meal);
+        // console.log(meal);
         // setting the state
         setMealItems({
           category_id: meal.id,
@@ -113,24 +104,27 @@ const EditMenu = () => {
           ensure to append to formData instead of destructuring.*/
 
         try {
+          setLoading(true);
           await authService.updateMeal(id, formData).then(
             (response) => {
-              console.log("Update Inputted!", formData);
-              navigate("/dashboard/menu");
-              authService.getMealList();
+              // console.log("Update Inputted!", formData);
               if (response) {
-                dispatch(openSnackbar("Meal Updated!", 1000));
+                showToastNotification(
+                  `${values.food_title} has been updated!`,
+                  "success"
+                );
+                navigate("/dashboard/menu");
+                authService.getMealList();
               } else {
-                dispatch(openSnackbar("Meal Update Error!", 1000));
+                console.log("There's an issue with it!");
+                showToastNotification(`Error updating this meal`, "error");
               }
             },
             (error) => {
-              dispatch(openSnackbar("Error updating Meal, Try Again", 1000));
               console.log("The Values are wrong or Incorrect!: ", error);
             }
           );
         } catch (err) {
-          dispatch(openSnackbar("Something went wrong!", 1000));
           console.log("Something seems to wrong with the request: ", err);
         } finally {
           setSubmitting(false);
@@ -352,12 +346,6 @@ const EditMenu = () => {
                 </div>
               </div>
             </form>
-            <Snackbar
-              open={open}
-              message={message}
-              autoHideDuration={duration}
-              onClose={handleClose}
-            />
           </div>
         );
       }}

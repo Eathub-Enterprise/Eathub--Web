@@ -7,18 +7,20 @@ import icon from "../../../../Assets/pngs/profile (1).png";
 import icons from "../../../../Assets/pngs/ImgUpload.png";
 
 const Profile = () => {
+  // grabbing data from my contex.
   const glbData = useContext(ChartDataContext);
   const [loading, setLoading] = useState(false);
   const [profileData, setProfileData] = useState({
     image: "",
     kitchenDescription: "",
   });
-  // New inputs
+
+  // TextArea keyword tracker
   const [kitchenDescription, setKitchenDescription] = useState("");
   const maxLength = 450;
   const [remainingLength, setRemainingLength] = useState(450);
 
-  const handleChangeDEsc = (event) => {
+  const handleChanges = (event) => {
     // setValue(event.target.value);
     setKitchenDescription(event.target.value);
     setRemainingLength(maxLength - kitchenDescription.length);
@@ -29,12 +31,12 @@ const Profile = () => {
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [showImage, setShowImage] = useState(false);
 
-  // The Method handling that
+  // The Method handling image upload
   const handleImageUpload = (event) => {
     setIsImageUploaded(true);
     setShowImage(true);
     setFile(event.target.files[0]);
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
   };
 
   // Getting Pre-existing data
@@ -42,14 +44,18 @@ const Profile = () => {
     async function fetchData() {
       setLoading(true);
       try {
-        setProfileData({
-          username: glbData.username,
-          vendorName: glbData.vendorname,
-          address: glbData.mainbusinessaddress,
-          kitchenNumber: glbData.businessphonenumber,
-          emailAddress: glbData.businessemail,
-          fullName: "John Doe",
-        });
+        if (glbData) {
+          setProfileData({
+            username: glbData.username,
+            vendorName: glbData.vendorname,
+            address: glbData.mainbusinessaddress,
+            kitchenNumber: glbData.businessphonenumber,
+            emailAddress: glbData.businessemail,
+            fullName: glbData.fullName,
+          });
+        } else {
+          setProfileData({});
+        }
       } catch (err) {
         console.log(err);
       }
@@ -60,11 +66,6 @@ const Profile = () => {
   if (loading) {
     <Preloader />;
   }
-  const handleChange = (event) => {
-    // setValue(event.target.value);
-    setKitchenDescription(event.target.value);
-    setRemainingLength(maxLength - kitchenDescription.length);
-  };
 
   return (
     <Formik
@@ -86,7 +87,7 @@ const Profile = () => {
         const { handleChange, handleSubmit, values } = props;
         return (
           <div className="profile-container">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="secForm">
               <div className="profile-head">
                 <div className="profile-header">
                   <h1>Welcome {glbData.username}!</h1>
@@ -111,32 +112,29 @@ const Profile = () => {
                 </span>
               </div>
             </form>
-            <form>
+            <form className="secForm">
               <div className="form-div">
                 <label htmlFor="username" className="label">
                   Username
                 </label>
-                <div className="vertical-line">eathub.com.ng/</div>
                 <input
                   type="text"
                   id="username"
                   defaultValue={profileData.username}
                   onChange={handleChange}
                   className="input-field"
-                  disabled
                 />
               </div>
-
               <div className="form-div">
                 <label htmlFor="website" className="label">
                   Full Name
                 </label>
-                <div className="vertical-line">First and Last Name</div>
                 <input
                   type="text"
                   id="fullName"
                   value={profileData.fullName}
                   onChange={handleChange}
+                  className="name"
                 />
               </div>
 
@@ -182,7 +180,6 @@ const Profile = () => {
                 <label htmlFor="vendorName" className="label">
                   Business Name
                 </label>
-                <div className="vertical-line">eathub.com.ng/</div>
                 <input
                   type="text"
                   id="username"
@@ -194,7 +191,6 @@ const Profile = () => {
                 <label htmlFor="address" className="label">
                   Address
                 </label>
-                <div className="vertical-line">Block/Plot/No</div>
                 <input
                   type="address"
                   id="username"
@@ -206,7 +202,7 @@ const Profile = () => {
                 <label htmlFor="kitchenNumber" className="label">
                   Kitchen Number
                 </label>
-                <div className="vertical-line">(+234)</div>
+
                 <input
                   type="numeric"
                   id="username"
@@ -218,7 +214,6 @@ const Profile = () => {
                 <label htmlFor="email" className="label">
                   Email Address
                 </label>
-                <div className="vertical-line">@gmail,outlook,yahoo</div>
                 <input
                   type="email"
                   id="username"
@@ -237,7 +232,7 @@ const Profile = () => {
                   value={kitchenDescription}
                   placeholder="Add a short bio..."
                   maxLength={maxLength}
-                  onChange={handleChangeDEsc}
+                  onChange={handleChanges}
                 ></textarea>
                 <div>{remainingLength} characters left</div>
               </div>

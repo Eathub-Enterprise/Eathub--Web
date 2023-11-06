@@ -1,30 +1,25 @@
-.dashboard{
-    width: 100vw;
-    height: 100vh;
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-.dashboard main{
-    width: 100%;
+.dashboard main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 230px auto;
+}
+
+.body {
+  display: flex;
+  width: 75%;
+  margin-left: 200px;
+}
+
+@media (max-width: 990px) {
+  .body {
     display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-}
-
-.dashboard .sidebar{
-    z-index: 99;
-    width: 20%;
-    height: 100%;
-    position: fixed;
-}
-
-.dashboard .body{
-    width: 75%;
-    margin-left: 20rem;
-}
-
-@media only screen and (min-width: 1500px) {
-    .dashboard .body{
-        width: 75%;
-        margin-left: 22.5rem;
-    }    
+    width: 100%;
+    margin-left: 0;
+  }
 }

@@ -1,9 +1,9 @@
 .overview-section {
-    width: 90%;
     margin: 1rem 2rem;
+    margin-left: 90px;
+    margin-right: 0;
     display: flex;
     flex-direction: column;
-    /* overflow-x: hidden; */
 }
 
 .overview-dropdown{
@@ -11,30 +11,43 @@
 }
 
 .widgets{
-    width: 100%;
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 
-.charts{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* width: 600px; */
-}
-
-.widgets, .charts {
-    /* gap: 5px; */
+.charts {
     display: flex;
     padding-top: 15px; 
-    padding-bottom: 15px;  
+    padding-bottom: 15px; 
+    width: 100vw;
+    flex-direction: column;
 } 
 
-.orders{
-    width: 100%;
-    margin-top: 2rem;
-    box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+.widgets{
+    display: flex;
+    padding-top: 15px; 
+    padding-bottom: 15px; 
+    width: 70vw;
 }
+
+
+@media  (max-width: 1080px) {
+    .overview-section {
+        margin-left: 100px; 
+        margin-right: 0; 
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .widgets{
+        width: 85vw;
+        transition: 3ms;
+    }
+
+    .charts{
+        width: 120vw
+    }
+};
+    

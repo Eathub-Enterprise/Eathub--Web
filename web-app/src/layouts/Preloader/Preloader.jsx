@@ -11,23 +11,23 @@ const Preloader = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  const overlayStyle = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1000, // Ensure the overlay is above other elements
+    backgroundColor: "rgba(255, 255, 255, 0.7)", // Semi-transparent white background
+  };
+
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 2,
-        marginLeft: "8rem",
-        backgroundColor: "white",
-      }}
-    >
-      <div style={{ height: "100vh", zIndex: "100" }}>
+    <div style={overlayStyle}>
+      <div>
         <Lottie options={defaultOptions} height={500} width={500} />
       </div>
     </div>

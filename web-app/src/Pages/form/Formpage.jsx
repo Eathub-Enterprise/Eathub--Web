@@ -1,5 +1,5 @@
 import "./formpage.css";
-import background from "../../Assets/images/formbackground.png";
+import background from "../../Assets/images/formbackground.webp";
 import { Link, Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import Preloader from "../../layouts/Preloader/Preloader";

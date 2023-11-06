@@ -1,6 +1,6 @@
 .footer {
   position: inherit;
-  background-color: black;
+  background-color: hsl(0, 0%, 0%);
   padding: 20px 0px;
   width: 100%;
 }
@@ -96,6 +96,7 @@ ul {
     display: flex;
     flex-direction: column;
   }
+
   .footer-bottom-text {
     align-items: center;
     justify-content: space-between;

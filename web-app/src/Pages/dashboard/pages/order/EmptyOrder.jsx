@@ -1,7 +1,7 @@
 import React from "react";
 import Lottie from "react-lottie";
 import animationData from "../../../../Assets/lotties/73982-healthy-or-junk-food.json";
-
+import './order.css'
 
 const EmptyOrder = () => {
     const defaultOptions = {

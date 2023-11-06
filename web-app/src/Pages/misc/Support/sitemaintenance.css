@@ -1,0 +1,71 @@
+.maintenanceimg {
+  margin-left: 30%;
+  margin-top: 5%;
+}
+
+.maintainPage {
+  background: #e2e2e2;
+  /* height:100%; */
+}
+
+.maintainPage h1 {
+  margin-left: 35%;
+  margin-top: 2%;
+  line-height: 3rem;
+  font-size: 20px;
+}
+
+.btn-rtn {
+  background-color: #ea3c3d;
+  line-height: 20px;
+  margin-left: 45%;
+  /* margin-top: 2%; */
+  padding: 15px 15px;
+  border-radius: 10px;
+  border: 1px solid #ea3c3d;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .maintainPage {
+    overflow-x: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .maintainPage h1 {
+    font-size: 10px;
+    line-height: 1.5rem;
+    /* margin: 0 2rem; */
+    text-align: center;
+  }
+
+  .maintenanceimg {
+    margin-top: 10%;
+    width: 80%;
+    height: 60%;
+    object-fit: contain;
+  }
+
+  .btn-rtn {
+    background-color: #ea3c3d;
+    width: 10rem;
+    margin-left: 13rem;
+    align-items: center;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .maintainPage {
+    background-color: #e2e2e2;
+    height: 100vh;
+  }
+}

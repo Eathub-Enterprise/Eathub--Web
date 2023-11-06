@@ -1,6 +1,6 @@
 // import React from 'react';
 import "./footer.css";
-import google from "../../Assets/images/Google.png";
+import google from "../../Assets/images/Google.webp";
 import apple from "../../Assets/images/Apple.png";
 // import { Link } from "react-router-dom";
 const SUPPORT = [

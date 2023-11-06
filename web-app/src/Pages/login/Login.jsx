@@ -3,28 +3,30 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import "./login.css";
 import { Link } from "react-router-dom";
-import authService from "../../services/auth/authService";
 import { useNavigate } from "react-router-dom";
-import img from "../../Assets/images/login-img.png";
+import img from "../../Assets/images/login-img.webp";
 import { useDispatch, useSelector } from "react-redux";
-import { Snackbar } from "@mui/material";
-import { openSnackbar, closeSnackbar } from "../../Redux/actions";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { ReactComponent as EyeIcon } from "../../Assets/pngs/eyepass.svg";
-import { pipe } from "ramda";
+import { vendorLogin } from "../../model/auth/authAction";
+import Preloader from "../../layouts/Preloader/Preloader";
+import EyeIcon from "@mui/icons-material/VisibilityOutlined";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  // const [rememberUser, setRememberUser] = useState(null);
+  /// const [rememberUser, setRememberUser] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { open, message, duration } = useSelector((state) => state.snackbar);
-
-  const handleClose = () => {
-    dispatch(closeSnackbar());
+  // Handling state with RTK
+  const { loading, error } = useSelector((state) => state.auth);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
-  const [passwordShown, setPasswordShown] = useState(false);
+  if (loading) {
+    return <Preloader />;
+  }
 
   return (
     <Formik
@@ -35,29 +37,42 @@ const Login = () => {
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
         try {
-          console.log("Submit");
-          const loginStatus = await authService.vendorLogin(
-            values.username,
-            values.password
-          );
-          if (loginStatus) {
-            dispatch(openSnackbar("Login successful!", 50));
+          const loginStatus = await dispatch(vendorLogin(values));
+          if (loginStatus.type === "auth/login/fulfilled") {
+            Swal.fire({
+              text: "Logged in Sucessfully",
+              icon: "success",
+              iconColor: "#fff",
+              toast: true,
+              position: "top-right",
+              showConfirmButton: false,
+              timer: 2000,
+              background: "#ff8323",
+              color: "#fff",
+            });
+            console.log("submit!", loginStatus.type);
             navigate("/dashboard");
-            localStorage.setItem("login", values.username);
-          } else {
-            dispatch(openSnackbar("Login failed. Please try again.", 3000));
+          } else if (error) {
+            Swal.fire({
+              text: "Unsucessful Login",
+              icon: "error",
+              toast: true,
+              position: "top-right",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            console.error("Error from Store: ", error);
+            navigate("/login");
           }
         } catch (error) {
-          console.log("Error", error);
+          console.error("Error Within Component");
         } finally {
-          // setTimeout(() => {
-          //   window.location.reload();
-          // }, 10000);
+          setSubmitting(false);
         }
       }}
       //  Yup validation
       validationSchema={Yup.object().shape({
-        username: Yup.string().required("Username is Required"),
+        username: Yup.string().required("username is Required"),
         password: Yup.string()
           .required("No password provided.")
           .min(8, "Minimum of eight characters")
@@ -76,17 +91,18 @@ const Login = () => {
 
         return (
           <div className="login">
-            <Link to={"/signup"} className="backArrow">
-              <p className="arrowP">
-                <ArrowBackIosNewIcon />
-                <span>Sign up?</span>
-              </p>
-            </Link>
             <div className="login-container">
               <aside className="login-left">
+                <Link to={"/"} className="backArrow">
+                  <p className="arrowP">
+                    <ArrowBackIosNewIcon />
+                    <span>HomePage</span>
+                  </p>
+                </Link>
                 <main>
                   <h1>
-                    Dear Vendor!, <br />
+                    Dear Vendor!
+                    <br />
                     Welcome Back
                   </h1>
                   <h5>Enter your login details below</h5>
@@ -95,34 +111,36 @@ const Login = () => {
                     <input
                       id="login-username"
                       name="username"
-                      placeholder="Username"
+                      placeholder="Vendor Name"
                       type="text"
                       value={values.username}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={errors.username && touched.username && "error"}
+                      className={
+                        errors.username && touched.username && "error"
+                      }
                     />
                     {errors.username && touched.username && (
                       <div className="input-feedback">{errors.username}</div>
                     )}
-                    <div className="password-input">
-                      <input
-                        id="password"
-                        name="password"
-                        placeholder="*********"
-                        type={passwordShown ? "text" : "password"}
-                        value={values.password}
-                        onChange={pipe(handleChange)}
-                        onBlur={handleBlur}
-                        className={
-                          errors.password && touched.password && "error"
-                        }
-                      />
-                      <EyeIcon
-                        onClick={() => setPasswordShown(!passwordShown)}
-                        className={passwordShown ? "hide" : ""}
-                      />
-                    </div>
+
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      placeholder="*********"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={errors.password && touched.password && "error"}
+                    />
+                    <EyeIcon
+                      className={`eye-icon ${
+                        showPassword ? "visible" : "invisible"
+                      }`}
+                      onClick={handleTogglePassword}
+                    ></EyeIcon>
+
                     {errors.password && touched.password && (
                       <div className="input-feedback">{errors.password}</div>
                     )}
@@ -133,7 +151,7 @@ const Login = () => {
                         name="rememberUser"
                         id="rememberUser"
                       />
-                      <label>Remember Me</label>
+                      <label className="remember">Remember Me</label>
                     </div>
 
                     <button className="personal-form-btn" type="submit">
@@ -143,12 +161,6 @@ const Login = () => {
                     <Link className="pwd-link" to="">
                       Forgot Password?
                     </Link>
-                    <Snackbar
-                      open={open}
-                      message={message}
-                      autoHideDuration={duration}
-                      onClose={handleClose}
-                    />
                   </form>
                 </main>
               </aside>
