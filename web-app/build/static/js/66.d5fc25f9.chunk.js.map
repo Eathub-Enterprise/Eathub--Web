@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/66.d5fc25f9.chunk.js","mappings":"sIAUA,UARkB,WACd,OACI,sCAIP,C","sources":["Pages/dashboard/pages/analytics/Analytics.jsx"],"sourcesContent":["import React from 'react'\n\nconst Analytics = () => {\n    return (\n        <div>\n            Analytics\n        </div>\n    )\n}\n\nexport default Analytics\n"],"names":[],"sourceRoot":""}

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/719.fcf78566.chunk.js","mappings":"uIAUA,UARiB,WACb,OACI,qCAIP,C","sources":["Pages/dashboard/pages/settings/Settings.jsx"],"sourcesContent":["import React from 'react'\n\nconst Settings = () => {\n    return (\n        <div>\n            Settings\n        </div>\n    )\n}\n\nexport default Settings\n"],"names":[],"sourceRoot":""}
