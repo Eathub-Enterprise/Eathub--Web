@@ -2,6 +2,7 @@ const navbar = document.getElementById("nav");
 const scrollOffset = window.innerHeight;
 
 let event = window.addEventListener("scroll", () => {
+  console.log(window.screenY, scrollOffset)
   if (window.scrollY > scrollOffset) {
     navbar.classList.add("scrolled");
     console.log("scroll added!");
@@ -41,5 +42,5 @@ observeElements(animate2, "slide-animation", 0.2);
 // for the text-reveal
 const lineInnerElements = document.querySelectorAll(".line-inner");
 lineInnerElements.forEach((element, index) => {
-  element.style.animationDelay = `${index * 250}ms`;
+  element.style.animationDelay = `${index * 2}ms`;
 });
