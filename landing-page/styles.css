@@ -237,7 +237,7 @@ header img {
 /* hero section */
 
 .hero {
-    height: calc(100vh + 10px);
+    height: calc(100vh + 25px);
     overflow-y: hidden;
     background-image: url(https://ik.imagekit.io/0y99xuz0yp/img/background.png?updatedAt=1702610154410), radial-gradient(var(--primary), var(--secondary));
     background-size: cover;
@@ -828,7 +828,7 @@ ul {
 
 }
 
-@media screen and (min-width: 560px) and (max-width: 768px) {
+@media screen and (max-width: 576px) {
     #nav {
         margin: 5vw auto;
         max-inline-size: 90%;
@@ -850,8 +850,12 @@ ul {
         width: 100%;
     }
 
+    .shopHero{
+        margin-bottom: 150px;
+    }
     .showHero {
         margin-block: 0rem;
+        margin-bottom: 50px;
     }
 
     .showHero-container {
@@ -861,4 +865,7 @@ ul {
     .deliveryHero {
         height: 40vw;
     }
+    
 }
+
+

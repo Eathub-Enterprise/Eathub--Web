@@ -34,10 +34,10 @@ function observeElements(elements, animationClass, threshold) {
 }
 
 const animate = document.querySelectorAll(".animation");
-observeElements(animate, "scroll-animation", 0.1);
+observeElements(animate, "scroll-animation", 0.3);
 
 const animate2 = document.querySelectorAll(".slide-in");
-observeElements(animate2, "slide-animation", 0.2);
+observeElements(animate2, "slide-animation", 0.3);
 
 // for the text-reveal
 const lineInnerElements = document.querySelectorAll(".line-inner");
