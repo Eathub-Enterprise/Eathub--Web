@@ -8,13 +8,14 @@
     /* font sizes */
     --text-1: calc(0.75rem + 1.5vw);
     --text-2: calc(0.5rem + 0.75vw);
-    --text-3: calc(0.25rem + 0.75vw);
+    --text-3: calc(0.35rem + 0.75vw);
     --text-4: calc(0.125rem + 0.75vw);
     /* mobile */
     --mobile-text-1: calc(0.75rem + 2vw);
     --mobile-text-2: calc(0.5rem + 2vw);
 }
 
+@import url('https://fonts.cdnfonts.com/css/open-sans');
 
 @keyframes text-reveal {
     0% {
@@ -55,7 +56,7 @@
 }
 
 * {
-    font-family: "Montserrat", system-ui, sans-serif;
+    font-family: "Montserrat", 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
     line-height: 140%;
@@ -338,7 +339,12 @@ header img {
 .infoHero-box-body {
     font-size: var(--text-2);
     font-weight: 500;
-    line-height: 50px;
+}
+
+.infoHero-box-body p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: var(--text-3);
 }
 
 /* ShopHero Section */
@@ -490,8 +496,40 @@ header img {
     font-weight: bold;
 }
 
-.downloadHero-body p {
+
+.downloadHero-body p,
+.deliveryHero-body p {
     font-size: var(--text-3);
+}
+
+.map {
+    width: 100%;
+    height: 50vh;
+}
+
+.map-container {
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+
+.map-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.map-header h4 {
+    color: var(--primary-variant);
+}
+
+.map-frame img {
+    object-fit: contain;
+    inline-size: 100%;
+    block-size: 100%;
 }
 
 /* downloadHero */
@@ -826,6 +864,21 @@ ul {
         display: none;
     }
 
+    .map {
+        width: 90%;
+        height: 50%;
+    }
+
+    .map-header {
+        font-size: var(--text-3);
+    }
+
+    .map-frame img {
+        object-fit: cover;
+        inline-size: 100%;
+        block-size: 30vh;
+    }
+
 }
 
 @media screen and (max-width: 576px) {
@@ -850,9 +903,10 @@ ul {
         width: 100%;
     }
 
-    .shopHero{
-        margin-bottom: 150px;
+    .shopHero {
+        margin-bottom: 75px;
     }
+
     .showHero {
         margin-block: 0rem;
         margin-bottom: 50px;
@@ -865,7 +919,5 @@ ul {
     .deliveryHero {
         height: 40vw;
     }
-    
+
 }
-
-
