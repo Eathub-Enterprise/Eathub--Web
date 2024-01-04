@@ -62,7 +62,7 @@
     line-height: 140%;
 }
 
-body {
+html,body {
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
     scroll-snap-type: proximity;
@@ -77,6 +77,8 @@ main {
     align-items: center;
     overflow-x: hidden;
     gap: 10vw;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
 }
 
 button {
