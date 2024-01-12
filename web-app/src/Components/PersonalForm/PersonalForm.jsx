@@ -1,10 +1,9 @@
-import { useState} from "react";
+import { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./personalForm.css";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../../layouts/Preloader/Preloader";
-import { Locations } from "../../helper/Location";
 
 // reminder to separate component
 
@@ -17,11 +16,12 @@ const PersonalForm = () => {
   return (
     <Formik
       initialValues={{
-        firstname: "",
-        lastname: "",
+        business_name: "",
+        business_email: "",
+        phone_number: "",
+        vendor_category: "",
         password: "",
         confirmPassword: "",
-        location: "",
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -30,24 +30,30 @@ const PersonalForm = () => {
             "user",
             JSON.stringify(values).replace(/</g, "\\u003c")
           );
-
-          navigate("/signup/business");
+          if (values) {
+            navigate("/signup/business");
+          }
           setSubmitting(false);
           setLoading(true);
         }, 1000);
       }}
       // Yup Validation
       validationSchema={Yup.object().shape({
-        firstname: Yup.string().required("First name is Required"),
-        lastname: Yup.string().required("Last name is Required"),
+        business_name: Yup.string().required("Business Name is Required"),
+        business_email: Yup.string()
+          .email()
+          .required("Business Mail is Required"),
+        phone_number: Yup.string().required("Phone Number is Required"),
+        vendor_category: Yup.string().required(
+          "Shop's category hasn't been chosen."
+        ),
         password: Yup.string()
           .required("No password provided.")
-          .min(8, "Passwords must be a minimum of eight characters")
+          .min(8, "Passwords must be a minimum of eight characters.")
           .matches(/(?=.*[0-9])/, "Password must contain a number."),
         confirmPassword: Yup.string()
           .oneOf([Yup.ref("password"), null], "Passwords must match")
           .required("Confirm password is required"),
-        location: Yup.string().required("Location is Required!"),
       })}
     >
       {(props) => {
@@ -72,34 +78,78 @@ const PersonalForm = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="input-header">
                     <input
-                      id="firstname"
-                      name="firstname"
+                      id="business_name"
+                      name="business_name"
                       type="text"
-                      placeholder="First Name"
-                      value={values.firstname}
+                      placeholder="Business Name"
+                      value={values.business_name}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className={
-                        errors.firstname && touched.firstname && "error"
+                        errors.business_name && touched.business_name && "error"
                       }
                     />
-                    {errors.firstname && touched.firstname && (
-                      <div className="input-feedback">{errors.firstname}</div>
+                    {errors.business_name && touched.business_name && (
+                      <div className="input-feedback">
+                        {errors.business_name}
+                      </div>
                     )}
                   </div>
                   <input
-                    id="lastname"
-                    name="lastname"
-                    type="text"
-                    placeholder="Last Name"
-                    value={values.lastname}
+                    id="business_email"
+                    name="business_email"
+                    type="email"
+                    placeholder="Email"
+                    value={values.business_email}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={errors.lastname && touched.lastname && "error"}
+                    className={
+                      errors.business_email && touched.business_email && "error"
+                    }
                   />
 
-                  {errors.lastname && touched.lastname && (
-                    <div className="input-feedback">{errors.lastname}</div>
+                  {errors.business_email && touched.business_email && (
+                    <div className="input-feedback">
+                      {errors.business_email}
+                    </div>
+                  )}
+
+                  <input
+                    id="phone_number"
+                    name="phone_number"
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={values.phone_number}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.phone_number && touched.phone_number && "error"
+                    }
+                  />
+
+                  {errors.phone_number && touched.phone_number && (
+                    <div className="input-feedback">{errors.phone_number}</div>
+                  )}
+
+                  <input
+                    id="vendor_category"
+                    name="vendor_category"
+                    type="text"
+                    placeholder="Kitchen Category"
+                    value={values.vendor_category}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.vendor_category &&
+                      touched.vendor_category &&
+                      "error"
+                    }
+                  />
+
+                  {errors.vendor_category && touched.vendor_category && (
+                    <div className="input-feedback">
+                      {errors.vendor_category}
+                    </div>
                   )}
 
                   <input
@@ -130,22 +180,6 @@ const PersonalForm = () => {
                       {errors.confirmPassword}
                     </div>
                   )}
-
-                  <select
-                    name="location"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.location}
-                  >
-                    <option value="" disabled>
-                      Select Axis
-                    </option>
-                    {Locations.map((location, index) => (
-                      <option key={index} value={location.location}>
-                        {location.location}
-                      </option>
-                    ))}
-                  </select>
 
                   <button
                     className="personal-form-btn"

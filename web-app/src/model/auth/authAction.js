@@ -12,7 +12,7 @@ export const vendorRegister = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      await axios.post(URL + `/user/create/vendor/`, data, config);
+      await axios.post(URL + `/accounts/user/vendor/create`, data, config);
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -25,7 +25,7 @@ export const vendorRegister = createAsyncThunk(
 
 export const vendorLogin = createAsyncThunk(
   "auth/login",
-  async ({username, password }, { rejectWithValue }) => {
+  async ({ username, password }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -34,7 +34,7 @@ export const vendorLogin = createAsyncThunk(
       };
       const { data } = await axios.post(
         URL + "/token/login",
-        {username, password },
+        { username, password },
         config
       );
       localStorage.setItem("vendor", JSON.stringify(data));
