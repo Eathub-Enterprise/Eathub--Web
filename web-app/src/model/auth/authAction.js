@@ -33,12 +33,39 @@ export const vendorLogin = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        URL + "/token/login",
+        URL + "api/token",
         { username, password },
         config
       );
       localStorage.setItem("vendor", JSON.stringify(data));
-      // console.log(data);
+      console.log(data);
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const vendorRefreshLogin = createAsyncThunk(
+  "auth/refresh",
+  async ({ refresh }, { rejectWithValue }) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        URL + "api/token/refresh",
+        { refresh },
+        config
+      );
+      localStorage.setItem("vendor-refresh", JSON.stringify(data));
+      console.log("It's getting here:", data);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {

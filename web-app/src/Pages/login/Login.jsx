@@ -111,14 +111,12 @@ const Login = () => {
                     <input
                       id="login-username"
                       name="username"
-                      placeholder="Vendor Name"
-                      type="text"
+                      placeholder="Email Address"
+                      type="email"
                       value={values.username}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.username && touched.username && "error"
-                      }
+                      className={errors.username && touched.username && "error"}
                     />
                     {errors.username && touched.username && (
                       <div className="input-feedback">{errors.username}</div>

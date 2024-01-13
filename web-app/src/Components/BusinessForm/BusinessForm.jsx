@@ -256,16 +256,17 @@ const BusinessForm = (e) => {
                   <Link to="/terms" className="check-link">
                     <i>Terms and Agreement</i>
                   </Link>
-                  {errors.checked && touched.checked && (
+
+                  {/* {errors.checked && touched.checked && (
                     <div className="input-feedback">{errors.checked}</div>
-                  )}
+                  )} */}
 
                   <button
                     className="business-form-btn"
                     type="submit"
                     disabled={isSubmitting}
                     onClick={() => {
-                      console.log(values);
+                      console.log(values, isSubmitting);
                     }}
                   >
                     Register

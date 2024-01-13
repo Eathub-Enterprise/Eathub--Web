@@ -1,6 +1,6 @@
 // all reducers & extrareducers here
 import { createSlice } from "@reduxjs/toolkit";
-import { vendorLogin, vendorRegister } from "./authAction";
+import { vendorLogin, vendorRegister, vendorRefreshLogin } from "./authAction";
 
 // initialize userToken from local storage
 const auth_token = localStorage.getItem("vendor")
@@ -33,6 +33,19 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    // refreshLogin
+    [vendorRefreshLogin.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [vendorRefreshLogin.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.vendor = payload;
+    },
+    [vendorRefreshLogin.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
     // registering vendor
     [vendorRegister.pending]: (state) => {
       state.loading = true;
@@ -48,7 +61,7 @@ const authSlice = createSlice({
     },
     setCredentials: (state, { payload }) => {
       state.token = payload;
-    }
+    },
   },
 });
 
