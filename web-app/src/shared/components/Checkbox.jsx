@@ -16,13 +16,13 @@ const Checkbox = ({ name, value, label, checked, onChange }) => (
 
 const DaysSelector = ({ selectedDays, onChange }) => {
   const daysOfWeek = [
-    { value: "1", label: "Mon" },
-    { value: "2", label: "Tues" },
-    { value: "3", label: "Wed" },
-    { value: "4", label: "Thur" },
-    { value: "5", label: "Fri" },
-    { value: "6", label: "Sat" },
-    { value: "7", label: "Sun" },
+    { value: "1", label: "Sun" },
+    { value: "2", label: "Mon" },
+    { value: "3", label: "Tues" },
+    { value: "4", label: "Wed" },
+    { value: "5", label: "Thur" },
+    { value: "6", label: "Fri" },
+    { value: "7", label: "Sat" },
   ];
 
   return (

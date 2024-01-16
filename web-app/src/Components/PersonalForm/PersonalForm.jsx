@@ -5,8 +5,6 @@ import "./personalForm.css";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../../layouts/Preloader/Preloader";
 
-// reminder to separate component
-
 const PersonalForm = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -25,12 +23,14 @@ const PersonalForm = () => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
+          // Exclude confirmPassword from the values
+          const { confirmPassword, ...formData } = values;
           // to pass the data to the businessForm Component
           localStorage.setItem(
             "user",
-            JSON.stringify(values).replace(/</g, "\\u003c")
+            JSON.stringify(formData).replace(/</g, "\\u003c")
           );
-          if (values) {
+          if (formData) {
             navigate("/signup/business");
           }
           setSubmitting(false);
@@ -131,11 +131,9 @@ const PersonalForm = () => {
                     <div className="input-feedback">{errors.phone_number}</div>
                   )}
 
-                  <input
+                  <select
                     id="vendor_category"
                     name="vendor_category"
-                    type="text"
-                    placeholder="Kitchen Category"
                     value={values.vendor_category}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -144,7 +142,13 @@ const PersonalForm = () => {
                       touched.vendor_category &&
                       "error"
                     }
-                  />
+                  >
+                    <option value="" label="Select Kitchen Category" />
+                    <option value="bakery" label="Bakery" />
+                    <option value="restaurant" label="Restaurant" />
+                    <option value="cafe" label="Cafe" />
+                    {/* Add more options as needed */}
+                  </select>
 
                   {errors.vendor_category && touched.vendor_category && (
                     <div className="input-feedback">

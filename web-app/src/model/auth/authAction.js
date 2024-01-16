@@ -12,7 +12,7 @@ export const vendorRegister = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      await axios.post(URL + `/accounts/user/vendor/create`, data, config);
+      await axios.post(URL + `accounts/user/vendor/create`, data, config);
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -38,7 +38,6 @@ export const vendorLogin = createAsyncThunk(
         config
       );
       localStorage.setItem("vendor", JSON.stringify(data));
-      console.log(data);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -65,7 +64,6 @@ export const vendorRefreshLogin = createAsyncThunk(
         config
       );
       localStorage.setItem("vendor-refresh", JSON.stringify(data));
-      console.log("It's getting here:", data);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {

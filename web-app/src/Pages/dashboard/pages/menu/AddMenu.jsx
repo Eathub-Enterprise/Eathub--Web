@@ -75,7 +75,7 @@ const AddMenu = () => {
           ensure to append to formData instead of destructuring.*/
         try {
           const response = await authService.createMeal(formData);
-          // console.log("it Worked!", formData);
+          console.log("it Worked!", formData);
           setLoading(true);
           authService.getMealList();
           if (response) {
@@ -107,20 +107,6 @@ const AddMenu = () => {
         ),
         food_price: Yup.number().required("Give your meal a price"),
         prepare_time: Yup.number().required("Set a time to prepare the meal"),
-        // image: Yup.mixed()
-        //   .nullable()
-        //   .required("A file is required")
-        //   .test(
-        //     "Fichier taille",
-        //     "upload file",
-        //     (value) => !value || (value && value.size <= 1024 * 1024)
-        //   )
-        //   .test(
-        //     "format",
-        //     "upload file",
-        //     (value) =>
-        //       !value || (value && SUPPORTED_FORMATS.includes(value.type))
-        //   ),
       })}
     >
       {(props) => {

@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import Preloader from "../../layouts/Preloader/Preloader";
 import { vendorRegister } from "../../model/auth/authAction";
 import Swal from "sweetalert2";
-import { Locations } from "../../shared/Location";
 import ImageUploader from "../../shared/components/ImageUploader";
+import { Locations } from "../../shared/Location";
 import DaysSelector from "../../shared/components/Checkbox";
 
 const BusinessForm = (e) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // remember-me feature
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -24,52 +25,34 @@ const BusinessForm = (e) => {
   const user = JSON.parse(userData);
 
   // for Registeration state with RTK
-  const { loading, vendor, error, success } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, error } = useSelector((state) => state.auth);
 
   if (loading) {
     return <Preloader />;
   }
 
   return (
-    /**
-     * alot of business address decisons made here
-     * are based on the scale-decisons and
-     * would further be revised as the product
-     * grows and distribution expands
-     */
     <Formik
       initialValues={{
         business_image: "",
-        business_address: "",
         business_address_city: "",
-        business_address_state: "lagos",
+        business_address: "",
+        business_address_state: "Lagos",
         business_address_coord_lat: null,
         business_address_coord_lng: null,
-        opening_days: [],
+        opening_days: "",
         opening_time: "",
         closing_time: "",
       }}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
-        console.log("Triggered!");
-        // make them append as form-data
-        const formData = new FormData();
-        formData.append("business_address", values.business_address);
-        formData.append("business_address_city", values.business_address_city);
-        formData.append("business_image", values.business_image);
-        formData.append("opening_days", values.opening_days);
-        formData.append("opening_time", values.opening_time);
-        formData.append("closing_time", values.closing_time);
-
-        console.log(formData);
-
+        // Convert array to comma-separated string
+        const openingDaysString = values.opening_days.join(",");
         const value = {
           ...values,
+          opening_days: openingDaysString,
           ...user,
         };
-
         try {
           const registrationStatus = await dispatch(vendorRegister(value));
           if (registrationStatus.type === "auth/register/fulfilled") {
@@ -80,33 +63,36 @@ const BusinessForm = (e) => {
               toast: true,
               position: "top-right",
               showConfirmButton: false,
-              timer: 2000,
+              timer: 5000,
               background: "#ff8323",
               color: "#fff",
             });
             navigate("/login");
           }
-          if (vendor) {
-            Swal.fire({
-              text: "User Already Existing",
-              icon: "warning",
-              iconColor: "#fff",
-              toast: true,
-              position: "top-right",
-              showConfirmButton: false,
-              timer: 2000,
-              background: "#ff8323",
-              color: "#fff",
-            });
-            navigate("/login");
-          } else if (error) {
+          // console.log("Submit!", registrationStatus);
+          // if (vendor) {
+          //   Swal.fire({
+          //     text: "User Already Existing",
+          //     icon: "warning",
+          //     iconColor: "#fff",
+          //     toast: true,
+          //     position: "top-right",
+          //     showConfirmButton: false,
+          //     timer: 5000,
+          //     background: "#ff8323",
+          //     color: "#fff",
+          //   });
+          //   navigate("/login");
+          //   // console.log("Vendor Already Exists!");
+          // }
+          else if (error) {
             Swal.fire({
               text: "Unsucessful Registeration",
               icon: "error",
               toast: true,
               position: "top-right",
               showConfirmButton: false,
-              timer: 2000,
+              timer: 5000,
             });
             console.error(error);
             navigate("/signup/business");
@@ -119,13 +105,9 @@ const BusinessForm = (e) => {
       }}
       // Yup Validation
       validationSchema={Yup.object().shape({
-        business_image: Yup.string().required("Business Logo is required"),
-        business_address: Yup.string().required("Business Address is required"),
-        business_address_city: Yup.string().required("Select a city"),
+        business_address_city: Yup.string().required("Choose City!"),
+        business_address: Yup.string().required("Business Address is Required"),
         checked: Yup.boolean().oneOf([true], "Please check the checkbox"),
-        opening_days: Yup.string().required("Select the days of operation"),
-        opening_time: Yup.string().required("Select duration of operation"),
-        closing_time: Yup.string().required("Select duration of operation"),
       })}
     >
       {(props) => {
@@ -139,16 +121,23 @@ const BusinessForm = (e) => {
           handleSubmit,
           setFieldValue,
         } = props;
-
         return (
           <div className="personal-form">
             <div className="personal-form-main">
               <header>
                 <h1>Business Registration</h1>
-                <h3>Kindly complete registeration</h3>
+                <p className="header-text">Kindly complete registeration</p>
               </header>
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>
+                  <ImageUploader
+                    onImageUpload={(uploadedImage) =>
+                      setFieldValue("business_image", uploadedImage)
+                    }
+                    imageUrl={values.business_image}
+                    header={"Upload Business Logo"}
+                  />
+
                   <input
                     id="business_address"
                     name="business_address"
@@ -163,11 +152,13 @@ const BusinessForm = (e) => {
                       "error"
                     }
                   />
+
                   {errors.business_address && touched.business_address && (
                     <div className="input-feedback">
                       {errors.business_address}
                     </div>
                   )}
+
                   <select
                     name="business_address_city"
                     onChange={handleChange}
@@ -186,16 +177,14 @@ const BusinessForm = (e) => {
                       </option>
                     ))}
                   </select>
-                  <br />
-                  <ImageUploader
-                    onImageUpload={(uploadedImage) =>
-                      setFieldValue("business_image", uploadedImage)
-                    }
-                    imageUrl={values.business_image}
-                    header={"Upload Business Logo"}
-                  />
 
-                  <br />
+                  {errors.business_address_city &&
+                    touched.business_address_city && (
+                      <div className="input-feedback">
+                        {errors.business_address_city}
+                      </div>
+                    )}
+
                   <label>
                     <h4>Days of Operation</h4>
                   </label>
@@ -203,6 +192,7 @@ const BusinessForm = (e) => {
                     selectedDays={values.opening_days}
                     onChange={handleChange}
                   />
+
                   <br />
                   <label>
                     <h4>Opening Hours</h4>
@@ -256,18 +246,14 @@ const BusinessForm = (e) => {
                   <Link to="/terms" className="check-link">
                     <i>Terms and Agreement</i>
                   </Link>
-
-                  {/* {errors.checked && touched.checked && (
+                  {errors.checked && touched.checked && (
                     <div className="input-feedback">{errors.checked}</div>
-                  )} */}
+                  )}
 
                   <button
                     className="business-form-btn"
                     type="submit"
                     disabled={isSubmitting}
-                    onClick={() => {
-                      console.log(values, isSubmitting);
-                    }}
                   >
                     Register
                   </button>
