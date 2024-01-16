@@ -5,29 +5,41 @@ import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
 import Preloader from "../layouts/Preloader/Preloader";
 import authService from "../services/auth/authService";
 import { useGetVendorProfileQuery } from "../model/auth/authServices";
+import { useDispatch, useSelector } from "react-redux";
+import { vendorRefreshLogin } from "../model/auth/authAction";
 
 export const ChartDataContext = createContext();
 
 const ProtectedRoute = () => {
   const [chartData, setChartData] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { data } = useGetVendorProfileQuery();
+  // const { data } = useGetVendorProfileQuery();
+
   // Checks if the Vendor has Logged in from token stored in LocalStorage
   let userLoggedIn = authService.getVendorStatus();
+  const accessToken = userLoggedIn?.access;
+  const refreshValue = userLoggedIn?.refresh;
 
   useEffect(() => {
-    if (data) {
-      setChartData(data);
-    } else {
-      setChartData({});
-    }
+    // if (data) {
+    //   setChartData(data);
+    // } else {
+    //   setChartData({});
+    // }
 
-    // always change back to !userLoggedIn
-    if (!userLoggedIn) {
-      return navigate("/login");
+    // always change back to !accessToken
+    if (!accessToken) {
+      if (refreshValue) {
+        console.log("Refresh Token called: ", refreshValue);
+        // Handling refresh state with RTK
+        dispatch(vendorRefreshLogin({ refresh: refreshValue }));
+      } else {
+        return navigate("/login");
+      }
     }
-  }, [data, navigate, userLoggedIn]);
+  }, [accessToken, dispatch, navigate, refreshValue, userLoggedIn]);
 
   return (
     <div className="dashboard">

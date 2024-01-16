@@ -8,13 +8,13 @@ const OrderTable = () => {
   const [tableData, setTableData] = useState([]);
 
   // using RTK to handle api state
-  const { data } = useGetOrderedMealQuery();
+  // const { data } = useGetOrderedMealQuery();
 
-  useEffect(() => {
-    if (data) {
-      setTableData(data.results || []); // Use data.results if it matches your API response structure
-    } 
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setTableData(data.results || []); // Use data.results if it matches your API response structure
+  //   }
+  // }, [data]);
 
   return (
     <div className="order-container">

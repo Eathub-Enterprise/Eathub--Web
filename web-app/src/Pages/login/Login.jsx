@@ -72,7 +72,7 @@ const Login = () => {
       }}
       //  Yup validation
       validationSchema={Yup.object().shape({
-        username: Yup.string().required("username is Required"),
+        username: Yup.string().required("Email is Required"),
         password: Yup.string()
           .required("No password provided.")
           .min(8, "Minimum of eight characters")
@@ -111,14 +111,12 @@ const Login = () => {
                     <input
                       id="login-username"
                       name="username"
-                      placeholder="Vendor Name"
-                      type="text"
+                      placeholder="Email Address"
+                      type="email"
                       value={values.username}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.username && touched.username && "error"
-                      }
+                      className={errors.username && touched.username && "error"}
                     />
                     {errors.username && touched.username && (
                       <div className="input-feedback">{errors.username}</div>
@@ -158,9 +156,9 @@ const Login = () => {
                       Login
                     </button>
 
-                    <Link className="pwd-link" to="">
+                    {/* <Link className="pwd-link" to="">
                       Forgot Password?
-                    </Link>
+                    </Link> */}
                   </form>
                 </main>
               </aside>

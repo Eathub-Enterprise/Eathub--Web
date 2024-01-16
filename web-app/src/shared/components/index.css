@@ -1,0 +1,19 @@
+.shared-input-img {
+    block-size: auto;
+    inline-size: auto;
+}
+
+.shared-days {
+    display: flex;
+    flex-direction: row;
+}
+
+.shared-input-img h4 {
+    margin-block-end: .75rem;
+}
+
+.shared-inputImg {
+    width: 20%;
+    height: 20%;
+    display: flex;
+}
