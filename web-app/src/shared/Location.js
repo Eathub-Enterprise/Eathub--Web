@@ -2,7 +2,7 @@
  * @description These are the locations eathub would be targetting
  */
 
-const locations = [
+const business_address_city = [
   "Agege",
   "Ajeromi/Ifelodun",
   "Apapa",
@@ -25,4 +25,6 @@ const locations = [
   "Ibeju Lekki",
 ];
 // Converted this into array of objects
-export const Locations = locations.map((location) => ({ location }));
+export const Locations = business_address_city.map((business_address_city) => ({
+  business_address_city,
+}));

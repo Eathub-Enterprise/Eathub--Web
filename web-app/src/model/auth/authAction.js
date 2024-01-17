@@ -12,7 +12,7 @@ export const vendorRegister = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      await axios.post(URL + `/user/create/vendor/`, data, config);
+      await axios.post(URL + `accounts/user/vendor/create`, data, config);
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -25,7 +25,7 @@ export const vendorRegister = createAsyncThunk(
 
 export const vendorLogin = createAsyncThunk(
   "auth/login",
-  async ({username, password }, { rejectWithValue }) => {
+  async ({ username, password }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -33,12 +33,37 @@ export const vendorLogin = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        URL + "/token/login",
-        {username, password },
+        URL + "api/token",
+        { username, password },
         config
       );
       localStorage.setItem("vendor", JSON.stringify(data));
-      // console.log(data);
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const vendorRefreshLogin = createAsyncThunk(
+  "auth/refresh",
+  async ({ refresh }, { rejectWithValue }) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        URL + "api/token/refresh",
+        { refresh },
+        config
+      );
+      localStorage.setItem("vendor-refresh", JSON.stringify(data));
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {

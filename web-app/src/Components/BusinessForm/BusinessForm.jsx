@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Preloader from "../../layouts/Preloader/Preloader";
 import { vendorRegister } from "../../model/auth/authAction";
 import Swal from "sweetalert2";
+import ImageUploader from "../../shared/components/ImageUploader";
+import { Locations } from "../../shared/Location";
+import DaysSelector from "../../shared/components/Checkbox";
 
 const BusinessForm = (e) => {
   const navigate = useNavigate();
@@ -22,9 +25,7 @@ const BusinessForm = (e) => {
   const user = JSON.parse(userData);
 
   // for Registeration state with RTK
-  const { loading, vendor, error, success } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, error } = useSelector((state) => state.auth);
 
   if (loading) {
     return <Preloader />;
@@ -33,15 +34,23 @@ const BusinessForm = (e) => {
   return (
     <Formik
       initialValues={{
-        vendor_name: "",
-        address: "",
-        business_email: "",
-        business_phonenumber: "",
+        business_image: "",
+        business_address_city: "",
+        business_address: "",
+        business_address_state: "Lagos",
+        business_address_coord_lat: null,
+        business_address_coord_lng: null,
+        opening_days: "",
+        opening_time: "",
+        closing_time: "",
       }}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
+        // Convert array to comma-separated string
+        const openingDaysString = values.opening_days.join(",");
         const value = {
           ...values,
+          opening_days: openingDaysString,
           ...user,
         };
         try {
@@ -54,35 +63,36 @@ const BusinessForm = (e) => {
               toast: true,
               position: "top-right",
               showConfirmButton: false,
-              timer: 2000,
+              timer: 5000,
               background: "#ff8323",
               color: "#fff",
             });
             navigate("/login");
           }
           // console.log("Submit!", registrationStatus);
-          if (vendor) {
-            Swal.fire({
-              text: "User Already Existing",
-              icon: "warning",
-              iconColor: "#fff",
-              toast: true,
-              position: "top-right",
-              showConfirmButton: false,
-              timer: 2000,
-              background: "#ff8323",
-              color: "#fff",
-            });
-            navigate("/login");
-            // console.log("Vendor Already Exists!");
-          } else if (error) {
+          // if (vendor) {
+          //   Swal.fire({
+          //     text: "User Already Existing",
+          //     icon: "warning",
+          //     iconColor: "#fff",
+          //     toast: true,
+          //     position: "top-right",
+          //     showConfirmButton: false,
+          //     timer: 5000,
+          //     background: "#ff8323",
+          //     color: "#fff",
+          //   });
+          //   navigate("/login");
+          //   // console.log("Vendor Already Exists!");
+          // }
+          else if (error) {
             Swal.fire({
               text: "Unsucessful Registeration",
               icon: "error",
               toast: true,
               position: "top-right",
               showConfirmButton: false,
-              timer: 2000,
+              timer: 5000,
             });
             console.error(error);
             navigate("/signup/business");
@@ -95,15 +105,9 @@ const BusinessForm = (e) => {
       }}
       // Yup Validation
       validationSchema={Yup.object().shape({
-        vendor_name: Yup.string().required("Business Name is Required"),
-        address: Yup.string().required("Business Address is Required"),
-        business_phonenumber: Yup.number().required(
-          "Business Number is Required"
-        ),
+        business_address_city: Yup.string().required("Choose City!"),
+        business_address: Yup.string().required("Business Address is Required"),
         checked: Yup.boolean().oneOf([true], "Please check the checkbox"),
-        business_email: Yup.string()
-          .email()
-          .required("Business Mail is Required"),
       })}
     >
       {(props) => {
@@ -115,8 +119,8 @@ const BusinessForm = (e) => {
           handleChange,
           handleBlur,
           handleSubmit,
+          setFieldValue,
         } = props;
-
         return (
           <div className="personal-form">
             <div className="personal-form-main">
@@ -126,75 +130,108 @@ const BusinessForm = (e) => {
               </header>
               <div className="personal-form-input">
                 <form onSubmit={handleSubmit}>
-                  <input
-                    id="vendor_name"
-                    name="vendor_name"
-                    type="text"
-                    placeholder="Business Name"
-                    value={values.vendor_name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={
-                      errors.vendor_name && touched.vendor_name && "error"
+                  <ImageUploader
+                    onImageUpload={(uploadedImage) =>
+                      setFieldValue("business_image", uploadedImage)
                     }
+                    imageUrl={values.business_image}
+                    header={"Upload Business Logo"}
                   />
-                  {errors.vendor_name && touched.vendor_name && (
-                    <div className="input-feedback">{errors.vendor_name}</div>
-                  )}
+
                   <input
-                    id="address"
-                    name="address"
+                    id="business_address"
+                    name="business_address"
                     type="text"
                     placeholder="Business Address"
-                    value={values.address}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={errors.address && touched.address && "error"}
-                  />
-
-                  {errors.address && touched.address && (
-                    <div className="input-feedback">{errors.address}</div>
-                  )}
-
-                  <input
-                    id="business_phonenumber"
-                    name="business_phonenumber"
-                    type="digits"
-                    placeholder="Business Number"
-                    value={values.business_phonenumber}
+                    value={values.business_address}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      errors.business_phonenumber &&
-                      touched.business_phonenumber &&
+                      errors.business_address &&
+                      touched.business_address &&
                       "error"
                     }
                   />
 
-                  {errors.business_phonenumber &&
-                    touched.business_phonenumber && (
+                  {errors.business_address && touched.business_address && (
+                    <div className="input-feedback">
+                      {errors.business_address}
+                    </div>
+                  )}
+
+                  <select
+                    name="business_address_city"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.business_address_city}
+                  >
+                    <option value="" disabled>
+                      Select City
+                    </option>
+                    {Locations.map((location, index) => (
+                      <option
+                        key={index}
+                        value={location.business_address_city}
+                      >
+                        {location.business_address_city}
+                      </option>
+                    ))}
+                  </select>
+
+                  {errors.business_address_city &&
+                    touched.business_address_city && (
                       <div className="input-feedback">
-                        {errors.business_phonenumber}
+                        {errors.business_address_city}
                       </div>
                     )}
 
+                  <label>
+                    <h4>Days of Operation</h4>
+                  </label>
+                  <DaysSelector
+                    selectedDays={values.opening_days}
+                    onChange={handleChange}
+                  />
+
+                  <br />
+                  <label>
+                    <h4>Opening Hours</h4>
+                  </label>
                   <input
-                    id="business_email"
-                    name="business_email"
-                    type="text"
-                    placeholder="Business Mail"
-                    value={values.business_email}
+                    id="opening_time"
+                    name="opening_time"
+                    type="time"
+                    placeholder="Opening Hours"
+                    value={values.opening_time}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      errors.business_email && touched.business_email && "error"
+                      errors.opening_time && touched.opening_time && "error"
                     }
                   />
 
-                  {errors.business_email && touched.business_email && (
-                    <div className="input-feedback">
-                      {errors.business_email}
-                    </div>
+                  {errors.opening_time && touched.opening_time && (
+                    <div className="input-feedback">{errors.opening_time}</div>
+                  )}
+                  <br />
+                  <label>
+                    <h4>Closing Hours</h4>
+                  </label>
+                  <input
+                    id="closing_time"
+                    name="closing_time"
+                    type="time"
+                    placeholder="Closing Hours"
+                    value={values.closing_time}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.closing_time && touched.closing_time && "error"
+                    }
+                  />
+
+                  {errors.closing_time && touched.closing_time && (
+                    <div className="input-feedback">{errors.closing_time}</div>
                   )}
 
                   {/* make the state do something */}

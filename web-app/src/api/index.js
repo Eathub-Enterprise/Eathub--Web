@@ -1,5 +1,5 @@
 // Production Endpoint
-export const URL = "https://eathub.live/api/v1";
+export const URL = "https://backend.eathub.live/";
 
 // Test Server Endpoint
 export const testURL = "http://emachine.pythonanywhere.com/api/v1";
