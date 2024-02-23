@@ -5,15 +5,16 @@
 }
 
 .dashboard main {
-  width: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   display: grid;
-  grid-template-columns: 230px auto;
+  grid-template-columns: 1fr auto;
 }
 
 .body {
   display: flex;
-  width: 75%;
-  margin-left: 200px;
+  inline-size: 75%;
+  margin-left: 15vw;
 }
 
 @media (max-width: 990px) {

@@ -1,17 +1,40 @@
 /* Mixed up classes for both ORder.jsx & HistoryOrders.jsx here */
 
-.menu-section{
+/* Empty Lottie */
+.order-section {
   display: flex;
+  inline-size: 100%;
   /* margin-left: 300px; */
   justify-content: center;
   align-items: center;
-  width: 80vw;
+  z-index: 99;
+}
+
+.empty-order {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 25vh;
+  left: 40vw;
+}
+
+.order {
+  inline-size: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-inline {
+  block-size: 90%;
+  inline-size: 80%;
 }
 
 .order-head {
-  margin-left: 2rem;
-  margin-bottom: 2rem;
-  width: 95%;
+  margin-block: 2rem;
+  width: 75vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -35,7 +58,7 @@ button .order-link {
 /* order Table */
 .orderedTable {
   margin: 0 auto;
-  width: 90%;
+  inline-size: 75vw;
   height: 70vh;
   border: 2px solid transparent;
   border-radius: 10px;
@@ -43,7 +66,7 @@ button .order-link {
 }
 
 .orderedTable table {
-  width: 100%;
+  inline-size: 100%;
   border-collapse: collapse;
   padding: 1rem;
 }
@@ -183,14 +206,14 @@ td {
     margin-top: 10px;
   }
 
-  .empty-menu {
+  .empty-order {
     margin-top: 20px;
   }
-  
+
   h1 {
     font-size: 24px;
   }
 
- 
-  
+
+
 }
