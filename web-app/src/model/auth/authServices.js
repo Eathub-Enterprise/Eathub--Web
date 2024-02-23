@@ -24,8 +24,8 @@ export const authApi = createApi({
       }),
     }),
     getOrderedMeal: builder.query({
-      query: () => ({
-        url: `${URL}get_ordered_items_or_change status/null/`,
+      query: (clientUid, vendorUid) => ({
+        url: `${URL}api/v1/orders`,
         method: "GET",
       }),
     }),

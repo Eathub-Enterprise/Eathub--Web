@@ -5,7 +5,7 @@ import ErrorBoundary from "../layouts/ErrorBoundary/ErrorBoundary";
 import Preloader from "../layouts/Preloader/Preloader";
 import authService from "../services/auth/authService";
 import { useGetVendorProfileQuery } from "../model/auth/authServices";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { vendorRefreshLogin } from "../model/auth/authAction";
 
 export const ChartDataContext = createContext();
@@ -22,7 +22,7 @@ const ProtectedRoute = () => {
   let email = JSON.parse(localStorage.getItem("email"));
 
   // Getting Profile State with RTK
-  const { data } = useGetVendorProfileQuery(email);
+  const { data, error } = useGetVendorProfileQuery(email);
 
   useEffect(() => {
     // Handles the state context
@@ -48,11 +48,11 @@ const ProtectedRoute = () => {
       } catch (error) {
         throw error;
       }
-    }, 600000);
+    }, 50000);
 
     // Cleanup interval on component unmount
     return () => clearInterval(refreshInterval);
-  }, [data, accessToken, dispatch, refreshValue, navigate]);
+  }, [data, accessToken, dispatch, refreshValue, navigate, error?.status]);
 
   return (
     <div className="dashboard">

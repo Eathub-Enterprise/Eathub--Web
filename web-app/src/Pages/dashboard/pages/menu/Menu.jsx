@@ -50,69 +50,71 @@ const Menu = () => {
   return (
     // to improve performance, abstract table below into smaller component
     <div className="menu-section">
-      <div className="menu-title">
-        <div className="menu-title-header">
-          <h2>Menu</h2>
+      <div className="menu-inline">
+        <div className="menu-title">
+          <div className="menu-title-header">
+            <h2>Menu</h2>
+          </div>
+          <button className="menu-btn">
+            <Link to="/dashboard/menu/addMenu" className="menu-link">
+              Add Meal
+            </Link>
+          </button>
         </div>
-        <button className="menu-btn">
-          <Link to="/dashboard/menu/addMenu" className="menu-link">
-            Add Meal
-          </Link>
-        </button>
-      </div>
-      <div className="menu-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Meal</th>
-              <th>Meal Description</th>
-              <th>Price</th>
-              <th>Meal Prep Time</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {meals && meals.length > 0 ? (
-              meals.map((meal) => {
-                return (
-                  <tr key={meal.id}>
-                    <td>
-                      <img src={meal.image} alt={meal.food_name} />
-                    </td>
-                    <td>
-                      <p>{meal.food_description}</p>
-                    </td>
-                    <td>
-                      <p>#{meal.food_price}</p>
-                    </td>
-                    <td>
-                      <p>{meal.prepare_time} Minutes</p>
-                    </td>
-                    <td>
-                      <span className="btns">
-                        {/* Note: Using editMeal as the naming convention instead of editMenu */}
-                        <Link to={"editMeal/" + meal.id}>
-                          <p className="update">
-                            <EditIcon />
+        <div className="menu-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Meal</th>
+                <th>Meal Description</th>
+                <th>Price</th>
+                <th>Meal Prep Time</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {meals && meals.length > 0 ? (
+                meals.map((meal) => {
+                  return (
+                    <tr key={meal.id}>
+                      <td>
+                        <img src={meal.image} alt={meal.food_name} />
+                      </td>
+                      <td>
+                        <p>{meal.food_description}</p>
+                      </td>
+                      <td>
+                        <p>#{meal.food_price}</p>
+                      </td>
+                      <td>
+                        <p>{meal.prepare_time} Minutes</p>
+                      </td>
+                      <td>
+                        <span className="btns">
+                          {/* Note: Using editMeal as the naming convention instead of editMenu */}
+                          <Link to={"editMeal/" + meal.id}>
+                            <p className="update">
+                              <EditIcon />
+                            </p>
+                          </Link>
+                          {/* Note: Using editMeal as the naming convention instead of editMenu */}
+                          <p
+                            className="update"
+                            onClick={() => handleDelete(meal.id)}
+                          >
+                            <DeleteIcon />
                           </p>
-                        </Link>
-                        {/* Note: Using editMeal as the naming convention instead of editMenu */}
-                        <p
-                          className="update"
-                          onClick={() => handleDelete(meal.id)}
-                        >
-                          <DeleteIcon />
-                        </p>
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })
-            ) : (
-              <EmptyMenu />
-            )}
-          </tbody>
-        </table>
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <EmptyMenu />
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
