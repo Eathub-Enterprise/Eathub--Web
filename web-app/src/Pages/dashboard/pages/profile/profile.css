@@ -6,7 +6,7 @@
   align-items: flex-start;
 }
 
-.secForm{
+.secForm {
   width: 70vw;
   margin-left: 50px;
 }
@@ -51,7 +51,8 @@
   height: 120px;
   border-radius: 50%;
   position: absolute;
-  top: 45%;
+  top: -25%;
+  left: -30%;
   transition: filter 0.3s ease-in-out;
 }
 
@@ -95,12 +96,24 @@
 }
 
 .form-div {
+  inline-size: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 1px solid #a5a5a5;
   padding-top: 20px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  inline-size: 50%;
+}
+
+.col>#address {
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .label {
@@ -134,12 +147,15 @@
   width: 200px;
 }
 
-#username,
-#website,
+#vendorName,
+#address,
 #photo,
+#city,
+#number,
+#email,
 #fullName {
   border: 1px solid #a5a5a5;
- border-radius: 15px;
+  border-radius: 15px;
   height: 40px;
   width: 50%;
   display: flex;
@@ -147,17 +163,22 @@
   align-items: center;
   margin-top: 0;
 }
-#username,
-#website,
-#photo ::placeholder{
+
+#vendorName,
+#address,
+#photo,
+#city,
+#number,
+#email,
+#fullName ::placeholder {
   padding: 10px;
 }
 
-.name::placeholder{
+.name::placeholder {
   padding: 10px;
 }
 
-#kitchen-description {
+#business_description {
   height: 150px;
   width: 50%;
   border-radius: 20px;
@@ -165,7 +186,7 @@
   padding: 10px;
 }
 
-#kitchen-description::placeholder {
+#business_description::placeholder {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -210,7 +231,8 @@
   height: 128px;
   position: absolute;
   bottom: 0;
-  left: 0.5rem;
+  left: -0.5rem;
+  z-index: 99;
 }
 
 .img-display:not(:empty)+.Image1 {
@@ -225,8 +247,8 @@
   margin-left: 2rem;
 }
 
-@media (max-width: 1000px){
-  .secForm{
+@media (max-width: 1000px) {
+  .secForm {
     width: 85vw;
     margin-left: 50px;
   }

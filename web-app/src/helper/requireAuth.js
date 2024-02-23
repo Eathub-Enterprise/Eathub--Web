@@ -15,31 +15,44 @@ const ProtectedRoute = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const { data } = useGetVendorProfileQuery();
-
   // Checks if the Vendor has Logged in from token stored in LocalStorage
   let userLoggedIn = authService.getVendorStatus();
   const accessToken = userLoggedIn?.access;
   const refreshValue = userLoggedIn?.refresh;
+  let email = JSON.parse(localStorage.getItem("email"));
+
+  // Getting Profile State with RTK
+  const { data } = useGetVendorProfileQuery(email);
 
   useEffect(() => {
-    // if (data) {
-    //   setChartData(data);
-    // } else {
-    //   setChartData({});
-    // }
+    // Handles the state context
+    if (data) {
+      setChartData(data);
+    } else {
+      setChartData({});
+    }
 
     // always change back to !accessToken
     if (!accessToken) {
-      if (refreshValue) {
-        console.log("Refresh Token called: ", refreshValue);
-        // Handling refresh state with RTK
-        dispatch(vendorRefreshLogin({ refresh: refreshValue }));
-      } else {
-        return navigate("/login");
-      }
+      return navigate("/login");
     }
-  }, [accessToken, dispatch, navigate, refreshValue, userLoggedIn]);
+
+    // Handle Refresh
+    const refreshInterval = setInterval(() => {
+      try {
+        if (refreshValue) {
+          dispatch(vendorRefreshLogin({ refresh: refreshValue }));
+        } else {
+          console.error("Refresh token not available");
+        }
+      } catch (error) {
+        throw error;
+      }
+    }, 600000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(refreshInterval);
+  }, [data, accessToken, dispatch, refreshValue, navigate]);
 
   return (
     <div className="dashboard">
