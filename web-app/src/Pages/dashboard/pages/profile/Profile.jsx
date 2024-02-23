@@ -1,29 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
-import { ChartDataContext } from "../../../../helper/requireAuth";
-import Preloader from "../../../../layouts/Preloader/Preloader";
+import React, { useEffect, useState } from "react";
 import "./profile.css";
 import { Formik } from "formik";
+import Preloader from "../../../../layouts/Preloader/Preloader";
 import icon from "../../../../Assets/pngs/profile (1).png";
-import icons from "../../../../Assets/pngs/ImgUpload.png";
+import { useUpdateProfileMutation } from "../../../../model/auth/authServices";
+import { useGetVendorProfileQuery } from "../../../../model/auth/authServices";
 
 const Profile = () => {
-  // grabbing data from my contex.
-  const glbData = useContext(ChartDataContext);
-  const [loading, setLoading] = useState(false);
-  const [profileData, setProfileData] = useState({
-    image: "",
-    kitchenDescription: "",
+  // Getting Profile State with RTK
+  let email = JSON.parse(localStorage.getItem("email"));
+  const { data, refetch } = useGetVendorProfileQuery(email, {
+    refetchOnReconnect: true,
+    refetchOnMountOrArgChange: true,
   });
+  const profile = data?.data?.get_vendor_info;
+
+  // Set up Profile Data
+  const [profileData, setProfileData] = useState({});
 
   // TextArea keyword tracker
-  const [kitchenDescription, setKitchenDescription] = useState("");
+  const [businessDescription, setBusinessDescription] = useState("");
   const maxLength = 450;
   const [remainingLength, setRemainingLength] = useState(450);
-
   const handleChanges = (event) => {
     // setValue(event.target.value);
-    setKitchenDescription(event.target.value);
-    setRemainingLength(maxLength - kitchenDescription.length);
+    setBusinessDescription(event.target.value);
+    setRemainingLength(maxLength - businessDescription.length);
   };
 
   // to update the value % state of an image into a file acceptable to the backend
@@ -33,54 +35,56 @@ const Profile = () => {
 
   // The Method handling image upload
   const handleImageUpload = (event) => {
+    console.log(event.target);
     setIsImageUploaded(true);
     setShowImage(true);
     setFile(event.target.files[0]);
-    // console.log(event.target.files[0]);
+    console.log(event.target.files[0], isImageUploaded);
   };
+
+  // handling state with RTK
+  const [isLoading, setIsLoading] = useState(false);
+  const [updateProfile, { isLoading: isMutating }] = useUpdateProfileMutation();
 
   // Getting Pre-existing data
   useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
+    console.log("Profile: ", profile);
+    async function fetchProfileData() {
+      setIsLoading(true);
       try {
-        if (glbData) {
-          setProfileData({
-            username: glbData.username,
-            vendorName: glbData.vendorname,
-            address: glbData.mainbusinessaddress,
-            kitchenNumber: glbData.businessphonenumber,
-            emailAddress: glbData.businessemail,
-            fullName: glbData.fullName,
-          });
+        if (profile) {
+          setProfileData(profile);
         } else {
           setProfileData({});
         }
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     }
-    fetchData();
-  }, [glbData]);
 
-  if (loading) {
-    <Preloader />;
-  }
+    fetchProfileData();
+  }, [profile]);
 
-  return (
+  return profileData ? (
     <Formik
-      initialValues={{ profileData }}
+      initialValues={profileData}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
-        const formData = new FormData();
-        formData.append("username", values.username);
-        formData.append("vendorname", values.vendorName);
-        formData.append("address", values.address);
-        formData.append("kitchenNumber", values.kitchenNumber);
-        formData.append("emailAddress", values.emailAddress);
-        formData.append("fullName", values.fullName);
-        formData.append("image", file);
-        formData.append("kitchenDescription", kitchenDescription);
+        const formattedData = {
+          uid: profile.uid,
+          data: { ...values, image: file },
+        };
+        console.log(formattedData);
+        try {
+          // call the update endpoint state here
+          const response = await updateProfile(formattedData);
+          console.log(`Profile Updated Sucessfully`, response);
+          await refetch();
+        } catch (error) {
+          // handle error here
+          await error(`Error Updating Profile`, error);
+          console.log(error);
+        }
       }}
     >
       {(props) => {
@@ -90,100 +94,83 @@ const Profile = () => {
             <form onSubmit={handleSubmit} className="secForm">
               <div className="profile-head">
                 <div className="profile-header">
-                  <h1>Welcome {glbData.username}!</h1>
+                  <h1>Welcome {profile?.fullname}!</h1>
                 </div>
                 <span className="profile-img-header">
-                  <span className="profile-img">
-                    {/* <span className="img-container">
-                        </span> */}
-                    <img
-                      src={showImage ? URL.createObjectURL(file) : icon}
-                      alt={icon}
-                    />
-                  </span>
+                  <div className="profile-img">
+                    <div className="labels">
+                      <label
+                        htmlFor="Image1"
+                        className={isImageUploaded ? "uploaded" : ""}
+                      >
+                        <input
+                          id="Image1"
+                          name="image"
+                          value={values.image}
+                          type="file"
+                          accept="image/*"
+                          style={{ display: "none" }}
+                          onChange={handleImageUpload}
+                        ></input>
+                        {showImage && (
+                          <div className="img-display">
+                            {isImageUploaded && (
+                              <img
+                                src={URL.createObjectURL(file)}
+                                alt="food-img"
+                              />
+                            )}
+                            {!isImageUploaded && (
+                              <img src={values.image} alt="food-img" />
+                            )}
+                          </div>
+                        )}
+                        <label htmlFor="Image1">
+                          <img
+                            src={icon}
+                            alt={icon}
+                            className="menu-inputImg"
+                          />
+                        </label>
+                      </label>
+                    </div>
+                  </div>
+
                   <div className="profile-details">
                     <h2>Profile</h2>
                     <p>Update your photo and personal details.</p>
                   </div>
                   <div className="profile-btn">
                     <button id="cancel">Cancel</button>
-                    <button id="save">Save</button>
+                    <button type="submit" id="save">
+                      {isLoading ? "Update" : <Preloader />}
+                    </button>
                   </div>
                 </span>
               </div>
             </form>
             <form className="secForm">
               <div className="form-div">
-                <label htmlFor="username" className="label">
-                  Username
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  defaultValue={profileData.username}
-                  onChange={handleChange}
-                  className="input-field"
-                />
-              </div>
-              <div className="form-div">
-                <label htmlFor="website" className="label">
+                <label htmlFor="fullName" className="label">
                   Full Name
                 </label>
                 <input
                   type="text"
                   id="fullName"
-                  value={profileData.fullName}
+                  disabled={true}
+                  defaultValue={profileData?.fullname}
                   onChange={handleChange}
-                  className="name"
                 />
               </div>
-
-              <div className="form-div">
-                <label htmlFor="photo" className="photo-label">
-                  <p>Your Photo</p>
-                  <p className="photo-p">
-                    This will be displayed on your profile
-                  </p>
-                </label>
-                <div className="labels">
-                  <label
-                    htmlFor="Image1"
-                    className={isImageUploaded ? "uploaded" : ""}
-                  >
-                    <input
-                      id="Image1"
-                      name="image"
-                      value={values.image}
-                      type="file"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={handleImageUpload}
-                    ></input>
-                    {showImage && (
-                      <div className="img-display">
-                        {isImageUploaded && (
-                          <img src={URL.createObjectURL(file)} alt="food-img" />
-                        )}
-                        {!isImageUploaded && (
-                          <img src={values.image} alt="food-img" />
-                        )}
-                      </div>
-                    )}
-                    <label htmlFor="Image1">
-                      <img src={icons} alt={icons} className="menu-inputImg" />
-                    </label>
-                  </label>
-                </div>
-              </div>
-              <h2 className="businessHead">BUSINESS DETAILS</h2>
               <div className="form-div">
                 <label htmlFor="vendorName" className="label">
                   Business Name
                 </label>
                 <input
                   type="text"
-                  id="username"
-                  defaultValue={profileData.vendorName}
+                  id="vendorName"
+                  disabled={true}
+                  defaultValue={profileData?.business_name}
                   onChange={handleChange}
                 />
               </div>
@@ -191,12 +178,20 @@ const Profile = () => {
                 <label htmlFor="address" className="label">
                   Address
                 </label>
-                <input
-                  type="address"
-                  id="username"
-                  defaultValue={profileData.address}
-                  onChange={handleChange}
-                />
+                <div className="col">
+                  <input
+                    type="address"
+                    id="address"
+                    defaultValue={profileData?.business_address}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="address"
+                    id="address"
+                    defaultValue={profileData?.business_address_city}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
               <div className="form-div">
                 <label htmlFor="kitchenNumber" className="label">
@@ -205,8 +200,8 @@ const Profile = () => {
 
                 <input
                   type="numeric"
-                  id="username"
-                  defaultValue={profileData.kitchenNumber}
+                  id="number"
+                  defaultValue={profileData?.phone_number}
                   onChange={handleChange}
                 />
               </div>
@@ -216,31 +211,33 @@ const Profile = () => {
                 </label>
                 <input
                   type="email"
-                  id="username"
-                  defaultValue={profileData.emailAddress}
+                  id="email"
+                  defaultValue={profileData?.business_email}
                   onChange={handleChange}
                 />
               </div>
 
               <div className="kitchen-container">
-                <label htmlFor="kitchen-description" className="photo-labels">
-                  <p>Kitchen Description</p>
+                <label htmlFor="business_description" className="photo-labels">
+                  <p>Business Description</p>
                   <p className="photo-p">Write a short description</p>
                 </label>
                 <textarea
-                  id="kitchen-description"
-                  value={kitchenDescription}
+                  id="business_description"
+                  defaultValue={profile?.business_description}
                   placeholder="Add a short bio..."
                   maxLength={maxLength}
-                  onChange={handleChanges}
+                  onChange={handleChange}
                 ></textarea>
-                <div>{remainingLength} characters left</div>
+                {/* <div>{remainingLength} characters left</div> */}
               </div>
             </form>
           </div>
         );
       }}
     </Formik>
+  ) : (
+    <Preloader />
   );
 };
 

@@ -38,6 +38,7 @@ export const vendorLogin = createAsyncThunk(
         config
       );
       localStorage.setItem("vendor", JSON.stringify(data));
+      localStorage.setItem("email", JSON.stringify(username));
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -63,7 +64,8 @@ export const vendorRefreshLogin = createAsyncThunk(
         { refresh },
         config
       );
-      localStorage.setItem("vendor-refresh", JSON.stringify(data));
+      console.log(refresh);
+      localStorage.setItem("vendor", JSON.stringify(data));
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
