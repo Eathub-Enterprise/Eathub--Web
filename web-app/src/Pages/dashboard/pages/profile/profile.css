@@ -111,7 +111,8 @@
   inline-size: 50%;
 }
 
-.col>#address {
+.col>#address,
+.col>#address_city {
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -149,6 +150,7 @@
 
 #vendorName,
 #address,
+#address_city,
 #photo,
 #city,
 #number,

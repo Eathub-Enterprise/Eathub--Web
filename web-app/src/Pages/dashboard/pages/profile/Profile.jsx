@@ -5,6 +5,7 @@ import Preloader from "../../../../layouts/Preloader/Preloader";
 import icon from "../../../../Assets/pngs/profile (1).png";
 import { useUpdateProfileMutation } from "../../../../model/auth/authServices";
 import { useGetVendorProfileQuery } from "../../../../model/auth/authServices";
+import Swal from "sweetalert2";
 
 const Profile = () => {
   // Getting Profile State with RTK
@@ -70,19 +71,46 @@ const Profile = () => {
       initialValues={profileData}
       onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
+        const data = {
+          business_email: values.email,
+          phone_number: values.number,
+          business_address: values.address,
+          business_address_city: values.address_city,
+          business_description: values.business_description,
+          image: file,
+        };
         const formattedData = {
           uid: profile.uid,
-          data: { ...values, image: file },
+          data: { ...data },
         };
         console.log(formattedData);
         try {
           // call the update endpoint state here
           const response = await updateProfile(formattedData);
           console.log(`Profile Updated Sucessfully`, response);
+          Swal.fire({
+            text: "Sucessful Update",
+            icon: "success",
+            iconColor: "#fff",
+            toast: true,
+            position: "top-right",
+            showConfirmButton: false,
+            timer: 2000,
+            background: "#ff8323",
+            color: "#fff",
+          });
           await refetch();
         } catch (error) {
           // handle error here
           await error(`Error Updating Profile`, error);
+          Swal.fire({
+            text: "Unsucessfull Update",
+            icon: "error",
+            toast: true,
+            position: "top-right",
+            showConfirmButton: false,
+            timer: 2000,
+          });
           console.log(error);
         }
       }}
@@ -94,7 +122,7 @@ const Profile = () => {
             <form onSubmit={handleSubmit} className="secForm">
               <div className="profile-head">
                 <div className="profile-header">
-                  <h1>Welcome {profile?.fullname}!</h1>
+                  <h1>Welcome {profileData?.fullname}!</h1>
                 </div>
                 <span className="profile-img-header">
                   <div className="profile-img">
@@ -148,8 +176,6 @@ const Profile = () => {
                   </div>
                 </span>
               </div>
-            </form>
-            <form className="secForm">
               <div className="form-div">
                 <label htmlFor="fullName" className="label">
                   Full Name
@@ -187,7 +213,7 @@ const Profile = () => {
                   />
                   <input
                     type="address"
-                    id="address"
+                    id="address_city"
                     defaultValue={profileData?.business_address_city}
                     onChange={handleChange}
                   />
