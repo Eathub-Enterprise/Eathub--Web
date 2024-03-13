@@ -48,7 +48,7 @@ const ProtectedRoute = () => {
       } catch (error) {
         throw error;
       }
-    }, 50000);
+    }, 500000);
 
     // Cleanup interval on component unmount
     return () => clearInterval(refreshInterval);
